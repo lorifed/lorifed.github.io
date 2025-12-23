@@ -32,6 +32,12 @@
             scroll-behavior: auto;
         }
 
+        html, body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg);
@@ -40,7 +46,6 @@
             font-weight: 400;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            overflow-x: hidden;
         }
 
         /* Minimal scrollbar */
@@ -90,11 +95,16 @@
             max-width: 1120px;
             margin: 0 auto;
         }
+        
+        section.hero {
+            max-width: 100%;
+            padding: 120px 24px 80px;
+        }
 
         /* Hero with background image */
         .hero {
             min-height: 100vh;
-            width: 100vw;
+            width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -103,8 +113,7 @@
             padding: 120px 24px 80px;
             position: relative;
             overflow: hidden;
-            margin-left: calc(-50vw + 50%);
-            margin-right: calc(-50vw + 50%);
+            max-width: none;
         }
         
         /* Background image */
@@ -112,7 +121,9 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100vw;
+            right: 0;
+            bottom: 0;
+            width: 100%;
             height: 100%;
             background-image: url('hero-bg.jpg');
             background-size: cover;
@@ -126,7 +137,9 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100vw;
+            right: 0;
+            bottom: 0;
+            width: 100%;
             height: 100%;
             background: linear-gradient(
                 to bottom,
