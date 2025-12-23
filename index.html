@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>21STUDIO | Web Developer & AI Content Creator</title>
-    <meta name="description" content="Premium web development and AI content creation services. WordPress, Shopify, and cutting-edge AI solutions.">
+    <meta name="description" content="Premium web development and AI content creation services.">
     
-    <!-- Preload fonts for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -20,33 +19,96 @@
 
         :root {
             --bg: #000000;
-            --bg-card: #0d0d0d;
+            --bg-card: #0a0a0a;
             --text: #f5f5f7;
             --text-secondary: #86868b;
             --text-muted: #48484a;
             --accent: #2997ff;
+            --accent-purple: #bf5af2;
             --border: #1d1d1f;
         }
 
         html {
-            scroll-behavior: auto;
+            font-size: 16px;
         }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.47;
-            font-weight: 400;
+            line-height: 1.5;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
         }
 
-        /* Minimal scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            gap: 24px;
+        }
+        .preloader__text {
+            font-size: clamp(32px, 8vw, 64px);
+            font-weight: 600;
+            letter-spacing: -0.04em;
+            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            clip-path: inset(0 100% 0 0);
+        }
+        .preloader__counter {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Smooth scroll wrapper */
+        #smooth-wrapper {
+            overflow: hidden;
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+        #smooth-content {
+            will-change: transform;
+        }
+
+        /* Text Hover Effect */
+        .text-hover {
+            position: relative;
+            display: inline-flex;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+        }
+        .text-hover__inner {
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .text-hover__elem {
+            display: block;
+        }
+        .text-hover__elem-2 {
+            position: absolute;
+            top: 100%;
+        }
+        .text-hover:hover .text-hover__inner {
+            transform: translateY(-100%);
+        }
 
         /* Navigation */
         nav {
@@ -54,41 +116,31 @@
             top: 0;
             left: 0;
             right: 0;
-            padding: 16px 40px;
+            padding: 20px 48px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            background: rgba(0, 0, 0, 0.72);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            mix-blend-mode: difference;
         }
-        .logo {
+        .nav-logo {
             font-size: 1.125rem;
             font-weight: 600;
             letter-spacing: -0.02em;
             color: var(--text);
-            text-decoration: none;
         }
         .nav-links {
             display: flex;
-            gap: 28px;
+            gap: 32px;
         }
         .nav-links a {
             font-size: 0.875rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s ease;
+            color: var(--text);
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
         }
         .nav-links a:hover {
-            color: var(--text);
-        }
-
-        /* Sections */
-        section {
-            padding: 120px 40px;
-            max-width: 1120px;
-            margin: 0 auto;
+            opacity: 1;
         }
 
         /* Hero */
@@ -99,72 +151,97 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding-top: 80px;
+            padding: 120px 24px 80px;
+            position: relative;
         }
-        .hero-badge {
+        .hero__badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 6px 14px;
-            background: rgba(255,255,255,0.05);
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.03);
             border: 1px solid var(--border);
-            border-radius: 50px;
+            border-radius: 100px;
             font-size: 0.75rem;
             color: var(--text-secondary);
             margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(20px);
+            overflow: hidden;
         }
-        .hero-badge-dot {
+        .hero__badge-dot {
             width: 6px;
             height: 6px;
             background: #30d158;
             border-radius: 50%;
+            animation: pulse 2s infinite;
         }
-        .hero-title {
-            font-size: clamp(56px, 12vw, 140px);
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+        .hero__title {
+            font-size: clamp(64px, 15vw, 180px);
             font-weight: 600;
-            letter-spacing: -0.045em;
-            line-height: 0.95;
-            margin-bottom: 20px;
-            opacity: 0;
-            transform: translateY(40px);
+            letter-spacing: -0.05em;
+            line-height: 0.9;
+            margin-bottom: 24px;
         }
-        .hero-subtitle {
+        .hero__title-char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(100%);
+        }
+        .hero__subtitle {
             font-size: clamp(14px, 2vw, 18px);
             color: var(--text-secondary);
-            font-weight: 400;
-            letter-spacing: 0.01em;
-            margin-bottom: 48px;
-            opacity: 0;
-            transform: translateY(20px);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 56px;
+            overflow: hidden;
         }
-        .hero-cta {
+        .hero__subtitle-inner {
+            display: block;
+        }
+        .hero__cta {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 14px 28px;
-            background: var(--accent);
-            color: #fff;
-            font-size: 0.9375rem;
+            gap: 12px;
+            padding: 18px 36px;
+            background: transparent;
+            border: 1px solid var(--text);
+            color: var(--text);
+            font-size: 0.875rem;
             font-weight: 500;
             text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-            opacity: 0;
-            transform: translateY(20px);
+            border-radius: 100px;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+            position: relative;
         }
-        .hero-cta:hover {
-            transform: scale(1.04) translateY(0);
-            box-shadow: 0 4px 24px rgba(41, 151, 255, 0.4);
+        .hero__cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--text);
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: -1;
         }
-        .hero-cta svg {
+        .hero__cta:hover {
+            color: var(--bg);
+        }
+        .hero__cta:hover::before {
+            transform: translateY(0);
+        }
+        .hero__cta svg {
             width: 14px;
             height: 14px;
-            transition: transform 0.3s ease;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .hero-cta:hover svg {
-            transform: translateX(3px);
+        .hero__cta:hover svg {
+            transform: translateX(4px);
         }
 
         /* Info Bar */
@@ -172,140 +249,159 @@
             display: flex;
             justify-content: center;
             gap: 80px;
-            padding: 56px 40px;
+            padding: 64px 48px;
             border-top: 1px solid var(--border);
         }
         .info-item {
             text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
         }
-        .info-icon {
-            width: 20px;
-            height: 20px;
-            margin: 0 auto 10px;
+        .info-item__icon {
+            width: 24px;
+            height: 24px;
+            margin: 0 auto 12px;
             color: var(--accent);
         }
-        .info-label {
+        .info-item__label {
             font-size: 0.8125rem;
             font-weight: 500;
             color: var(--text);
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
-        .info-value {
+        .info-item__value {
             font-size: 0.6875rem;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
         }
 
-        /* Section Headers */
+        /* Section */
+        section {
+            padding: 120px 48px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Section Header */
         .section-header {
             text-align: center;
-            margin-bottom: 56px;
+            margin-bottom: 80px;
         }
-        .section-tag {
+        .section-header__tag {
             font-size: 0.6875rem;
             font-weight: 500;
             color: var(--accent);
             text-transform: uppercase;
-            letter-spacing: 0.12em;
-            margin-bottom: 12px;
-            opacity: 0;
-            transform: translateY(15px);
+            letter-spacing: 0.15em;
+            margin-bottom: 16px;
         }
-        .section-title {
-            font-size: clamp(32px, 5vw, 48px);
+        .section-header__title {
+            font-size: clamp(36px, 6vw, 56px);
             font-weight: 600;
             letter-spacing: -0.03em;
-            opacity: 0;
-            transform: translateY(20px);
+        }
+        .section-header__title .word {
+            display: inline-block;
+            overflow: hidden;
+        }
+        .section-header__title .word-inner {
+            display: inline-block;
         }
 
         /* Services */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 24px;
         }
         .service-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 36px 28px;
-            transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+            border-radius: 20px;
+            padding: 40px 32px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.5s ease;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(41,151,255,0.1) 0%, transparent 50%);
             opacity: 0;
-            transform: translateY(30px);
+            transition: opacity 0.5s ease;
         }
         .service-card:hover {
             border-color: var(--accent);
-            transform: translateY(-4px);
         }
-        .service-icon {
-            width: 44px;
-            height: 44px;
-            background: linear-gradient(135deg, var(--accent) 0%, #5856d6 100%);
-            border-radius: 11px;
+        .service-card:hover::before {
+            opacity: 1;
+        }
+        .service-card__icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
-        .service-icon svg {
-            width: 22px;
-            height: 22px;
+        .service-card__icon svg {
+            width: 24px;
+            height: 24px;
             color: #fff;
         }
-        .service-title {
-            font-size: 1.0625rem;
+        .service-card__title {
+            font-size: 1.125rem;
             font-weight: 600;
-            margin-bottom: 8px;
-            letter-spacing: -0.01em;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
         }
-        .service-desc {
-            font-size: 0.875rem;
+        .service-card__desc {
+            font-size: 0.9375rem;
             color: var(--text-secondary);
-            line-height: 1.55;
+            line-height: 1.6;
         }
 
         /* Portfolio */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 24px;
         }
         .portfolio-item {
             position: relative;
             aspect-ratio: 16/10;
-            border-radius: 16px;
+            border-radius: 20px;
             overflow: hidden;
             cursor: pointer;
-            opacity: 0;
-            transform: translateY(30px);
         }
-        .portfolio-item img {
+        .portfolio-item__img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .portfolio-item:hover img {
-            transform: scale(1.06);
+        .portfolio-item:hover .portfolio-item__img {
+            transform: scale(1.1);
         }
-        .portfolio-overlay {
+        .portfolio-item__overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 28px 24px;
-            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+            padding: 32px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
         }
-        .portfolio-title {
-            font-size: 1rem;
+        .portfolio-item__title {
+            font-size: 1.125rem;
             font-weight: 600;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
-        .portfolio-cat {
+        .portfolio-item__cat {
             font-size: 0.75rem;
             color: var(--text-muted);
         }
@@ -314,371 +410,548 @@
         .stats-section {
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
-            padding: 80px 40px;
+            padding: 100px 48px;
         }
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            max-width: 800px;
+            gap: 48px;
+            max-width: 900px;
             margin: 0 auto;
             text-align: center;
         }
-        .stat-item {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        .stat-number {
-            font-size: clamp(40px, 8vw, 64px);
+        .stat__number {
+            font-size: clamp(48px, 10vw, 80px);
             font-weight: 600;
             letter-spacing: -0.04em;
-            background: linear-gradient(135deg, var(--accent) 0%, #5856d6 100%);
+            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .stat-label {
+        .stat__label {
             font-size: 0.75rem;
             color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            margin-top: 4px;
+            margin-top: 8px;
         }
 
         /* CTA */
         .cta-section {
             text-align: center;
-            padding: 140px 40px;
+            padding: 160px 48px;
         }
-        .cta-title {
-            font-size: clamp(36px, 6vw, 56px);
+        .cta__title {
+            font-size: clamp(40px, 8vw, 72px);
             font-weight: 600;
-            letter-spacing: -0.035em;
+            letter-spacing: -0.04em;
             line-height: 1.1;
-            margin-bottom: 16px;
-            opacity: 0;
-            transform: translateY(25px);
+            margin-bottom: 24px;
         }
-        .cta-subtitle {
-            font-size: 1rem;
+        .cta__subtitle {
+            font-size: 1.125rem;
             color: var(--text-secondary);
-            margin-bottom: 36px;
-            opacity: 0;
-            transform: translateY(20px);
+            margin-bottom: 48px;
         }
-        .cta-button {
+        .cta__button {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 16px 36px;
+            gap: 12px;
+            padding: 20px 48px;
             background: var(--text);
             color: var(--bg);
-            font-size: 0.9375rem;
+            font-size: 1rem;
             font-weight: 600;
             text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-            opacity: 0;
-            transform: translateY(20px);
+            border-radius: 100px;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .cta-button:hover {
-            transform: scale(1.04) translateY(0);
-            box-shadow: 0 4px 24px rgba(255,255,255,0.15);
+        .cta__button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 60px rgba(255,255,255,0.2);
         }
 
         /* Footer */
         footer {
-            padding: 40px;
+            padding: 48px;
             border-top: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .footer-brand {
-            font-size: 0.9375rem;
+        .footer__brand {
+            font-size: 1rem;
             font-weight: 600;
         }
-        .footer-copy {
+        .footer__copy {
             font-size: 0.75rem;
             color: var(--text-muted);
             margin-top: 4px;
         }
-        .footer-social {
+        .footer__social {
             display: flex;
-            gap: 12px;
+            gap: 16px;
         }
-        .footer-social a {
-            width: 36px;
-            height: 36px;
+        .footer__social a {
+            width: 40px;
+            height: 40px;
             border: 1px solid var(--border);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--text-secondary);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .footer-social a:hover {
+        .footer__social a:hover {
             border-color: var(--accent);
             color: var(--accent);
+            transform: translateY(-4px);
         }
-        .footer-social svg {
-            width: 16px;
-            height: 16px;
+        .footer__social svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+        }
+        .reveal-fade {
+            opacity: 0;
         }
 
         /* Responsive */
-        @media (max-width: 968px) {
-            nav { padding: 14px 24px; }
+        @media (max-width: 1024px) {
+            nav { padding: 16px 24px; }
             .nav-links { display: none; }
             section { padding: 80px 24px; }
             .services-grid { grid-template-columns: 1fr 1fr; }
-            .info-bar { gap: 40px; flex-wrap: wrap; }
+            .info-bar { gap: 40px; flex-wrap: wrap; padding: 48px 24px; }
         }
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
             .services-grid,
             .portfolio-grid,
             .stats-grid { grid-template-columns: 1fr; }
-            .info-bar { flex-direction: column; gap: 24px; }
-            footer { flex-direction: column; gap: 20px; text-align: center; }
-        }
-
-        /* Animation classes */
-        .animate { 
-            opacity: 1 !important; 
-            transform: translateY(0) !important; 
+            .info-bar { flex-direction: column; gap: 32px; }
+            footer { flex-direction: column; gap: 24px; text-align: center; }
         }
     </style>
 </head>
 <body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader__text">21STUDIO</div>
+        <div class="preloader__counter">0</div>
+    </div>
+
     <!-- Navigation -->
     <nav>
-        <a href="#" class="logo">21STUDIO</a>
+        <a href="#" class="nav-logo text-hover">
+            <span class="text-hover__inner">
+                <span class="text-hover__elem text-hover__elem-1">21STUDIO</span>
+                <span class="text-hover__elem text-hover__elem-2">21STUDIO</span>
+            </span>
+        </a>
         <div class="nav-links">
-            <a href="#services">Services</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#contact">Contact</a>
+            <a href="#services" class="text-hover">
+                <span class="text-hover__inner">
+                    <span class="text-hover__elem text-hover__elem-1">Services</span>
+                    <span class="text-hover__elem text-hover__elem-2">Services</span>
+                </span>
+            </a>
+            <a href="#portfolio" class="text-hover">
+                <span class="text-hover__inner">
+                    <span class="text-hover__elem text-hover__elem-1">Portfolio</span>
+                    <span class="text-hover__elem text-hover__elem-2">Portfolio</span>
+                </span>
+            </a>
+            <a href="#contact" class="text-hover">
+                <span class="text-hover__inner">
+                    <span class="text-hover__elem text-hover__elem-1">Contact</span>
+                    <span class="text-hover__elem text-hover__elem-2">Contact</span>
+                </span>
+            </a>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-badge">
-            <span class="hero-badge-dot"></span>
-            Available for projects
-        </div>
-        <h1 class="hero-title">21STUDIO</h1>
-        <p class="hero-subtitle">Web Developer & AI Content Creator</p>
-        <a href="#contact" class="hero-cta">
-            Let's Work
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-            </svg>
-        </a>
-    </section>
+    <!-- Smooth Scroll Wrapper -->
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+            
+            <!-- Hero -->
+            <section class="hero">
+                <div class="hero__badge">
+                    <span class="hero__badge-dot"></span>
+                    <span>Available for projects</span>
+                </div>
+                <h1 class="hero__title" data-splitting>21STUDIO</h1>
+                <p class="hero__subtitle">
+                    <span class="hero__subtitle-inner">Web Developer & AI Content Creator</span>
+                </p>
+                <a href="#contact" class="hero__cta">
+                    <span class="text-hover__inner">
+                        <span class="text-hover__elem text-hover__elem-1">Let's Work Together</span>
+                        <span class="text-hover__elem text-hover__elem-2">Let's Work Together</span>
+                    </span>
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </a>
+            </section>
 
-    <!-- Info Bar -->
-    <div class="info-bar">
-        <div class="info-item">
-            <svg class="info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-            </svg>
-            <div class="info-label">Based in Italy</div>
-            <div class="info-value">Fano</div>
-        </div>
-        <div class="info-item">
-            <svg class="info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-            <div class="info-label">Available Worldwide</div>
-            <div class="info-value">Remote</div>
-        </div>
-        <div class="info-item">
-            <svg class="info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
-            </svg>
-            <div class="info-label">Web & AI</div>
-            <div class="info-value">Specialist</div>
+            <!-- Info Bar -->
+            <div class="info-bar">
+                <div class="info-item reveal">
+                    <svg class="info-item__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    <div class="info-item__label">Based in Italy</div>
+                    <div class="info-item__value">Fano</div>
+                </div>
+                <div class="info-item reveal">
+                    <svg class="info-item__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <div class="info-item__label">Available Worldwide</div>
+                    <div class="info-item__value">Remote</div>
+                </div>
+                <div class="info-item reveal">
+                    <svg class="info-item__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                    </svg>
+                    <div class="info-item__label">Web & AI</div>
+                    <div class="info-item__value">Specialist</div>
+                </div>
+            </div>
+
+            <!-- Services -->
+            <section id="services">
+                <div class="section-header">
+                    <p class="section-header__tag reveal-fade">Services</p>
+                    <h2 class="section-header__title" data-animate-words>What I Do</h2>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card reveal">
+                        <div class="service-card__icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                            </svg>
+                        </div>
+                        <h3 class="service-card__title">WordPress & WooCommerce</h3>
+                        <p class="service-card__desc">Custom e-commerce solutions with clean code and premium design.</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <div class="service-card__icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                            </svg>
+                        </div>
+                        <h3 class="service-card__title">Shopify Development</h3>
+                        <p class="service-card__desc">Scalable stores with custom themes and conversion-focused UX.</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <div class="service-card__icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                        </div>
+                        <h3 class="service-card__title">AI Content Creation</h3>
+                        <p class="service-card__desc">AI-powered visuals and marketing content that elevates brands.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolio -->
+            <section id="portfolio">
+                <div class="section-header">
+                    <p class="section-header__tag reveal-fade">Portfolio</p>
+                    <h2 class="section-header__title" data-animate-words>Selected Work</h2>
+                </div>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item reveal">
+                        <img class="portfolio-item__img" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80" alt="IKIVENTI" loading="lazy">
+                        <div class="portfolio-item__overlay">
+                            <h3 class="portfolio-item__title">IKIVENTI</h3>
+                            <p class="portfolio-item__cat">E-commerce / WordPress</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item reveal">
+                        <img class="portfolio-item__img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="Web Development" loading="lazy">
+                        <div class="portfolio-item__overlay">
+                            <h3 class="portfolio-item__title">Web Development</h3>
+                            <p class="portfolio-item__cat">Various Projects</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item reveal">
+                        <img class="portfolio-item__img" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80" alt="AI Content" loading="lazy">
+                        <div class="portfolio-item__overlay">
+                            <h3 class="portfolio-item__title">AI Content Creation</h3>
+                            <p class="portfolio-item__cat">Visual / Video</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item reveal">
+                        <img class="portfolio-item__img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Coming Soon" loading="lazy">
+                        <div class="portfolio-item__overlay">
+                            <h3 class="portfolio-item__title">Coming Soon</h3>
+                            <p class="portfolio-item__cat">New Project</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats -->
+            <div class="stats-section">
+                <div class="stats-grid">
+                    <div class="reveal">
+                        <div class="stat__number" data-count="50">0</div>
+                        <div class="stat__label">Clients</div>
+                    </div>
+                    <div class="reveal">
+                        <div class="stat__number" data-count="5">0</div>
+                        <div class="stat__label">Years</div>
+                    </div>
+                    <div class="reveal">
+                        <div class="stat__number" data-count="100">0</div>
+                        <div class="stat__label">Projects</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <section class="cta-section" id="contact">
+                <h2 class="cta__title" data-animate-words>Let's Work Together</h2>
+                <p class="cta__subtitle reveal-fade">Ready to bring your vision to life?</p>
+                <a href="mailto:hello@21studio.com" class="cta__button reveal">
+                    Start a Project
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </a>
+            </section>
+
+            <!-- Footer -->
+            <footer>
+                <div>
+                    <div class="footer__brand">21STUDIO</div>
+                    <div class="footer__copy">© 2024 All rights reserved</div>
+                </div>
+                <div class="footer__social">
+                    <a href="#" aria-label="Instagram" class="text-hover">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="LinkedIn" class="text-hover">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                </div>
+            </footer>
+
         </div>
     </div>
 
-    <!-- Services -->
-    <section id="services">
-        <div class="section-header">
-            <p class="section-tag">Services</p>
-            <h2 class="section-title">What I Do</h2>
-        </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-                    </svg>
-                </div>
-                <h3 class="service-title">WordPress & WooCommerce</h3>
-                <p class="service-desc">Custom e-commerce solutions with clean code and premium design.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
-                    </svg>
-                </div>
-                <h3 class="service-title">Shopify Development</h3>
-                <p class="service-desc">Scalable stores with custom themes and conversion-focused UX.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                    </svg>
-                </div>
-                <h3 class="service-title">AI Content Creation</h3>
-                <p class="service-desc">AI-powered visuals and marketing content that elevates brands.</p>
-            </div>
-        </div>
-    </section>
+    <!-- GSAP + ScrollTrigger + Lenis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 
-    <!-- Portfolio -->
-    <section id="portfolio">
-        <div class="section-header">
-            <p class="section-tag">Portfolio</p>
-            <h2 class="section-title">Selected Work</h2>
-        </div>
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80" alt="IKIVENTI" loading="lazy">
-                <div class="portfolio-overlay">
-                    <h3 class="portfolio-title">IKIVENTI</h3>
-                    <p class="portfolio-cat">E-commerce / WordPress</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="Web Development" loading="lazy">
-                <div class="portfolio-overlay">
-                    <h3 class="portfolio-title">Web Development</h3>
-                    <p class="portfolio-cat">Various Projects</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80" alt="AI Content" loading="lazy">
-                <div class="portfolio-overlay">
-                    <h3 class="portfolio-title">AI Content Creation</h3>
-                    <p class="portfolio-cat">Visual / Video</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Coming Soon" loading="lazy">
-                <div class="portfolio-overlay">
-                    <h3 class="portfolio-title">Coming Soon</h3>
-                    <p class="portfolio-cat">New Project</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats -->
-    <div class="stats-section">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-number">50+</div>
-                <div class="stat-label">Clients</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">5+</div>
-                <div class="stat-label">Years</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">100+</div>
-                <div class="stat-label">Projects</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- CTA -->
-    <section class="cta-section" id="contact">
-        <h2 class="cta-title">Let's Work Together</h2>
-        <p class="cta-subtitle">Ready to bring your vision to life?</p>
-        <a href="mailto:hello@21studio.com" class="cta-button">
-            Start a Project
-            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-            </svg>
-        </a>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div>
-            <div class="footer-brand">21STUDIO</div>
-            <div class="footer-copy">© 2024 All rights reserved</div>
-        </div>
-        <div class="footer-social">
-            <a href="#" aria-label="Instagram">
-                <svg fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-            </a>
-            <a href="#" aria-label="LinkedIn">
-                <svg fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                </svg>
-            </a>
-        </div>
-    </footer>
-
-    <!-- Minimal JS - Pure CSS animations triggered by IntersectionObserver -->
     <script>
-        // Smooth scroll polyfill using native browser
+        // Register GSAP plugins
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Initialize Lenis smooth scroll
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            orientation: 'vertical',
+            smoothWheel: true,
+        });
+
+        // Connect Lenis to GSAP ScrollTrigger
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+        gsap.ticker.lagSmoothing(0);
+
+        // Preloader animation
+        const preloader = document.querySelector('.preloader');
+        const preloaderText = document.querySelector('.preloader__text');
+        const preloaderCounter = document.querySelector('.preloader__counter');
+        
+        let count = { value: 0 };
+        
+        // Counter animation
+        gsap.to(count, {
+            value: 100,
+            duration: 2,
+            ease: 'power2.inOut',
+            onUpdate: () => {
+                preloaderCounter.textContent = Math.round(count.value);
+            }
+        });
+
+        // Text reveal
+        gsap.to(preloaderText, {
+            clipPath: 'inset(0 0% 0 0)',
+            duration: 1.5,
+            ease: 'power4.inOut',
+            delay: 0.3
+        });
+
+        // Hide preloader
+        gsap.to(preloader, {
+            yPercent: -100,
+            duration: 1,
+            ease: 'power4.inOut',
+            delay: 2.5,
+            onComplete: () => {
+                preloader.style.display = 'none';
+                initAnimations();
+            }
+        });
+
+        function initAnimations() {
+            // Hero title character animation
+            const heroTitle = document.querySelector('.hero__title');
+            const text = heroTitle.textContent;
+            heroTitle.innerHTML = text.split('').map(char => 
+                char === ' ' ? ' ' : `<span class="hero__title-char">${char}</span>`
+            ).join('');
+
+            gsap.to('.hero__title-char', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                stagger: 0.05,
+                ease: 'power4.out',
+                delay: 0.2
+            });
+
+            // Hero subtitle
+            gsap.from('.hero__subtitle-inner', {
+                yPercent: 100,
+                duration: 1,
+                ease: 'power4.out',
+                delay: 0.8
+            });
+
+            // Hero badge
+            gsap.from('.hero__badge', {
+                opacity: 0,
+                y: 20,
+                duration: 1,
+                ease: 'power4.out',
+                delay: 0.3
+            });
+
+            // Hero CTA
+            gsap.from('.hero__cta', {
+                opacity: 0,
+                y: 30,
+                duration: 1,
+                ease: 'power4.out',
+                delay: 1.2
+            });
+
+            // Reveal animations on scroll
+            gsap.utils.toArray('.reveal').forEach((elem) => {
+                gsap.to(elem, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: elem,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    }
+                });
+            });
+
+            // Fade reveals
+            gsap.utils.toArray('.reveal-fade').forEach((elem) => {
+                gsap.to(elem, {
+                    opacity: 1,
+                    duration: 1,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: elem,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    }
+                });
+            });
+
+            // Word by word animation for titles
+            document.querySelectorAll('[data-animate-words]').forEach(elem => {
+                const text = elem.textContent;
+                const words = text.split(' ');
+                elem.innerHTML = words.map(word => 
+                    `<span class="word"><span class="word-inner">${word}</span></span>`
+                ).join(' ');
+
+                gsap.from(elem.querySelectorAll('.word-inner'), {
+                    yPercent: 100,
+                    duration: 1,
+                    ease: 'power4.out',
+                    stagger: 0.1,
+                    scrollTrigger: {
+                        trigger: elem,
+                        start: 'top 80%',
+                        toggleActions: 'play none none none'
+                    }
+                });
+            });
+
+            // Counter animation for stats
+            document.querySelectorAll('[data-count]').forEach(elem => {
+                const target = parseInt(elem.dataset.count);
+                
+                ScrollTrigger.create({
+                    trigger: elem,
+                    start: 'top 80%',
+                    onEnter: () => {
+                        gsap.to(elem, {
+                            innerHTML: target + '+',
+                            duration: 2,
+                            ease: 'power2.out',
+                            snap: { innerHTML: 1 }
+                        });
+                    },
+                    once: true
+                });
+            });
+
+            // Parallax for portfolio images
+            gsap.utils.toArray('.portfolio-item__img').forEach(img => {
+                gsap.to(img, {
+                    yPercent: -10,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: img.parentElement,
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        scrub: true
+                    }
+                });
+            });
+        }
+
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    const offset = 80;
-                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
+                    lenis.scrollTo(target, { offset: -80 });
                 }
-            });
-        });
-
-        // Apple-style fade in animations using IntersectionObserver
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    // Stagger animation
-                    setTimeout(() => {
-                        entry.target.style.transition = 'opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1)';
-                        entry.target.classList.add('animate');
-                    }, index * 80);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        // Observe all animated elements
-        const animatedElements = document.querySelectorAll('.hero-badge, .hero-title, .hero-subtitle, .hero-cta, .info-item, .section-tag, .section-title, .service-card, .portfolio-item, .stat-item, .cta-title, .cta-subtitle, .cta-button');
-        
-        animatedElements.forEach(el => observer.observe(el));
-
-        // Hero animations on load
-        window.addEventListener('load', () => {
-            const heroElements = document.querySelectorAll('.hero-badge, .hero-title, .hero-subtitle, .hero-cta');
-            heroElements.forEach((el, i) => {
-                setTimeout(() => {
-                    el.style.transition = 'opacity 1s cubic-bezier(0.25, 0.1, 0.25, 1), transform 1s cubic-bezier(0.25, 0.1, 0.25, 1)';
-                    el.classList.add('animate');
-                }, 200 + (i * 150));
             });
         });
     </script>
