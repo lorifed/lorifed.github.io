@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APEX | Extreme Sports</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --black: #0a0a0a; --white: #fff; --red: #e63222; --gray: #1a1a1a; --gray-light: #888; }
+        html.lenis { height: auto; }
+        body { font-family: 'Inter', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+
+        /* PRELOADER */
+        .preloader { position: fixed; inset: 0; background: var(--black); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .preloader-text { font-family: 'Bebas Neue', sans-serif; font-size: clamp(80px, 20vw, 200px); letter-spacing: 0.1em; display: flex; }
+        .preloader-text .char { display: inline-block; transform: translateY(100%); opacity: 0; }
+        .preloader-line { width: 0; height: 2px; background: var(--red); margin-top: 40px; }
+        .preloader-tag { font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gray-light); margin-top: 20px; opacity: 0; }
+
+        /* NAV */
+        nav { position: fixed; top: 0; left: 0; right: 0; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; z-index: 100; mix-blend-mode: difference; }
+        .logo { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 0.2em; color: var(--white); text-decoration: none; }
+        .nav-links { display: flex; gap: 48px; }
+        .nav-link { position: relative; overflow: hidden; height: 20px; }
+        .nav-link a { display: block; font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); text-decoration: none; transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1); }
+        .nav-link a:nth-child(2) { position: absolute; top: 0; left: 0; transform: translateY(100%); color: var(--red); }
+        .nav-link:hover a:first-child { transform: translateY(-100%); }
+        .nav-link:hover a:nth-child(2) { transform: translateY(0); }
+
+        /* HERO */
+        .hero { height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .hero-bg { position: absolute; inset: 0; z-index: -1; }
+        .hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6); transform: scale(1.1); }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,10,10,0.3), rgba(10,10,10,0.1) 50%, rgba(10,10,10,0.9)); }
+        .hero-content { position: relative; z-index: 1; text-align: center; padding: 0 24px; }
+        .hero-tag { font-size: 11px; font-weight: 500; letter-spacing: 0.4em; text-transform: uppercase; color: var(--red); margin-bottom: 24px; overflow: hidden; }
+        .hero-tag .line { display: block; transform: translateY(100%); }
+        .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(100px, 25vw, 350px); line-height: 0.85; letter-spacing: -0.02em; }
+        .hero-title .line { display: block; overflow: hidden; }
+        .hero-title .line span { display: block; transform: translateY(100%); }
+        .hero-sub { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.7); margin-top: 24px; }
+        .hero-sub .line { display: block; overflow: hidden; }
+        .hero-sub .line span { display: block; transform: translateY(100%); }
+        .hero-scroll { position: absolute; bottom: 48px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 12px; }
+        .hero-scroll span { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray-light); }
+        .hero-scroll-line { width: 1px; height: 60px; background: linear-gradient(to bottom, var(--red), transparent); animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100% { transform: scaleY(0); } 50% { transform: scaleY(1); } }
+
+        /* ABOUT */
+        .about { min-height: 100vh; padding: 160px 48px; }
+        .about-header { display: flex; justify-content: space-between; margin-bottom: 80px; }
+        .about-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(60px, 12vw, 150px); line-height: 0.9; }
+        .about-title .line { display: block; overflow: hidden; }
+        .about-title .line span { display: block; transform: translateY(100%); }
+        .about-num { font-family: 'Bebas Neue', sans-serif; font-size: 100px; color: var(--red); opacity: 0.3; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .about-text { font-size: 18px; line-height: 1.8; color: var(--gray-light); }
+        .about-text .line { display: block; overflow: hidden; }
+        .about-text .line span { display: block; transform: translateY(100%); }
+        .about-img { height: 500px; overflow: hidden; }
+        .about-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(30%); transition: transform 0.8s ease; }
+        .about-img:hover img { transform: scale(1.05); filter: grayscale(0%); }
+
+        /* MARQUEE */
+        .marquee-section { padding: 60px 0; overflow: hidden; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .marquee { display: flex; animation: marquee 25s linear infinite; }
+        .marquee-content { display: flex; align-items: center; gap: 60px; padding-right: 60px; white-space: nowrap; }
+        .marquee-content span { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 8vw, 80px); color: transparent; -webkit-text-stroke: 1px var(--white); }
+        .marquee-content span.filled { color: var(--white); -webkit-text-stroke: none; }
+        .marquee-dot { width: 12px; height: 12px; background: var(--red); border-radius: 50%; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* EVENTS HORIZONTAL */
+        .events { position: relative; }
+        .events-header { padding: 120px 48px 60px; }
+        .events-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(60px, 15vw, 180px); line-height: 0.9; }
+        .events-title .line { display: block; overflow: hidden; }
+        .events-title .line span { display: block; transform: translateY(100%); }
+        .events-track { display: flex; gap: 40px; padding: 0 48px 120px; }
+        .event-card { flex: 0 0 420px; position: relative; overflow: hidden; }
+        .event-card-img { width: 100%; aspect-ratio: 3/4; overflow: hidden; }
+        .event-card-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .event-card:hover .event-card-img img { filter: grayscale(0%); transform: scale(1.1); }
+        .event-card-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 40px 24px; background: linear-gradient(to top, rgba(10,10,10,0.95), transparent); }
+        .event-card-num { font-family: 'Bebas Neue', sans-serif; font-size: 60px; color: var(--red); opacity: 0.5; line-height: 1; }
+        .event-card-name { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.05em; }
+        .event-card-loc { font-size: 11px; color: var(--gray-light); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 8px; }
+
+        /* EXPERIENCE LIST */
+        .experience { padding: 160px 48px; }
+        .exp-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; }
+        .exp-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 10vw, 120px); line-height: 0.9; }
+        .exp-sub { font-size: 12px; color: var(--gray-light); letter-spacing: 0.1em; text-transform: uppercase; }
+        .exp-list { border-top: 1px solid rgba(255,255,255,0.1); }
+        .exp-item { display: grid; grid-template-columns: 80px 1fr 200px; gap: 40px; padding: 28px 0; border-bottom: 1px solid rgba(255,255,255,0.1); cursor: pointer; transition: all 0.4s ease; }
+        .exp-item:hover { padding-left: 24px; background: rgba(255,255,255,0.02); }
+        .exp-item:hover .exp-item-name { color: var(--red); }
+        .exp-item-num { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--red); }
+        .exp-item-name { font-family: 'Bebas Neue', sans-serif; font-size: 28px; transition: color 0.3s; }
+        .exp-item-details { text-align: right; }
+        .exp-item-loc { font-size: 14px; }
+        .exp-item-date { font-size: 12px; color: var(--gray-light); }
+        .exp-gallery { position: fixed; top: 50%; right: 10%; transform: translateY(-50%); width: 350px; height: 450px; pointer-events: none; opacity: 0; z-index: 50; transition: opacity 0.4s; }
+        .exp-gallery.visible { opacity: 1; }
+        .exp-gallery img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* STATS */
+        .stats { padding: 100px 48px; background: var(--gray); }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px; max-width: 1200px; margin: 0 auto; text-align: center; }
+        .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: clamp(50px, 10vw, 90px); color: var(--red); line-height: 1; }
+        .stat-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray-light); margin-top: 12px; }
+
+        /* CTA */
+        .cta { padding: 180px 48px; text-align: center; position: relative; }
+        .cta::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(230,50,34,0.1), transparent 70%); }
+        .cta-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(60px, 15vw, 180px); line-height: 0.9; margin-bottom: 48px; position: relative; }
+        .cta-btn { display: inline-flex; align-items: center; gap: 16px; padding: 20px 56px; border: 1px solid var(--white); color: var(--white); font-size: 12px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; position: relative; overflow: hidden; transition: color 0.4s, border-color 0.4s; }
+        .cta-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--red); transition: left 0.4s cubic-bezier(0.65, 0, 0.35, 1); z-index: -1; }
+        .cta-btn:hover { border-color: var(--red); }
+        .cta-btn:hover::before { left: 0; }
+
+        /* FOOTER */
+        footer { padding: 80px 48px 40px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer-top { display: flex; justify-content: space-between; margin-bottom: 80px; }
+        .footer-links { display: flex; gap: 80px; }
+        .footer-col h4 { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray-light); margin-bottom: 20px; }
+        .footer-col a { display: block; font-size: 14px; color: var(--white); text-decoration: none; margin-bottom: 10px; transition: color 0.3s; }
+        .footer-col a:hover { color: var(--red); }
+        .footer-credit { font-size: 12px; color: var(--gray-light); }
+        .footer-credit a { color: var(--white); text-decoration: none; }
+        .footer-credit a:hover { color: var(--red); }
+        .footer-big { font-family: 'Bebas Neue', sans-serif; font-size: clamp(60px, 15vw, 200px); color: var(--white); opacity: 0.03; text-align: center; margin: 40px 0; letter-spacing: 0.05em; }
+        .footer-bottom { display: flex; justify-content: space-between; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: var(--gray-light); }
+        .footer-bottom a { color: var(--gray-light); text-decoration: none; transition: color 0.3s; }
+        .footer-bottom a:hover { color: var(--red); }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            nav { padding: 20px 24px; }
+            .nav-links { display: none; }
+            .about, .experience, .cta { padding: 100px 24px; }
+            .about-grid { grid-template-columns: 1fr; }
+            .events-header { padding: 80px 24px 40px; }
+            .events-track { padding: 0 24px 80px; }
+            .event-card { flex: 0 0 300px; }
+            .exp-item { grid-template-columns: 60px 1fr; }
+            .exp-item-details { display: none; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            footer { padding: 60px 24px 30px; }
+            .footer-top { flex-direction: column; gap: 40px; }
+            .footer-links { flex-direction: column; gap: 24px; }
+        }
+        @media (max-width: 768px) {
+            .about-img { height: 300px; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- PRELOADER -->
+    <div class="preloader">
+        <div class="preloader-text">
+            <span class="char">A</span><span class="char">P</span><span class="char">E</span><span class="char">X</span>
+        </div>
+        <div class="preloader-line"></div>
+        <p class="preloader-tag">Defy Gravity</p>
+    </div>
+
+    <!-- NAV -->
+    <nav>
+        <a href="#" class="logo">APEX</a>
+        <div class="nav-links">
+            <div class="nav-link"><a href="#about">About</a><a href="#about">About</a></div>
+            <div class="nav-link"><a href="#events">Events</a><a href="#events">Events</a></div>
+            <div class="nav-link"><a href="#experience">Experience</a><a href="#experience">Experience</a></div>
+            <div class="nav-link"><a href="#contact">Contact</a><a href="#contact">Contact</a></div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=1920&q=80" alt="Extreme Sports">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-tag"><span class="line">Extreme Sports Experience</span></div>
+            <h1 class="hero-title">
+                <span class="line"><span>DEFY</span></span>
+                <span class="line"><span>GRAVITY</span></span>
+            </h1>
+            <p class="hero-sub">
+                <span class="line"><span>Push beyond limits. Experience the rush.</span></span>
+                <span class="line"><span>Join the most extreme sports community.</span></span>
+            </p>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="hero-scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="about-header">
+            <h2 class="about-title">
+                <span class="line"><span>ABOUT</span></span>
+                <span class="line"><span>APEX</span></span>
+            </h2>
+            <span class="about-num">01</span>
+        </div>
+        <div class="about-grid">
+            <div class="about-text">
+                <div class="line"><span>APEX creates legendary extreme sports events—</span></div>
+                <div class="line"><span>designed to push human limits and capture</span></div>
+                <div class="line"><span>moments of pure adrenaline. From mountain</span></div>
+                <div class="line"><span>peaks to ocean depths, we curate experiences</span></div>
+                <div class="line"><span>that define what it means to live fearlessly.</span></div>
+            </div>
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&q=80" alt="Snowboard">
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-section">
+        <div class="marquee">
+            <div class="marquee-content">
+                <span class="filled">SNOWBOARD</span><div class="marquee-dot"></div>
+                <span>SKYDIVING</span><div class="marquee-dot"></div>
+                <span class="filled">SURFING</span><div class="marquee-dot"></div>
+                <span>MOTOCROSS</span><div class="marquee-dot"></div>
+                <span class="filled">CLIMBING</span><div class="marquee-dot"></div>
+            </div>
+            <div class="marquee-content">
+                <span class="filled">SNOWBOARD</span><div class="marquee-dot"></div>
+                <span>SKYDIVING</span><div class="marquee-dot"></div>
+                <span class="filled">SURFING</span><div class="marquee-dot"></div>
+                <span>MOTOCROSS</span><div class="marquee-dot"></div>
+                <span class="filled">CLIMBING</span><div class="marquee-dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EVENTS -->
+    <section class="events" id="events">
+        <div class="events-header">
+            <h2 class="events-title">
+                <span class="line"><span>UPCOMING</span></span>
+                <span class="line"><span>EVENTS</span></span>
+            </h2>
+        </div>
+        <div class="events-track" id="eventsTrack">
+            <div class="event-card">
+                <div class="event-card-img"><img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=600&q=80" alt="Powder Rush"></div>
+                <div class="event-card-info">
+                    <div class="event-card-num">01</div>
+                    <h3 class="event-card-name">POWDER RUSH</h3>
+                    <p class="event-card-loc">Alps, Switzerland • Jan 2025</p>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-card-img"><img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?w=600&q=80" alt="Freefall Masters"></div>
+                <div class="event-card-info">
+                    <div class="event-card-num">02</div>
+                    <h3 class="event-card-name">FREEFALL MASTERS</h3>
+                    <p class="event-card-loc">Dubai, UAE • Feb 2025</p>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-card-img"><img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=600&q=80" alt="Wave Hunters"></div>
+                <div class="event-card-info">
+                    <div class="event-card-num">03</div>
+                    <h3 class="event-card-name">WAVE HUNTERS</h3>
+                    <p class="event-card-loc">Nazaré, Portugal • Mar 2025</p>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-card-img"><img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&q=80" alt="Desert Storm"></div>
+                <div class="event-card-info">
+                    <div class="event-card-num">04</div>
+                    <h3 class="event-card-name">DESERT STORM MX</h3>
+                    <p class="event-card-loc">Nevada, USA • Apr 2025</p>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-card-img"><img src="https://images.unsplash.com/photo-1522163182402-834f871fd851?w=600&q=80" alt="Vertical Limit"></div>
+                <div class="event-card-info">
+                    <div class="event-card-num">05</div>
+                    <h3 class="event-card-name">VERTICAL LIMIT</h3>
+                    <p class="event-card-loc">Yosemite, USA • May 2025</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="experience" id="experience">
+        <div class="exp-header">
+            <h2 class="exp-title">EXPERIENCE</h2>
+            <p class="exp-sub">Past Events</p>
+        </div>
+        <div class="exp-list">
+            <div class="exp-item" data-img="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=600&q=80">
+                <span class="exp-item-num">01</span>
+                <h3 class="exp-item-name">ARCTIC DESCENT</h3>
+                <div class="exp-item-details"><span class="exp-item-loc">Norway</span><span class="exp-item-date">Dec 2024</span></div>
+            </div>
+            <div class="exp-item" data-img="https://images.unsplash.com/photo-1530549387789-4c1017266635?w=600&q=80">
+                <span class="exp-item-num">02</span>
+                <h3 class="exp-item-name">SKY WARRIORS</h3>
+                <div class="exp-item-details"><span class="exp-item-loc">Australia</span><span class="exp-item-date">Nov 2024</span></div>
+            </div>
+            <div class="exp-item" data-img="https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=600&q=80">
+                <span class="exp-item-num">03</span>
+                <h3 class="exp-item-name">TSUNAMI RIDERS</h3>
+                <div class="exp-item-details"><span class="exp-item-loc">Hawaii</span><span class="exp-item-date">Oct 2024</span></div>
+            </div>
+            <div class="exp-item" data-img="https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&q=80">
+                <span class="exp-item-num">04</span>
+                <h3 class="exp-item-name">DUST DEVILS</h3>
+                <div class="exp-item-details"><span class="exp-item-loc">Morocco</span><span class="exp-item-date">Sep 2024</span></div>
+            </div>
+            <div class="exp-item" data-img="https://images.unsplash.com/photo-1522163182402-834f871fd851?w=600&q=80">
+                <span class="exp-item-num">05</span>
+                <h3 class="exp-item-name">SUMMIT CHASE</h3>
+                <div class="exp-item-details"><span class="exp-item-loc">Nepal</span><span class="exp-item-date">Aug 2024</span></div>
+            </div>
+            <div class="exp-item" data-img="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=600&q=80">
+                <span class="exp-item-num">06</span>
+                <h3 class="exp-item-name">FROZEN PEAKS</h3>
+                <div class="exp-item-details"><span class="exp-item-loc">Japan</span><span class="exp-item-date">Jul 2024</span></div>
+            </div>
+        </div>
+        <div class="exp-gallery" id="expGallery"><img src="" alt="" id="expGalleryImg"></div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats">
+        <div class="stats-grid">
+            <div><div class="stat-num" data-count="150">0</div><div class="stat-label">Events Worldwide</div></div>
+            <div><div class="stat-num" data-count="50">0</div><div class="stat-label">Pro Athletes</div></div>
+            <div><div class="stat-num" data-count="2">0</div><div class="stat-label">Million Fans</div></div>
+            <div><div class="stat-num" data-count="35">0</div><div class="stat-label">Countries</div></div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="cta" id="contact">
+        <h2 class="cta-title">JOIN THE<br>MOVEMENT</h2>
+        <a href="#" class="cta-btn">Get Started →</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-links">
+                <div class="footer-col"><h4>Events</h4><a href="#">Upcoming</a><a href="#">Past</a><a href="#">Calendar</a></div>
+                <div class="footer-col"><h4>Company</h4><a href="#">About</a><a href="#">Athletes</a><a href="#">Careers</a></div>
+                <div class="footer-col"><h4>Connect</h4><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">Twitter</a></div>
+            </div>
+            <div class="footer-credit">Design | <a href="#">21STUDIO</a></div>
+        </div>
+        <div class="footer-big">APEX SPORTS</div>
+        <div class="footer-bottom">
+            <span>© 2025 APEX. All rights reserved.</span>
+            <a href="#hero">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // PRELOADER
+        const tl = gsap.timeline();
+        tl.to('.preloader .char', { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power4.out', delay: 0.3 })
+          .to('.preloader-line', { width: 200, duration: 1.2, ease: 'power2.inOut' }, '-=0.3')
+          .to('.preloader-tag', { opacity: 1, duration: 0.6 }, '-=0.6')
+          .to('.preloader', { yPercent: -100, duration: 1, ease: 'power4.inOut', delay: 0.4 })
+          .to('.hero-tag .line', { y: 0, duration: 1, ease: 'power4.out' }, '-=0.3')
+          .to('.hero-title .line span', { y: 0, duration: 1.2, stagger: 0.15, ease: 'power4.out' }, '-=0.8')
+          .to('.hero-sub .line span', { y: 0, duration: 1, stagger: 0.1, ease: 'power4.out' }, '-=0.6');
+
+        // LENIS
+        const lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add(time => lenis.raf(time * 1000));
+        gsap.ticker.lagSmoothing(0);
+
+        // HERO PARALLAX
+        gsap.to('.hero-bg img', { scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }, y: 200, scale: 1.2 });
+
+        // ABOUT
+        gsap.to('.about-title .line span', { scrollTrigger: { trigger: '.about-title', start: 'top 80%' }, y: 0, duration: 1, stagger: 0.15, ease: 'power4.out' });
+        gsap.to('.about-text .line span', { scrollTrigger: { trigger: '.about-text', start: 'top 80%' }, y: 0, duration: 0.8, stagger: 0.08, ease: 'power3.out' });
+
+        // EVENTS
+        gsap.to('.events-title .line span', { scrollTrigger: { trigger: '.events-title', start: 'top 80%' }, y: 0, duration: 1, stagger: 0.15, ease: 'power4.out' });
+
+        // HORIZONTAL SCROLL
+        const track = document.getElementById('eventsTrack');
+        gsap.to(track, {
+            scrollTrigger: { trigger: '.events', start: 'top 20%', end: () => `+=${track.scrollWidth - window.innerWidth + 200}`, scrub: 1, pin: true },
+            x: () => -(track.scrollWidth - window.innerWidth + 100), ease: 'none'
+        });
+
+        // EXPERIENCE GALLERY HOVER
+        const expItems = document.querySelectorAll('.exp-item');
+        const expGallery = document.getElementById('expGallery');
+        const expImg = document.getElementById('expGalleryImg');
+        expItems.forEach(item => {
+            item.addEventListener('mouseenter', () => { expImg.src = item.dataset.img; expGallery.classList.add('visible'); });
+            item.addEventListener('mouseleave', () => expGallery.classList.remove('visible'));
+        });
+
+        // STATS COUNTER
+        document.querySelectorAll('[data-count]').forEach(el => {
+            const target = parseInt(el.dataset.count);
+            ScrollTrigger.create({
+                trigger: el, start: 'top 80%', once: true,
+                onEnter: () => gsap.to(el, { innerText: target, duration: 2, ease: 'power2.out', snap: { innerText: 1 }, onUpdate() { el.textContent = Math.round(el.innerText) + (target === 2 ? 'M+' : '+'); } })
+            });
+        });
+
+        // SMOOTH ANCHOR
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => { e.preventDefault(); const t = document.querySelector(a.getAttribute('href')); if (t) lenis.scrollTo(t, { offset: -80 }); });
+        });
+    </script>
+</body>
+</html>
