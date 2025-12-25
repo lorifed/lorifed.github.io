@@ -71,22 +71,87 @@
         .marquee-dot { width: 12px; height: 12px; background: var(--red); border-radius: 50%; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* EVENTS - FIXED */
-        .events { position: relative; overflow: hidden; }
-        .events-header { padding: 120px 48px 60px; }
-        .events-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(60px, 15vw, 180px); line-height: 0.9; }
+        /* EVENTS - HORIZONTAL SCROLL */
+        .events { 
+            position: relative; 
+            overflow: hidden;
+            height: 100vh;
+        }
+        .events-pin-spacer {
+            height: 100vh;
+        }
+        .events-container {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .events-header { 
+            padding: 0 48px;
+            margin-bottom: 60px;
+        }
+        .events-title { 
+            font-family: 'Bebas Neue', sans-serif; 
+            font-size: clamp(60px, 12vw, 140px); 
+            line-height: 0.9; 
+        }
         .events-title .line { display: block; overflow: hidden; }
         .events-title .line span { display: block; transform: translateY(100%); }
-        .events-track-wrapper { overflow: visible; }
-        .events-track { display: flex; gap: 40px; padding: 60px 48px 120px; will-change: transform; }
-        .event-card { flex: 0 0 420px; position: relative; overflow: hidden; }
-        .event-card-img { width: 100%; aspect-ratio: 3/4; overflow: hidden; }
-        .event-card-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .event-card:hover .event-card-img img { filter: grayscale(0%); transform: scale(1.1); }
-        .event-card-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 40px 24px; background: linear-gradient(to top, rgba(10,10,10,0.95), transparent); }
-        .event-card-num { font-family: 'Bebas Neue', sans-serif; font-size: 60px; color: var(--red); opacity: 0.5; line-height: 1; }
-        .event-card-name { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.05em; }
-        .event-card-loc { font-size: 11px; color: var(--gray-light); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 8px; }
+        .events-track { 
+            display: flex; 
+            gap: 40px; 
+            padding: 0 48px;
+            will-change: transform;
+        }
+        .event-card { 
+            flex: 0 0 380px; 
+            position: relative; 
+            overflow: hidden; 
+        }
+        .event-card-img { 
+            width: 100%; 
+            height: 500px;
+            overflow: hidden; 
+        }
+        .event-card-img img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            filter: grayscale(100%); 
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
+        }
+        .event-card:hover .event-card-img img { 
+            filter: grayscale(0%); 
+            transform: scale(1.1); 
+        }
+        .event-card-info { 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            right: 0; 
+            padding: 40px 24px; 
+            background: linear-gradient(to top, rgba(10,10,10,0.95), transparent); 
+        }
+        .event-card-num { 
+            font-family: 'Bebas Neue', sans-serif; 
+            font-size: 50px; 
+            color: var(--red); 
+            opacity: 0.5; 
+            line-height: 1; 
+        }
+        .event-card-name { 
+            font-family: 'Bebas Neue', sans-serif; 
+            font-size: 24px; 
+            letter-spacing: 0.05em; 
+        }
+        .event-card-loc { 
+            font-size: 11px; 
+            color: var(--gray-light); 
+            letter-spacing: 0.1em; 
+            text-transform: uppercase; 
+            margin-top: 8px; 
+        }
 
         /* EXPERIENCE LIST */
         .experience { padding: 160px 48px; }
@@ -142,9 +207,10 @@
             .nav-links { display: none; }
             .about, .experience, .cta { padding: 100px 24px; }
             .about-grid { grid-template-columns: 1fr; }
-            .events-header { padding: 80px 24px 40px; }
-            .events-track { padding: 40px 24px 80px; }
-            .event-card { flex: 0 0 300px; }
+            .events-header { padding: 0 24px; }
+            .events-track { padding: 0 24px; }
+            .event-card { flex: 0 0 280px; }
+            .event-card-img { height: 380px; }
             .exp-item { grid-template-columns: 60px 1fr; }
             .exp-item-details { display: none; }
             .stats-grid { grid-template-columns: 1fr 1fr; }
@@ -248,13 +314,13 @@
 
     <!-- EVENTS -->
     <section class="events" id="events">
-        <div class="events-header">
-            <h2 class="events-title">
-                <span class="line"><span>UPCOMING</span></span>
-                <span class="line"><span>EVENTS</span></span>
-            </h2>
-        </div>
-        <div class="events-track-wrapper">
+        <div class="events-container">
+            <div class="events-header">
+                <h2 class="events-title">
+                    <span class="line"><span>UPCOMING</span></span>
+                    <span class="line"><span>EVENTS</span></span>
+                </h2>
+            </div>
             <div class="events-track" id="eventsTrack">
                 <div class="event-card">
                     <div class="event-card-img"><img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=600&q=80" alt="Powder Rush"></div>
@@ -407,23 +473,34 @@
         // EVENTS TITLE
         gsap.to('.events-title .line span', { scrollTrigger: { trigger: '.events-title', start: 'top 80%' }, y: 0, duration: 1, stagger: 0.15, ease: 'power4.out' });
 
-        // HORIZONTAL SCROLL - FIXED
-        const track = document.getElementById('eventsTrack');
-        const trackWidth = track.scrollWidth;
-        const windowWidth = window.innerWidth;
-        
+        // HORIZONTAL SCROLL
+        let track = document.getElementById('eventsTrack');
+        let trackWidth = track.scrollWidth;
+        let viewportWidth = window.innerWidth;
+        let distanceToScroll = trackWidth - viewportWidth;
+
         gsap.to(track, {
-            x: () => -(trackWidth - windowWidth + 100),
+            x: -distanceToScroll,
             ease: 'none',
             scrollTrigger: {
                 trigger: '.events',
-                start: 'top top', // Pin when section reaches top
-                end: () => `+=${trackWidth}`, // Scroll distance = track width
+                start: 'top top',
+                end: () => '+=' + distanceToScroll,
                 scrub: 1,
                 pin: true,
                 anticipatePin: 1,
-                invalidateOnRefresh: true
+                invalidateOnRefresh: true,
+                onRefresh: self => {
+                    trackWidth = track.scrollWidth;
+                    viewportWidth = window.innerWidth;
+                    distanceToScroll = trackWidth - viewportWidth;
+                }
             }
+        });
+
+        // Refresh on resize
+        window.addEventListener('resize', () => {
+            ScrollTrigger.refresh();
         });
 
         // EXPERIENCE GALLERY HOVER
