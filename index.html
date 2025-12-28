@@ -23,7 +23,7 @@
             --border: #1d1d1f;
         }
         html { scroll-behavior: smooth; }
-        html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
+        html, body { width: 100%; max-width: 100%; overflow-x: hidden; scroll-behavior: smooth; }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg);
@@ -533,23 +533,10 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
     <script>
         gsap.registerPlugin(ScrollTrigger);
-        const lenis = new Lenis({ 
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            smoothWheel: true,
-            wheelMultiplier: 0.5,
-            touchMultiplier: 1,
-            syncTouch: false,
-            syncTouchLerp: 0.1
-        });
-        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-        requestAnimationFrame(raf);
-        lenis.on('scroll', ScrollTrigger.update);
 
         document.querySelectorAll('[data-split-text]').forEach(el => {
             el.innerHTML = el.textContent.split('').map(c => c === ' ' ? ' ' : '<span class="char">'+c+'</span>').join('');
@@ -595,4 +582,12 @@
         document.getElementById('sliderNext').addEventListener('click', () => slider.scrollBy({ left: 424, behavior: 'smooth' }));
 
         document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', e => { e.preventDefault()
+            a.addEventListener('click', e => { 
+                e.preventDefault(); 
+                const t = document.querySelector(a.getAttribute('href')); 
+                if (t) t.scrollIntoView({ behavior: 'smooth' }); 
+            });
+        });
+    </script>
+</body>
+</html>
