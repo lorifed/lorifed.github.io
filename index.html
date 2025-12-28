@@ -105,7 +105,7 @@
 
         /* Sections */
         section {
-            padding: 120px 40px;
+            padding: 80px 40px;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -256,7 +256,7 @@
             display: flex;
             justify-content: center;
             gap: 80px;
-            padding: 64px 40px;
+            padding: 40px 40px;
             border-top: 1px solid var(--border);
             background: var(--bg);
         }
@@ -285,7 +285,7 @@
         /* Section Headers */
         .section-header {
             text-align: center;
-            margin-bottom: 64px;
+            margin-bottom: 40px;
         }
         .section-tag {
             font-size: 0.75rem;
@@ -293,7 +293,7 @@
             color: var(--accent);
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
         .section-title {
             font-size: clamp(36px, 6vw, 56px);
@@ -740,18 +740,17 @@
     <div class="info-bar">
         <div class="info-item reveal-up">
             <svg class="info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
-            <div class="info-label">Based in Italy</div>
-            <div class="info-value">Fano</div>
+            <div class="info-label">Fast Delivery</div>
+            <div class="info-value">2-4 Weeks</div>
         </div>
         <div class="info-item reveal-up">
             <svg class="info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
             </svg>
-            <div class="info-label">Available Worldwide</div>
-            <div class="info-value">Remote</div>
+            <div class="info-label">24/7 Support</div>
+            <div class="info-value">Always Available</div>
         </div>
         <div class="info-item reveal-up">
             <svg class="info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1051,7 +1050,7 @@
     <section class="cta-section" id="contact">
         <h2 class="cta-title reveal-up">Let's Work Together</h2>
         <p class="cta-subtitle reveal-up">Ready to bring your vision to life?</p>
-        <a href="mailto:hello@21studio.com" class="cta-button reveal-up">
+        <a href="/cdn-cgi/l/email-protection#325a575e5e5d720003414647565b5d1c515d5f" class="cta-button reveal-up">
             Start a Project
             <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -1088,16 +1087,25 @@
     <script>
         gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-        // Lenis smooth scroll
+        // Lenis smooth scroll - SMOOTHER settings
         const lenis = new Lenis({
-            duration: 1.2,
+            duration: 1.8,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: 'vertical',
             smoothWheel: true,
+            wheelMultiplier: 0.8,
+            touchMultiplier: 1.5,
+            infinite: false,
         });
 
         lenis.on('scroll', ScrollTrigger.update);
-        gsap.ticker.add((time) => lenis.raf(time * 1000));
+        
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+        
         gsap.ticker.lagSmoothing(0);
 
         // Split text into characters
@@ -1349,10 +1357,4 @@
             icon.addEventListener('mouseenter', () => {
                 gsap.to(icon, { y: -5, scale: 1.1, duration: 0.3, ease: 'power2.out' });
             });
-            icon.addEventListener('mouseleave', () => {
-                gsap.to(icon, { y: 0, scale: 1, duration: 0.3, ease: 'power2.out' });
-            });
-        });
-    </script>
-</body>
-</html>
+            icon.addEventListener('mouseleave', ()
