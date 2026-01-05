@@ -50,7 +50,10 @@
             align-items: center;
             z-index: 1000;
             mix-blend-mode: difference;
+            opacity: 0;
+            transform: translateY(-30px);
             animation: fadeInDown 1s ease forwards;
+            animation-delay: 1.5s;
         }
 
         @keyframes fadeInDown {
@@ -152,21 +155,44 @@
             position: relative;
             text-align: center;
             z-index: 10;
-            animation: fadeInUp 1.2s ease forwards;
-            animation-delay: 0.3s;
-            opacity: 0;
+            perspective: 1000px;
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(60px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        /* Hero Title Animation */
         .hero-title {
             font-family: var(--font-display);
             font-size: clamp(4rem, 20vw, 18rem);
             letter-spacing: 0.05em;
             line-height: 0.85;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .hero-title span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(100%) rotateX(-80deg);
+            transform-origin: center top;
+            animation: titleReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .hero-title span:nth-child(1) { animation-delay: 0.1s; }
+        .hero-title span:nth-child(2) { animation-delay: 0.18s; }
+        .hero-title span:nth-child(3) { animation-delay: 0.26s; }
+        .hero-title span:nth-child(4) { animation-delay: 0.34s; }
+        .hero-title span:nth-child(5) { animation-delay: 0.42s; }
+        .hero-title span:nth-child(6) { animation-delay: 0.50s; }
+        .hero-title span:nth-child(7) { animation-delay: 0.58s; }
+
+        @keyframes titleReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(100%) rotateX(-80deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg);
+            }
         }
 
         .hero-subtitle {
@@ -174,11 +200,36 @@
             letter-spacing: 0.4em;
             text-transform: uppercase;
             margin-top: 2rem;
-            opacity: 0.7;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeSlideUp 1s ease forwards;
+            animation-delay: 0.9s;
         }
 
         .hero-cta {
             margin-top: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeSlideUp 1s ease forwards;
+            animation-delay: 1.1s;
+        }
+
+        @keyframes fadeSlideUp {
+            to {
+                opacity: 0.7;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeSlideUpFull {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-cta {
+            animation-name: fadeSlideUpFull;
         }
 
         .btn {
@@ -228,9 +279,9 @@
             flex-direction: column;
             align-items: center;
             gap: 1rem;
-            animation: fadeInUp 1s ease forwards;
-            animation-delay: 1s;
             opacity: 0;
+            animation: fadeSlideUpFull 1s ease forwards;
+            animation-delay: 1.3s;
             z-index: 10;
         }
 
@@ -328,6 +379,13 @@
         .product-card:nth-child(2) { animation-delay: 0.2s; }
         .product-card:nth-child(3) { animation-delay: 0.3s; }
         .product-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         .product-image {
             position: relative;
@@ -721,7 +779,9 @@
             <div data-us-project="AQ1OXM5YjSFfiHxcyQ8f" style="width:100%; height:100%; position:absolute; top:0; left:0;"></div>
         </div>
         <div class="hero-content">
-            <h1 class="hero-title">TWOJEYS</h1>
+            <h1 class="hero-title">
+                <span>T</span><span>W</span><span>O</span><span>J</span><span>E</span><span>Y</span><span>S</span>
+            </h1>
             <p class="hero-subtitle">Sterling Silver ★ Premium Jewelry</p>
             <div class="hero-cta">
                 <a href="#" class="btn">Explore Collection</a>
