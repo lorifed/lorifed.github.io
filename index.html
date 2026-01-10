@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>21STUDIO | Web Developer & AI Content Creator</title>
-    <meta name="description" content="Premium web development and AI content creation services. WordPress, Shopify, and cutting-edge AI solutions.">
+    <title>21STUDIO | AI Art Director</title>
+    <meta name="description" content="AI Art Director specializing in AI-generated visuals, product photography, and brand imagery. Premium websites included.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,8 +18,8 @@
             --text: #f5f5f7;
             --text-secondary: #86868b;
             --text-muted: #48484a;
-            --accent: #2997ff;
-            --accent-purple: #bf5af2;
+            --accent: #bf5af2;
+            --accent-blue: #2997ff;
             --border: #1d1d1f;
         }
         html { scroll-behavior: smooth; }
@@ -94,16 +94,18 @@
             align-items: center;
             gap: 8px;
             padding: 8px 16px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(191, 90, 242, 0.15);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.15);
+            border: 1px solid rgba(191, 90, 242, 0.3);
             border-radius: 50px;
             font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: 500;
             margin-bottom: 40px;
         }
         .hero-badge-dot {
             width: 6px; height: 6px;
-            background: #30d158;
+            background: var(--accent);
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
@@ -112,17 +114,26 @@
             50% { opacity: 0.5; transform: scale(0.8); }
         }
         .hero-title {
-            font-size: clamp(56px, 12vw, 140px);
+            font-size: clamp(48px, 10vw, 120px);
             font-weight: 700;
             letter-spacing: -0.05em;
             line-height: 0.95;
             margin-bottom: 20px;
         }
         .hero-title .char { display: inline-block; }
+        .hero-role {
+            font-size: clamp(14px, 2vw, 18px);
+            font-weight: 500;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 16px;
+        }
         .hero-subtitle {
             font-size: clamp(16px, 2.5vw, 20px);
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.7);
             margin-bottom: 48px;
+            max-width: 500px;
         }
         .hero-cta {
             display: inline-flex;
@@ -137,7 +148,7 @@
             border-radius: 50px;
             transition: all 0.4s ease;
         }
-        .hero-cta:hover { transform: scale(1.05); box-shadow: 0 8px 32px rgba(41, 151, 255, 0.4); }
+        .hero-cta:hover { transform: scale(1.05); box-shadow: 0 8px 32px rgba(191, 90, 242, 0.4); }
         .hero-cta svg { width: 16px; height: 16px; }
         .scroll-indicator {
             position: absolute;
@@ -192,7 +203,7 @@
         .section-title { font-size: clamp(36px, 6vw, 56px); font-weight: 700; letter-spacing: -0.04em; }
 
         /* Services */
-        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
         .service-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -201,9 +212,16 @@
             transition: all 0.5s ease;
         }
         .service-card:hover { border-color: var(--accent); transform: translateY(-8px); }
+        .service-card.featured {
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
         .service-icon {
             width: 52px; height: 52px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-purple) 100%);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-blue) 100%);
             border-radius: 14px;
             display: flex;
             align-items: center;
@@ -213,25 +231,27 @@
         .service-icon svg { width: 26px; height: 26px; color: #fff; }
         .service-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; }
         .service-desc { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.6; }
+        .service-list { margin-top: 16px; }
+        .service-list li {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .service-list li:last-child { border-bottom: none; }
+        .service-list li::before {
+            content: '';
+            width: 6px; height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
 
         /* Portfolio */
         #portfolio { max-width: 100%; padding: 80px 0; }
         .portfolio-header { text-align: center; margin-bottom: 48px; padding: 0 40px; }
-        .portfolio-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 48px; padding: 0 40px; flex-wrap: wrap; }
-        .portfolio-tab {
-            padding: 12px 24px;
-            background: transparent;
-            border: 1px solid var(--border);
-            border-radius: 50px;
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-        .portfolio-tab:hover { border-color: var(--text-muted); color: var(--text); }
-        .portfolio-tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
         .portfolio-slider {
             display: flex;
             gap: 24px;
@@ -253,16 +273,13 @@
             transition: all 0.5s ease;
         }
         .portfolio-card:hover { transform: translateY(-8px); border-color: var(--accent); }
-        .portfolio-card-image { width: 100%; aspect-ratio: 16/10; overflow: hidden; }
+        .portfolio-card-image { width: 100%; aspect-ratio: 1/1; overflow: hidden; }
         .portfolio-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
         .portfolio-card:hover .portfolio-card-image img { transform: scale(1.08); }
         .portfolio-card-content { padding: 24px; }
         .portfolio-card-category { font-size: 0.6875rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
         .portfolio-card-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 8px; }
         .portfolio-card-desc { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5; }
-        .portfolio-card-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; color: var(--accent); font-size: 0.875rem; font-weight: 500; text-decoration: none; }
-        .portfolio-card-link:hover { gap: 10px; }
-        .portfolio-card-link svg { width: 14px; height: 14px; }
         .slider-nav { display: flex; justify-content: center; gap: 16px; margin-top: 32px; }
         .slider-nav button {
             width: 48px; height: 48px;
@@ -279,17 +296,20 @@
         .slider-nav button:hover { border-color: var(--accent); color: var(--accent); }
         .slider-nav button svg { width: 20px; height: 20px; }
 
-        /* Stats */
-        .stats-section { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 80px 40px; }
-        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; max-width: 900px; margin: 0 auto; text-align: center; }
-        .stat-number {
-            font-size: clamp(48px, 10vw, 80px);
+        /* Process */
+        .process-section { border-top: 1px solid var(--border); padding: 80px 40px; }
+        .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; max-width: 1000px; margin: 0 auto; }
+        .process-step { text-align: center; }
+        .process-number {
+            font-size: 3rem;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-purple) 100%);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-blue) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
         }
-        .stat-label { font-size: 0.875rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 8px; }
+        .process-title { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+        .process-desc { font-size: 0.8125rem; color: var(--text-secondary); }
 
         /* CTA */
         .cta-section { text-align: center; padding: 120px 40px; position: relative; }
@@ -299,7 +319,7 @@
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(41,151,255,0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(191, 90, 242, 0.1) 0%, transparent 70%);
             pointer-events: none;
         }
         .cta-title { font-size: clamp(40px, 8vw, 72px); font-weight: 700; letter-spacing: -0.04em; margin-bottom: 20px; }
@@ -348,14 +368,16 @@
             nav { padding: 16px 24px; }
             .nav-links { display: none; }
             section { padding: 60px 24px; }
-            .services-grid { grid-template-columns: 1fr 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
+            .service-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
             .portfolio-card { width: 340px; }
+            .process-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
-            .services-grid, .stats-grid { grid-template-columns: 1fr; }
             .info-bar { flex-direction: column; gap: 32px; padding: 40px 24px; }
             footer { flex-direction: column; gap: 24px; text-align: center; }
             .portfolio-card { width: 300px; }
+            .process-grid { grid-template-columns: 1fr; }
         }
 
         /* Animation States */
@@ -370,7 +392,7 @@
         <a href="#" class="logo">21STUDIO</a>
         <div class="nav-links">
             <a href="#services">Services</a>
-            <a href="#portfolio">Portfolio</a>
+            <a href="#portfolio">Work</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
@@ -382,10 +404,11 @@
             <span class="hero-badge-dot"></span>
             Available for projects
         </div>
+        <p class="hero-role reveal-up">AI Art Director</p>
         <h1 class="hero-title" data-split-text>21STUDIO</h1>
-        <p class="hero-subtitle reveal-up">Web Developer & AI Content Creator</p>
+        <p class="hero-subtitle reveal-up">Creating next-gen visuals with AI for brands that want to stand out</p>
         <a href="#contact" class="hero-cta reveal-up">
-            Let's Work
+            Start a Project
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
         <div class="scroll-indicator reveal-fade">Scroll<span></span></div>
@@ -393,42 +416,47 @@
 
     <div class="info-bar">
         <div class="info-item reveal-up">
+            <svg class="info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            <div class="info-label">AI-Powered</div>
+            <div class="info-value">Cutting Edge Tools</div>
+        </div>
+        <div class="info-item reveal-up">
             <svg class="info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            <div class="info-label">Fast Delivery</div>
-            <div class="info-value">2-4 Weeks</div>
+            <div class="info-label">Fast Turnaround</div>
+            <div class="info-value">Days, Not Weeks</div>
         </div>
         <div class="info-item reveal-up">
-            <svg class="info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-            <div class="info-label">24/7 Support</div>
-            <div class="info-value">Always Available</div>
-        </div>
-        <div class="info-item reveal-up">
-            <svg class="info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
-            <div class="info-label">Web & AI</div>
-            <div class="info-value">Specialist</div>
+            <svg class="info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <div class="info-label">Made in Italy</div>
+            <div class="info-value">Premium Quality</div>
         </div>
     </div>
 
     <section id="services">
         <div class="section-header">
             <p class="section-tag reveal-up">Services</p>
-            <h2 class="section-title reveal-up">What I Do</h2>
+            <h2 class="section-title reveal-up">What I Create</h2>
         </div>
         <div class="services-grid">
             <div class="service-card reveal-up">
-                <div class="service-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></div>
-                <h3 class="service-title">WordPress & WooCommerce</h3>
-                <p class="service-desc">Custom e-commerce solutions with clean code, premium design, and optimized performance.</p>
+                <div class="service-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
+                <h3 class="service-title">AI Product Photography</h3>
+                <p class="service-desc">Photorealistic product shots, lifestyle scenes, and advertising visuals. No studio needed—infinite possibilities.</p>
             </div>
             <div class="service-card reveal-up">
-                <div class="service-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg></div>
-                <h3 class="service-title">Shopify Development</h3>
-                <p class="service-desc">Scalable stores with custom themes, liquid coding, and conversion-focused UX design.</p>
+                <div class="service-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m0 0h4a1 1 0 011 1v3M7 4H3a1 1 0 00-1 1v3m18 0v10a2 2 0 01-2 2H4a2 2 0 01-2-2V8m20 0H2m5 8h10"/></svg></div>
+                <h3 class="service-title">Brand Visual Identity</h3>
+                <p class="service-desc">Complete visual systems crafted with AI. Mood boards, style guides, and assets that define your brand's aesthetic.</p>
             </div>
             <div class="service-card reveal-up">
-                <div class="service-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
-                <h3 class="service-title">AI Content Creation</h3>
-                <p class="service-desc">AI-powered visuals, videos, and marketing content that elevates your brand presence.</p>
+                <div class="service-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg></div>
+                <h3 class="service-title">AI Video & Motion</h3>
+                <p class="service-desc">Dynamic video content, animated visuals, and motion graphics powered by the latest AI video technology.</p>
+            </div>
+            <div class="service-card reveal-up">
+                <div class="service-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
+                <h3 class="service-title">Web Development</h3>
+                <p class="service-desc">High-converting websites and e-commerce stores. WordPress, Shopify, or custom—designed to match your AI-crafted visuals.</p>
             </div>
         </div>
     </section>
@@ -438,56 +466,46 @@
             <p class="section-tag reveal-up">Portfolio</p>
             <h2 class="section-title reveal-up">Selected Work</h2>
         </div>
-        <div class="portfolio-tabs reveal-up">
-            <button class="portfolio-tab active" data-filter="all">All Projects</button>
-            <button class="portfolio-tab" data-filter="web">Web Design</button>
-            <button class="portfolio-tab" data-filter="ai">AI Content</button>
-        </div>
         <div class="portfolio-slider-container">
             <div class="portfolio-slider" id="portfolioSlider">
-                <div class="portfolio-card reveal-scale" data-category="web">
-                    <div class="portfolio-card-image"><img src="images/mcdonalds-thumb.png" alt="McDonald's McCrispy" loading="lazy"></div>
+                <div class="portfolio-card reveal-scale">
+                    <div class="portfolio-card-image"><img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80" alt="AI Visual" loading="lazy"></div>
                     <div class="portfolio-card-content">
-                        <span class="portfolio-card-category">Web Design</span>
-                        <h3 class="portfolio-card-title">McDonald's McCrispy</h3>
-                        <p class="portfolio-card-desc">Immersive product landing page with scroll-driven animations and dynamic burger assembly.</p>
-                        <a href="mcdonalds.html" class="portfolio-card-link">View Project <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                        <span class="portfolio-card-category">AI Product</span>
+                        <h3 class="portfolio-card-title">Luxury Fragrance Campaign</h3>
+                        <p class="portfolio-card-desc">AI-generated product photography and lifestyle visuals for premium perfume brand.</p>
                     </div>
                 </div>
-                <div class="portfolio-card reveal-scale" data-category="web">
-                    <div class="portfolio-card-image"><img src="images/apex-thumb.png" alt="APEX" loading="lazy"></div>
+                <div class="portfolio-card reveal-scale">
+                    <div class="portfolio-card-image"><img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80" alt="AI Visual" loading="lazy"></div>
                     <div class="portfolio-card-content">
-                        <span class="portfolio-card-category">Web Design</span>
-                        <h3 class="portfolio-card-title">APEX</h3>
-                        <p class="portfolio-card-desc">Extreme sports events platform with cinematic animations and immersive design.</p>
-                        <a href="apex.html" class="portfolio-card-link">View Project <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                        <span class="portfolio-card-category">Brand Identity</span>
+                        <h3 class="portfolio-card-title">Tech Startup Visual System</h3>
+                        <p class="portfolio-card-desc">Complete AI-crafted brand imagery for innovative SaaS company launch.</p>
                     </div>
                 </div>
-                <div class="portfolio-card reveal-scale" data-category="web">
-                    <div class="portfolio-card-image"><img src="images/obelisk-one.png" alt="OBELISK" loading="lazy"></div>
+                <div class="portfolio-card reveal-scale">
+                    <div class="portfolio-card-image"><img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=800&q=80" alt="AI Visual" loading="lazy"></div>
                     <div class="portfolio-card-content">
-                        <span class="portfolio-card-category">Web Design</span>
-                        <h3 class="portfolio-card-title">OBELISK</h3>
-                        <p class="portfolio-card-desc">Premium speaker brand with Oakley-inspired parallax scroll and video backgrounds.</p>
-                        <a href="obelisk.html" class="portfolio-card-link">View Project <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                        <span class="portfolio-card-category">AI Advertising</span>
+                        <h3 class="portfolio-card-title">Fashion E-commerce</h3>
+                        <p class="portfolio-card-desc">Dynamic AI visuals and product renders for streetwear brand social campaigns.</p>
                     </div>
                 </div>
-                <div class="portfolio-card reveal-scale" data-category="web">
-                    <div class="portfolio-card-image"><img src="images/twojeys-thumb.png" alt="Twojeys Restyle" loading="lazy"></div>
+                <div class="portfolio-card reveal-scale">
+                    <div class="portfolio-card-image"><img src="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&q=80" alt="AI Visual" loading="lazy"></div>
                     <div class="portfolio-card-content">
-                        <span class="portfolio-card-category">Web Design</span>
-                        <h3 class="portfolio-card-title">Twojeys Restyle</h3>
-                        <p class="portfolio-card-desc">Premium streetwear jewelry e-commerce restyling with noise effects and smooth animations.</p>
-                        <a href="twojeys-restyle.html" class="portfolio-card-link">View Project <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                        <span class="portfolio-card-category">Web + AI</span>
+                        <h3 class="portfolio-card-title">Interior Design Studio</h3>
+                        <p class="portfolio-card-desc">Website design paired with AI-generated architectural visualizations.</p>
                     </div>
                 </div>
-                <div class="portfolio-card reveal-scale" data-category="ai">
-                    <div class="portfolio-card-image"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80" alt="Neural" loading="lazy"></div>
+                <div class="portfolio-card reveal-scale">
+                    <div class="portfolio-card-image"><img src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=800&q=80" alt="AI Visual" loading="lazy"></div>
                     <div class="portfolio-card-content">
-                        <span class="portfolio-card-category">AI Content</span>
-                        <h3 class="portfolio-card-title">Neural Canvas</h3>
-                        <p class="portfolio-card-desc">AI-generated product photography and lifestyle visuals for luxury brands.</p>
-                        <a href="#" class="portfolio-card-link">View Project <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                        <span class="portfolio-card-category">AI Video</span>
+                        <h3 class="portfolio-card-title">Music Artist Promo</h3>
+                        <p class="portfolio-card-desc">AI-generated video content and visual effects for album release campaign.</p>
                     </div>
                 </div>
             </div>
@@ -498,18 +516,39 @@
         </div>
     </section>
 
-    <div class="stats-section">
-        <div class="stats-grid">
-            <div class="reveal-up"><div class="stat-number" data-count="50">0</div><div class="stat-label">Clients</div></div>
-            <div class="reveal-up"><div class="stat-number" data-count="5">0</div><div class="stat-label">Years</div></div>
-            <div class="reveal-up"><div class="stat-number" data-count="100">0</div><div class="stat-label">Projects</div></div>
+    <div class="process-section">
+        <div class="section-header" style="padding: 0 40px; margin-bottom: 48px;">
+            <p class="section-tag reveal-up">Process</p>
+            <h2 class="section-title reveal-up">How It Works</h2>
+        </div>
+        <div class="process-grid">
+            <div class="process-step reveal-up">
+                <div class="process-number">01</div>
+                <h3 class="process-title">Brief</h3>
+                <p class="process-desc">Share your vision, brand, and goals</p>
+            </div>
+            <div class="process-step reveal-up">
+                <div class="process-number">02</div>
+                <h3 class="process-title">Concept</h3>
+                <p class="process-desc">AI-powered mood boards and directions</p>
+            </div>
+            <div class="process-step reveal-up">
+                <div class="process-number">03</div>
+                <h3 class="process-title">Create</h3>
+                <p class="process-desc">High-quality visuals brought to life</p>
+            </div>
+            <div class="process-step reveal-up">
+                <div class="process-number">04</div>
+                <h3 class="process-title">Deliver</h3>
+                <p class="process-desc">Ready-to-use assets for your brand</p>
+            </div>
         </div>
     </div>
 
     <section class="cta-section" id="contact">
-        <h2 class="cta-title reveal-up">Let's Work Together</h2>
-        <p class="cta-subtitle reveal-up">Ready to bring your vision to life?</p>
-        <a href="mailto:info@21studio.io" class="cta-button reveal-up">Start a Project <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+        <h2 class="cta-title reveal-up">Let's Create Together</h2>
+        <p class="cta-subtitle reveal-up">Ready to elevate your brand with AI-powered visuals?</p>
+        <a href="mailto:info@21studio.io" class="cta-button reveal-up">Get in Touch <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
     </section>
 
     <footer>
@@ -518,8 +557,9 @@
             <div class="footer-copy">© 2025 All rights reserved</div>
         </div>
         <div class="footer-social">
-            <a href="#"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-            <a href="#"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+            <a href="https://instagram.com/21studio.io" target="_blank" rel="noopener">
+                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
         </div>
     </footer>
 
@@ -543,23 +583,6 @@
         });
         gsap.utils.toArray('.reveal-scale').forEach(el => {
             gsap.to(el, { scrollTrigger: { trigger: el, start: 'top 90%' }, opacity: 1, scale: 1, duration: 1, ease: 'power3.out' });
-        });
-
-        document.querySelectorAll('[data-count]').forEach(el => {
-            ScrollTrigger.create({
-                trigger: el, start: 'top 80%', once: true,
-                onEnter: () => gsap.fromTo(el, { innerText: 0 }, { innerText: parseInt(el.dataset.count), duration: 2.5, snap: { innerText: 1 }, onUpdate: function() { el.textContent = Math.round(el.innerText) + '+'; } })
-            });
-        });
-
-        document.querySelectorAll('.portfolio-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.portfolio-tab').forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                document.querySelectorAll('.portfolio-card').forEach(card => {
-                    card.style.display = (tab.dataset.filter === 'all' || card.dataset.category === tab.dataset.filter) ? 'block' : 'none';
-                });
-            });
         });
 
         const slider = document.getElementById('portfolioSlider');
