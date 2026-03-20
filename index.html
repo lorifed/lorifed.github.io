@@ -429,10 +429,15 @@
             .process-grid { grid-template-columns: 1fr; }
         }
 
-        /* Animation States */
+        /* Animation States - solo fuori dalla hero */
         .reveal-up { opacity: 0; transform: translateY(60px); }
         .reveal-fade { opacity: 0; }
         .char { opacity: 0; transform: translateY(100%); }
+
+        /* Hero: sempre visibile di default, animazione come enhancement */
+        .hero .reveal-up { opacity: 1; transform: none; }
+        .hero .reveal-fade { opacity: 1; }
+        .hero .char { opacity: 1; transform: none; }
     </style>
 </head>
 <body>
@@ -632,11 +637,35 @@
             el.innerHTML = el.textContent.split('').map(c => c === ' ' ? ' ' : '<span class="char">'+c+'</span>').join('');
         });
 
-        window.addEventListener('load', () => {
-            gsap.to('.hero .char', { opacity: 1, y: 0, duration: 1.2, stagger: 0.04, ease: 'power4.out' });
-            gsap.to('.hero .reveal-up', { opacity: 1, y: 0, duration: 1, stagger: 0.2, delay: 0.5, ease: 'power4.out' });
-            gsap.to('.hero .reveal-fade', { opacity: 1, duration: 1, delay: 0.8 });
-        });
+        // Hero sempre visibile — animazione opzionale
+        try {
+            // Reset per animazione
+            gsap.set('.hero .char', { opacity: 0, y: '100%' });
+            gsap.set('.hero .reveal-up', { opacity: 0, y: 60 });
+            gsap.set('.hero .reveal-fade', { opacity: 0 });
+
+            window.addEventListener('load', () => {
+                gsap.to('.hero .char', { opacity: 1, y: 0, duration: 1.2, stagger: 0.04, ease: 'power4.out' });
+                gsap.to('.hero .reveal-up', { opacity: 1, y: 0, duration: 1, stagger: 0.2, delay: 0.5, ease: 'power4.out' });
+                gsap.to('.hero .reveal-fade', { opacity: 1, duration: 1, delay: 0.8 });
+            });
+
+            // Fallback: se load non scatta entro 3s, forza visibilità
+            setTimeout(() => {
+                document.querySelectorAll('.hero .reveal-up, .hero .reveal-fade, .hero .char').forEach(el => {
+                    if (parseFloat(getComputedStyle(el).opacity) < 0.5) {
+                        el.style.opacity = '1';
+                        el.style.transform = 'none';
+                    }
+                });
+            }, 3000);
+        } catch(e) {
+            // Se GSAP fallisce, tutto visibile
+            document.querySelectorAll('.hero .reveal-up, .hero .reveal-fade, .hero .char').forEach(el => {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+            });
+        }
 
         gsap.utils.toArray('.reveal-up:not(.hero .reveal-up)').forEach(el => {
             gsap.to(el, { scrollTrigger: { trigger: el, start: 'to
