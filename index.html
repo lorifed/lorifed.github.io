@@ -90,6 +90,14 @@
             top: 0; left: 0;
             width: 100%; height: 100%;
             background: linear-gradient(135deg, #4d5943 0%, #3a4233 50%, #2a2f26 100%);
+            z-index: -3;
+        }
+        .hero-video {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center top;
             z-index: -2;
         }
         .hero-overlay {
@@ -424,6 +432,14 @@
 
     <section class="hero">
         <div class="hero-bg"></div>
+        <!-- Video desktop (nascosto su mobile) -->
+        <video class="hero-video" id="hero-video-desktop" autoplay muted loop playsinline preload="auto" poster="hero-bg.jpg">
+            <source src="21video.mov" type="video/mp4">
+        </video>
+        <!-- Video mobile (nascosto su desktop) -->
+        <video class="hero-video" id="hero-video-mobile" autoplay muted loop playsinline preload="auto" poster="hero-bg.jpg">
+            <source src="21videomobile.mov" type="video/mp4">
+        </video>
         <div class="hero-overlay"></div>
         <div class="hero-badge reveal-up">
             <span class="hero-badge-dot"></span>
@@ -597,13 +613,13 @@
             <a href="https://instagram.com/21studio.io" target="_blank" rel="noopener" aria-label="Instagram">
                 <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             </a>
-            <a href="mailto:info@21studio.io" target="_blank" rel="noopener" aria-label="Email">
+            <a href="/cdn-cgi/l/email-protection#e78e898188a7d5d6949392838e88c98e88" target="_blank" rel="noopener" aria-label="Email">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
             </a>
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script>
         gsap.registerPlugin(ScrollTrigger);
@@ -612,10 +628,21 @@
             el.innerHTML = el.textContent.split('').map(c => c === ' ' ? ' ' : '<span class="char">'+c+'</span>').join('');
         });
 
-        window.addEventListener('load', () => {
+        // DOMContentLoaded: animazioni hero non aspettano il video
+        document.addEventListener('DOMContentLoaded', () => {
             gsap.to('.hero .char', { opacity: 1, y: 0, duration: 1.2, stagger: 0.04, ease: 'power4.out' });
             gsap.to('.hero .reveal-up', { opacity: 1, y: 0, duration: 1, stagger: 0.2, delay: 0.5, ease: 'power4.out' });
             gsap.to('.hero .reveal-fade', { opacity: 1, duration: 1, delay: 0.8 });
+
+            // Mostra solo il video giusto in base al dispositivo
+            const isMobile = window.innerWidth <= 768;
+            const desktop = document.getElementById('hero-video-desktop');
+            const mobile = document.getElementById('hero-video-mobile');
+            if (isMobile) {
+                desktop.style.display = 'none';
+            } else {
+                mobile.style.display = 'none';
+            }
         });
 
         gsap.utils.toArray('.reveal-up:not(.hero .reveal-up)').forEach(el => {
@@ -625,10 +652,4 @@
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', e => { 
                 e.preventDefault(); 
-                const t = document.querySelector(a.getAttribute('href')); 
-                if (t) t.scrollIntoView({ behavior: 'smooth' }); 
-            });
-        });
-    </script>
-</body>
-</html>
+                const t = document.querySelector(a.g
