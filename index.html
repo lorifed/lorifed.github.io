@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>21STUDIO | AI Art Director</title>
     <meta name="description" content="Art Director specializzato in visual AI-generated, fotografia di prodotto e brand imagery per aziende.">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
@@ -22,10 +20,9 @@
             --accent-light: #8a9d78;
             --accent-dark: #4d5943;
             --border: #1d1f1d;
-            --olive: #5a6352;
         }
         html { scroll-behavior: smooth; }
-        html, body { width: 100%; max-width: 100%; overflow-x: hidden; scroll-behavior: smooth; }
+        html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg);
@@ -37,367 +34,179 @@
         ::-webkit-scrollbar-track { background: var(--bg); }
         ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
-        /* Navigation */
+        /* ── NAV ── */
         nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
+            position: fixed; top: 0; left: 0; right: 0;
             padding: 16px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
             z-index: 100;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0,0,0,0.5);
             backdrop-filter: saturate(180%) blur(20px);
         }
         .logo { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.02em; color: var(--text); text-decoration: none; }
         .nav-links { display: flex; gap: 28px; align-items: center; }
-        .nav-links a {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+        .nav-links a { font-size: 0.875rem; color: var(--text-secondary); text-decoration: none; transition: color 0.3s; }
         .nav-links a:hover { color: var(--accent-light); }
-        .nav-cta {
-            padding: 10px 20px;
-            background: var(--accent);
-            color: #fff !important;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        .nav-cta:hover { transform: scale(1.05); box-shadow: 0 4px 20px rgba(106, 124, 91, 0.4); background: var(--accent-light); }
+        .nav-cta { padding: 10px 20px; background: var(--accent); color: #fff !important; border-radius: 50px; font-weight: 500; transition: all 0.3s; }
+        .nav-cta:hover { transform: scale(1.05); box-shadow: 0 4px 20px rgba(106,124,91,0.4); background: var(--accent-light); }
 
-        /* Sections */
+        /* ── SECTIONS ── */
         section { padding: 80px 40px; max-width: 1200px; margin: 0 auto; }
 
-        /* Hero */
+        /* ── HERO ── */
         .hero {
-            min-height: 100vh;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 120px 24px 80px;
-            position: relative;
-            overflow: hidden;
-            max-width: none;
+            min-height: 100vh; width: 100%;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center; padding: 120px 24px 80px;
+            position: relative; overflow: hidden; max-width: none;
         }
-        .hero-bg {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+        /* Gradiente fallback sempre presente */
+        .hero::before {
+            content: '';
+            position: absolute; inset: 0;
             background: linear-gradient(135deg, #4d5943 0%, #3a4233 50%, #2a2f26 100%);
             z-index: -3;
         }
         .hero-video {
-            position: absolute;
-            top: 0; left: 0;
+            position: absolute; inset: 0;
             width: 100%; height: 100%;
             object-fit: cover;
             object-position: center top;
             z-index: -2;
         }
         .hero-overlay {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
+            position: absolute; inset: 0;
             background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.9) 100%);
             z-index: -1;
         }
+
+        /* ── HERO CONTENT: tutto visibile, animazione CSS pura ── */
         .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            display: inline-flex; align-items: center; gap: 8px;
             padding: 8px 16px;
-            background: rgba(106, 124, 91, 0.15);
+            background: rgba(106,124,91,0.15);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(106, 124, 91, 0.3);
-            border-radius: 50px;
-            font-size: 0.75rem;
-            color: var(--accent-light);
-            font-weight: 500;
+            border: 1px solid rgba(106,124,91,0.3);
+            border-radius: 50px; font-size: 0.75rem;
+            color: var(--accent-light); font-weight: 500;
             margin-bottom: 40px;
+            animation: fadeUp 0.8s ease both;
         }
-        .hero-badge-dot {
-            width: 6px; height: 6px;
-            background: var(--accent-light);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.8); }
+        .hero-badge-dot { width: 6px; height: 6px; background: var(--accent-light); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+        .hero-role {
+            font-size: clamp(14px, 2vw, 18px); font-weight: 500;
+            color: var(--accent-light); text-transform: uppercase;
+            letter-spacing: 0.2em; margin-bottom: 16px;
+            animation: fadeUp 0.8s 0.15s ease both;
         }
         .hero-title {
-            font-size: clamp(48px, 10vw, 120px);
-            font-weight: 700;
-            letter-spacing: -0.05em;
-            line-height: 0.95;
-            margin-bottom: 20px;
-        }
-        .hero-title .char { display: inline-block; }
-        .hero-role {
-            font-size: clamp(14px, 2vw, 18px);
-            font-weight: 500;
-            color: var(--accent-light);
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            margin-bottom: 16px;
+            font-size: clamp(48px, 10vw, 120px); font-weight: 700;
+            letter-spacing: -0.05em; line-height: 0.95; margin-bottom: 20px;
+            animation: fadeUp 0.8s 0.3s ease both;
         }
         .hero-subtitle {
-            font-size: clamp(16px, 2.5vw, 20px);
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 48px;
-            max-width: 600px;
+            font-size: clamp(16px, 2.5vw, 20px); color: rgba(255,255,255,0.7);
+            margin-bottom: 48px; max-width: 600px;
+            animation: fadeUp 0.8s 0.45s ease both;
         }
         .hero-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 18px 36px;
-            background: var(--accent);
-            color: #fff;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.4s ease;
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 18px 36px; background: var(--accent);
+            color: #fff; font-size: 1.1rem; font-weight: 600;
+            text-decoration: none; border-radius: 50px; transition: all 0.4s;
+            animation: fadeUp 0.8s 0.6s ease both;
         }
-        .hero-cta:hover { transform: scale(1.05); box-shadow: 0 8px 32px rgba(106, 124, 91, 0.4); background: var(--accent-light); }
+        .hero-cta:hover { transform: scale(1.05); box-shadow: 0 8px 32px rgba(106,124,91,0.4); background: var(--accent-light); }
         .hero-cta svg { width: 20px; height: 20px; }
         .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-secondary);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            color: var(--text-secondary); font-size: 0.75rem;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            animation: fadeIn 1s 1s ease both;
         }
         .scroll-indicator span {
             width: 1px; height: 40px;
             background: linear-gradient(to bottom, var(--text-secondary), transparent);
             animation: scrollLine 1.5s infinite;
         }
-        @keyframes scrollLine {
-            0% { transform: scaleY(0); transform-origin: top; }
-            50% { transform: scaleY(1); transform-origin: top; }
-            50.1% { transform-origin: bottom; }
-            100% { transform: scaleY(0); transform-origin: bottom; }
-        }
+        @keyframes fadeUp   { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none} }
+        @keyframes fadeIn   { from{opacity:0} to{opacity:1} }
+        @keyframes scrollLine { 0%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 50.1%{transform-origin:bottom} 100%{transform:scaleY(0);transform-origin:bottom} }
 
-        /* Info Bar */
-        .info-bar {
-            display: flex;
-            justify-content: center;
-            gap: 80px;
-            padding: 40px;
-            border-top: 1px solid var(--border);
-            background: var(--bg);
-        }
+        /* ── INFO BAR ── */
+        .info-bar { display: flex; justify-content: center; gap: 80px; padding: 40px; border-top: 1px solid var(--border); background: var(--bg); }
         .info-item { text-align: center; }
         .info-icon { width: 24px; height: 24px; margin: 0 auto 12px; color: var(--accent-light); }
         .info-label { font-size: 0.875rem; font-weight: 500; margin-bottom: 4px; }
         .info-value { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
 
-        /* Section Headers */
+        /* ── SECTION HEADERS ── */
         .section-header { text-align: center; margin-bottom: 40px; }
-        .section-tag {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--accent-light);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 12px;
-        }
+        .section-tag { font-size: 0.75rem; font-weight: 600; color: var(--accent-light); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 12px; }
         .section-title { font-size: clamp(36px, 6vw, 56px); font-weight: 700; letter-spacing: -0.04em; }
 
-        /* Services */
+        /* ── SERVICES ── */
         .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .service-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 40px 32px;
-            transition: all 0.5s ease;
-        }
+        .service-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 40px 32px; transition: all 0.5s; }
         .service-card:hover { border-color: var(--accent); transform: translateY(-8px); }
-        .service-icon {
-            width: 52px; height: 52px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 24px;
-        }
+        .service-icon { width: 52px; height: 52px; background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
         .service-icon svg { width: 26px; height: 26px; color: #fff; }
         .service-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; }
         .service-desc { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.6; }
 
-        /* Pricing Section */
+        /* ── PRICING ── */
         .pricing-section { padding: 100px 40px; background: linear-gradient(180deg, var(--bg) 0%, #0a0d09 100%); }
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .pricing-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 48px 36px;
-            position: relative;
-            transition: all 0.5s ease;
-        }
+        .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; max-width: 800px; margin: 0 auto; }
+        .pricing-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: 48px 36px; position: relative; transition: all 0.5s; }
         .pricing-card:hover { border-color: var(--accent); transform: translateY(-12px); }
-        .pricing-card.featured {
-            border-color: var(--accent);
-            background: linear-gradient(135deg, rgba(106, 124, 91, 0.05) 0%, var(--bg-card) 100%);
-        }
-        .pricing-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent);
-            color: #fff;
-            padding: 6px 20px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        .pricing-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: var(--accent-light);
-        }
-        .pricing-desc {
-            font-size: 0.9375rem;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-            line-height: 1.6;
-            min-height: 60px;
-        }
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 32px;
-        }
-        .pricing-features li {
-            padding: 12px 0;
-            font-size: 0.9375rem;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
-        .pricing-features li svg {
-            width: 20px;
-            height: 20px;
-            color: var(--accent-light);
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-        .pricing-cta {
-            display: block;
-            width: 100%;
-            padding: 16px 32px;
-            background: var(--accent);
-            color: #fff;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
+        .pricing-card.featured { border-color: var(--accent); background: linear-gradient(135deg, rgba(106,124,91,0.05) 0%, var(--bg-card) 100%); }
+        .pricing-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; padding: 6px 20px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+        .pricing-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; color: var(--accent-light); }
+        .pricing-desc { font-size: 0.9375rem; color: var(--text-secondary); margin-bottom: 24px; line-height: 1.6; min-height: 60px; }
+        .pricing-features { list-style: none; margin-bottom: 32px; }
+        .pricing-features li { padding: 12px 0; font-size: 0.9375rem; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 12px; }
+        .pricing-features li svg { width: 20px; height: 20px; color: var(--accent-light); flex-shrink: 0; margin-top: 2px; }
+        .pricing-cta { display: block; width: 100%; padding: 16px 32px; background: var(--accent); color: #fff; text-align: center; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s; }
         .pricing-cta:hover { background: var(--accent-light); transform: scale(1.02); }
-        .pricing-card.featured .pricing-cta {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
-            box-shadow: 0 4px 24px rgba(106, 124, 91, 0.3);
-        }
+        .pricing-card.featured .pricing-cta { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%); box-shadow: 0 4px 24px rgba(106,124,91,0.3); }
 
-        /* Process */
+        /* ── PROCESS ── */
         .process-section { border-top: 1px solid var(--border); padding: 80px 40px; }
         .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; max-width: 1000px; margin: 0 auto; }
         .process-step { text-align: center; }
-        .process-number {
-            font-size: 3rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent-dark) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 16px;
-        }
+        .process-number { font-size: 3rem; font-weight: 700; background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent-dark) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 16px; }
         .process-title { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
         .process-desc { font-size: 0.8125rem; color: var(--text-secondary); }
 
-        /* CTA */
+        /* ── CTA SECTION ── */
         .cta-section { text-align: center; padding: 120px 40px; position: relative; }
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(106, 124, 91, 0.15) 0%, transparent 70%);
-            pointer-events: none;
-        }
+        .cta-section::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(106,124,91,0.15) 0%, transparent 70%); pointer-events: none; }
         .cta-title { font-size: clamp(40px, 8vw, 72px); font-weight: 700; letter-spacing: -0.04em; margin-bottom: 20px; }
         .cta-subtitle { font-size: 1.125rem; color: var(--text-secondary); margin-bottom: 48px; }
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 20px 48px;
-            background: var(--accent);
-            color: #fff;
-            font-size: 1.125rem;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.4s ease;
-        }
-        .cta-button:hover { transform: scale(1.05); box-shadow: 0 8px 40px rgba(106, 124, 91, 0.4); background: var(--accent-light); }
+        .cta-button { display: inline-flex; align-items: center; gap: 10px; padding: 20px 48px; background: var(--accent); color: #fff; font-size: 1.125rem; font-weight: 600; text-decoration: none; border-radius: 50px; transition: all 0.4s; }
+        .cta-button:hover { transform: scale(1.05); box-shadow: 0 8px 40px rgba(106,124,91,0.4); background: var(--accent-light); }
         .cta-button svg { width: 22px; height: 22px; }
 
-        /* Footer */
-        footer {
-            padding: 48px 40px;
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        /* ── FOOTER ── */
+        footer { padding: 48px 40px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
         .footer-brand { font-size: 1rem; font-weight: 600; }
         .footer-copy { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
         .footer-social { display: flex; gap: 12px; }
-        .footer-social a {
-            width: 40px; height: 40px;
-            border: 1px solid var(--border);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            transition: all 0.4s ease;
-        }
+        .footer-social a { width: 40px; height: 40px; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: all 0.4s; }
         .footer-social a:hover { border-color: var(--accent); color: var(--accent-light); transform: translateY(-4px); }
         .footer-social svg { width: 18px; height: 18px; }
 
-        /* Responsive */
+        /* ── SCROLL REVEAL (CSS puro, no JS dipendenze) ── */
+        .reveal {
+            opacity: 0; transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible { opacity: 1; transform: none; }
+
+        /* ── RESPONSIVE ── */
         @media (max-width: 1024px) {
             nav { padding: 16px 24px; }
             .nav-links a:not(.nav-cta) { display: none; }
@@ -409,40 +218,20 @@
             .info-bar { flex-direction: column; gap: 32px; padding: 40px 24px; }
             footer { flex-direction: column; gap: 24px; text-align: center; }
             .process-grid { grid-template-columns: repeat(2, 1fr); }
+            /* Su mobile mostra video mobile, nascondi desktop */
+            #hero-video-desktop { display: none; }
+        }
+        @media (min-width: 769px) {
+            /* Su desktop mostra video desktop, nascondi mobile */
+            #hero-video-mobile { display: none; }
         }
         @media (max-width: 480px) {
             .process-grid { grid-template-columns: 1fr; }
         }
-
-        /* Animation States - fuori dalla hero */
-        .reveal-up { opacity: 0; transform: translateY(60px); }
-        .reveal-fade { opacity: 0; }
-        .char { opacity: 0; transform: translateY(100%); }
-
-        /* Hero - tutto visibile, animazione CSS pura senza dipendenze */
-        .hero .reveal-up { opacity: 1; transform: none; animation: heroFadeUp 0.9s ease both; }
-        .hero .reveal-fade { opacity: 1; animation: heroFade 1s 0.8s ease both; }
-        .hero .char { opacity: 1; transform: none; }
-        .hero-title { animation: heroFadeUp 0.9s 0.1s ease both; }
-
-        @keyframes heroFadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to   { opacity: 1; transform: none; }
-        }
-        @keyframes heroFade {
-            from { opacity: 0; }
-            to   { opacity: 1; }
-        }
-
-        /* Stagger badge → role → title → subtitle → cta */
-        .hero .hero-badge  { animation-delay: 0s; }
-        .hero .hero-role   { animation-delay: 0.15s; }
-        .hero .hero-title  { animation-delay: 0.3s; }
-        .hero .hero-subtitle { animation-delay: 0.45s; }
-        .hero .hero-cta    { animation-delay: 0.6s; }
     </style>
 </head>
 <body>
+
     <nav>
         <a href="#" class="logo">21STUDIO</a>
         <div class="nav-links">
@@ -453,42 +242,42 @@
     </nav>
 
     <section class="hero">
-        <div class="hero-bg"></div>
-        <!-- Video desktop (nascosto su mobile) -->
-        <video class="hero-video" id="hero-video-desktop" autoplay muted loop playsinline preload="auto" poster="hero-bg.jpg">
+        <!-- Video desktop -->
+        <video id="hero-video-desktop" class="hero-video" autoplay muted loop playsinline preload="auto" poster="hero-bg.jpg">
             <source src="21video.mov" type="video/mp4">
         </video>
-        <!-- Video mobile (nascosto su desktop) -->
-        <video class="hero-video" id="hero-video-mobile" autoplay muted loop playsinline preload="auto" poster="hero-bg.jpg">
+        <!-- Video mobile -->
+        <video id="hero-video-mobile" class="hero-video" autoplay muted loop playsinline preload="auto" poster="hero-bg.jpg">
             <source src="21videomobile.mov" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
-        <div class="hero-badge reveal-up">
+
+        <div class="hero-badge">
             <span class="hero-badge-dot"></span>
             Disponibile per nuovi progetti
         </div>
-        <p class="hero-role reveal-up">AI Art Director</p>
-        <h1 class="hero-title" data-split-text>21STUDIO</h1>
-        <p class="hero-subtitle reveal-up">Visual di nuova generazione con l'intelligenza artificiale per brand che vogliono distinguersi</p>
-        <a href="https://wa.me/393XXXXXXXXX?text=Ciao%2C%20ho%20visto%20il%20sito%20e%20vorrei%20capire%20cosa%20possiamo%20creare%20per%20il%20mio%20brand" target="_blank" class="hero-cta reveal-up">
+        <p class="hero-role">AI Art Director</p>
+        <h1 class="hero-title">21STUDIO</h1>
+        <p class="hero-subtitle">Visual di nuova generazione con l'intelligenza artificiale per brand che vogliono distinguersi</p>
+        <a href="https://wa.me/393XXXXXXXXX?text=Ciao%2C%20ho%20visto%20il%20sito%20e%20vorrei%20capire%20cosa%20possiamo%20creare%20per%20il%20mio%20brand" target="_blank" class="hero-cta">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.11 1.522 5.835L0 24l6.313-1.496A11.926 11.926 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.792 9.792 0 01-5.017-1.38l-.36-.214-3.732.884.916-3.622-.235-.373A9.761 9.761 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
             Scrivimi su WhatsApp
         </a>
-        <div class="scroll-indicator reveal-fade">Scorri<span></span></div>
+        <div class="scroll-indicator">Scorri<span></span></div>
     </section>
 
     <div class="info-bar">
-        <div class="info-item reveal-up">
+        <div class="info-item reveal">
             <svg class="info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
             <div class="info-label">Tecnologia AI</div>
             <div class="info-value">Strumenti Avanzati</div>
         </div>
-        <div class="info-item reveal-up">
+        <div class="info-item reveal">
             <svg class="info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             <div class="info-label">Consegna Rapida</div>
             <div class="info-value">Giorni, Non Settimane</div>
         </div>
-        <div class="info-item reveal-up">
+        <div class="info-item reveal">
             <svg class="info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
             <div class="info-label">Concept su Misura</div>
             <div class="info-value">Creatività Illimitata</div>
@@ -497,21 +286,21 @@
 
     <section id="servizi">
         <div class="section-header">
-            <p class="section-tag reveal-up">Servizi</p>
-            <h2 class="section-title reveal-up">Cosa Realizzo</h2>
+            <p class="section-tag reveal">Servizi</p>
+            <h2 class="section-title reveal">Cosa Realizzo</h2>
         </div>
         <div class="services-grid">
-            <div class="service-card reveal-up">
+            <div class="service-card reveal">
                 <div class="service-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
                 <h3 class="service-title">Fotografia Prodotto AI</h3>
                 <p class="service-desc">Immagini fotorealistiche di prodotti, scene lifestyle e visual pubblicitari. Nessuno studio necessario—possibilità infinite.</p>
             </div>
-            <div class="service-card reveal-up">
+            <div class="service-card reveal">
                 <div class="service-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m0 0h4a1 1 0 011 1v3M7 4H3a1 1 0 00-1 1v3m18 0v10a2 2 0 01-2 2H4a2 2 0 01-2-2V8m20 0H2m5 8h10"/></svg></div>
                 <h3 class="service-title">Identità Visiva Brand</h3>
                 <p class="service-desc">Sistemi visivi completi creati con AI. Mood board, linee guida di stile e asset che definiscono l'estetica del tuo brand.</p>
             </div>
-            <div class="service-card reveal-up">
+            <div class="service-card reveal">
                 <div class="service-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg></div>
                 <h3 class="service-title">Video e Motion AI</h3>
                 <p class="service-desc">Contenuti video dinamici, visual animati e motion graphics realizzati con le più recenti tecnologie video AI.</p>
@@ -521,67 +310,33 @@
 
     <section class="pricing-section" id="prezzi">
         <div class="section-header" style="margin-bottom: 64px;">
-            <p class="section-tag reveal-up">Pacchetti</p>
-            <h2 class="section-title reveal-up">Scegli il Tuo Percorso</h2>
+            <p class="section-tag reveal">Pacchetti</p>
+            <h2 class="section-title reveal">Scegli il Tuo Percorso</h2>
         </div>
         <div class="pricing-grid">
-            <div class="pricing-card reveal-up">
+            <div class="pricing-card reveal">
                 <div class="pricing-name">Progetto Singolo</div>
                 <div class="pricing-desc">Perfetto per chi ha un progetto specifico da realizzare</div>
                 <ul class="pricing-features">
-                    <li>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Brief e concept iniziale
-                    </li>
-                    <li>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Fino a 20 asset finali
-                    </li>
-                    <li>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        2 round di revisioni
-                    </li>
-                    <li>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Consegna in 7-10 giorni
-                    </li>
-                    <li>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        File pronti per l'uso
-                    </li>
+                    <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Brief e concept iniziale</li>
+                    <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Fino a 20 asset finali</li>
+                    <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>2 round di revisioni</li>
+                    <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Consegna in 7-10 giorni</li>
+                    <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>File pronti per l'uso</li>
                 </ul>
                 <a href="https://wa.me/393XXXXXXXXX?text=Ciao%2C%20ho%20visto%20il%20sito%20e%20vorrei%20capire%20cosa%20possiamo%20creare%20per%20il%20mio%20brand" target="_blank" class="pricing-cta">Scrivimi su WhatsApp</a>
             </div>
-
-            <div class="pricing-card featured reveal-up">
+            <div class="pricing-card featured reveal">
                 <div class="pricing-badge">Consigliato</div>
                 <div class="pricing-name">Collaborazione</div>
                 <div class="pricing-desc">Lavoriamo insieme su più progetti per far crescere il tuo brand</div>
                 <ul class="pricing-features">
-                    <li>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Tutto di "Progetto Singolo"
-                    </li>
-                    <li>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Fino a 60 asset al mese
-                    </li>
-                    <li>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Revisioni illimitate
-                    </li>
-                    <li>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Supporto prioritario
-                    </li>
-                    <li>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Consulenza strategica
-                    </li>
-                    <li>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Libreria asset condivisa
-                    </li>
+                    <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Tutto di "Progetto Singolo"</li>
+                    <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Fino a 60 asset al mese</li>
+                    <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Revisioni illimitate</li>
+                    <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Supporto prioritario</li>
+                    <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Consulenza strategica</li>
+                    <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Libreria asset condivisa</li>
                 </ul>
                 <a href="https://wa.me/393XXXXXXXXX?text=Ciao%2C%20ho%20visto%20il%20sito%20e%20vorrei%20capire%20cosa%20possiamo%20creare%20per%20il%20mio%20brand" target="_blank" class="pricing-cta">Scrivimi su WhatsApp</a>
             </div>
@@ -590,26 +345,26 @@
 
     <div class="process-section">
         <div class="section-header" style="padding: 0 40px; margin-bottom: 48px;">
-            <p class="section-tag reveal-up">Processo</p>
-            <h2 class="section-title reveal-up">Come Funziona</h2>
+            <p class="section-tag reveal">Processo</p>
+            <h2 class="section-title reveal">Come Funziona</h2>
         </div>
         <div class="process-grid">
-            <div class="process-step reveal-up">
+            <div class="process-step reveal">
                 <div class="process-number">01</div>
                 <h3 class="process-title">Brief</h3>
                 <p class="process-desc">Condividi la tua visione, brand e obiettivi</p>
             </div>
-            <div class="process-step reveal-up">
+            <div class="process-step reveal">
                 <div class="process-number">02</div>
                 <h3 class="process-title">Concept</h3>
                 <p class="process-desc">Mood board e direzioni creative con AI</p>
             </div>
-            <div class="process-step reveal-up">
+            <div class="process-step reveal">
                 <div class="process-number">03</div>
                 <h3 class="process-title">Creazione</h3>
                 <p class="process-desc">Visual di alta qualità prendono vita</p>
             </div>
-            <div class="process-step reveal-up">
+            <div class="process-step reveal">
                 <div class="process-number">04</div>
                 <h3 class="process-title">Consegna</h3>
                 <p class="process-desc">Asset pronti all'uso per il tuo brand</p>
@@ -618,9 +373,9 @@
     </div>
 
     <section class="cta-section" id="contatti">
-        <h2 class="cta-title reveal-up">Creiamo Insieme</h2>
-        <p class="cta-subtitle reveal-up">Pronto a elevare il tuo brand con visual generati dall'AI?</p>
-        <a href="https://wa.me/393XXXXXXXXX?text=Ciao%2C%20ho%20visto%20il%20sito%20e%20vorrei%20capire%20cosa%20possiamo%20creare%20per%20il%20mio%20brand" target="_blank" class="cta-button reveal-up">
+        <h2 class="cta-title reveal">Creiamo Insieme</h2>
+        <p class="cta-subtitle reveal">Pronto a elevare il tuo brand con visual generati dall'AI?</p>
+        <a href="https://wa.me/393XXXXXXXXX?text=Ciao%2C%20ho%20visto%20il%20sito%20e%20vorrei%20capire%20cosa%20possiamo%20creare%20per%20il%20mio%20brand" target="_blank" class="cta-button reveal">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.11 1.522 5.835L0 24l6.313-1.496A11.926 11.926 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.792 9.792 0 01-5.017-1.38l-.36-.214-3.732.884.916-3.622-.235-.373A9.761 9.761 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
             Scrivimi su WhatsApp
         </a>
@@ -635,42 +390,35 @@
             <a href="https://instagram.com/21studio.io" target="_blank" rel="noopener" aria-label="Instagram">
                 <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             </a>
-            <a href="/cdn-cgi/l/email-protection#e78e898188a7d5d6949392838e88c98e88" target="_blank" rel="noopener" aria-label="Email">
+            <a href="mailto:info@21studio.io" rel="noopener" aria-label="Email">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
             </a>
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script>
-        gsap.registerPlugin(ScrollTrigger);
+        // Scroll reveal — IntersectionObserver puro, zero dipendenze
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    observer.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-        document.querySelectorAll('[data-split-text]').forEach(el => {
-            el.innerHTML = el.textContent.split('').map(c => c === ' ' ? ' ' : '<span class="char">'+c+'</span>').join('');
+        document.querySelectorAll('.reveal').forEach(function(el) {
+            observer.observe(el);
         });
 
-        // Seleziona il video giusto subito, senza aspettare nulla
-        (function() {
-            var isMobile = window.innerWidth <= 768;
-            var desktop = document.getElementById('hero-video-desktop');
-            var mobile  = document.getElementById('hero-video-mobile');
-            if (desktop && mobile) {
-                if (isMobile) { desktop.remove(); }
-                else          { mobile.remove(); }
-            }
-        })();
-
-        // Animazioni scroll (fuori hero) con GSAP quando disponibile
-        window.addEventListener('load', () => {
-
-        }); // fine window load
-
-        gsap.utils.toArray('.reveal-up:not(.hero .reveal-up)').forEach(el => {
-            gsap.to(el, { scrollTrigger: { trigger: el, start: 'top 85%' }, opacity: 1, y: 0, duration: 1, ease: 'power3.out' });
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+            a.addEventListener('click', function(e) {
+                e.preventDefault();
+                var t = document.querySelector(a.getAttribute('href'));
+                if (t) t.scrollIntoView({ behavior: 'smooth' });
+            });
         });
-
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', e => { 
-                e.preventDefault(); 
-                const t = document.querySelector(a.g
+    </script>
+</body>
+</html>
