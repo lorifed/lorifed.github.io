@@ -414,10 +414,32 @@
             .process-grid { grid-template-columns: 1fr; }
         }
 
-        /* Animation States */
+        /* Animation States - fuori dalla hero */
         .reveal-up { opacity: 0; transform: translateY(60px); }
         .reveal-fade { opacity: 0; }
         .char { opacity: 0; transform: translateY(100%); }
+
+        /* Hero - tutto visibile, animazione CSS pura senza dipendenze */
+        .hero .reveal-up { opacity: 1; transform: none; animation: heroFadeUp 0.9s ease both; }
+        .hero .reveal-fade { opacity: 1; animation: heroFade 1s 0.8s ease both; }
+        .hero .char { opacity: 1; transform: none; }
+        .hero-title { animation: heroFadeUp 0.9s 0.1s ease both; }
+
+        @keyframes heroFadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: none; }
+        }
+        @keyframes heroFade {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        /* Stagger badge → role → title → subtitle → cta */
+        .hero .hero-badge  { animation-delay: 0s; }
+        .hero .hero-role   { animation-delay: 0.15s; }
+        .hero .hero-title  { animation-delay: 0.3s; }
+        .hero .hero-subtitle { animation-delay: 0.45s; }
+        .hero .hero-cta    { animation-delay: 0.6s; }
     </style>
 </head>
 <body>
@@ -628,22 +650,21 @@
             el.innerHTML = el.textContent.split('').map(c => c === ' ' ? ' ' : '<span class="char">'+c+'</span>').join('');
         });
 
-        // DOMContentLoaded: animazioni hero non aspettano il video
-        document.addEventListener('DOMContentLoaded', () => {
-            gsap.to('.hero .char', { opacity: 1, y: 0, duration: 1.2, stagger: 0.04, ease: 'power4.out' });
-            gsap.to('.hero .reveal-up', { opacity: 1, y: 0, duration: 1, stagger: 0.2, delay: 0.5, ease: 'power4.out' });
-            gsap.to('.hero .reveal-fade', { opacity: 1, duration: 1, delay: 0.8 });
-
-            // Mostra solo il video giusto in base al dispositivo
-            const isMobile = window.innerWidth <= 768;
-            const desktop = document.getElementById('hero-video-desktop');
-            const mobile = document.getElementById('hero-video-mobile');
-            if (isMobile) {
-                desktop.style.display = 'none';
-            } else {
-                mobile.style.display = 'none';
+        // Seleziona il video giusto subito, senza aspettare nulla
+        (function() {
+            var isMobile = window.innerWidth <= 768;
+            var desktop = document.getElementById('hero-video-desktop');
+            var mobile  = document.getElementById('hero-video-mobile');
+            if (desktop && mobile) {
+                if (isMobile) { desktop.remove(); }
+                else          { mobile.remove(); }
             }
-        });
+        })();
+
+        // Animazioni scroll (fuori hero) con GSAP quando disponibile
+        window.addEventListener('load', () => {
+
+        }); // fine window load
 
         gsap.utils.toArray('.reveal-up:not(.hero .reveal-up)').forEach(el => {
             gsap.to(el, { scrollTrigger: { trigger: el, start: 'top 85%' }, opacity: 1, y: 0, duration: 1, ease: 'power3.out' });
