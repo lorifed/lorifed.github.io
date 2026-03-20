@@ -34,7 +34,7 @@
         ::-webkit-scrollbar-track { background: var(--bg); }
         ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
-        /* ── NAV ── */
+        /* NAV */
         nav {
             position: fixed; top: 0; left: 0; right: 0;
             padding: 16px 40px;
@@ -50,10 +50,10 @@
         .nav-cta { padding: 10px 20px; background: var(--accent); color: #fff !important; border-radius: 50px; font-weight: 500; transition: all 0.3s; }
         .nav-cta:hover { transform: scale(1.05); box-shadow: 0 4px 20px rgba(106,124,91,0.4); background: var(--accent-light); }
 
-        /* ── SECTIONS ── */
+        /* SECTIONS */
         section { padding: 80px 40px; max-width: 1200px; margin: 0 auto; }
 
-        /* ── HERO ── */
+        /* HERO */
         .hero {
             min-height: 100vh; width: 100%;
             display: flex; flex-direction: column;
@@ -61,7 +61,6 @@
             text-align: center; padding: 120px 24px 80px;
             position: relative; overflow: hidden; max-width: none;
         }
-        /* Gradiente fallback sempre presente */
         .hero::before {
             content: '';
             position: absolute; inset: 0;
@@ -80,8 +79,6 @@
             background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.9) 100%);
             z-index: -1;
         }
-
-        /* ── HERO CONTENT: tutto visibile, animazione CSS pura ── */
         .hero-badge {
             display: inline-flex; align-items: center; gap: 8px;
             padding: 8px 16px;
@@ -132,23 +129,23 @@
             background: linear-gradient(to bottom, var(--text-secondary), transparent);
             animation: scrollLine 1.5s infinite;
         }
-        @keyframes fadeUp   { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none} }
-        @keyframes fadeIn   { from{opacity:0} to{opacity:1} }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none} }
+        @keyframes fadeIn { from{opacity:0} to{opacity:1} }
         @keyframes scrollLine { 0%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 50.1%{transform-origin:bottom} 100%{transform:scaleY(0);transform-origin:bottom} }
 
-        /* ── INFO BAR ── */
+        /* INFO BAR */
         .info-bar { display: flex; justify-content: center; gap: 80px; padding: 40px; border-top: 1px solid var(--border); background: var(--bg); }
         .info-item { text-align: center; }
         .info-icon { width: 24px; height: 24px; margin: 0 auto 12px; color: var(--accent-light); }
         .info-label { font-size: 0.875rem; font-weight: 500; margin-bottom: 4px; }
         .info-value { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
 
-        /* ── SECTION HEADERS ── */
+        /* SECTION HEADERS */
         .section-header { text-align: center; margin-bottom: 40px; }
         .section-tag { font-size: 0.75rem; font-weight: 600; color: var(--accent-light); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 12px; }
         .section-title { font-size: clamp(36px, 6vw, 56px); font-weight: 700; letter-spacing: -0.04em; }
 
-        /* ── SERVICES ── */
+        /* SERVICES */
         .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
         .service-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 40px 32px; transition: all 0.5s; }
         .service-card:hover { border-color: var(--accent); transform: translateY(-8px); }
@@ -157,7 +154,7 @@
         .service-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; }
         .service-desc { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.6; }
 
-        /* ── PRICING ── */
+        /* PRICING */
         .pricing-section { padding: 100px 40px; background: linear-gradient(180deg, var(--bg) 0%, #0a0d09 100%); }
         .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; max-width: 800px; margin: 0 auto; }
         .pricing-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: 48px 36px; position: relative; transition: all 0.5s; }
@@ -173,7 +170,7 @@
         .pricing-cta:hover { background: var(--accent-light); transform: scale(1.02); }
         .pricing-card.featured .pricing-cta { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%); box-shadow: 0 4px 24px rgba(106,124,91,0.3); }
 
-        /* ── PROCESS ── */
+        /* PROCESS */
         .process-section { border-top: 1px solid var(--border); padding: 80px 40px; }
         .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; max-width: 1000px; margin: 0 auto; }
         .process-step { text-align: center; }
@@ -181,7 +178,7 @@
         .process-title { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
         .process-desc { font-size: 0.8125rem; color: var(--text-secondary); }
 
-        /* ── CTA SECTION ── */
+        /* CTA SECTION */
         .cta-section { text-align: center; padding: 120px 40px; position: relative; }
         .cta-section::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(106,124,91,0.15) 0%, transparent 70%); pointer-events: none; }
         .cta-title { font-size: clamp(40px, 8vw, 72px); font-weight: 700; letter-spacing: -0.04em; margin-bottom: 20px; }
@@ -190,7 +187,7 @@
         .cta-button:hover { transform: scale(1.05); box-shadow: 0 8px 40px rgba(106,124,91,0.4); background: var(--accent-light); }
         .cta-button svg { width: 22px; height: 22px; }
 
-        /* ── FOOTER ── */
+        /* FOOTER */
         footer { padding: 48px 40px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
         .footer-brand { font-size: 1rem; font-weight: 600; }
         .footer-copy { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
@@ -199,14 +196,11 @@
         .footer-social a:hover { border-color: var(--accent); color: var(--accent-light); transform: translateY(-4px); }
         .footer-social svg { width: 18px; height: 18px; }
 
-        /* ── SCROLL REVEAL (CSS puro, no JS dipendenze) ── */
-        .reveal {
-            opacity: 0; transform: translateY(40px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
+        /* SCROLL REVEAL */
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
         .reveal.visible { opacity: 1; transform: none; }
 
-        /* ── RESPONSIVE ── */
+        /* RESPONSIVE */
         @media (max-width: 1024px) {
             nav { padding: 16px 24px; }
             .nav-links a:not(.nav-cta) { display: none; }
@@ -218,11 +212,9 @@
             .info-bar { flex-direction: column; gap: 32px; padding: 40px 24px; }
             footer { flex-direction: column; gap: 24px; text-align: center; }
             .process-grid { grid-template-columns: repeat(2, 1fr); }
-            /* Su mobile mostra video mobile, nascondi desktop */
             #hero-video-desktop { display: none; }
         }
         @media (min-width: 769px) {
-            /* Su desktop mostra video desktop, nascondi mobile */
             #hero-video-mobile { display: none; }
         }
         @media (max-width: 480px) {
@@ -242,16 +234,13 @@
     </nav>
 
     <section class="hero">
-        <!-- Video desktop -->
         <video id="hero-video-desktop" class="hero-video" autoplay muted loop playsinline preload="auto" poster="hero-bg.jpg">
             <source src="21video.mov" type="video/mp4">
         </video>
-        <!-- Video mobile -->
         <video id="hero-video-mobile" class="hero-video" autoplay muted loop playsinline preload="auto" poster="hero-bg.jpg">
             <source src="21videomobile.mov" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
-
         <div class="hero-badge">
             <span class="hero-badge-dot"></span>
             Disponibile per nuovi progetti
@@ -390,29 +379,35 @@
             <a href="https://instagram.com/21studio.io" target="_blank" rel="noopener" aria-label="Instagram">
                 <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             </a>
-            <a href="/cdn-cgi/l/email-protection#1f767179705f2d2e6c6b6a7b7670317670" rel="noopener" aria-label="Email">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <a href="https://wa.me/393924311252" target="_blank" rel="noopener" aria-label="WhatsApp">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.11 1.522 5.835L0 24l6.313-1.496A11.926 11.926 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.792 9.792 0 01-5.017-1.38l-.36-.214-3.732.884.916-3.622-.235-.373A9.761 9.761 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
             </a>
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Scroll reveal — IntersectionObserver puro, zero dipendenze
-        var observer = new IntersectionObserver(function(entries) {
-            entries.forEach(function(e) {
-                if (e.isIntersecting) {
-                    e.target.classList.add('visible');
-                    observer.unobserve(e.target);
+    <script>
+    (function() {
+        var els = document.querySelectorAll('.reveal');
+        if (!els.length) return;
+        var io = new IntersectionObserver(function(entries) {
+            for (var i = 0; i < entries.length; i++) {
+                if (entries[i].isIntersecting) {
+                    entries[i].target.classList.add('visible');
+                    io.unobserve(entries[i].target);
                 }
-            });
+            }
         }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        for (var i = 0; i < els.length; i++) { io.observe(els[i]); }
 
-        document.querySelectorAll('.reveal').forEach(function(el) {
-            observer.observe(el);
-        });
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-            a.addEventListener('click', function(e) {
+        var links = document.querySelectorAll('a[href^="#"]');
+        for (var j = 0; j < links.length; j++) {
+            links[j].addEventListener('click', function(e) {
                 e.preventDefault();
-                var t = document.querySelector(a
+                var t = document.querySelector(this.getAttribute('href'));
+                if (t) t.scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+    })();
+    </script>
+</body>
+</html>
