@@ -236,7 +236,13 @@
 
         /* Pricing Section */
         .pricing-section { padding: 100px 40px; background: linear-gradient(180deg, var(--bg) 0%, #0a0d09 100%); }
-        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 1200px; margin: 0 auto; }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
         .pricing-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -276,17 +282,6 @@
             margin-bottom: 24px;
             line-height: 1.6;
             min-height: 60px;
-        }
-        .pricing-price {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        .pricing-price span { font-size: 1.25rem; color: var(--text-secondary); font-weight: 400; }
-        .pricing-period {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            margin-bottom: 32px;
         }
         .pricing-features {
             list-style: none;
@@ -400,7 +395,7 @@
             .nav-links a:not(.nav-cta) { display: none; }
             section { padding: 60px 24px; }
             .services-grid { grid-template-columns: 1fr; }
-            .pricing-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; max-width: 480px; }
         }
         @media (max-width: 768px) {
             .info-bar { flex-direction: column; gap: 32px; padding: 40px 24px; }
@@ -423,7 +418,7 @@
         <div class="nav-links">
             <a href="#servizi">Servizi</a>
             <a href="#prezzi">Prezzi</a>
-            <a href="#contatti" class="nav-cta">Contatti</a>
+            <a href="https://wa.me/393XXXXXXXXX?text=Ciao%2C%20ho%20visto%20il%20sito%20e%20vorrei%20capire%20cosa%20possiamo%20creare%20per%20il%20mio%20brand" target="_blank" class="nav-cta">Scrivimi su WhatsApp</a>
         </div>
     </nav>
 
@@ -437,8 +432,9 @@
         <p class="hero-role reveal-up">AI Art Director</p>
         <h1 class="hero-title" data-split-text>21STUDIO</h1>
         <p class="hero-subtitle reveal-up">Visual di nuova generazione con l'intelligenza artificiale per brand che vogliono distinguersi</p>
-        <a href="mailto:info@21studio.io" class="hero-cta reveal-up">
-            Iniziamo
+        <a href="https://wa.me/393XXXXXXXXX?text=Ciao%2C%20ho%20visto%20il%20sito%20e%20vorrei%20capire%20cosa%20possiamo%20creare%20per%20il%20mio%20brand" target="_blank" class="hero-cta reveal-up">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.11 1.522 5.835L0 24l6.313-1.496A11.926 11.926 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.792 9.792 0 01-5.017-1.38l-.36-.214-3.732.884.916-3.622-.235-.373A9.761 9.761 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+            Scrivimi su WhatsApp
         </a>
         <div class="scroll-indicator reveal-fade">Scorri<span></span></div>
     </section>
@@ -455,9 +451,9 @@
             <div class="info-value">Giorni, Non Settimane</div>
         </div>
         <div class="info-item reveal-up">
-            <svg class="info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-            <div class="info-label">Made in Italy</div>
-            <div class="info-value">Qualità Premium</div>
+            <svg class="info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <div class="info-label">Concept su Misura</div>
+            <div class="info-value">Creatività Illimitata</div>
         </div>
     </div>
 
@@ -516,7 +512,7 @@
                         File pronti per l'uso
                     </li>
                 </ul>
-                <a href="mailto:info@21studio.io?subject=Progetto Singolo" class="pricing-cta">Inizia Progetto</a>
+                <a href="https://wa.me/393XXXXXXXXX?text=Ciao%2C%20ho%20visto%20il%20sito%20e%20vorrei%20capire%20cosa%20possiamo%20creare%20per%20il%20mio%20brand" target="_blank" class="pricing-cta">Scrivimi su WhatsApp</a>
             </div>
 
             <div class="pricing-card featured reveal-up">
@@ -549,39 +545,7 @@
                         Libreria asset condivisa
                     </li>
                 </ul>
-                <a href="mailto:info@21studio.io?subject=Collaborazione Mensile" class="pricing-cta">Inizia Collaborazione</a>
-            </div>
-
-            <div class="pricing-card reveal-up">
-                <div class="pricing-name">Formazione AI</div>
-                <div class="pricing-desc">Impara a creare visual AI-powered in autonomia per il tuo business</div>
-                <ul class="pricing-features">
-                    <li>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        8 sessioni 1-a-1 (2h ciascuna)
-                    </li>
-                    <li>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Strumenti AI professionali
-                    </li>
-                    <li>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Workflow personalizzati
-                    </li>
-                    <li>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Prompt engineering avanzato
-                    </li>
-                    <li>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Supporto post-corso (30gg)
-                    </li>
-                    <li>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        Materiale didattico esclusivo
-                    </li>
-                </ul>
-                <a href="mailto:info@21studio.io?subject=Corso Formazione AI" class="pricing-cta">Scopri il Corso</a>
+                <a href="https://wa.me/393XXXXXXXXX?text=Ciao%2C%20ho%20visto%20il%20sito%20e%20vorrei%20capire%20cosa%20possiamo%20creare%20per%20il%20mio%20brand" target="_blank" class="pricing-cta">Scrivimi su WhatsApp</a>
             </div>
         </div>
     </section>
@@ -618,9 +582,9 @@
     <section class="cta-section" id="contatti">
         <h2 class="cta-title reveal-up">Creiamo Insieme</h2>
         <p class="cta-subtitle reveal-up">Pronto a elevare il tuo brand con visual generati dall'AI?</p>
-        <a href="mailto:info@21studio.io" class="cta-button reveal-up">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            Scrivimi
+        <a href="https://wa.me/393XXXXXXXXX?text=Ciao%2C%20ho%20visto%20il%20sito%20e%20vorrei%20capire%20cosa%20possiamo%20creare%20per%20il%20mio%20brand" target="_blank" class="cta-button reveal-up">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.11 1.522 5.835L0 24l6.313-1.496A11.926 11.926 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.792 9.792 0 01-5.017-1.38l-.36-.214-3.732.884.916-3.622-.235-.373A9.761 9.761 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+            Scrivimi su WhatsApp
         </a>
     </section>
 
