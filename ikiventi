@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IKIVENTI · Case Study — 21STUDIO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        :root{--bg:#000;--bg-card:#0d0d0d;--text:#f5f5f7;--text-secondary:#9ea39d;--text-muted:#5a5f58;--accent:#6b7c5b;--accent-light:#8a9d78;--accent-dark:#4d5943;--border:#1d1f1d;}
+        html{scroll-behavior:smooth;}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+        ::-webkit-scrollbar{width:6px;} ::-webkit-scrollbar-track{background:var(--bg);} ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+
+        nav{position:fixed;top:0;left:0;right:0;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;z-index:100;background:rgba(0,0,0,0.7);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.04);}
+        .logo{font-size:1.125rem;font-weight:600;color:var(--text);text-decoration:none;}
+        .nav-back{font-size:0.875rem;color:var(--text-secondary);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color 0.3s;}
+        .nav-back:hover{color:var(--accent-light);}
+        .nav-back svg{width:16px;height:16px;}
+
+        /* HERO */
+        .cs-hero{min-height:80vh;display:flex;align-items:flex-end;padding:120px 80px 80px;position:relative;overflow:hidden;}
+        .cs-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#1a1f16 0%,#0d1009 60%,#000 100%);z-index:-2;}
+        .cs-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(106,124,91,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(106,124,91,0.04) 1px,transparent 1px);background-size:60px 60px;z-index:-1;}
+        .hero-content{max-width:900px;}
+        .hero-tag{font-size:0.7rem;font-weight:600;color:var(--accent-light);text-transform:uppercase;letter-spacing:0.2em;margin-bottom:24px;display:flex;align-items:center;gap:12px;}
+        .hero-tag::before{content:'';width:32px;height:1px;background:var(--accent-light);}
+        .cs-title{font-family:'Fraunces',Georgia,serif;font-size:clamp(56px,10vw,120px);font-weight:700;letter-spacing:-0.04em;line-height:0.9;margin-bottom:32px;}
+        .cs-subtitle{font-size:clamp(16px,2vw,20px);color:rgba(255,255,255,0.6);max-width:600px;line-height:1.7;}
+        .hero-meta{display:flex;gap:48px;margin-top:48px;padding-top:48px;border-top:1px solid var(--border);}
+        .meta-item{}
+        .meta-label{font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:6px;}
+        .meta-value{font-size:0.95rem;font-weight:500;}
+
+        /* RESULTS STRIP */
+        .results-strip{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+        .result-block{padding:60px 48px;border-right:1px solid var(--border);text-align:center;}
+        .result-block:last-child{border-right:none;}
+        .result-num{font-family:'Fraunces',Georgia,serif;font-size:clamp(48px,7vw,80px);font-weight:700;color:var(--accent-light);line-height:1;margin-bottom:12px;}
+        .result-desc{font-size:0.85rem;color:var(--text-secondary);line-height:1.5;}
+
+        /* BODY */
+        .cs-body{max-width:800px;margin:0 auto;padding:100px 40px;}
+        .cs-section{margin-bottom:80px;}
+        .cs-section-label{font-size:0.68rem;font-weight:600;color:var(--accent-light);text-transform:uppercase;letter-spacing:0.2em;margin-bottom:20px;}
+        .cs-h2{font-family:'Fraunces',Georgia,serif;font-size:clamp(28px,4vw,42px);font-weight:700;letter-spacing:-0.03em;margin-bottom:24px;line-height:1.15;}
+        .cs-p{font-size:1rem;color:var(--text-secondary);line-height:1.8;margin-bottom:20px;}
+        .cs-p:last-child{margin-bottom:0;}
+
+        /* QUOTE */
+        .cs-quote{border-left:2px solid var(--accent);padding:24px 32px;margin:40px 0;background:var(--bg-card);border-radius:0 12px 12px 0;}
+        .cs-quote p{font-family:'Fraunces',Georgia,serif;font-size:1.3rem;font-style:italic;color:var(--text);line-height:1.5;}
+
+        /* STACK */
+        .stack-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px;}
+        .stack-item{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px 24px;}
+        .stack-category{font-size:0.65rem;color:var(--accent-light);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:10px;}
+        .stack-tools{display:flex;flex-wrap:wrap;gap:8px;}
+        .stack-tool{font-size:0.78rem;padding:4px 12px;border:1px solid var(--border);border-radius:50px;color:var(--text-secondary);}
+
+        /* PROCESS TIMELINE */
+        .timeline{margin-top:32px;}
+        .timeline-item{display:grid;grid-template-columns:60px 1fr;gap:24px;margin-bottom:40px;position:relative;}
+        .timeline-item:not(:last-child)::before{content:'';position:absolute;left:29px;top:52px;bottom:-16px;width:1px;background:var(--border);}
+        .timeline-num{width:48px;height:48px;border:1px solid var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',Georgia,serif;font-size:1rem;font-weight:700;color:var(--accent-light);flex-shrink:0;}
+        .timeline-content{}
+        .timeline-title{font-size:1rem;font-weight:600;margin-bottom:8px;}
+        .timeline-desc{font-size:0.88rem;color:var(--text-secondary);line-height:1.65;}
+
+        /* NEXT PROJECT */
+        .next-project{border-top:1px solid var(--border);padding:80px 40px;text-align:center;}
+        .next-label{font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.2em;margin-bottom:20px;}
+        .next-link{font-family:'Fraunces',Georgia,serif;font-size:clamp(32px,6vw,64px);font-weight:700;color:var(--text);text-decoration:none;display:inline-flex;align-items:center;gap:20px;transition:color 0.3s;letter-spacing:-0.03em;}
+        .next-link:hover{color:var(--accent-light);}
+        .next-link svg{width:40px;height:40px;}
+
+        /* FOOTER */
+        footer{padding:32px 40px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+        .footer-brand{font-size:1rem;font-weight:600;}
+        .footer-copy{font-size:0.72rem;color:var(--text-muted);margin-top:4px;}
+
+        .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+        .reveal.visible{opacity:1;transform:none;}
+
+        @media(max-width:768px){
+            nav{padding:16px 24px;}
+            .cs-hero{padding:100px 24px 60px;}
+            .hero-meta{flex-wrap:wrap;gap:28px;}
+            .results-strip{grid-template-columns:1fr;}
+            .result-block{border-right:none;border-bottom:1px solid var(--border);}
+            .result-block:last-child{border-bottom:none;}
+            .cs-body{padding:60px 24px;}
+            .stack-grid{grid-template-columns:1fr;}
+            footer{flex-direction:column;gap:16px;text-align:center;}
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="../index.html" class="logo">21STUDIO</a>
+    <a href="../index.html" class="nav-back"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5M12 5l-7 7 7 7"/></svg>Tutti i progetti</a>
+</nav>
+
+<div class="cs-hero">
+    <div class="hero-content">
+        <div class="hero-tag">Case Study · Arredamento Custom · Italia</div>
+        <h1 class="cs-title">IKIVENTI</h1>
+        <p class="cs-subtitle">Da sistema di acquisizione inesistente a macchina da lead con CPL ridotto del 75% e €15K/mese di revenue Meta-attribuita.</p>
+        <div class="hero-meta">
+            <div class="meta-item"><div class="meta-label">Settore</div><div class="meta-value">Arredamento su misura</div></div>
+            <div class="meta-item"><div class="meta-label">Servizi</div><div class="meta-value">Marketing · Dev · CRO · Email</div></div>
+            <div class="meta-item"><div class="meta-label">Durata</div><div class="meta-value">Ongoing · 2024–oggi</div></div>
+            <div class="meta-item"><div class="meta-label">Mercato</div><div class="meta-value">Italia</div></div>
+        </div>
+    </div>
+</div>
+
+<div class="results-strip">
+    <div class="result-block reveal">
+        <div class="result-num">€12→€3</div>
+        <div class="result-desc">Costo per lead ridotto del 75%<br>su campagne Meta Ads</div>
+    </div>
+    <div class="result-block reveal">
+        <div class="result-num">€15K</div>
+        <div class="result-desc">Revenue mensile<br>Meta-attribuita</div>
+    </div>
+    <div class="result-block reveal">
+        <div class="result-num">300+</div>
+        <div class="result-desc">Lead qualificati generati<br>su €1.200/mese di spend</div>
+    </div>
+</div>
+
+<div class="cs-body">
+
+    <div class="cs-section reveal">
+        <div class="cs-section-label">Il Contesto</div>
+        <h2 class="cs-h2">Un brand di qualità senza un sistema di acquisizione</h2>
+        <p class="cs-p">IKIVENTI produce librerie modulari e sistemi di arredamento su misura per un target premium. Il prodotto è eccellente — il problema era che nessuno lo trovava. Le campagne Meta erano affidate a un'agenzia esterna con CPL intorno ai €12 e risultati incoerenti. Il sito WordPress era lento, poco ottimizzato per la conversione e non tracciava correttamente gli eventi.</p>
+        <p class="cs-p">L'obiettivo era costruire un'infrastruttura digitale completa: acquisizione, conversione e retention — tutto gestito internamente, con piena visibilità sui dati.</p>
+    </div>
+
+    <div class="cs-quote reveal">
+        <p>"Il problema non erano le campagne. Era che il sito perdeva il 60% dei lead prima ancora che compilassero il form."</p>
+    </div>
+
+    <div class="cs-section reveal">
+        <div class="cs-section-label">Il Problema</div>
+        <h2 class="cs-h2">Tre colli di bottiglia in parallelo</h2>
+        <p class="cs-p">L'analisi con Microsoft Clarity e Hotjar ha rivelato tre problemi critici: il form di contatto aveva un tasso di abbandono dell'82% su mobile, il tracking Meta Pixel non registrava correttamente gli eventi di conversione (quindi l'algoritmo ottimizzava sul target sbagliato), e il tema WordPress non era ottimizzato per mostrare le varianti prodotto — gli utenti non capivano cosa stavano comprando.</p>
+        <p class="cs-p">Tre problemi distinti che si amplificavano a vicenda, rendendo impossibile capire dove si perdevano i lead.</p>
+    </div>
+
+    <div class="cs-section reveal">
+        <div class="cs-section-label">La Soluzione</div>
+        <h2 class="cs-h2">Rifacimento completo dell'infrastruttura</h2>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-num">1</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">WordPress custom da zero</div>
+                    <div class="timeline-desc">Tema PHP completamente custom con gallerie dinamiche per varianti colore (bianco, nero, ruggine) e combinazioni di ripiani. AJAX cart, side drawer, mobile-first. Caricamento pagina da 6.2s a 1.8s.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-num">2</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">Tracking stack completo</div>
+                    <div class="timeline-desc">GTM configurato con eventi custom per ogni micro-conversione: visualizzazione prodotto, apertura form, invio, click telefono. Meta Pixel con Conversions API per match rate sopra il 90%.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-num">3</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">Campagne Meta ristrutturate</div>
+                    <div class="timeline-desc">Ristrutturazione completa delle campagne: nuova struttura ad set per interessi e LAL, creatività testate su formato e copy, budget concentrato sugli ad set con CPL sotto target. CPL passato da €12 a €3 in 6 settimane.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-num">4</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">CRO e ottimizzazione continua</div>
+                    <div class="timeline-desc">Analisi settimanale con Clarity: heatmap, session recording, funnel analysis. Identificati e corretti 12 punti di attrito nel percorso utente. Tasso di compilazione form +140%.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-num">5</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">Email marketing e nurturing</div>
+                    <div class="timeline-desc">Setup Brevo con 3.119 contatti segmentati via Python (merge da 3 database distinti). Flussi automatici: benvenuto, follow-up preventivo, riattivazione. Open rate medio 38%.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cs-section reveal">
+        <div class="cs-section-label">Stack Tecnico</div>
+        <h2 class="cs-h2">Tecnologie usate</h2>
+        <div class="stack-grid">
+            <div class="stack-item">
+                <div class="stack-category">Frontend & CMS</div>
+                <div class="stack-tools"><span class="stack-tool">WordPress</span><span class="stack-tool">PHP</span><span class="stack-tool">JavaScript</span><span class="stack-tool">CSS3</span><span class="stack-tool">AJAX</span></div>
+            </div>
+            <div class="stack-item">
+                <div class="stack-category">Tracking & Analytics</div>
+                <div class="stack-tools"><span class="stack-tool">GTM</span><span class="stack-tool">Meta Pixel</span><span class="stack-tool">Conversions API</span><span class="stack-tool">GA4</span></div>
+            </div>
+            <div class="stack-item">
+                <div class="stack-category">CRO</div>
+                <div class="stack-tools"><span class="stack-tool">Microsoft Clarity</span><span class="stack-tool">Hotjar</span><span class="stack-tool">A/B Testing</span></div>
+            </div>
+            <div class="stack-item">
+                <div class="stack-category">Email & Automazione</div>
+                <div class="stack-tools"><span class="stack-tool">Brevo</span><span class="stack-tool">Python</span><span class="stack-tool">Segmentazione</span></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="next-project">
+    <div class="next-label">Progetto successivo</div>
+    <a href="zenda.html" class="next-link">
+        Zenda Eyewear
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 17L17 7M7 7h10v10"/></svg>
+    </a>
+</div>
+
+<footer>
+    <div><div class="footer-brand">21STUDIO</div><div class="footer-copy">© 2025 Lorenzo Federoni</div></div>
+    <a href="../index.html" style="font-size:0.85rem;color:var(--text-secondary);text-decoration:none;">← Torna alla home</a>
+</footer>
+
+<script>
+(function(){var els=document.querySelectorAll('.reveal');var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:0.08});els.forEach(function(el){io.observe(el);});})();
+</script>
+</body>
+</html>
