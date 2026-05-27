@@ -45,7 +45,7 @@
         .mockup-dot { width: 12px; height: 12px; border-radius: 50%; }
         .mockup-dot.r { background: #ff5f57; } .mockup-dot.y { background: #febc2e; } .mockup-dot.g { background: #28c840; }
         .mockup-titlebar-title { flex: 1; text-align: center; font-size: 0.72rem; color: #555; font-family: 'DM Mono', monospace; letter-spacing: 0.08em; }
-        .mockup-body { display: flex; height: 500px; }
+        .mockup-body { display: flex; height: 600px; }
 
         .mock-sidebar { width: 220px; background: #f5f5f7; border-right: 1px solid #e5e5e5; display: flex; flex-direction: column; flex-shrink: 0; overflow: hidden; }
         .mock-brand-area { padding: 12px; border-bottom: 1px solid #e5e5e5; }
@@ -71,7 +71,7 @@
         .mock-select-box { background: #f5f5f7; border: 1px solid #e5e5e5; border-radius: 7px; padding: 7px 10px; font-size: 11px; color: #1d1d1f; margin-bottom: 8px; display: flex; justify-content: space-between; font-family: 'Inter', sans-serif; }
         .mock-tag-pill { background: rgba(124,109,250,0.1); color: #7c6dfa; border: 1px solid rgba(124,109,250,0.2); border-radius: 5px; padding: 2px 7px; font-size: 10px; font-family: 'Inter', sans-serif; }
         .mock-dropzone { border: 2px dashed #ddd; border-radius: 9px; padding: 20px; text-align: center; margin-bottom: 8px; }
-        .mock-agents-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+        .mock-agents-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; overflow-y: auto; }
         .mock-agent-mini { background: white; border: 1px solid #e5e5e5; border-radius: 9px; padding: 12px; }
         .mock-agent-mini-name { font-size: 11px; font-weight: 600; color: #1d1d1f; margin: 6px 0 3px; font-family: 'Inter', sans-serif; }
         .mock-agent-mini-desc { font-size: 9px; color: #999; line-height: 1.4; font-family: 'Inter', sans-serif; }
@@ -197,6 +197,9 @@
         <button class="mockup-tab" onclick="switchScreen('research',this)">Research Agent</button>
         <button class="mockup-tab" onclick="switchScreen('copy',this)">Copy Agent</button>
         <button class="mockup-tab" onclick="switchScreen('neuro',this)">Neuro Agent</button>
+        <button class="mockup-tab" onclick="switchScreen('marketing',this)">Marketing Agent</button>
+        <button class="mockup-tab" onclick="switchScreen('meta',this)">Meta Ads Agent</button>
+        <button class="mockup-tab" onclick="switchScreen('knowledge',this)">Knowledge Agent</button>
     </div>
     <div class="mockup-frame">
         <div class="mockup-titlebar">
@@ -303,6 +306,57 @@
                     </div>
                 </div>
             </div>
+            <!-- MARKETING -->
+            <div class="mock-screen" id="screen-marketing">
+                <div style="display:flex;justify-content:space-between;align-items:center"><div><div class="mock-page-title">Marketing Agent</div><div class="mock-page-sub">Strategia, contenuti e copy per il tuo brand</div></div><div class="mock-tag-pill">✦ IKIVENTI</div></div>
+                <div style="background:rgba(124,109,250,0.06);border:1px solid rgba(124,109,250,0.15);border-radius:8px;padding:10px;font-size:10px;color:#6e6e73;font-family:'Inter',sans-serif">Contesto brand caricato — IKIVENTI · Arredamento modulare industriale · Target 28-45 anni</div>
+                <div style="flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px">
+                    <div style="display:flex;gap:8px"><div style="width:26px;height:26px;border-radius:7px;background:rgba(61,214,140,0.15);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0">✦</div><div style="background:white;border:1px solid #e5e5e5;border-radius:10px;padding:10px 12px;font-size:11px;color:#333;font-family:'Inter',sans-serif;line-height:1.5">Ciao! Sono il Marketing Agent. Seleziona un brand e dimmi su cosa vuoi lavorare oggi — copy per ads, strategia contenuti, caption Instagram, email marketing...</div></div>
+                    <div style="display:flex;gap:8px;align-self:flex-end;flex-direction:row-reverse"><div style="width:26px;height:26px;border-radius:7px;background:#f0f0f2;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0">◎</div><div style="background:rgba(124,109,250,0.08);border:1px solid rgba(124,109,250,0.15);border-radius:10px;padding:10px 12px;font-size:11px;color:#333;font-family:'Inter',sans-serif">Scrivimi 3 caption Instagram per il lancio della nuova libreria Venti X</div></div>
+                    <div style="display:flex;gap:8px"><div style="width:26px;height:26px;border-radius:7px;background:rgba(61,214,140,0.15);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0">✦</div><div style="background:white;border:1px solid #e5e5e5;border-radius:10px;padding:10px 12px;font-size:11px;color:#333;font-family:'Inter',sans-serif;line-height:1.5"><strong>1.</strong> Il disordine ha trovato la sua forma. Venti X — la libreria modulare che cresce con te. ✦<br><strong>2.</strong> Ogni spazio racconta una storia. Scrivi la tua con IKIVENTI.<br><strong>3.</strong> Non è solo arredo. È architettura personale.</div></div>
+                </div>
+                <div style="border-top:1px solid #e5e5e5;padding-top:10px;display:flex;gap:8px">
+                    <div style="flex:1;background:white;border:1px solid #e5e5e5;border-radius:8px;padding:9px 12px;font-size:11px;color:#bbb;font-family:'Inter',sans-serif">Scrivi al Marketing Agent...</div>
+                    <div style="background:#0071e3;color:white;border-radius:8px;padding:9px 14px;font-size:11px;font-family:'Inter',sans-serif">↑</div>
+                </div>
+            </div>
+
+            <!-- META ADS -->
+            <div class="mock-screen" id="screen-meta">
+                <div style="display:flex;justify-content:space-between;align-items:center"><div><div class="mock-page-title">Meta Ads Agent</div><div class="mock-page-sub">Campagne, target e ottimizzazione budget</div></div><div class="mock-tag-pill">◆ Zenda Eyewear</div></div>
+                <div style="background:rgba(124,109,250,0.06);border:1px solid rgba(124,109,250,0.15);border-radius:8px;padding:10px;font-size:10px;color:#6e6e73;font-family:'Inter',sans-serif">Contesto brand caricato — Zenda Eyewear · Budget €10/gg per ad set · ABO · 3 ad set attivi</div>
+                <div style="flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px">
+                    <div style="display:flex;gap:8px"><div style="width:26px;height:26px;border-radius:7px;background:rgba(251,191,36,0.15);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0">◆</div><div style="background:white;border:1px solid #e5e5e5;border-radius:10px;padding:10px 12px;font-size:11px;color:#333;font-family:'Inter',sans-serif;line-height:1.5">Ciao! Sono il Meta Ads Agent. Posso aiutarti a strutturare campagne CBO/ABO, definire il target audience, ottimizzare il budget e analizzare le performance.</div></div>
+                    <div style="display:flex;gap:8px;align-self:flex-end;flex-direction:row-reverse"><div style="width:26px;height:26px;border-radius:7px;background:#f0f0f2;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0">◎</div><div style="background:rgba(124,109,250,0.08);border:1px solid rgba(124,109,250,0.15);border-radius:10px;padding:10px 12px;font-size:11px;color:#333;font-family:'Inter',sans-serif">Come strutturerei una campagna CBO per Zenda con budget €30/gg?</div></div>
+                    <div style="display:flex;gap:8px"><div style="width:26px;height:26px;border-radius:7px;background:rgba(251,191,36,0.15);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0">◆</div><div style="background:white;border:1px solid #e5e5e5;border-radius:10px;padding:10px 12px;font-size:11px;color:#333;font-family:'Inter',sans-serif;line-height:1.5"><strong>Struttura consigliata CBO €30/gg:</strong><br>1 campagna CBO → 3 ad set (broad, interest, retargeting)<br>Budget distribuito automaticamente. Lascia girare 3-4 gg prima di ottimizzare. CTR target: &gt;2%.</div></div>
+                </div>
+                <div style="border-top:1px solid #e5e5e5;padding-top:10px;display:flex;gap:8px">
+                    <div style="flex:1;background:white;border:1px solid #e5e5e5;border-radius:8px;padding:9px 12px;font-size:11px;color:#bbb;font-family:'Inter',sans-serif">Scrivi al Meta Ads Agent...</div>
+                    <div style="background:#0071e3;color:white;border-radius:8px;padding:9px 14px;font-size:11px;font-family:'Inter',sans-serif">↑</div>
+                </div>
+            </div>
+
+            <!-- KNOWLEDGE -->
+            <div class="mock-screen" id="screen-knowledge">
+                <div style="display:flex;justify-content:space-between;align-items:center"><div><div class="mock-page-title">Knowledge Agent</div><div class="mock-page-sub">Interroga la knowledge base del brand</div></div><div class="mock-tag-pill">◉ IKIVENTI</div></div>
+                <div class="mock-2col">
+                    <div class="mock-panel">
+                        <div class="mock-panel-title">Query</div>
+                        <div class="mock-label">DOMANDA</div>
+                        <div style="background:#f5f5f7;border:1px solid #e5e5e5;border-radius:7px;padding:10px;font-size:11px;color:#555;line-height:1.5;margin-bottom:12px;min-height:80px;font-family:'Inter',sans-serif">Quali strategie di posizionamento abbiamo discusso per IKIVENTI nelle ultime sessioni?</div>
+                        <div class="mock-btn-blue" style="background:#60a5fa">◉ Interroga Knowledge Base</div>
+                    </div>
+                    <div class="mock-panel" style="display:flex;flex-direction:column">
+                        <div class="mock-panel-title">Risposta</div>
+                        <div class="mock-terminal" style="flex:1;color:#a0ffa0">
+                            <div style="color:#6e6e73">→ Interrogo la knowledge base...</div>
+                            <div style="color:#6e6e73">→ Ricerca semantica in corso...</div>
+                            <div>✓ 3 sessioni rilevanti trovate</div>
+                            <div style="margin-top:6px;color:#e0e0e0">Nelle sessioni del 12/05 e 26/05 è emerso il posizionamento su "arredo industriale accessibile"...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -382,7 +436,7 @@
 </footer>
 
 <script>
-var screens = ['dashboard','research','copy','neuro'];
+var screens = ['dashboard','research','copy','neuro','marketing','meta','knowledge'];
 function switchScreen(name, btn) {
     screens.forEach(function(s) {
         var el = document.getElementById('screen-'+s);
