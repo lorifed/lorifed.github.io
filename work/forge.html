@@ -4,88 +4,119 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FORGE — Business OS | 21STUDIO</title>
-    <meta name="description" content="FORGE è un'app desktop Electron che centralizza la gestione di brand, campagne e contenuti tramite 6 agenti AI specializzati — tutto in locale, zero SaaS.">
+    <meta name="description" content="FORGE è un'app desktop Electron con 6 agenti AI specializzati per gestire brand, campagne e contenuti — tutto in locale, zero SaaS.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --bg: #000000; --bg-card: #0d0d0d; --text: #f5f5f7;
-            --text-secondary: #9ea39d; --text-muted: #5a5f58;
-            --accent: #6b7c5b; --accent-light: #8a9d78; --accent-dark: #4d5943; --border: #1d1f1d;
-        }
+        :root { --bg:#000; --bg-card:#0d0d0d; --text:#f5f5f7; --text-secondary:#9ea39d; --text-muted:#5a5f58; --accent:#6b7c5b; --accent-light:#8a9d78; --accent-dark:#4d5943; --border:#1d1f1d; }
         html { scroll-behavior: smooth; }
         html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; -webkit-font-smoothing: antialiased; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--bg); } ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
         nav { position: fixed; top: 0; left: 0; right: 0; padding: 16px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 100; background: rgba(0,0,0,0.6); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.04); }
         .logo { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.02em; color: var(--text); text-decoration: none; }
         .nav-back { display: flex; align-items: center; gap: 8px; font-size: 0.875rem; color: var(--text-secondary); text-decoration: none; transition: color 0.3s; }
         .nav-back:hover { color: var(--accent-light); }
-        .nav-back svg { width: 16px; height: 16px; }
 
-        /* HERO */
-        .hero { padding: 140px 40px 80px; max-width: 1200px; margin: 0 auto; }
-        .hero-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+        .hero { padding: 140px 40px 60px; max-width: 1200px; margin: 0 auto; }
+        .hero-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; flex-wrap: wrap; }
         .hero-sector { font-size: 0.7rem; font-weight: 600; color: var(--accent-light); text-transform: uppercase; letter-spacing: 0.2em; }
         .hero-dot { width: 3px; height: 3px; background: var(--text-muted); border-radius: 50%; }
         .hero-type { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.15em; }
-        .hero-title { font-family: 'Fraunces', Georgia, serif; font-size: clamp(52px, 9vw, 110px); font-weight: 700; letter-spacing: -0.04em; line-height: 0.92; margin-bottom: 28px; animation: fadeUp 0.8s ease both; }
-        .hero-desc { font-size: clamp(16px, 2vw, 20px); color: rgba(255,255,255,0.5); max-width: 600px; line-height: 1.65; margin-bottom: 48px; animation: fadeUp 0.8s 0.15s ease both; }
-        .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 48px; animation: fadeUp 0.8s 0.25s ease both; }
+        .macos-badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 12px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; font-size: 0.68rem; color: var(--text-muted); }
+        .hero-title { font-family: 'Fraunces', Georgia, serif; font-size: clamp(52px,9vw,110px); font-weight: 700; letter-spacing: -0.04em; line-height: 0.92; margin-bottom: 28px; animation: fadeUp 0.8s ease both; }
+        .hero-desc { font-size: clamp(16px,2vw,19px); color: rgba(255,255,255,0.5); max-width: 600px; line-height: 1.65; margin-bottom: 40px; animation: fadeUp 0.8s 0.15s ease both; }
+        .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; animation: fadeUp 0.8s 0.25s ease both; }
         .hero-tag { font-size: 0.68rem; padding: 5px 12px; border: 1px solid var(--border); border-radius: 50px; color: var(--text-muted); }
-
         @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
 
-        /* STATS */
+        /* MOCKUP */
+        .mockup-wrap { padding: 0 40px 80px; max-width: 1200px; margin: 0 auto; }
+        .mockup-label { font-size: 0.7rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 16px; }
+        .mockup-tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+        .mockup-tab { font-size: 0.75rem; padding: 6px 14px; border: 1px solid var(--border); border-radius: 50px; color: var(--text-muted); cursor: pointer; transition: all 0.2s; background: transparent; font-family: 'Inter', sans-serif; }
+        .mockup-tab:hover { border-color: var(--accent); color: var(--accent-light); }
+        .mockup-tab.active { border-color: var(--accent); color: var(--accent-light); background: rgba(106,124,91,0.08); }
+        .mockup-frame { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 16px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.6); }
+        .mockup-titlebar { height: 38px; background: #161616; border-bottom: 1px solid #222; display: flex; align-items: center; padding: 0 16px; gap: 8px; }
+        .mockup-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .mockup-dot.r { background: #ff5f57; } .mockup-dot.y { background: #febc2e; } .mockup-dot.g { background: #28c840; }
+        .mockup-titlebar-title { flex: 1; text-align: center; font-size: 0.72rem; color: #555; font-family: 'DM Mono', monospace; letter-spacing: 0.08em; }
+        .mockup-body { display: flex; height: 500px; }
+
+        .mock-sidebar { width: 220px; background: #f5f5f7; border-right: 1px solid #e5e5e5; display: flex; flex-direction: column; flex-shrink: 0; overflow: hidden; }
+        .mock-brand-area { padding: 12px; border-bottom: 1px solid #e5e5e5; }
+        .mock-brand-btn { background: #ececec; border: 1px solid #ddd; border-radius: 8px; padding: 8px 10px; display: flex; align-items: center; gap: 8px; }
+        .mock-avatar { width: 28px; height: 28px; border-radius: 6px; background: rgba(124,109,250,0.15); border: 1px solid rgba(124,109,250,0.3); display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 600; color: #7c6dfa; flex-shrink: 0; font-family: 'DM Mono', monospace; }
+        .mock-brand-name { font-size: 12px; font-weight: 500; color: #1d1d1f; font-family: 'Inter', sans-serif; }
+        .mock-brand-meta { font-size: 10px; color: #999; font-family: 'Inter', sans-serif; }
+        .mock-sec-label { font-size: 9px; font-weight: 600; color: #bbb; letter-spacing: 0.12em; padding: 12px 16px 4px; font-family: 'Inter', sans-serif; }
+        .mock-nav-item { display: flex; align-items: center; gap: 8px; padding: 6px 18px; font-size: 12px; color: #6e6e73; font-family: 'Inter', sans-serif; }
+        .mock-nav-item.active { background: rgba(0,113,227,0.1); color: #0071e3; font-weight: 500; }
+
+        .mock-main { flex: 1; background: #f0f0f2; padding: 20px; display: flex; flex-direction: column; gap: 14px; overflow: hidden; }
+        .mock-page-title { font-size: 17px; font-weight: 600; color: #1d1d1f; letter-spacing: -0.02em; font-family: 'Inter', sans-serif; }
+        .mock-page-sub { font-size: 11px; color: #6e6e73; margin-top: 1px; font-family: 'Inter', sans-serif; }
+        .mock-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; flex: 1; min-height: 0; }
+        .mock-panel { background: white; border: 1px solid #e5e5e5; border-radius: 10px; padding: 14px; overflow: hidden; }
+        .mock-panel-title { font-size: 12px; font-weight: 500; color: #1d1d1f; margin-bottom: 10px; font-family: 'Inter', sans-serif; }
+        .mock-label { font-size: 9px; font-weight: 600; color: #bbb; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px; font-family: 'Inter', sans-serif; }
+        .mock-input-box { background: #f5f5f7; border: 1px solid #e5e5e5; border-radius: 7px; padding: 8px 10px; font-size: 11px; color: #bbb; margin-bottom: 8px; font-family: 'Inter', sans-serif; }
+        .mock-info { background: rgba(124,109,250,0.06); border: 1px solid rgba(124,109,250,0.15); border-radius: 7px; padding: 9px; margin-bottom: 8px; font-size: 10px; color: #6e6e73; line-height: 1.5; font-family: 'Inter', sans-serif; }
+        .mock-btn-blue { background: #0071e3; color: white; border: none; border-radius: 7px; padding: 8px; font-size: 11px; font-weight: 500; width: 100%; text-align: center; font-family: 'Inter', sans-serif; }
+        .mock-terminal { background: #1d1d1f; border-radius: 7px; padding: 10px; font-family: 'DM Mono', monospace; font-size: 10px; color: #a0ffa0; line-height: 1.6; flex: 1; min-height: 0; }
+        .mock-select-box { background: #f5f5f7; border: 1px solid #e5e5e5; border-radius: 7px; padding: 7px 10px; font-size: 11px; color: #1d1d1f; margin-bottom: 8px; display: flex; justify-content: space-between; font-family: 'Inter', sans-serif; }
+        .mock-tag-pill { background: rgba(124,109,250,0.1); color: #7c6dfa; border: 1px solid rgba(124,109,250,0.2); border-radius: 5px; padding: 2px 7px; font-size: 10px; font-family: 'Inter', sans-serif; }
+        .mock-dropzone { border: 2px dashed #ddd; border-radius: 9px; padding: 20px; text-align: center; margin-bottom: 8px; }
+        .mock-agents-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+        .mock-agent-mini { background: white; border: 1px solid #e5e5e5; border-radius: 9px; padding: 12px; }
+        .mock-agent-mini-name { font-size: 11px; font-weight: 600; color: #1d1d1f; margin: 6px 0 3px; font-family: 'Inter', sans-serif; }
+        .mock-agent-mini-desc { font-size: 9px; color: #999; line-height: 1.4; font-family: 'Inter', sans-serif; }
+        .mock-status { display: inline-flex; align-items: center; gap: 3px; font-size: 9px; color: #aaa; background: #f5f5f7; padding: 2px 6px; border-radius: 10px; margin-top: 6px; font-family: 'Inter', sans-serif; }
+        .mock-dot-green { width: 5px; height: 5px; border-radius: 50%; background: #34c759; }
+
+        .mock-screen { display: none; }
+        .mock-screen.active { display: flex; flex-direction: column; flex: 1; gap: 14px; }
+
+        /* REST OF PAGE */
         .stats-bar { display: flex; justify-content: center; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
         .stat-item { flex: 1; max-width: 280px; padding: 40px 24px; text-align: center; border-right: 1px solid var(--border); }
         .stat-item:last-child { border-right: none; }
         .stat-num { font-family: 'Fraunces', Georgia, serif; font-size: clamp(32px,4vw,48px); font-weight: 700; color: var(--accent-light); line-height: 1; margin-bottom: 8px; }
         .stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
 
-        /* SECTIONS */
         .section { padding: 80px 40px; max-width: 1200px; margin: 0 auto; }
         .section-tag { font-size: 0.7rem; font-weight: 600; color: var(--accent-light); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 16px; }
         .section-title { font-family: 'Fraunces', Georgia, serif; font-size: clamp(32px,4vw,48px); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 48px; }
 
-        /* PROBLEMA/SOLUZIONE */
         .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; margin-bottom: 20px; }
         .col-block { background: var(--bg-card); padding: 48px 40px; }
         .col-label { font-size: 0.65rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 20px; }
         .col-title { font-family: 'Fraunces', Georgia, serif; font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 14px; }
         .col-text { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; }
 
-        /* AGENTS GRID */
         .agents-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; }
         .agent-card { background: var(--bg-card); padding: 36px 32px; transition: background 0.3s; position: relative; }
         .agent-card:hover { background: #111; }
         .agent-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; opacity: 0; transition: opacity 0.3s; }
         .agent-card:hover::before { opacity: 1; }
-        .agent-card.purple::before { background: #7c6dfa; }
-        .agent-card.green::before { background: #3dd68c; }
-        .agent-card.amber::before { background: #fbbf24; }
-        .agent-card.blue::before { background: #60a5fa; }
-        .agent-card.pink::before { background: #f472b6; }
-        .agent-card.teal::before { background: #2dd4bf; }
+        .agent-card.purple::before { background: #7c6dfa; } .agent-card.green::before { background: #3dd68c; }
+        .agent-card.amber::before { background: #fbbf24; } .agent-card.blue::before { background: #60a5fa; }
+        .agent-card.pink::before { background: #f472b6; } .agent-card.teal::before { background: #2dd4bf; }
         .agent-num { font-family: 'Fraunces', Georgia, serif; font-size: 2.2rem; color: var(--border); font-weight: 700; margin-bottom: 20px; line-height: 1; }
         .agent-name { font-size: 1rem; font-weight: 600; margin-bottom: 10px; }
         .agent-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.65; }
         .agent-badge { display: inline-block; margin-top: 16px; font-size: 0.65rem; padding: 3px 10px; border: 1px solid var(--border); border-radius: 50px; color: var(--text-muted); }
 
-        /* ARCHITETTURA */
         .arch-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; }
-        .arch-block { background: var(--bg-card); padding: 36px 32px; border-right: none; }
-        .arch-block:nth-child(odd) { border-right: none; }
+        .arch-block { background: var(--bg-card); padding: 36px 32px; }
         .arch-icon { font-size: 1.5rem; margin-bottom: 14px; }
         .arch-title { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
         .arch-text { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; }
 
-        /* PIPELINE */
         .pipeline { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; }
         .pipeline-step { padding: 36px 28px; border-right: 1px solid var(--border); background: var(--bg-card); }
         .pipeline-step:last-child { border-right: none; }
@@ -93,19 +124,16 @@
         .pipeline-title { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
         .pipeline-desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.6; }
 
-        /* HIGHLIGHT BOX */
         .highlight { background: rgba(106,124,91,0.07); border: 1px solid rgba(106,124,91,0.2); border-radius: 16px; padding: 32px 36px; margin-top: 20px; }
         .highlight-title { font-size: 0.7rem; font-weight: 600; color: var(--accent-light); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 12px; }
         .highlight-text { font-size: 0.95rem; color: rgba(255,255,255,0.65); line-height: 1.7; }
 
-        /* CTA BOTTOM */
         .cta-wrap { text-align: center; padding: 100px 40px; position: relative; border-top: 1px solid var(--border); }
         .cta-wrap::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 600px; height: 300px; background: radial-gradient(ellipse, rgba(106,124,91,0.1) 0%, transparent 70%); pointer-events: none; }
         .cta-title { font-family: 'Fraunces', Georgia, serif; font-size: clamp(36px,6vw,72px); font-weight: 700; letter-spacing: -0.04em; margin-bottom: 16px; line-height: 1.05; }
         .cta-sub { font-size: 1rem; color: var(--text-secondary); margin-bottom: 40px; }
         .cta-btn { display: inline-flex; align-items: center; gap: 10px; padding: 18px 40px; background: var(--accent); color: #fff; font-size: 0.95rem; font-weight: 600; text-decoration: none; border-radius: 50px; transition: all 0.4s; }
         .cta-btn:hover { transform: scale(1.05); box-shadow: 0 8px 36px rgba(106,124,91,0.4); background: var(--accent-light); }
-        .cta-btn svg { width: 18px; height: 18px; }
 
         footer { padding: 40px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
         .footer-brand { font-size: 1rem; font-weight: 600; }
@@ -115,26 +143,21 @@
         .reveal.visible { opacity: 1; transform: none; }
 
         @media (max-width: 1024px) {
-            nav { padding: 16px 24px; }
-            .hero { padding: 120px 24px 60px; }
-            .section { padding: 60px 24px; }
-            .agents-grid { grid-template-columns: 1fr 1fr; }
-            .two-col { grid-template-columns: 1fr; }
-            .arch-grid { grid-template-columns: 1fr; }
+            nav { padding: 16px 24px; } .hero { padding: 120px 24px 60px; } .mockup-wrap { padding: 0 24px 60px; } .section { padding: 60px 24px; }
+            .agents-grid { grid-template-columns: 1fr 1fr; } .two-col { grid-template-columns: 1fr; } .arch-grid { grid-template-columns: 1fr; }
             .pipeline { grid-template-columns: 1fr 1fr; }
             .pipeline-step:nth-child(2) { border-right: none; }
             .pipeline-step:nth-child(3) { border-right: 1px solid var(--border); border-top: 1px solid var(--border); }
             .pipeline-step:last-child { border-right: none; border-top: 1px solid var(--border); }
+            .mockup-body { height: 420px; } .mock-sidebar { width: 180px; }
         }
         @media (max-width: 768px) {
-            .stats-bar { flex-direction: column; }
-            .stat-item { border-right: none; border-bottom: 1px solid var(--border); max-width: none; }
-            .stat-item:last-child { border-bottom: none; }
-            .agents-grid { grid-template-columns: 1fr; }
-            .pipeline { grid-template-columns: 1fr; }
-            .pipeline-step { border-right: none !important; border-top: 1px solid var(--border); }
-            .pipeline-step:first-child { border-top: none; }
+            .stats-bar { flex-direction: column; } .stat-item { border-right: none; border-bottom: 1px solid var(--border); max-width: none; } .stat-item:last-child { border-bottom: none; }
+            .agents-grid { grid-template-columns: 1fr; } .pipeline { grid-template-columns: 1fr; }
+            .pipeline-step { border-right: none !important; border-top: 1px solid var(--border); } .pipeline-step:first-child { border-top: none; }
             footer { flex-direction: column; gap: 16px; text-align: center; }
+            .mockup-body { height: auto; flex-direction: column; } .mock-sidebar { width: 100%; }
+            .mock-agents-3 { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
@@ -143,198 +166,239 @@
 <nav>
     <a href="../index.html" class="logo">21STUDIO</a>
     <a href="../index.html#lavori" class="nav-back">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5M12 5l-7 7 7 7"/></svg>
         Tutti i progetti
     </a>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
     <div class="hero-meta reveal">
         <span class="hero-sector">AI Automation · Desktop App</span>
         <span class="hero-dot"></span>
-        <span class="hero-type">Progetto interno · macOS</span>
+        <span class="hero-type">Progetto interno</span>
+        <span class="hero-dot"></span>
+        <span class="macos-badge">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            macOS App
+        </span>
     </div>
     <h1 class="hero-title">FORGE</h1>
     <p class="hero-desc">Business OS locale per agenzie e brand-builder. Centralizza la gestione di più brand, campagne e contenuti tramite 6 agenti AI specializzati — nessun SaaS, tutto in locale.</p>
     <div class="hero-tags reveal">
-        <span class="hero-tag">Electron</span>
-        <span class="hero-tag">Node.js</span>
-        <span class="hero-tag">Claude API</span>
-        <span class="hero-tag">Puppeteer</span>
-        <span class="hero-tag">ChromaDB</span>
-        <span class="hero-tag">Python</span>
-        <span class="hero-tag">Express</span>
-        <span class="hero-tag">Local-first</span>
+        <span class="hero-tag">Electron</span><span class="hero-tag">Node.js</span><span class="hero-tag">Claude API</span><span class="hero-tag">Puppeteer</span><span class="hero-tag">ChromaDB</span><span class="hero-tag">Python</span><span class="hero-tag">Express</span><span class="hero-tag">Local-first</span>
+    </div>
+</div>
+
+<!-- MOCKUP INTERATTIVO -->
+<div class="mockup-wrap reveal">
+    <p class="mockup-label">Interfaccia app</p>
+    <div class="mockup-tabs">
+        <button class="mockup-tab active" onclick="switchScreen('dashboard',this)">Dashboard</button>
+        <button class="mockup-tab" onclick="switchScreen('research',this)">Research Agent</button>
+        <button class="mockup-tab" onclick="switchScreen('copy',this)">Copy Agent</button>
+        <button class="mockup-tab" onclick="switchScreen('neuro',this)">Neuro Agent</button>
+    </div>
+    <div class="mockup-frame">
+        <div class="mockup-titlebar">
+            <div class="mockup-dot r"></div><div class="mockup-dot y"></div><div class="mockup-dot g"></div>
+            <div class="mockup-titlebar-title">FORGE</div>
+        </div>
+        <div class="mockup-body">
+            <div class="mock-sidebar">
+                <div class="mock-brand-area">
+                    <div class="mock-brand-btn">
+                        <div class="mock-avatar" id="mock-av">IK</div>
+                        <div><div class="mock-brand-name" id="mock-bn">IKIVENTI</div><div class="mock-brand-meta">4 sessioni</div></div>
+                    </div>
+                </div>
+                <div class="mock-sec-label">WORKSPACE</div>
+                <div class="mock-nav-item active" id="snav-dashboard" onclick="switchScreen('dashboard',null)">⌂ &nbsp;Dashboard</div>
+                <div class="mock-nav-item" onclick="">◎ &nbsp;Memoria Brand</div>
+                <div class="mock-sec-label">AGENT</div>
+                <div class="mock-nav-item" id="snav-research" onclick="switchScreen('research',null)">◈ &nbsp;Research</div>
+                <div class="mock-nav-item" onclick="">✦ &nbsp;Marketing</div>
+                <div class="mock-nav-item" onclick="">◆ &nbsp;Meta Ads</div>
+                <div class="mock-nav-item" onclick="">◉ &nbsp;Knowledge</div>
+                <div class="mock-nav-item" id="snav-copy" onclick="switchScreen('copy',null)">✎ &nbsp;Copy Agent</div>
+                <div class="mock-nav-item" id="snav-neuro" onclick="switchScreen('neuro',null)">⬡ &nbsp;Neuro Agent</div>
+            </div>
+
+            <!-- DASHBOARD -->
+            <div class="mock-screen active" id="screen-dashboard">
+                <div><div class="mock-page-title">IKIVENTI</div><div class="mock-page-sub">Seleziona un agent per iniziare la sessione di oggi</div></div>
+                <div class="mock-agents-3">
+                    <div class="mock-agent-mini"><div style="font-size:15px;color:#7c6dfa">◈</div><div class="mock-agent-mini-name">Research Agent</div><div class="mock-agent-mini-desc">Scrapa Facebook Ads Library in real-time.</div><div class="mock-status"><span class="mock-dot-green"></span>Pronto</div></div>
+                    <div class="mock-agent-mini"><div style="font-size:15px;color:#3dd68c">✦</div><div class="mock-agent-mini-name">Marketing Agent</div><div class="mock-agent-mini-desc">Strategia contenuti con contesto brand.</div><div class="mock-status"><span class="mock-dot-green"></span>Pronto</div></div>
+                    <div class="mock-agent-mini"><div style="font-size:15px;color:#fbbf24">◆</div><div class="mock-agent-mini-name">Meta Ads Agent</div><div class="mock-agent-mini-desc">Campagne CBO/ABO e ottimizzazione.</div><div class="mock-status"><span class="mock-dot-green"></span>Pronto</div></div>
+                    <div class="mock-agent-mini"><div style="font-size:15px;color:#60a5fa">◉</div><div class="mock-agent-mini-name">Knowledge Agent</div><div class="mock-agent-mini-desc">RAG su sessioni e report passati.</div><div class="mock-status"><span class="mock-dot-green"></span>Pronto</div></div>
+                    <div class="mock-agent-mini"><div style="font-size:15px;color:#a78bfa">✎</div><div class="mock-agent-mini-name">Copy Agent</div><div class="mock-agent-mini-desc">Genera copy basato sui competitor.</div><div class="mock-status"><span class="mock-dot-green"></span>Pronto</div></div>
+                    <div class="mock-agent-mini"><div style="font-size:15px;color:#2dd4bf">⬡</div><div class="mock-agent-mini-name">Neuro Agent</div><div class="mock-agent-mini-desc">Analisi neuromarketing creative.</div><div class="mock-status"><span class="mock-dot-green"></span>Pronto</div></div>
+                </div>
+            </div>
+
+            <!-- RESEARCH -->
+            <div class="mock-screen" id="screen-research">
+                <div style="display:flex;justify-content:space-between;align-items:center"><div><div class="mock-page-title">Research Agent</div><div class="mock-page-sub">Facebook Ads Library — Competitor Intelligence</div></div><div class="mock-tag-pill">◈ IKIVENTI</div></div>
+                <div class="mock-2col">
+                    <div class="mock-panel">
+                        <div class="mock-panel-title">Configurazione</div>
+                        <div class="mock-label">BRAND DA ANALIZZARE</div>
+                        <div class="mock-input-box" style="display:flex;gap:6px;flex-wrap:wrap;align-items:center"><span class="mock-tag-pill">Meller ×</span><span class="mock-tag-pill">Vehla ×</span><span style="font-size:10px;color:#bbb">Aggiungi...</span></div>
+                        <div class="mock-info">◈ Puppeteer headless — nessuna configurazione richiesta<br>Lo scraper gira in background.</div>
+                        <div class="mock-btn-blue">▶ Avvia Scraping</div>
+                    </div>
+                    <div class="mock-panel" style="display:flex;flex-direction:column">
+                        <div class="mock-panel-title">Log</div>
+                        <div class="mock-terminal" style="flex:1"><div style="color:#6e6e73">→ Avvio scraper Ads Library...</div><div style="color:#6e6e73">→ Analisi Meller in corso...</div><div>✓ 12 ads trovate per Meller</div><div>✓ 8 ads trovate per Vehla</div><div style="color:#a0ffa0">✓ Salvato in output/meller-1234.json</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COPY -->
+            <div class="mock-screen" id="screen-copy">
+                <div style="display:flex;justify-content:space-between;align-items:center"><div><div class="mock-page-title">Copy Agent</div><div class="mock-page-sub">Genera copy originale basato sull'analisi competitor</div></div><div class="mock-tag-pill">✎ Zenda Eyewear</div></div>
+                <div class="mock-2col">
+                    <div class="mock-panel">
+                        <div class="mock-panel-title">Configurazione</div>
+                        <div class="mock-label">TIPO COPY</div>
+                        <div class="mock-select-box">Meta Ad (Hook + Body + CTA) <span style="color:#bbb;font-size:9px">▾</span></div>
+                        <div class="mock-label">NUMERO VARIANTI</div>
+                        <div class="mock-select-box">3 varianti <span style="color:#bbb;font-size:9px">▾</span></div>
+                        <div class="mock-info">◈ Usa automaticamente l'ultimo scraping<br>Brand context da Memoria Brand iniettato automaticamente.</div>
+                        <div class="mock-btn-blue">✎ Genera Copy</div>
+                    </div>
+                    <div class="mock-panel">
+                        <div class="mock-panel-title">Output</div>
+                        <div style="background:#f5f5f7;border-radius:7px;padding:10px;margin-bottom:8px;font-size:10px;line-height:1.6;font-family:'Inter',sans-serif">
+                            <div style="font-size:9px;font-weight:600;color:#7c6dfa;margin-bottom:5px">✎ VARIANTE 1 — LIFESTYLE</div>
+                            <div style="color:#444"><strong>HOOK:</strong> Il sole non chiede il permesso.</div>
+                            <div style="color:#444"><strong>BODY:</strong> Zenda nasce per chi vive la luce, non per chi la subisce.</div>
+                            <div style="color:#444"><strong>CTA:</strong> Scegli il tuo modello →</div>
+                        </div>
+                        <div style="display:flex;gap:5px;align-items:center;font-family:'Inter',sans-serif">
+                            <span style="font-size:10px;color:#aaa">Qualità:</span>
+                            <span style="background:#0071e3;color:white;border-radius:5px;padding:2px 8px;font-size:10px">4</span>
+                            <span style="background:#f5f5f7;border:1px solid #e5e5e5;border-radius:5px;padding:2px 8px;font-size:10px;color:#aaa">5</span>
+                            <span style="font-size:9px;color:#34c759;margin-left:4px">✓ Salvato</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEURO -->
+            <div class="mock-screen" id="screen-neuro">
+                <div style="display:flex;justify-content:space-between;align-items:center"><div><div class="mock-page-title">Neuro Agent</div><div class="mock-page-sub">Analisi neuromarketing di immagini e video per Meta Ads</div></div><div class="mock-tag-pill">⬡ Zenda Eyewear</div></div>
+                <div class="mock-2col">
+                    <div class="mock-panel">
+                        <div class="mock-panel-title">Analizza Creative</div>
+                        <div class="mock-dropzone"><div style="font-size:20px;opacity:0.3;margin-bottom:5px">⬡</div><div style="font-size:10px;color:#aaa;font-family:'Inter',sans-serif">Carica immagine o video<br>JPG, PNG, WebP, MP4, MOV</div></div>
+                        <div class="mock-label">OPPURE PATH FILE SUL MAC</div>
+                        <div style="display:flex;gap:6px;margin-bottom:8px"><div class="mock-input-box" style="flex:1;margin:0">/Users/lorenzo/Desktop/ad.jpg</div><div style="background:#f5f5f7;border:1px solid #e5e5e5;border-radius:7px;padding:7px 12px;font-size:10px;color:#555;font-family:'Inter',sans-serif">Usa</div></div>
+                        <div class="mock-btn-blue" style="background:#7c6dfa">⬡ Analizza Creative</div>
+                    </div>
+                    <div class="mock-panel">
+                        <div class="mock-panel-title">Analisi Neuromarketing</div>
+                        <div style="background:rgba(124,109,250,0.06);border:1px solid rgba(124,109,250,0.15);border-radius:7px;padding:9px;margin-bottom:10px"><div style="font-size:9px;font-weight:600;color:#7c6dfa;margin-bottom:3px;font-family:'Inter',sans-serif">🎵 Musica identificata</div><div style="font-size:11px;color:#333;font-family:'Inter',sans-serif">Doja Cat — Need to Know</div><div style="font-size:9px;color:#aaa;font-family:'Inter',sans-serif">Pop · R&B · Sensual</div></div>
+                        <div style="font-size:10px;color:#555;line-height:1.7;font-family:'Inter',sans-serif"><strong style="color:#333">Hook visivo:</strong> Forte — occhiali in primo piano entro 0.8s<br><strong style="color:#333">Colori dominanti:</strong> Caldi, dorati — attivano desiderio<br><strong style="color:#333">Consiglio:</strong> Aggiungere testo overlay nei primi 2s</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 <!-- STATS -->
 <div class="stats-bar">
-    <div class="stat-item reveal">
-        <div class="stat-num">6</div>
-        <div class="stat-label">Agenti AI integrati</div>
-    </div>
-    <div class="stat-item reveal">
-        <div class="stat-num">3</div>
-        <div class="stat-label">Brand gestiti in parallelo</div>
-    </div>
-    <div class="stat-item reveal">
-        <div class="stat-num">0</div>
-        <div class="stat-label">SaaS a pagamento</div>
-    </div>
-    <div class="stat-item reveal">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Dati in locale</div>
-    </div>
+    <div class="stat-item reveal"><div class="stat-num">6</div><div class="stat-label">Agenti AI integrati</div></div>
+    <div class="stat-item reveal"><div class="stat-num">3</div><div class="stat-label">Brand gestiti in parallelo</div></div>
+    <div class="stat-item reveal"><div class="stat-num">0</div><div class="stat-label">SaaS a pagamento</div></div>
+    <div class="stat-item reveal"><div class="stat-num">100%</div><div class="stat-label">Dati in locale</div></div>
 </div>
 
 <!-- PROBLEMA / SOLUZIONE -->
 <div class="section">
     <p class="section-tag reveal">Overview</p>
     <div class="two-col reveal">
-        <div class="col-block">
-            <div class="col-label">Il problema</div>
-            <div class="col-title">Troppi tool, zero contesto brand</div>
-            <p class="col-text">Gestire più brand con strumenti separati significa perdere contesto ogni volta che si apre un nuovo chat, un nuovo tab, un nuovo SaaS. Il brief va riscritto, le note vanno recuperate, la storia del brand si azzera ad ogni sessione.</p>
-        </div>
-        <div class="col-block" style="background:#0a0a0a;">
-            <div class="col-label">La soluzione</div>
-            <div class="col-title">Un OS che ricorda tutto</div>
-            <p class="col-text">FORGE centralizza memoria brand, agenti AI specializzati e pipeline operative in un'unica app nativa macOS. Il contesto di ogni brand viene iniettato automaticamente in ogni sessione — Research, Copy, Marketing, Ads — senza riscrivere nulla.</p>
-        </div>
+        <div class="col-block"><div class="col-label">Il problema</div><div class="col-title">Troppi tool, zero contesto brand</div><p class="col-text">Gestire più brand con strumenti separati significa perdere contesto ogni volta. Il brief va riscritto, le note vanno recuperate, la storia del brand si azzera ad ogni sessione.</p></div>
+        <div class="col-block" style="background:#0a0a0a"><div class="col-label">La soluzione</div><div class="col-title">Un OS che ricorda tutto</div><p class="col-text">FORGE centralizza memoria brand, agenti AI specializzati e pipeline operative in un'unica app nativa macOS. Il contesto di ogni brand viene iniettato automaticamente in ogni sessione senza riscrivere nulla.</p></div>
     </div>
 </div>
 
 <!-- AGENTS -->
-<div class="section" style="padding-top:0;">
+<div class="section" style="padding-top:0">
     <p class="section-tag reveal">Agenti</p>
     <h2 class="section-title reveal">6 agent, una sola interfaccia</h2>
     <div class="agents-grid">
-        <div class="agent-card purple reveal">
-            <div class="agent-num">01</div>
-            <div class="agent-name">Research Agent</div>
-            <p class="agent-desc">Scraping headless via Puppeteer su Facebook Ads Library. Raccoglie e visualizza le ads attive dei competitor in real-time, con analisi AI automatica degli hook, pattern creativi e CTA dominanti.</p>
-            <span class="agent-badge">Puppeteer · Claude API</span>
-        </div>
-        <div class="agent-card green reveal">
-            <div class="agent-num">02</div>
-            <div class="agent-name">Copy Agent</div>
-            <p class="agent-desc">Genera Meta Ad copy — Hook, Body, CTA — analizzando i competitor già scrappati e il contesto brand salvato. Output in varianti con sistema di quality rating 1–5 per raccogliere training data.</p>
-            <span class="agent-badge">Claude API · JSONL training</span>
-        </div>
-        <div class="agent-card pink reveal">
-            <div class="agent-num">03</div>
-            <div class="agent-name">Neuro Agent</div>
-            <p class="agent-desc">Analisi neuromarketing di immagini e video per Meta Ads. Identifica musica, patterns visivi, hook visivi e genera raccomandazioni creative basate su principi di psicologia del consumatore.</p>
-            <span class="agent-badge">Vision API · Audio analysis</span>
-        </div>
-        <div class="agent-card amber reveal">
-            <div class="agent-num">04</div>
-            <div class="agent-name">Marketing Agent</div>
-            <p class="agent-desc">Chat Claude con contesto brand iniettato automaticamente dalla memoria. Strategia di contenuto, caption, copy email, posizionamento — senza dover rispiegare il brand ogni volta.</p>
-            <span class="agent-badge">Claude API · Brand memory</span>
-        </div>
-        <div class="agent-card blue reveal">
-            <div class="agent-num">05</div>
-            <div class="agent-name">Meta Ads Agent</div>
-            <p class="agent-desc">Specializzato in struttura campagne CBO/ABO, definizione target audience, ottimizzazione budget e scaling. Contestualizzato sulle note operative e i dati del brand attivo.</p>
-            <span class="agent-badge">Claude API · Ads strategy</span>
-        </div>
-        <div class="agent-card teal reveal">
-            <div class="agent-num">06</div>
-            <div class="agent-name">Knowledge Agent</div>
-            <p class="agent-desc">ChromaDB + Python per interrogare lo storico completo delle sessioni passate. Recupera insight, report e decisioni precedenti tramite query in linguaggio naturale.</p>
-            <span class="agent-badge">ChromaDB · RAG · Python</span>
-        </div>
+        <div class="agent-card purple reveal"><div class="agent-num">01</div><div class="agent-name">Research Agent</div><p class="agent-desc">Scraping headless via Puppeteer su Facebook Ads Library. Raccoglie ads attive dei competitor in real-time, con analisi AI di hook, pattern creativi e CTA dominanti.</p><span class="agent-badge">Puppeteer · Claude API</span></div>
+        <div class="agent-card green reveal"><div class="agent-num">02</div><div class="agent-name">Copy Agent</div><p class="agent-desc">Genera Meta Ad copy — Hook, Body, CTA — analizzando competitor scrappati e brand context. Output in varianti con quality rating 1–5 per raccogliere training data.</p><span class="agent-badge">Claude API · JSONL training</span></div>
+        <div class="agent-card pink reveal"><div class="agent-num">03</div><div class="agent-name">Neuro Agent</div><p class="agent-desc">Analisi neuromarketing di immagini e video per Meta Ads. Identifica musica, patterns visivi, hook e genera raccomandazioni creative basate su psicologia del consumatore.</p><span class="agent-badge">Vision API · Audio analysis</span></div>
+        <div class="agent-card amber reveal"><div class="agent-num">04</div><div class="agent-name">Marketing Agent</div><p class="agent-desc">Chat Claude con contesto brand iniettato automaticamente dalla memoria. Strategia contenuto, caption, copy email — senza dover rispiegare il brand ogni volta.</p><span class="agent-badge">Claude API · Brand memory</span></div>
+        <div class="agent-card blue reveal"><div class="agent-num">05</div><div class="agent-name">Meta Ads Agent</div><p class="agent-desc">Specializzato in campagne CBO/ABO, target audience e ottimizzazione budget. Contestualizzato sulle note operative del brand attivo.</p><span class="agent-badge">Claude API · Ads strategy</span></div>
+        <div class="agent-card teal reveal"><div class="agent-num">06</div><div class="agent-name">Knowledge Agent</div><p class="agent-desc">ChromaDB + Python per interrogare lo storico completo delle sessioni. Recupera insight e report precedenti tramite query in linguaggio naturale.</p><span class="agent-badge">ChromaDB · RAG · Python</span></div>
     </div>
 </div>
 
 <!-- ARCHITETTURA -->
-<div class="section" style="padding-top:0;">
+<div class="section" style="padding-top:0">
     <p class="section-tag reveal">Architettura</p>
     <h2 class="section-title reveal">Local-first, zero dipendenze cloud</h2>
     <div class="arch-grid reveal">
-        <div class="arch-block">
-            <div class="arch-icon">⚡</div>
-            <div class="arch-title">Electron + Express server locale</div>
-            <p class="arch-text">L'app gira come processo nativo macOS. Un server Express interno (porta 3847) espone le API agli agenti — tutto comunica in localhost, nessun dato passa per server esterni.</p>
-        </div>
-        <div class="arch-block" style="border-left:1px solid var(--border);">
-            <div class="arch-icon">◎</div>
-            <div class="arch-title">Brand memory persistente su filesystem</div>
-            <p class="arch-text">Ogni brand ha una cartella con <code style="font-size:0.78rem;color:var(--accent-light)">memory.json</code>, storico sessioni e asset. Il contesto sopravvive tra sessioni e viene iniettato automaticamente negli agent.</p>
-        </div>
-        <div class="arch-block" style="border-top:1px solid var(--border);">
-            <div class="arch-icon">◈</div>
-            <div class="arch-title">Pipeline Research → Copy → Training</div>
-            <p class="arch-text">Lo scraping competitor alimenta il Copy Agent. I rating di qualità sul copy generato producono automaticamente file <code style="font-size:0.78rem;color:var(--accent-light)">training_data.jsonl</code> per fine-tuning futuro.</p>
-        </div>
-        <div class="arch-block" style="border-top:1px solid var(--border);border-left:1px solid var(--border);">
-            <div class="arch-icon">◉</div>
-            <div class="arch-title">ChromaDB + RAG per la memoria a lungo termine</div>
-            <p class="arch-text">Il Knowledge Agent usa ChromaDB con sentence-transformers per cercare nelle sessioni passate. Query in linguaggio naturale, risultati contestuali.</p>
-        </div>
+        <div class="arch-block"><div class="arch-icon">⚡</div><div class="arch-title">Electron + Express server locale</div><p class="arch-text">App nativa macOS. Server Express interno (porta 3847) — tutto comunica in localhost, nessun dato passa per server esterni.</p></div>
+        <div class="arch-block" style="border-left:1px solid var(--border)"><div class="arch-icon">◎</div><div class="arch-title">Brand memory persistente su filesystem</div><p class="arch-text">Ogni brand ha <code style="font-size:0.78rem;color:var(--accent-light)">memory.json</code>, storico sessioni e asset. Il contesto viene iniettato automaticamente negli agent.</p></div>
+        <div class="arch-block" style="border-top:1px solid var(--border)"><div class="arch-icon">◈</div><div class="arch-title">Pipeline Research → Copy → Training</div><p class="arch-text">Lo scraping competitor alimenta il Copy Agent. I rating producono automaticamente <code style="font-size:0.78rem;color:var(--accent-light)">training_data.jsonl</code> per fine-tuning futuro.</p></div>
+        <div class="arch-block" style="border-top:1px solid var(--border);border-left:1px solid var(--border)"><div class="arch-icon">◉</div><div class="arch-title">ChromaDB + RAG per la memoria a lungo termine</div><p class="arch-text">Knowledge Agent usa ChromaDB + sentence-transformers per cercare nelle sessioni passate con query in linguaggio naturale.</p></div>
     </div>
-
     <div class="highlight reveal">
         <div class="highlight-title">Dettaglio tecnico chiave</div>
-        <p class="highlight-text">La pipeline Research → Copy → Quality Rating genera automaticamente un dataset JSONL con le coppie brand_context/copy/score. L'obiettivo è accumulare abbastanza esempi di alta qualità per fine-tunare un modello sul proprio stile di copywriting specifico per ogni brand.</p>
+        <p class="highlight-text">La pipeline Research → Copy → Quality Rating genera automaticamente un dataset JSONL con le coppie brand_context/copy/score. L'obiettivo è accumulare esempi di alta qualità per fine-tunare un modello sul proprio stile di copywriting per ogni brand.</p>
     </div>
 </div>
 
-<!-- PIPELINE OPERATIVA -->
-<div class="section" style="padding-top:0;">
+<!-- PIPELINE -->
+<div class="section" style="padding-top:0">
     <p class="section-tag reveal">Flusso operativo</p>
     <h2 class="section-title reveal">Come si usa nella pratica</h2>
     <div class="pipeline reveal">
-        <div class="pipeline-step">
-            <div class="pipeline-num">01</div>
-            <div class="pipeline-title">Seleziona brand</div>
-            <p class="pipeline-desc">Scegli il brand dal switcher nella sidebar. Il contesto, le note e i competitor si caricano automaticamente.</p>
-        </div>
-        <div class="pipeline-step">
-            <div class="pipeline-num">02</div>
-            <div class="pipeline-title">Scraping competitor</div>
-            <p class="pipeline-desc">Research Agent raccoglie le ads attive su Facebook Ads Library. Puppeteer gira in headless, nessuna configurazione.</p>
-        </div>
-        <div class="pipeline-step">
-            <div class="pipeline-num">03</div>
-            <div class="pipeline-title">Analisi AI + Copy</div>
-            <p class="pipeline-desc">Claude analizza i pattern competitor e genera varianti di copy pronte. Il Neuro Agent valuta le creative visive.</p>
-        </div>
-        <div class="pipeline-step">
-            <div class="pipeline-num">04</div>
-            <div class="pipeline-title">Rating e memoria</div>
-            <p class="pipeline-desc">Valuta il copy 1–5. Il dato viene salvato nel training set. La sessione entra nello storico brand automaticamente.</p>
-        </div>
+        <div class="pipeline-step"><div class="pipeline-num">01</div><div class="pipeline-title">Seleziona brand</div><p class="pipeline-desc">Scegli il brand dal switcher. Il contesto, le note e i competitor si caricano automaticamente.</p></div>
+        <div class="pipeline-step"><div class="pipeline-num">02</div><div class="pipeline-title">Scraping competitor</div><p class="pipeline-desc">Research Agent raccoglie le ads attive su Ads Library. Puppeteer gira in headless, nessuna configurazione.</p></div>
+        <div class="pipeline-step"><div class="pipeline-num">03</div><div class="pipeline-title">Analisi AI + Copy</div><p class="pipeline-desc">Claude analizza i pattern competitor e genera varianti di copy. Il Neuro Agent valuta le creative visive.</p></div>
+        <div class="pipeline-step"><div class="pipeline-num">04</div><div class="pipeline-title">Rating e memoria</div><p class="pipeline-desc">Valuta il copy 1–5. Il dato va nel training set. La sessione entra nello storico brand automaticamente.</p></div>
     </div>
 </div>
 
 <!-- CTA -->
 <div class="cta-wrap">
-    <h2 class="cta-title reveal">Strumenti<br><em style="font-style:italic;color:var(--accent-light);">che scalano.</em></h2>
+    <h2 class="cta-title reveal">Strumenti<br><em style="font-style:italic;color:var(--accent-light)">che scalano.</em></h2>
     <p class="cta-sub reveal">Vuoi un sistema simile per la tua agenzia o il tuo brand?</p>
     <a href="https://wa.me/393924311252?text=Ciao%2C%20ho%20visto%20FORGE%20su%2021STUDIO%20e%20vorrei%20parlare%20di%20un%20progetto%20simile" target="_blank" class="cta-btn reveal">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.11 1.522 5.835L0 24l6.313-1.496A11.926 11.926 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.792 9.792 0 01-5.017-1.38l-.36-.214-3.732.884.916-3.622-.235-.373A9.761 9.761 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.11 1.522 5.835L0 24l6.313-1.496A11.926 11.926 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.792 9.792 0 01-5.017-1.38l-.36-.214-3.732.884.916-3.622-.235-.373A9.761 9.761 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
         Parliamone su WhatsApp
     </a>
 </div>
 
 <footer>
     <div><div class="footer-brand">21STUDIO</div><div class="footer-copy">© 2025 Lorenzo Federoni — Tutti i diritti riservati</div></div>
-    <a href="../index.html#lavori" style="font-size:0.82rem;color:var(--text-muted);text-decoration:none;">← Tutti i progetti</a>
+    <a href="../index.html#lavori" style="font-size:0.82rem;color:var(--text-muted);text-decoration:none">← Tutti i progetti</a>
 </footer>
 
 <script>
+var screens = ['dashboard','research','copy','neuro'];
+function switchScreen(name, btn) {
+    screens.forEach(function(s) {
+        var el = document.getElementById('screen-'+s);
+        if(el) el.classList.toggle('active', s===name);
+        var sn = document.getElementById('snav-'+s);
+        if(sn) sn.classList.toggle('active', s===name);
+    });
+    if(btn) {
+        document.querySelectorAll('.mockup-tab').forEach(function(t){ t.classList.remove('active'); });
+        btn.classList.add('active');
+    }
+}
 (function(){
-    var els = document.querySelectorAll('.reveal');
-    var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){
-            if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
-        });
-    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-    els.forEach(function(el){ io.observe(el); });
+    var els=document.querySelectorAll('.reveal');
+    var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+    els.forEach(function(el){io.observe(el);});
 })();
 </script>
 </body>
