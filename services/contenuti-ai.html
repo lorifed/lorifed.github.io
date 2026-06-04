@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contenuti AI — 21STUDIO</title>
+    <meta name="description" content="Contenuti AI generati e pubblicati in automatico — reel, caroselli, copy per ads e organico.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg:#000; --bg-card:#0d0d0d; --text:#f5f5f7; --text-secondary:#9ea39d; --text-muted:#5a5f58; --accent:#6b7c5b; --accent-light:#8a9d78; --accent-dark:#4d5943; --border:#1d1f1d; }
+        html { scroll-behavior: smooth; }
+        html,body { width:100%; max-width:100%; overflow-x:hidden; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.5; -webkit-font-smoothing:antialiased; }
+        ::-webkit-scrollbar { width:6px; } ::-webkit-scrollbar-track { background:var(--bg); } ::-webkit-scrollbar-thumb { background:var(--border); border-radius:4px; }
+        nav { position:fixed; top:0; left:0; right:0; padding:16px 40px; display:flex; justify-content:space-between; align-items:center; z-index:100; background:rgba(0,0,0,0.6); backdrop-filter:blur(20px); border-bottom:1px solid rgba(255,255,255,0.04); }
+        .logo { font-size:1.125rem; font-weight:600; letter-spacing:-0.02em; color:var(--text); text-decoration:none; }
+        .nav-links { display:flex; gap:28px; align-items:center; }
+        .nav-links a { font-size:0.875rem; color:var(--text-secondary); text-decoration:none; transition:color 0.3s; }
+        .nav-links a:hover { color:var(--accent-light); }
+        .nav-cta { padding:10px 20px; background:var(--accent); color:#fff !important; border-radius:50px; font-weight:500; transition:all 0.3s; }
+        .nav-cta:hover { background:var(--accent-light) !important; transform:scale(1.05); }
+        .hero { padding:160px 40px 80px; max-width:1200px; margin:0 auto; }
+        .back-link { display:inline-flex; align-items:center; gap:8px; font-size:0.8rem; color:var(--text-muted); text-decoration:none; margin-bottom:48px; transition:color 0.3s; }
+        .back-link:hover { color:var(--accent-light); }
+        .back-link svg { width:16px; height:16px; }
+        .service-tag { font-size:0.7rem; font-weight:600; color:var(--accent-light); text-transform:uppercase; letter-spacing:0.2em; margin-bottom:16px; }
+        .hero-title { font-family:'Fraunces',Georgia,serif; font-size:clamp(44px,7vw,84px); font-weight:700; letter-spacing:-0.04em; line-height:0.95; margin-bottom:28px; }
+        .hero-desc { font-size:clamp(16px,2vw,20px); color:rgba(255,255,255,0.55); max-width:640px; line-height:1.7; margin-bottom:48px; }
+        .hero-tags { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:48px; }
+        .tag { font-size:0.75rem; padding:6px 14px; border:1px solid var(--border); border-radius:50px; color:var(--text-muted); }
+        .hero-cta { display:inline-flex; align-items:center; gap:10px; padding:18px 36px; background:var(--accent); color:#fff; font-size:1rem; font-weight:600; text-decoration:none; border-radius:50px; transition:all 0.4s; }
+        .hero-cta:hover { transform:scale(1.05); box-shadow:0 8px 32px rgba(106,124,91,0.4); background:var(--accent-light); }
+        .hero-cta svg { width:18px; height:18px; }
+        .stats { display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--border); border-radius:20px; overflow:hidden; max-width:1120px; margin:0 auto; }
+        .stat { padding:40px 32px; border-right:1px solid var(--border); background:var(--bg-card); }
+        .stat:last-child { border-right:none; }
+        .stat-num { font-family:'Fraunces',Georgia,serif; font-size:clamp(32px,4vw,52px); font-weight:700; color:var(--accent-light); line-height:1; margin-bottom:8px; }
+        .stat-label { font-size:0.78rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.1em; }
+        .section { padding:80px 40px; max-width:1200px; margin:0 auto; }
+        .section-label { font-size:0.7rem; font-weight:600; color:var(--accent-light); text-transform:uppercase; letter-spacing:0.2em; margin-bottom:16px; }
+        .section-title { font-family:'Fraunces',Georgia,serif; font-size:clamp(28px,4vw,44px); font-weight:700; letter-spacing:-0.03em; margin-bottom:48px; }
+        .what-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:20px; overflow:hidden; }
+        .what-item { background:var(--bg-card); padding:40px 36px; }
+        .what-num { font-family:'Fraunces',Georgia,serif; font-size:1.8rem; color:var(--border); font-weight:700; margin-bottom:16px; }
+        .what-title { font-size:1rem; font-weight:600; margin-bottom:10px; }
+        .what-desc { font-size:0.875rem; color:var(--text-secondary); line-height:1.7; }
+        .process-list { display:flex; flex-direction:column; border:1px solid var(--border); border-radius:20px; overflow:hidden; }
+        .process-item { display:grid; grid-template-columns:80px 1fr; border-bottom:1px solid var(--border); background:var(--bg-card); transition:background 0.3s; }
+        .process-item:last-child { border-bottom:none; }
+        .process-item:hover { background:#111; }
+        .process-num-col { padding:32px 28px; border-right:1px solid var(--border); display:flex; align-items:flex-start; }
+        .process-num-col span { font-family:'Fraunces',Georgia,serif; font-size:1.6rem; font-weight:700; color:var(--accent-dark); }
+        .process-content { padding:32px 36px; }
+        .process-title { font-size:1rem; font-weight:600; margin-bottom:8px; }
+        .process-desc { font-size:0.875rem; color:var(--text-secondary); line-height:1.7; }
+        .case-card { background:var(--bg-card); border:1px solid var(--border); border-radius:20px; padding:48px; }
+        .case-sector { font-size:0.68rem; font-weight:600; color:var(--accent-light); text-transform:uppercase; letter-spacing:0.15em; margin-bottom:16px; }
+        .case-title { font-family:'Fraunces',Georgia,serif; font-size:clamp(24px,3vw,36px); font-weight:700; margin-bottom:16px; letter-spacing:-0.02em; }
+        .case-desc { font-size:0.9rem; color:var(--text-secondary); line-height:1.7; margin-bottom:32px; max-width:680px; }
+        .case-stats { display:flex; gap:40px; flex-wrap:wrap; padding-top:24px; border-top:1px solid var(--border); }
+        .case-stat-num { font-family:'Fraunces',Georgia,serif; font-size:2rem; font-weight:700; color:var(--accent-light); line-height:1; }
+        .case-stat-label { font-size:0.7rem; color:var(--text-muted); margin-top:4px; }
+        .cta-wrap { text-align:center; padding:100px 40px; position:relative; }
+        .cta-wrap::before { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:700px; height:400px; background:radial-gradient(ellipse,rgba(106,124,91,0.1) 0%,transparent 70%); pointer-events:none; }
+        .cta-title { font-family:'Fraunces',Georgia,serif; font-size:clamp(36px,6vw,64px); font-weight:700; letter-spacing:-0.04em; margin-bottom:20px; line-height:1.05; }
+        .cta-sub { font-size:1rem; color:var(--text-secondary); margin-bottom:40px; }
+        .cta-btn { display:inline-flex; align-items:center; gap:10px; padding:18px 44px; background:var(--accent); color:#fff; font-size:1rem; font-weight:600; text-decoration:none; border-radius:50px; transition:all 0.4s; }
+        .cta-btn:hover { transform:scale(1.05); box-shadow:0 8px 40px rgba(106,124,91,0.4); background:var(--accent-light); }
+        .cta-btn svg { width:18px; height:18px; }
+        footer { padding:40px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+        .footer-brand { font-size:1rem; font-weight:600; }
+        .footer-copy { font-size:0.72rem; color:var(--text-muted); margin-top:4px; }
+        .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.7s ease,transform 0.7s ease; }
+        .reveal.visible { opacity:1; transform:none; }
+        @media(max-width:1024px) {
+            nav { padding:16px 24px; }
+            .nav-links a:not(.nav-cta) { display:none; }
+            .hero { padding:130px 24px 60px; }
+            .stats { grid-template-columns:1fr; margin:0 24px; }
+            .stat { border-right:none; border-bottom:1px solid var(--border); }
+            .stat:last-child { border-bottom:none; }
+            .section { padding:60px 24px; }
+            .what-grid { grid-template-columns:1fr; }
+            footer { flex-direction:column; gap:12px; text-align:center; }
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="../index.html" class="logo">21STUDIO</a>
+    <div class="nav-links">
+        <a href="../index.html#servizi">Servizi</a>
+        <a href="../index.html#lavori">Progetti</a>
+        <a href="../index.html#prezzi">Prezzi</a>
+        <a href="https://wa.me/393924311252?text=Ciao%2C%20ho%20visto%2021STUDIO%20e%20vorrei%20parlare%20del%20mio%20progetto" target="_blank" class="nav-cta">Parliamone</a>
+    </div>
+</nav>
+
+<div class="hero">
+    <a href="../index.html#servizi" class="back-link">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Tutti i servizi
+    </a>
+    <p class="service-tag">Servizio 04</p>
+    <h1 class="hero-title">Contenuti<br>AI</h1>
+    <p class="hero-desc">Reel, caroselli e copy generati con AI — pronti da postare o da sponsorizzare. Produzione su scala, qualità costante, zero collo di bottiglia creativo.</p>
+    <div class="hero-tags">
+        <span class="tag">Remotion</span><span class="tag">ElevenLabs</span><span class="tag">ComfyUI</span><span class="tag">Claude API</span><span class="tag">IG Graph API</span><span class="tag">Krea</span><span class="tag">Meta Ads</span><span class="tag">Caroselli</span>
+    </div>
+    <a href="https://wa.me/393924311252?text=Ciao%2C%20sono%20interessato%20ai%20contenuti%20AI" target="_blank" class="hero-cta">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.11 1.522 5.835L0 24l6.313-1.496A11.926 11.926 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.792 9.792 0 01-5.017-1.38l-.36-.214-3.732.884.916-3.622-.235-.373A9.761 9.761 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        Parliamone
+    </a>
+</div>
+
+<div class="stats reveal">
+    <div class="stat"><div class="stat-num">10</div><div class="stat-label">Contenuti per batch</div></div>
+    <div class="stat"><div class="stat-num">0</div><div class="stat-label">Intervento manuale post-setup</div></div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">Tipologie: organico + ads</div></div>
+</div>
+
+<div class="section">
+    <p class="section-label reveal">Cosa produco</p>
+    <h2 class="section-title reveal">Contenuti che funzionano,<br>in scala</h2>
+    <div class="what-grid">
+        <div class="what-item reveal">
+            <div class="what-num">01</div>
+            <h3 class="what-title">Reel con Voiceover AI</h3>
+            <p class="what-desc">Video generati con Remotion ed ElevenLabs — script scritto dall'AI, voce sintetizzata, montaggio automatico. Pubblicati su Instagram via Graph API senza intervento manuale.</p>
+        </div>
+        <div class="what-item reveal">
+            <div class="what-num">02</div>
+            <h3 class="what-title">Caroselli e Statiche</h3>
+            <p class="what-desc">Slide informative, product showcase, educational content — generati con reference visive reali e copy calibrato sul tone of voice del brand. Pronti per feed e storie.</p>
+        </div>
+        <div class="what-item reveal">
+            <div class="what-num">03</div>
+            <h3 class="what-title">Copy per Ads</h3>
+            <p class="what-desc">Testi pubblicitari per Meta Ads generati e iterati con AI — headline, body copy, CTA ottimizzati per il formato e per la fase del funnel. A/B testing integrato nella pipeline.</p>
+        </div>
+        <div class="what-item reveal">
+            <div class="what-num">04</div>
+            <h3 class="what-title">Pipeline Automatizzata</h3>
+            <p class="what-desc">Da un briefing settimanale a un calendario editoriale completo, pubblicato in automatico. Il brand ha sempre il feed attivo senza impegnare tempo operativo interno.</p>
+        </div>
+    </div>
+</div>
+
+<div class="section" style="padding-top:0;">
+    <p class="section-label reveal">Come funziona</p>
+    <h2 class="section-title reveal">Il processo</h2>
+    <div class="process-list">
+        <div class="process-item reveal">
+            <div class="process-num-col"><span>01</span></div>
+            <div class="process-content">
+                <h3 class="process-title">Brand voice e brief</h3>
+                <p class="process-desc">Definisco il tone of voice, i pillar di contenuto, i formati e la frequenza. L'AI viene addestrata sul brand — non produce contenuti generici.</p>
+            </div>
+        </div>
+        <div class="process-item reveal">
+            <div class="process-num-col"><span>02</span></div>
+            <div class="process-content">
+                <h3 class="process-title">Generazione batch</h3>
+                <p class="process-desc">La pipeline produce 10+ contenuti per ciclo — reel, caroselli, copy ads — partendo da un singolo briefing. Revisione umana prima della pubblicazione se richiesta.</p>
+            </div>
+        </div>
+        <div class="process-item reveal">
+            <div class="process-num-col"><span>03</span></div>
+            <div class="process-content">
+                <h3 class="process-title">Pubblicazione automatica</h3>
+                <p class="process-desc">Scheduling e posting via Instagram Graph API o Meta Ads Manager. Il contenuto organico va sul feed, quello sponsorizzato entra direttamente nelle campagne attive.</p>
+            </div>
+        </div>
+        <div class="process-item reveal">
+            <div class="process-num-col"><span>04</span></div>
+            <div class="process-content">
+                <h3 class="process-title">Analisi e iterazione</h3>
+                <p class="process-desc">I dati di performance alimentano il ciclo successivo. I formati che funzionano vengono replicati, quelli che non convertono vengono scartati. Il sistema migliora da solo.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section" style="padding-top:0;">
+    <p class="section-label reveal">Case study</p>
+    <h2 class="section-title reveal">Risultati reali</h2>
+    <div class="case-card reveal">
+        <div class="case-sector">AI Automation · Content Pipeline · 21STUDIO</div>
+        <h3 class="case-title">Social Content Agent — 5 post a settimana, zero lavoro manuale</h3>
+        <p class="case-desc">Pipeline costruita per il feed di 21STUDIO: ogni settimana il sistema genera reel con voiceover ElevenLabs, caroselli con reference visive e copy ottimizzato, poi li pubblica in automatico via Instagram Graph API. Dal briefing iniziale alla pubblicazione senza un click intermedio.</p>
+        <div class="case-stats">
+            <div><div class="case-stat-num">5/sett</div><div class="case-stat-label">Post automatici</div></div>
+            <div><div class="case-stat-num">10</div><div class="case-stat-label">Contenuti per batch</div></div>
+            <div><div class="case-stat-num">0</div><div class="case-stat-label">Intervento manuale</div></div>
+        </div>
+    </div>
+</div>
+
+<div class="cta-wrap">
+    <h2 class="cta-title reveal">Feed sempre<br><em style="font-style:italic;color:var(--accent-light);">attivo.</em></h2>
+    <p class="cta-sub reveal">Dimmi il brand e la frequenza. Il resto lo fa la pipeline.</p>
+    <a href="https://wa.me/393924311252?text=Ciao%2C%20sono%20interessato%20ai%20contenuti%20AI%20di%2021STUDIO" target="_blank" class="cta-btn reveal">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.11 1.522 5.835L0 24l6.313-1.496A11.926 11.926 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.792 9.792 0 01-5.017-1.38l-.36-.214-3.732.884.916-3.622-.235-.373A9.761 9.761 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        Scrivimi su WhatsApp
+    </a>
+</div>
+
+<footer>
+    <div><div class="footer-brand">21STUDIO</div><div class="footer-copy">© 2025 Lorenzo Federoni — Tutti i diritti riservati</div></div>
+</footer>
+<script>
+(function(){
+    var els=document.querySelectorAll('.reveal');
+    var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+    els.forEach(function(el){io.observe(el);});
+})();
+</script>
+</body>
+</html>
