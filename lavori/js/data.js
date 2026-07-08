@@ -12,7 +12,7 @@ const PROJECTS = [
     url: 'ikiventi.it',
     private: false,
     liveUrl: 'https://ikiventi.it',
-    shot: null, // img/projects/ikiventi.jpg
+    shot: "img/projects/ikiventi.jpg",
     facts: [
       { k: 'Settore', v: 'Arredamento su misura' },
       { k: 'Stack', v: 'WordPress · Meta Ads' },
@@ -33,7 +33,7 @@ const PROJECTS = [
     url: 'zendaeyewear.com',
     private: false,
     liveUrl: 'https://zendaeyewear.com',
-    shot: null, // img/projects/zenda.jpg
+    shot: "img/projects/zenda.jpg",
     facts: [
       { k: 'Settore', v: 'Eyewear / Occhiali DTC' },
       { k: 'Stack', v: 'Shopify Custom' },
