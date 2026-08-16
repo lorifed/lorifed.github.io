@@ -31,32 +31,73 @@
 </header>
 
 <section class="hero">
-  <div class="hero-graphic" aria-hidden="true">
-    <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
-      <path class="draw" d="M900 150 C 950 260, 1020 340, 980 460" stroke="rgba(138,154,91,0.4)" stroke-width="1.2" fill="none"/>
-      <path class="draw" d="M980 460 C 1010 540, 1080 560, 1120 650" stroke="rgba(155,107,242,0.3)" stroke-width="1.2" fill="none"/>
-      <path class="draw" d="M900 150 C 850 220, 800 180, 740 260" stroke="rgba(201,162,39,0.28)" stroke-width="1.2" fill="none"/>
-      <circle class="node" cx="900" cy="150" r="4.5" fill="#C9A227"/>
-      <circle class="node" cx="980" cy="460" r="4.5" fill="#4C8C5E"/>
-      <circle class="node" cx="1120" cy="650" r="4.5" fill="#9B6BF2"/>
-      <text class="node-label" x="912" y="146" fill="#9CA085" font-family="JetBrains Mono" font-size="12" letter-spacing="1">AUDIT</text>
-      <text class="node-label" x="992" y="456" fill="#9CA085" font-family="JetBrains Mono" font-size="12" letter-spacing="1">SISTEMA</text>
-      <text class="node-label" x="1000" y="668" fill="#9CA085" font-family="JetBrains Mono" font-size="12" letter-spacing="1">MANTENIMENTO</text>
-    </svg>
-  </div>
+  <div class="wrap">
+    <div class="hero-layout">
+      <div class="hero-content">
+        <div class="eyebrow hero-eyebrow" style="opacity:0; transform:translateY(14px);">Sistemi di agenti AI per PMI italiane</div>
+        <h1 style="opacity:0; transform:translateY(20px);">Un'azienda che gira anche quando tu non ci sei — e resta <em>tua per sempre</em>.</h1>
+        <p class="lede" style="opacity:0; transform:translateY(20px);">21studio installa un team di agenti AI che si occupa di lead, follow-up, report e operations 24/7. Non un abbonamento che affitti: un sistema che progettiamo con te e che possiedi per sempre.</p>
+        <div class="hero-cta" style="opacity:0; transform:translateY(20px);">
+          <a href="audit-agentico.html" class="btn btn-primary">Prenota un Audit Agentico<span class="arrow">→</span></a>
+          <a href="sistema-su-misura.html" class="btn btn-ghost">Vedi cosa gestiscono gli agenti</a>
+        </div>
+        <div class="hero-meta" style="opacity:0; transform:translateY(20px);">
+          <div class="stat"><b>6</b><span>Reparti che il sistema può coprire</span></div>
+          <div class="stat"><b>24/7</b><span>Gli agenti restano attivi anche offline</span></div>
+          <div class="stat"><b>Tu</b><span>Hai sempre l'ultima parola su cosa parte</span></div>
+        </div>
+      </div>
 
-  <div class="wrap hero-content">
-    <div class="eyebrow hero-eyebrow" style="opacity:0; transform:translateY(14px);">Sistemi di agenti AI per PMI italiane</div>
-    <h1 style="opacity:0; transform:translateY(20px);">Un secondo cervello aziendale che costruisci con noi — e possiedi <em>per sempre</em>.</h1>
-    <p class="lede" style="opacity:0; transform:translateY(20px);">Non un progetto che finisce. Non un abbonamento che affitti. 21studio progetta, installa e mantiene un sistema di agenti AI su misura per la tua azienda — con te coinvolto in ogni fase, non solo alla consegna.</p>
-    <div class="hero-cta" style="opacity:0; transform:translateY(20px);">
-      <a href="audit-agentico.html" class="btn btn-primary">Prenota un Audit Agentico<span class="arrow">→</span></a>
-      <a href="sistema-su-misura.html" class="btn btn-ghost">Scopri come funziona</a>
-    </div>
-    <div class="hero-meta" style="opacity:0; transform:translateY(20px);">
-      <div class="stat"><b>45</b><span>Giorni per vedere il KPI concordato</span></div>
-      <div class="stat"><b>3</b><span>Componenti: Audit, Sistema, Mantenimento</span></div>
-      <div class="stat"><b>100%</b><span>Il sistema resta tuo, sempre</span></div>
+      <div class="org-chart reveal">
+        <div class="org-chart-topbar">
+          <span class="badge-live"><span class="dot"></span>Mappa live</span>
+          <span class="badge-live"><span class="dot"></span>Attivo 24/7</span>
+        </div>
+        <div class="org-lead">
+          <span class="org-tag">Direttore</span>
+          <h5>Agente Direttore</h5>
+          <p>Smista il lavoro, controlla la qualità, ti riporta ogni settimana</p>
+        </div>
+        <div class="org-connector"></div>
+        <div class="org-row">
+          <div class="org-node" data-accent="gold">
+            <span class="org-status"></span>
+            <span class="org-tag">Vendite</span>
+            <h6>Lead Scraper</h6>
+            <span class="org-role">Trova e segue i lead</span>
+          </div>
+          <div class="org-node" data-accent="green">
+            <span class="org-status"></span>
+            <span class="org-tag">Supporto</span>
+            <h6>Reception Vocale</h6>
+            <span class="org-role">Risponde, prenota</span>
+          </div>
+          <div class="org-node" data-accent="purple">
+            <span class="org-status"></span>
+            <span class="org-tag">Operations</span>
+            <h6>Report Settimanale</h6>
+            <span class="org-role">KPI ogni lunedì</span>
+          </div>
+          <div class="org-node" data-accent="gold">
+            <span class="org-status"></span>
+            <span class="org-tag">Finance</span>
+            <h6>Follow-up Preventivi</h6>
+            <span class="org-role">Nessun lead dimenticato</span>
+          </div>
+        </div>
+        <div class="org-ticker-wrap">
+          <div class="org-ticker">
+            <span>› direttore.smista(nuovo_lead)</span>
+            <span>› vendite.segue(preventivo_12)</span>
+            <span>› reception.conferma(appuntamento)</span>
+            <span>› operations.invia(report_settimanale)</span>
+            <span>› direttore.smista(nuovo_lead)</span>
+            <span>› vendite.segue(preventivo_12)</span>
+            <span>› reception.conferma(appuntamento)</span>
+            <span>› operations.invia(report_settimanale)</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="scroll-cue"><div class="line"></div>Scorri</div>
@@ -84,6 +125,81 @@
         <span class="num">03</span>
         <h3>Paura di affittare, non possedere</h3>
         <p>Un abbonamento che smetti di pagare e perdi tutto. Un fornitore che consegna e sparisce. Il risultato non è mai davvero tuo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Un sistema, ogni reparto</div>
+      <h2>Non un agente per un solo task. Un team che copre l'azienda.</h2>
+      <p>Parti da un reparto, o attivali tutti insieme — marketing è solo l'inizio.</p>
+    </div>
+    <div class="dept-grid">
+      <div class="dept-card reveal">
+        <span class="dept-icon">01 · MARKETING</span>
+        <h4>Marketing</h4>
+        <p>Content repurposing, ricerca trend e monitoraggio competitor, gestiti ogni giorno senza il tuo intervento.</p>
+      </div>
+      <div class="dept-card reveal">
+        <span class="dept-icon">02 · VENDITE</span>
+        <h4>Vendite</h4>
+        <p>Follow-up sui lead, outreach e pipeline seguita — nessun preventivo si raffredda mentre guardi altro.</p>
+      </div>
+      <div class="dept-card reveal">
+        <span class="dept-icon">03 · OPERATIONS</span>
+        <h4>Operations</h4>
+        <p>Report operativi quotidiani e smistamento dei task che tengono l'azienda in movimento senza di te.</p>
+      </div>
+      <div class="dept-card reveal">
+        <span class="dept-icon">04 · ASSISTENZA</span>
+        <h4>Assistenza clienti</h4>
+        <p>Onboarding, risposte e follow-up che tengono i clienti seguiti 24 ore su 24.</p>
+      </div>
+      <div class="dept-card reveal">
+        <span class="dept-icon">05 · FINANCE</span>
+        <h4>Finance</h4>
+        <p>Visibilità sulla cassa, fatturazione e i numeri che ti servono, pronti prima ancora che tu li chieda.</p>
+      </div>
+      <div class="dept-card reveal">
+        <span class="dept-icon">06 · RICERCA</span>
+        <h4>Ricerca &amp; strategia</h4>
+        <p>Monitoraggio del mercato e le prossime mosse consigliate, già smistate a chi deve agire.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="tight">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Conoscenza condivisa</div>
+      <h2>I tuoi agenti devono conoscere l'azienda prima di agire.</h2>
+      <p>Ogni agente attinge alla stessa fonte: la tua offerta, il tuo tono di voce, i tuoi playbook, il contesto dei clienti. Decidi tu cosa possono usare.</p>
+    </div>
+    <div class="knowledge-flow reveal">
+      <div class="kf-col">
+        <div class="kf-chip"><h6>Brand &amp; offerta</h6><span>Posizionamento, tono, prezzi</span></div>
+        <div class="kf-chip"><h6>Playbook</h6><span>Procedure, approvazioni, flussi</span></div>
+        <div class="kf-chip"><h6>Contesto clienti</h6><span>Note, feedback, risultati</span></div>
+      </div>
+      <div class="kf-arrow">→</div>
+      <div class="kf-hub">
+        <div class="eyebrow">Second brain</div>
+        <h5>21studio Knowledge</h5>
+        <p>Un'unica fonte di verità per ogni agente installato</p>
+      </div>
+      <div class="kf-arrow">→</div>
+      <div class="kf-col">
+        <div class="kf-chip ready"><h6>Agente Direttore</h6><span class="tag-ready">Contesto pronto</span></div>
+        <div class="kf-chip ready"><h6>Agente Vendite</h6><span class="tag-ready">Contesto pronto</span></div>
+        <div class="kf-chip ready"><h6>Agente Operations</h6><span class="tag-ready">Contesto pronto</span></div>
       </div>
     </div>
   </div>
