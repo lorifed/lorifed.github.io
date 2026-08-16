@@ -46,19 +46,22 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   function buildParticleNet(seed) {
     const rand = seededRandom(seed);
-    const N = 80;
-    const R = 46;
+    const N = 170;
+    const R = 48;
     const pts = [];
     for (let i = 0; i < N; i++) {
-      const r = R * Math.pow(rand(), 0.55);
+      const r = R * Math.pow(rand(), 0.42);
       const theta = rand() * Math.PI * 2;
+      const big = rand() > 0.88;
       pts.push({
         x: 50 + r * Math.cos(theta),
         y: 50 + r * Math.sin(theta),
-        rad: 0.7 + rand() * 2.1,
-        op: 0.45 + rand() * 0.55
+        rad: big ? 2.4 + rand() * 2.4 : 0.5 + rand() * 1.3,
+        op: 0.4 + rand() * 0.6
       });
     }
+    // nodo centrale luminoso — ancora l'occhio al centro come nel riferimento
+    pts.push({ x: 50, y: 50, rad: 3.2, op: 1 });
     const edges = [];
     const seen = new Set();
     for (let i = 0; i < pts.length; i++) {
@@ -69,20 +72,20 @@ document.addEventListener('DOMContentLoaded', () => {
         dists.push({ j, d: Math.sqrt(dx * dx + dy * dy) });
       }
       dists.sort((a, b) => a.d - b.d);
-      const k = rand() > 0.75 ? 3 : 2;
+      const k = 3 + Math.floor(rand() * 3);
       for (let n = 0; n < k && n < dists.length; n++) {
         const j = dists[n].j;
         const key = i < j ? i + '-' + j : j + '-' + i;
-        if (!seen.has(key) && dists[n].d < 20) {
+        if (!seen.has(key) && dists[n].d < 26) {
           seen.add(key);
-          edges.push({ a: pts[i], b: pts[j] });
+          edges.push({ a: pts[i], b: pts[j], op: 0.15 + rand() * 0.35 });
         }
       }
     }
     let svg = '<svg class="particle-net" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true">';
     svg += '<g class="p-lines">';
     edges.forEach((e) => {
-      svg += `<line x1="${e.a.x.toFixed(1)}" y1="${e.a.y.toFixed(1)}" x2="${e.b.x.toFixed(1)}" y2="${e.b.y.toFixed(1)}"></line>`;
+      svg += `<line x1="${e.a.x.toFixed(1)}" y1="${e.a.y.toFixed(1)}" x2="${e.b.x.toFixed(1)}" y2="${e.b.y.toFixed(1)}" stroke-opacity="${e.op.toFixed(2)}"></line>`;
     });
     svg += '</g><g class="p-dots">';
     pts.forEach((p) => {
