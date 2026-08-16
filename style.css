@@ -204,10 +204,15 @@ nav.main a.current{ color: var(--accent-2); }
 
 /* ---------- org chart — mappa agenti live (rif. Demarly.ai "Live org map" / Sureflow "System map") ---------- */
 .org-chart{
-  background: var(--bg-panel); border: 1px solid var(--line); border-radius: var(--radius-card);
+  background-color: var(--bg-panel);
+  background-image: linear-gradient(rgba(243,241,236,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(243,241,236,0.045) 1px, transparent 1px);
+  background-size: 26px 26px;
+  border: 1px solid var(--line); border-radius: var(--radius-card);
   padding: 22px 22px 0; position:relative; overflow:hidden;
   box-shadow: 0 50px 100px -30px rgba(0,0,0,0.6);
 }
+.org-chart > .brain-map-canvas{ margin: 4px auto 0; }
+.brain-map-hub.org-lead-hub{ width: 210px; }
 .org-chart-topbar{ display:flex; justify-content:space-between; align-items:center; margin-bottom: 30px; flex-wrap:wrap; gap:10px; }
 .badge-live{
   display:inline-flex; align-items:center; gap:7px; font-family: var(--mono); font-size:10.5px; font-weight:500;
@@ -303,7 +308,10 @@ nav.main a.current{ color: var(--accent-2); }
 
 /* ---------- second brain network map (rif. TheFounderOS "G-BRAIN" live map) ---------- */
 .brain-map{
-  background: var(--bg-panel); border: 1px solid var(--line); border-radius: var(--radius-card);
+  background-color: var(--bg-panel);
+  background-image: linear-gradient(rgba(243,241,236,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(243,241,236,0.045) 1px, transparent 1px);
+  background-size: 26px 26px;
+  border: 1px solid var(--line); border-radius: var(--radius-card);
   padding: 22px 22px 34px; position:relative; overflow:hidden; margin-top: 26px;
   box-shadow: 0 50px 100px -30px rgba(0,0,0,0.6);
 }
@@ -404,7 +412,10 @@ nav.main a.current{ color: var(--accent-2); }
 
 /* ---------- drilldown — dentro un reparto (rif. TheFounderOS "Communications" drilldown) ---------- */
 .drilldown{
-  background: var(--bg-panel); border: 1px solid var(--line); border-radius: var(--radius-card);
+  background-color: var(--bg-panel);
+  background-image: linear-gradient(rgba(243,241,236,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(243,241,236,0.045) 1px, transparent 1px);
+  background-size: 26px 26px;
+  border: 1px solid var(--line); border-radius: var(--radius-card);
   padding: 26px 22px 32px; position:relative; overflow:hidden;
   box-shadow: 0 50px 100px -30px rgba(0,0,0,0.6);
 }
@@ -426,10 +437,18 @@ nav.main a.current{ color: var(--accent-2); }
 }
 .drilldown-hub .org-tag{ font-family: var(--mono); font-size:10px; color: var(--gold); background: var(--gold-dim); padding:3px 9px; border-radius:var(--radius); display:inline-block; margin-bottom:6px; }
 .drilldown-hub h5{ font-size:14px; font-weight:700; }
+.drilldown-hub::after{
+  content:''; position:absolute; top:100%; left:50%; transform: translate(-50%, 8px);
+  width:30px; height:30px; border-radius:50%;
+  background-image: radial-gradient(circle, rgba(138,154,91,0.55) 1px, transparent 1.3px);
+  background-size: 4px 4px; opacity:0.55; pointer-events:none;
+  -webkit-mask-image: radial-gradient(circle, black 55%, transparent 100%);
+  mask-image: radial-gradient(circle, black 55%, transparent 100%);
+}
 .drilldown-nav{
-  margin: 16px auto 0; width:max-content; display:flex; align-items:center; gap:12px;
+  margin: 48px auto 0; width:max-content; display:flex; align-items:center; gap:12px;
   font-family: var(--mono); font-size:10px; letter-spacing:0.04em; color: var(--text-faint);
-  border:1px solid var(--line-strong); border-radius: var(--radius); padding: 6px 16px;
+  border:1px solid var(--line-strong); border-radius: var(--radius); padding: 6px 16px; position:relative; z-index:1;
 }
 .drilldown-nav .arrow{ opacity:0.5; }
 @media (max-width:700px){

@@ -137,21 +137,23 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    /* second brain map: staggered node reveal (rif. TheFounderOS G-BRAIN) */
-    const bmNodes = gsap.utils.toArray('.brain-map-node');
-    if (bmNodes.length) {
-      gsap.set(bmNodes, { scale: 0.4, opacity: 0 });
-      gsap.set('.brain-map-hub', { scale: 0.85, opacity: 0 });
+    /* network canvases (mappa Direttore + second brain map): staggered node reveal per-instance (rif. TheFounderOS G-BRAIN) */
+    gsap.utils.toArray('.brain-map-canvas').forEach((canvas) => {
+      const nodes = canvas.querySelectorAll('.brain-map-node');
+      const hub = canvas.querySelector('.brain-map-hub');
+      if (!nodes.length && !hub) return;
+      if (nodes.length) gsap.set(nodes, { scale: 0.4, opacity: 0 });
+      if (hub) gsap.set(hub, { scale: 0.85, opacity: 0 });
       ScrollTrigger.create({
-        trigger: '.brain-map-canvas',
+        trigger: canvas,
         start: 'top 82%',
         once: true,
         onEnter: () => {
-          gsap.to('.brain-map-hub', { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.7)' });
-          gsap.to(bmNodes, { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(2)', stagger: 0.09, delay: 0.25 });
+          if (hub) gsap.to(hub, { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.7)' });
+          if (nodes.length) gsap.to(nodes, { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(2)', stagger: 0.09, delay: 0.25 });
         }
       });
-    }
+    });
 
     ScrollTrigger.refresh();
   } else {
