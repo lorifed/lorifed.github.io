@@ -307,13 +307,26 @@ nav.main a.current{ color: var(--accent-2); }
   padding: 22px 22px 34px; position:relative; overflow:hidden; margin-top: 26px;
   box-shadow: 0 50px 100px -30px rgba(0,0,0,0.6);
 }
-.brain-map-canvas{ position:relative; aspect-ratio: 21 / 10; max-width: 780px; margin: 34px auto 0; }
+.brain-map-body{ display:flex; gap:36px; align-items:center; margin-top: 30px; flex-wrap:wrap; }
+.brain-map-stats{ flex: 0 0 200px; display:flex; flex-direction:column; gap:16px; }
+.brain-map-stat{ border-top:1px solid var(--line); padding-top:14px; }
+.brain-map-stat:first-child{ border-top:none; padding-top:0; }
+.brain-map-stat b{ display:block; font-family: var(--sans); font-size:24px; font-weight:700; color: var(--accent-2); letter-spacing:-0.01em; }
+.brain-map-stat span{ font-size:10.5px; color: var(--text-faint); text-transform:uppercase; letter-spacing:0.06em; }
+.brain-map-canvas{ position:relative; aspect-ratio: 1/0.82; flex: 1 1 420px; max-width: 620px; }
+.brain-map-canvas::before{
+  content:''; position:absolute; top:50%; left:50%; width:52%; aspect-ratio:1; transform: translate(-50%,-50%); border-radius:50%;
+  background-image: radial-gradient(circle, rgba(138,154,91,0.55) 1px, transparent 1.4px);
+  background-size: 6px 6px; opacity:0.4; pointer-events:none; z-index:0;
+  -webkit-mask-image: radial-gradient(circle, black 55%, transparent 100%);
+  mask-image: radial-gradient(circle, black 55%, transparent 100%);
+}
 .brain-map-lines{ position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
-.brain-map-lines line{ stroke: var(--line-strong); stroke-width: 0.3; }
+.brain-map-lines line{ stroke: var(--line-strong); stroke-width: 0.3; stroke-dasharray: 2 1.4; }
 .brain-map-hub{
   position:absolute; top:50%; left:50%; transform: translate(-50%,-50%);
   background: var(--bg-alt); border:1px solid var(--accent); border-radius:14px;
-  padding: 18px 24px; text-align:center; width: 210px; box-shadow: 0 20px 50px -15px rgba(138,154,91,0.35); z-index:2;
+  padding: 18px 24px; text-align:center; width: 190px; box-shadow: 0 20px 50px -15px rgba(138,154,91,0.35); z-index:2;
 }
 .brain-map-hub .eyebrow{ justify-content:center; margin-bottom:8px; font-size:10px; }
 .brain-map-hub h5{ font-size:14px; font-weight:700; }
@@ -328,11 +341,62 @@ nav.main a.current{ color: var(--accent-2); }
 .brain-map-node[data-accent="green"] .bmn-dot{ background: var(--green); }
 .brain-map-node[data-accent="purple"] .bmn-dot{ background: var(--purple); }
 .bmn-dot{ width:7px; height:7px; border-radius:50%; background: var(--accent-2); flex-shrink:0; }
-@media (max-width: 760px){
+@media (max-width: 900px){
+  .brain-map-body{ flex-direction:column; }
+  .brain-map-stats{ flex-direction:row; flex-wrap:wrap; gap:22px; width:100%; }
+  .brain-map-stat{ border-top:none; padding-top:0; flex:1 1 40%; }
+  .brain-map-canvas{ max-width:100%; width:100%; }
+}
+@media (max-width: 560px){
   .brain-map-canvas{ aspect-ratio: 1/1.1; }
   .brain-map-node{ font-size:10.5px; padding:7px 11px; gap:6px; }
   .brain-map-hub{ width:150px; padding:14px 16px; }
   .brain-map-hub h5{ font-size:12.5px; }
+}
+
+/* ---------- split row — testo + visual alternati (rif. Promptible.io "POC / Process Map") ---------- */
+.split-row{ display:grid; grid-template-columns: 0.85fr 1.15fr; gap: 64px; align-items:center; margin-top: 70px; }
+.split-row > *{ min-width: 0; }
+.split-row.reverse{ grid-template-columns: 1.15fr 0.85fr; }
+.split-row.reverse .split-visual{ order:-1; }
+.split-text .eyebrow{ margin-bottom:18px; }
+.split-text h3{ font-size: clamp(22px,2.4vw,30px); font-weight:700; max-width:22ch; }
+.split-text p{ margin-top:16px; font-size:15px; max-width:46ch; }
+.split-tags{ display:flex; gap:10px; flex-wrap:wrap; margin-top:24px; }
+.split-tag{ font-family: var(--mono); font-size:10.5px; color: var(--text-faint); border:1px solid var(--line-strong); border-radius: var(--radius); padding: 6px 13px; }
+@media (max-width: 900px){
+  .split-row, .split-row.reverse{ grid-template-columns: 1fr; gap:34px; margin-top:50px; }
+  .split-row.reverse .split-visual{ order:0; }
+}
+
+/* ---------- drilldown — dentro un reparto (rif. TheFounderOS "Communications" drilldown) ---------- */
+.drilldown{
+  background: var(--bg-panel); border: 1px solid var(--line); border-radius: var(--radius-card);
+  padding: 26px 22px 32px; position:relative; overflow:hidden;
+  box-shadow: 0 50px 100px -30px rgba(0,0,0,0.6);
+}
+.drilldown-cols{ display:flex; justify-content:space-between; gap:14px; padding-bottom: 30px; margin-top:22px; }
+.drilldown-col{ flex:1; display:flex; flex-direction:column; align-items:center; text-align:center; position:relative; min-width:0; }
+.drilldown-col::after{ content:''; position:absolute; top:100%; left:50%; width:1px; height:26px; background: var(--line-strong); }
+.drilldown-tool{
+  font-family: var(--mono); font-size:9.5px; font-weight:500; color: var(--module-c, var(--accent-2));
+  background: var(--module-dim, var(--accent-dim)); border-radius: var(--radius); padding: 4px 10px; margin-bottom:10px; white-space:nowrap;
+}
+.drilldown-col[data-accent="gold"]{ --module-c: var(--gold); --module-dim: var(--gold-dim); }
+.drilldown-col[data-accent="green"]{ --module-c: var(--green); --module-dim: var(--green-dim); }
+.drilldown-col[data-accent="purple"]{ --module-c: var(--purple); --module-dim: var(--purple-dim); }
+.drilldown-col h6{ font-size:12px; font-weight:700; margin-bottom:6px; letter-spacing:-0.01em; }
+.drilldown-col .task{ font-size:10px; color: var(--text-faint); line-height:1.4; }
+.drilldown-hub{
+  margin-top: 30px; background: var(--bg-alt); border: 1px solid var(--accent); border-radius: 12px;
+  padding: 14px 28px; text-align:center; width:max-content; max-width: 100%; margin-left:auto; margin-right:auto; position:relative;
+}
+.drilldown-hub .org-tag{ font-family: var(--mono); font-size:10px; color: var(--gold); background: var(--gold-dim); padding:3px 9px; border-radius:var(--radius); display:inline-block; margin-bottom:6px; }
+.drilldown-hub h5{ font-size:14px; font-weight:700; }
+@media (max-width:700px){
+  .drilldown-cols{ flex-wrap:wrap; }
+  .drilldown-col{ flex: 1 1 40%; margin-bottom:24px; }
+  .drilldown-col::after{ display:none; }
 }
 
 /* ---------- growth note (libreria agenti in crescita) ---------- */
