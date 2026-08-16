@@ -57,11 +57,12 @@ document.addEventListener('DOMContentLoaded', () => {
         x: 50 + r * Math.cos(theta),
         y: 50 + r * Math.sin(theta),
         rad: big ? 2.4 + rand() * 2.4 : 0.5 + rand() * 1.3,
-        op: 0.4 + rand() * 0.6
+        op: 0.4 + rand() * 0.6,
+        hot: rand() > 0.86
       });
     }
     // nodo centrale luminoso — ancora l'occhio al centro come nel riferimento
-    pts.push({ x: 50, y: 50, rad: 3.2, op: 1 });
+    pts.push({ x: 50, y: 50, rad: 3.4, op: 1, hot: true });
     const edges = [];
     const seen = new Set();
     for (let i = 0; i < pts.length; i++) {
@@ -89,7 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     svg += '</g><g class="p-dots">';
     pts.forEach((p) => {
-      svg += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${p.rad.toFixed(2)}" fill-opacity="${p.op.toFixed(2)}"></circle>`;
+      const cls = p.hot ? ' class="p-hot"' : '';
+      svg += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${p.rad.toFixed(2)}" fill-opacity="${p.op.toFixed(2)}"${cls}></circle>`;
     });
     svg += '</g></svg>';
     return svg;
