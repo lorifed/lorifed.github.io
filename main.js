@@ -137,6 +137,22 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+    /* second brain map: staggered node reveal (rif. TheFounderOS G-BRAIN) */
+    const bmNodes = gsap.utils.toArray('.brain-map-node');
+    if (bmNodes.length) {
+      gsap.set(bmNodes, { scale: 0.4, opacity: 0 });
+      gsap.set('.brain-map-hub', { scale: 0.85, opacity: 0 });
+      ScrollTrigger.create({
+        trigger: '.brain-map-canvas',
+        start: 'top 82%',
+        once: true,
+        onEnter: () => {
+          gsap.to('.brain-map-hub', { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.7)' });
+          gsap.to(bmNodes, { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(2)', stagger: 0.09, delay: 0.25 });
+        }
+      });
+    }
+
     ScrollTrigger.refresh();
   } else {
     /* no-JS-lib fallback: just show everything */
