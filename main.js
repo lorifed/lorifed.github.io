@@ -194,6 +194,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* parallax on diff panel accent bar height already handled via CSS */
 
+    /* agents-panel: roster rows stagger in one by one (rif. video: dashboard AGENTS) */
+    const agentsPanel = document.querySelector('.agents-panel');
+    if (agentsPanel) {
+      const rows = agentsPanel.querySelectorAll('.agents-row');
+      gsap.set(rows, { opacity: 0, x: -14 });
+      ScrollTrigger.create({
+        trigger: agentsPanel,
+        start: 'top 78%',
+        once: true,
+        onEnter: () => {
+          gsap.to(rows, { opacity: 1, x: 0, duration: 0.5, ease: 'power2.out', stagger: 0.08 });
+        }
+      });
+    }
+
     /* dashboard panel: log lines type in one by one once the panel is in view */
     const dashPanel = document.querySelector('.dashboard-panel');
     if (dashPanel) {
