@@ -212,7 +212,7 @@ nav.main a.current{ color: var(--accent-2); }
   box-shadow: 0 50px 100px -30px rgba(0,0,0,0.6);
 }
 .org-chart > .brain-map-canvas{ margin: 4px auto 0; }
-.brain-map-hub.org-lead-hub{ width: 210px; }
+.brain-map-hub.org-lead-hub{ max-width: 220px; }
 .org-chart-topbar{ display:flex; justify-content:space-between; align-items:center; margin-bottom: 30px; flex-wrap:wrap; gap:10px; }
 .badge-live{
   display:inline-flex; align-items:center; gap:7px; font-family: var(--mono); font-size:10.5px; font-weight:500;
@@ -351,29 +351,51 @@ nav.main a.current{ color: var(--accent-2); }
   mask-image: radial-gradient(circle, transparent 56%, black 63%, black 78%, transparent 100%);
   animation: haloRotate 70s linear infinite;
 }
-@keyframes bmCorePulse{ 0%,100%{ opacity:0.4; transform: translate(-50%,-50%) scale(1); } 50%{ opacity:0.62; transform: translate(-50%,-50%) scale(1.05); } }
+@keyframes bmCorePulse{ 0%,100%{ opacity:0.4; transform: scale(1); } 50%{ opacity:0.7; transform: scale(1.06); } }
 @keyframes haloRotate{ to{ transform: translate(-50%,-50%) rotate(360deg); } }
 .brain-map-lines{ position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
 .brain-map-lines line{ stroke: var(--line-strong); stroke-width: 0.35; stroke-dasharray: 2 1.6; animation: bmLineFlow 1.6s linear infinite; }
 @keyframes bmLineFlow{ to{ stroke-dashoffset: -36; } }
+
+/* net-ring / net-circle — nodi circolari a particelle (rif. G-BRAIN: cerchi + etichetta sotto, mai card rettangolari) */
+.net-ring{
+  position:absolute; top:50%; left:50%; width:80%; aspect-ratio:1; transform:translate(-50%,-50%);
+  border:1px solid var(--line-strong); border-radius:50%; pointer-events:none; z-index:0; opacity:0.6;
+}
+.net-circle{
+  border-radius:50%; background: var(--bg-alt); border:1.5px solid var(--module-c, var(--line-strong));
+  display:flex; align-items:center; justify-content:center; box-shadow: 0 10px 22px -10px rgba(0,0,0,0.7); flex-shrink:0;
+}
+.net-circle .net-circle-dot{ width:9px; height:9px; border-radius:50%; background: var(--module-c, var(--accent-2)); }
+.net-circle--hub{
+  width:92px; height:92px; border-color: var(--accent); position:relative; overflow:hidden;
+  box-shadow: 0 0 34px -6px rgba(138,154,91,0.55), 0 20px 40px -18px rgba(0,0,0,0.7);
+}
+.net-circle--hub::before{
+  content:''; position:absolute; inset:0; border-radius:50%;
+  background-image: radial-gradient(circle, rgba(138,154,91,0.7) 1.2px, transparent 1.7px);
+  background-size:5px 5px; opacity:0.75; animation: bmCorePulse 3.6s ease-in-out infinite;
+}
+.net-circle--node{ width:46px; height:46px; }
+.net-circle--tool{ width:34px; height:34px; }
+.net-circle--tool .net-circle-dot{ width:6px; height:6px; }
+
 .brain-map-hub{
   position:absolute; top:50%; left:50%; transform: translate(-50%,-50%);
-  background: var(--bg-alt); border:1px solid var(--accent); border-radius:14px;
-  padding: 15px 20px; text-align:center; width: 168px; box-shadow: 0 20px 50px -15px rgba(138,154,91,0.35); z-index:2;
+  display:flex; flex-direction:column; align-items:center; text-align:center; z-index:2; width:max-content; max-width:190px;
 }
-.brain-map-hub .eyebrow{ justify-content:center; margin-bottom:7px; font-size:9.5px; }
-.brain-map-hub h5{ font-size:13px; font-weight:700; }
-.brain-map-hub p{ font-size:10px; margin-top:4px; }
+.brain-map-hub .net-label{ margin-top:14px; }
+.brain-map-hub .eyebrow{ justify-content:center; margin-bottom:6px; font-size:9.5px; }
+.brain-map-hub h5{ font-size:13.5px; font-weight:700; }
+.brain-map-hub p{ font-size:10.5px; color: var(--text-faint); margin-top:5px; line-height:1.45; }
 .brain-map-node{
   position:absolute; transform: translate(-50%,-50%); z-index:2;
-  display:flex; align-items:center; gap:7px;
-  background: var(--bg-alt); border:1px solid var(--line-strong); border-radius: var(--radius);
-  padding: 8px 14px; font-size:11.5px; font-weight:600; color: var(--text); white-space:nowrap;
+  display:flex; flex-direction:column; align-items:center; text-align:center; gap:8px;
 }
-.brain-map-node[data-accent="gold"] .bmn-dot{ background: var(--gold); }
-.brain-map-node[data-accent="green"] .bmn-dot{ background: var(--green); }
-.brain-map-node[data-accent="purple"] .bmn-dot{ background: var(--purple); }
-.bmn-dot{ width:6px; height:6px; border-radius:50%; background: var(--accent-2); flex-shrink:0; }
+.brain-map-node[data-accent="gold"]{ --module-c: var(--gold); }
+.brain-map-node[data-accent="green"]{ --module-c: var(--green); }
+.brain-map-node[data-accent="purple"]{ --module-c: var(--purple); }
+.net-label-sm{ font-size:11.5px; font-weight:700; color: var(--module-c, var(--text)); white-space:nowrap; }
 @media (max-width: 900px){
   .brain-map-body{ flex-direction:column; }
   .brain-directory{ width:100%; flex:1 1 auto; }
@@ -381,9 +403,11 @@ nav.main a.current{ color: var(--accent-2); }
 }
 @media (max-width: 560px){
   .brain-map-canvas{ aspect-ratio: 1/1.1; }
-  .brain-map-node{ font-size:10px; padding:6px 10px; gap:5px; }
-  .brain-map-hub{ width:140px; padding:12px 14px; }
+  .net-circle--node{ width:38px; height:38px; }
+  .net-label-sm{ font-size:10px; }
+  .net-circle--hub{ width:74px; height:74px; }
   .brain-map-hub h5{ font-size:12px; }
+  .brain-map-hub p{ font-size:9.5px; }
 }
 
 /* ---------- split row — testo + visual alternati (rif. Promptible.io "POC / Process Map") ---------- */
@@ -422,31 +446,23 @@ nav.main a.current{ color: var(--accent-2); }
 .drilldown-cols{ display:flex; justify-content:space-between; gap:14px; padding-bottom: 30px; margin-top:22px; }
 .drilldown-col{ flex:1; display:flex; flex-direction:column; align-items:center; text-align:center; position:relative; min-width:0; }
 .drilldown-col::after{ content:''; position:absolute; top:100%; left:50%; width:1px; height:26px; background: var(--line-strong); }
-.drilldown-tool{
-  font-family: var(--mono); font-size:9.5px; font-weight:500; color: var(--module-c, var(--accent-2));
-  background: var(--module-dim, var(--accent-dim)); border-radius: var(--radius); padding: 4px 10px; margin-bottom:10px; white-space:nowrap;
-}
 .drilldown-col[data-accent="gold"]{ --module-c: var(--gold); --module-dim: var(--gold-dim); }
 .drilldown-col[data-accent="green"]{ --module-c: var(--green); --module-dim: var(--green-dim); }
 .drilldown-col[data-accent="purple"]{ --module-c: var(--purple); --module-dim: var(--purple-dim); }
-.drilldown-col h6{ font-size:12px; font-weight:700; margin-bottom:6px; letter-spacing:-0.01em; }
+.dd-tool-label{ font-family: var(--mono); font-size:9px; font-weight:500; color: var(--module-c, var(--accent-2)); margin: 9px 0 10px; white-space:nowrap; }
+.dd-connector{ display:block; width:1px; height:16px; background: var(--line-strong); margin: 0 auto 10px; }
+.drilldown-col h6{ font-size:12px; font-weight:700; margin: 10px 0 6px; letter-spacing:-0.01em; }
 .drilldown-col .task{ font-size:10px; color: var(--text-faint); line-height:1.4; }
 .drilldown-hub{
-  margin-top: 30px; background: var(--bg-alt); border: 1px solid var(--accent); border-radius: 12px;
-  padding: 14px 28px; text-align:center; width:max-content; max-width: 100%; margin-left:auto; margin-right:auto; position:relative;
+  margin-top: 30px; display:flex; flex-direction:column; align-items:center; text-align:center;
+  width:max-content; max-width: 100%; margin-left:auto; margin-right:auto; position:relative;
+  --module-c: var(--gold);
 }
+.drilldown-hub .net-label{ margin-top:12px; }
 .drilldown-hub .org-tag{ font-family: var(--mono); font-size:10px; color: var(--gold); background: var(--gold-dim); padding:3px 9px; border-radius:var(--radius); display:inline-block; margin-bottom:6px; }
 .drilldown-hub h5{ font-size:14px; font-weight:700; }
-.drilldown-hub::after{
-  content:''; position:absolute; top:100%; left:50%; transform: translate(-50%, 8px);
-  width:30px; height:30px; border-radius:50%;
-  background-image: radial-gradient(circle, rgba(138,154,91,0.55) 1px, transparent 1.3px);
-  background-size: 4px 4px; opacity:0.55; pointer-events:none;
-  -webkit-mask-image: radial-gradient(circle, black 55%, transparent 100%);
-  mask-image: radial-gradient(circle, black 55%, transparent 100%);
-}
 .drilldown-nav{
-  margin: 48px auto 0; width:max-content; display:flex; align-items:center; gap:12px;
+  margin: 24px auto 0; width:max-content; display:flex; align-items:center; gap:12px;
   font-family: var(--mono); font-size:10px; letter-spacing:0.04em; color: var(--text-faint);
   border:1px solid var(--line-strong); border-radius: var(--radius); padding: 6px 16px; position:relative; z-index:1;
 }
