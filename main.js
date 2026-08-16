@@ -144,6 +144,29 @@ document.addEventListener('DOMContentLoaded', () => {
       .forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
   }
 
+  /* ---------- second brain chat: typing effect (rif. Promptible.io) ---------- */
+  const typedEl = document.querySelector('.brain-chat .typed-line');
+  if (typedEl) {
+    const prompts = [
+      'Quanti lead nuovi abbiamo avuto questa settimana?',
+      'Manda un promemoria ai clienti con preventivo in sospeso',
+      'Riassumi le recensioni ricevute a ottobre'
+    ];
+    if (prefersReduced) {
+      typedEl.textContent = prompts[0];
+    } else {
+      let p = 0, c = 0, deleting = false;
+      (function typeLoop() {
+        const current = prompts[p];
+        typedEl.textContent = deleting ? current.substring(0, c--) : current.substring(0, c++);
+        let delay = deleting ? 22 : 38;
+        if (!deleting && c === current.length + 1) { delay = 1400; deleting = true; }
+        if (deleting && c === 0) { deleting = false; p = (p + 1) % prompts.length; delay = 400; }
+        setTimeout(typeLoop, delay);
+      })();
+    }
+  }
+
   /* ---------- FAQ accordion ---------- */
   document.querySelectorAll('.faq-item').forEach((item) => {
     const q = item.querySelector('.faq-q');
