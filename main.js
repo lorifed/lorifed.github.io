@@ -35,6 +35,78 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ---------- particle-network hubs (rif. foto reference: nucleo denso di particelle collegate, non un pattern piatto a griglia) ---------- */
+  function seededRandom(seed) {
+    let s = seed % 2147483647;
+    if (s <= 0) s += 2147483646;
+    return function () {
+      s = (s * 16807) % 2147483647;
+      return (s - 1) / 2147483646;
+    };
+  }
+  function buildParticleNet(seed) {
+    const rand = seededRandom(seed);
+    const N = 80;
+    const R = 46;
+    const pts = [];
+    for (let i = 0; i < N; i++) {
+      const r = R * Math.pow(rand(), 0.55);
+      const theta = rand() * Math.PI * 2;
+      pts.push({
+        x: 50 + r * Math.cos(theta),
+        y: 50 + r * Math.sin(theta),
+        rad: 0.7 + rand() * 2.1,
+        op: 0.45 + rand() * 0.55
+      });
+    }
+    const edges = [];
+    const seen = new Set();
+    for (let i = 0; i < pts.length; i++) {
+      const dists = [];
+      for (let j = 0; j < pts.length; j++) {
+        if (i === j) continue;
+        const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+        dists.push({ j, d: Math.sqrt(dx * dx + dy * dy) });
+      }
+      dists.sort((a, b) => a.d - b.d);
+      const k = rand() > 0.75 ? 3 : 2;
+      for (let n = 0; n < k && n < dists.length; n++) {
+        const j = dists[n].j;
+        const key = i < j ? i + '-' + j : j + '-' + i;
+        if (!seen.has(key) && dists[n].d < 20) {
+          seen.add(key);
+          edges.push({ a: pts[i], b: pts[j] });
+        }
+      }
+    }
+    let svg = '<svg class="particle-net" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true">';
+    svg += '<g class="p-lines">';
+    edges.forEach((e) => {
+      svg += `<line x1="${e.a.x.toFixed(1)}" y1="${e.a.y.toFixed(1)}" x2="${e.b.x.toFixed(1)}" y2="${e.b.y.toFixed(1)}"></line>`;
+    });
+    svg += '</g><g class="p-dots">';
+    pts.forEach((p) => {
+      svg += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${p.rad.toFixed(2)}" fill-opacity="${p.op.toFixed(2)}"></circle>`;
+    });
+    svg += '</g></svg>';
+    return svg;
+  }
+  document.querySelectorAll('.net-circle--hub').forEach((hub, i) => {
+    hub.insertAdjacentHTML('afterbegin', buildParticleNet(1000 + i * 137));
+  });
+
+  /* ---------- icone nei nodi (persone / chiave) al posto del puntino pieno ---------- */
+  const PEOPLE_ICON = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8.5" cy="8" r="2.5" stroke="currentColor" stroke-width="1.4"/><circle cx="15.7" cy="8" r="2.5" stroke="currentColor" stroke-width="1.4"/><path d="M3.4 18.2c0-2.9 2.3-4.6 5.1-4.6s5.1 1.7 5.1 4.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M12.7 13.8c2.3.2 4.1 1.9 4.1 4.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>';
+  const KEY_ICON = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7.8" cy="15.2" r="3.8" stroke="currentColor" stroke-width="1.4"/><path d="M10.4 12.6L18 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M15.2 6.8l2 2M12.7 9.3l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>';
+  document.querySelectorAll('.net-circle--node .net-circle-dot').forEach((dot) => {
+    dot.classList.add('net-circle-icon');
+    dot.innerHTML = PEOPLE_ICON;
+  });
+  document.querySelectorAll('.net-circle--tool .net-circle-dot').forEach((dot) => {
+    dot.classList.add('net-circle-icon');
+    dot.innerHTML = KEY_ICON;
+  });
+
   /* ---------- gsap reveals ---------- */
   if (window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);

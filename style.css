@@ -369,16 +369,23 @@ nav.main a.current{ color: var(--accent-2); }
 .net-circle .net-circle-dot{ width:9px; height:9px; border-radius:50%; background: var(--module-c, var(--accent-2)); }
 .net-circle--hub{
   width:92px; height:92px; border-color: var(--accent); position:relative; overflow:hidden;
+  color: var(--module-c, var(--accent-2));
   box-shadow: 0 0 34px -6px rgba(138,154,91,0.55), 0 20px 40px -18px rgba(0,0,0,0.7);
 }
-.net-circle--hub::before{
-  content:''; position:absolute; inset:0; border-radius:50%;
-  background-image: radial-gradient(circle, rgba(138,154,91,0.7) 1.2px, transparent 1.7px);
-  background-size:5px 5px; opacity:0.75; animation: bmCorePulse 3.6s ease-in-out infinite;
+/* nucleo particellare organico iniettato via JS (rif. G-BRAIN: ammasso denso di puntini + linee, non un pattern piatto) */
+.net-circle--hub .particle-net{
+  position:absolute; inset:0; width:100%; height:100%; animation: bmCorePulse 3.6s ease-in-out infinite; transform-origin:50% 50%;
 }
+.net-circle--hub .particle-net .p-dots circle{ fill: currentColor; }
+.net-circle--hub .particle-net .p-lines line{ stroke: currentColor; stroke-width:0.55; opacity:0.55; }
 .net-circle--node{ width:46px; height:46px; }
 .net-circle--tool{ width:34px; height:34px; }
 .net-circle--tool .net-circle-dot{ width:6px; height:6px; }
+/* icone (persone / chiave) iniettate via JS al posto del puntino pieno — rif. foto: nodi hanno un'icona dentro, non solo un puntino */
+.net-circle-dot.net-circle-icon{ background:none; display:flex; align-items:center; justify-content:center; }
+.net-circle-dot.net-circle-icon svg{ width:100%; height:100%; display:block; }
+.net-circle--node .net-circle-dot.net-circle-icon{ width:21px; height:21px; color: var(--module-c, var(--accent-2)); }
+.net-circle--tool .net-circle-dot.net-circle-icon{ width:15px; height:15px; color: var(--module-c, var(--accent-2)); }
 
 .brain-map-hub{
   position:absolute; top:50%; left:50%; transform: translate(-50%,-50%);
