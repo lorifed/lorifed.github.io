@@ -117,10 +117,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* parallax on diff panel accent bar height already handled via CSS */
 
+    /* dashboard panel: log lines type in one by one once the panel is in view */
+    const dashPanel = document.querySelector('.dashboard-panel');
+    if (dashPanel) {
+      ScrollTrigger.create({
+        trigger: dashPanel,
+        start: 'top 75%',
+        once: true,
+        onEnter: () => {
+          gsap.to('.dash-log-line', {
+            opacity: 1,
+            x: 0,
+            duration: 0.5,
+            ease: 'power2.out',
+            stagger: 0.22,
+            delay: 0.2
+          });
+        }
+      });
+    }
+
     ScrollTrigger.refresh();
   } else {
     /* no-JS-lib fallback: just show everything */
-    document.querySelectorAll('.reveal, .hero-eyebrow, .hero h1, .hero .lede, .hero-cta, .hero-meta')
+    document.querySelectorAll('.reveal, .hero-eyebrow, .hero h1, .hero .lede, .hero-cta, .hero-meta, .dash-log-line')
       .forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
   }
 

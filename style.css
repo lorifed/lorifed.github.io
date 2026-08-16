@@ -7,7 +7,7 @@
    verde cachi/nero (colore storico 21studio) al posto del navy.
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root{
   --bg: #0B0C08;
@@ -31,8 +31,9 @@
   --purple-dim: rgba(155,107,242,0.12);
   --radius: 999px;
   --radius-card: 14px;
-  --serif: 'Fraunces', Georgia, serif;
-  --sans: 'Space Grotesk', -apple-system, sans-serif;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   --container: 1180px;
   --ease: cubic-bezier(.16,.84,.44,1);
 }
@@ -62,24 +63,25 @@ a{ color: inherit; text-decoration: none; }
 
 h1,h2,h3,h4{
   font-family: var(--sans);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.06;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.025em;
   margin: 0;
 }
 h1 i, h2 i, h1 em, h2 em{
   font-family: var(--serif);
   font-style: italic;
-  font-weight: 500;
+  font-weight: 400;
+  font-size: 1.08em;
   color: var(--accent-2);
   letter-spacing: 0;
 }
 
 .eyebrow{
-  font-family: var(--sans);
-  font-size: 12.5px;
-  font-weight: 600;
-  letter-spacing: 0.13em;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-muted);
   display: inline-flex;
@@ -364,3 +366,62 @@ form.contact-form{ display:flex; flex-direction:column; gap: 20px; margin-top: 3
 .contact-info .info-block:first-child{ border-top:none; }
 .contact-info .info-block h5{ font-size: 12px; text-transform:uppercase; letter-spacing:0.1em; color: var(--text-faint); margin-bottom: 10px; font-weight: 600; }
 .contact-info .info-block p, .contact-info .info-block a{ font-size: 16px; color: var(--text); }
+
+/* ---------- agenti fissi — libreria di agenti pronti (rif. Cashflow Automations) ---------- */
+.agents-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 50px; }
+.agent-card{
+  background: var(--bg-alt); border: 1px solid var(--line); border-radius: var(--radius-card);
+  padding: 30px 28px; display:flex; flex-direction:column; position:relative; overflow:hidden;
+  transition: border-color .35s var(--ease), transform .35s var(--ease);
+}
+.agent-card:hover{ border-color: var(--module-c, var(--accent-2)); transform: translateY(-3px); }
+.agent-card[data-accent="gold"]{ --module-c: var(--gold); --module-dim: var(--gold-dim); }
+.agent-card[data-accent="green"]{ --module-c: var(--green); --module-dim: var(--green-dim); }
+.agent-card[data-accent="purple"]{ --module-c: var(--purple); --module-dim: var(--purple-dim); }
+.agent-card .cat-tag{
+  display:inline-flex; align-self:flex-start; font-family: var(--mono); font-size: 10.5px; font-weight:500;
+  letter-spacing:0.06em; text-transform:uppercase; color: var(--module-c, var(--accent-2));
+  background: var(--module-dim, var(--accent-dim)); padding: 5px 11px; border-radius: var(--radius);
+  margin-bottom: 18px;
+}
+.agent-card h4{ font-size: 17px; font-weight:700; margin-bottom:10px; letter-spacing:-0.01em; }
+.agent-card p{ font-size: 13.5px; flex:1; }
+.agent-card .price-row{ display:flex; align-items:center; justify-content:space-between; margin-top:22px; padding-top:18px; border-top:1px solid var(--line); }
+.agent-card .price-row .price{ font-family: var(--sans); font-weight:700; font-size:17px; color: var(--text); }
+.agent-card .price-row .price span{ font-size:11px; font-weight:500; color: var(--text-faint); }
+.agent-card .price-row a{ font-size:13px; font-weight:600; color: var(--module-c, var(--accent-2)); }
+@media (max-width: 860px){ .agents-grid{ grid-template-columns: 1fr; } }
+
+/* ---------- dashboard — pannello agenti live (rif. TheFounderOS, Promptible) ---------- */
+.dashboard-layout{ display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 64px; align-items:center; }
+.dashboard-panel{
+  background: var(--bg-panel); border: 1px solid var(--line); border-radius: var(--radius-card);
+  overflow: hidden; box-shadow: 0 40px 80px -30px rgba(0,0,0,0.55);
+}
+.dash-topbar{ display:flex; align-items:center; gap:14px; padding: 16px 22px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,0.02); }
+.dash-dots{ display:flex; gap:6px; }
+.dash-dots span{ width:9px; height:9px; border-radius:50%; background: var(--line-strong); }
+.dash-title{ font-family: var(--mono); font-size: 12px; color: var(--text-faint); letter-spacing:0.02em; }
+.dash-stats{ display:grid; grid-template-columns: repeat(3,1fr); border-bottom: 1px solid var(--line); }
+.dash-stats .dash-stat{ padding: 26px 22px; border-left: 1px solid var(--line); }
+.dash-stats .dash-stat:first-child{ border-left:none; }
+.dash-stat b{ display:block; font-family: var(--sans); font-weight:700; font-size: 26px; color: var(--accent-2); letter-spacing:-0.01em; }
+.dash-stat span{ font-size: 11px; color: var(--text-faint); text-transform:uppercase; letter-spacing:0.06em; margin-top:6px; display:block; }
+.dash-agents{ padding: 6px 22px; border-bottom: 1px solid var(--line); }
+.dash-agent-row{ display:flex; align-items:center; gap:12px; padding: 14px 0; font-size:13.5px; color: var(--text); border-top: 1px solid var(--line); }
+.dash-agent-row:first-child{ border-top:none; }
+.dash-agent-row em{ margin-left:auto; font-style:normal; font-family: var(--mono); font-size:11px; color: var(--text-faint); }
+.status-dot{ width:8px; height:8px; border-radius:50%; background: var(--accent); flex-shrink:0; position:relative; }
+.status-dot::after{ content:''; position:absolute; inset:-4px; border-radius:50%; background: inherit; opacity:0.4; animation: pulse-dot 2s ease-out infinite; }
+.status-dot[data-accent="gold"]{ background: var(--gold); }
+.status-dot[data-accent="green"]{ background: var(--green); }
+.status-dot[data-accent="purple"]{ background: var(--purple); }
+@keyframes pulse-dot{ 0%{ transform: scale(0.6); opacity:0.5; } 100%{ transform: scale(2.4); opacity:0; } }
+.dash-log{ padding: 18px 22px 22px; font-family: var(--mono); font-size: 12.5px; line-height:2; color: var(--text-muted); background: rgba(0,0,0,0.15); }
+.dash-log-line{ opacity:0; transform: translateX(-8px); white-space: nowrap; overflow:hidden; text-overflow:ellipsis; }
+@media (max-width: 900px){ .dashboard-layout{ grid-template-columns:1fr; gap:40px; } }
+@media (max-width: 560px){
+  .dash-stats{ grid-template-columns: 1fr; }
+  .dash-stats .dash-stat{ border-left:none; border-top:1px solid var(--line); }
+  .dash-stats .dash-stat:first-child{ border-top:none; }
+}
