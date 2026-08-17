@@ -93,6 +93,26 @@ document.addEventListener('DOMContentLoaded', () => {
       const cls = p.hot ? ' class="p-hot"' : '';
       svg += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${p.rad.toFixed(2)}" fill-opacity="${p.op.toFixed(2)}"${cls}></circle>`;
     });
+    svg += '</g>';
+    // nucleo bianco a stella — il piccolo "sotto-hub" chiaro visto al centro della rete nel riferimento
+    const coreN = 8, coreR = 11;
+    const core = [{ x: 50, y: 50 }];
+    for (let i = 0; i < coreN; i++) {
+      const r = coreR * (0.35 + rand() * 0.65);
+      const theta = rand() * Math.PI * 2;
+      core.push({ x: 50 + r * Math.cos(theta), y: 50 + r * Math.sin(theta), rad: 0.9 + rand() * 1.1 });
+    }
+    svg += '<g class="p-core-lines">';
+    for (let i = 1; i < core.length; i++) {
+      svg += `<line x1="50" y1="50" x2="${core[i].x.toFixed(1)}" y2="${core[i].y.toFixed(1)}"></line>`;
+      const next = core[(i % (core.length - 1)) + 1];
+      if (rand() > 0.45) svg += `<line x1="${core[i].x.toFixed(1)}" y1="${core[i].y.toFixed(1)}" x2="${next.x.toFixed(1)}" y2="${next.y.toFixed(1)}"></line>`;
+    }
+    svg += '</g><g class="p-core-dots">';
+    core.forEach((p, i) => {
+      const rad = i === 0 ? 2.6 : p.rad;
+      svg += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${rad.toFixed(2)}"></circle>`;
+    });
     svg += '</g></svg>';
     return svg;
   }

@@ -489,6 +489,10 @@ nav.main a.current{ color: var(--accent-2); }
 .net-circle--hub .particle-net .p-dots circle{ fill: currentColor; }
 .net-circle--hub .particle-net .p-dots circle.p-hot{ fill: color-mix(in srgb, currentColor 55%, white); filter: drop-shadow(0 0 2.6px currentColor); }
 .net-circle--hub .particle-net .p-lines line{ stroke: currentColor; stroke-width:0.45; }
+/* nucleo bianco a stella al centro — sotto-hub chiaro innestato nella nube di particelle, come nel riferimento */
+.net-circle--hub .particle-net .p-core-lines line{ stroke: rgba(255,255,255,0.55); stroke-width:0.3; }
+.net-circle--hub .particle-net .p-core-dots circle{ fill: #F3F1EC; filter: drop-shadow(0 0 1.6px rgba(255,255,255,0.7)); }
+.net-circle--hub .particle-net .p-core-dots circle:first-child{ fill:#fff; filter: drop-shadow(0 0 3px rgba(255,255,255,0.9)); }
 .net-circle--node{ width:46px; height:46px; }
 .net-circle--tool{ width:34px; height:34px; }
 .net-circle--tool .net-circle-dot{ width:6px; height:6px; }
