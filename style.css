@@ -29,6 +29,12 @@
   --green-dim: rgba(76,140,94,0.12);
   --purple: #9B6BF2;
   --purple-dim: rgba(155,107,242,0.12);
+  --red: #D6553F;
+  --red-dim: rgba(214,85,63,0.14);
+  --teal: #4FBFA8;
+  --teal-dim: rgba(79,191,168,0.14);
+  --blue: #5B8FE0;
+  --blue-dim: rgba(91,143,224,0.14);
   --radius: 999px;
   --radius-card: 14px;
   --serif: 'Instrument Serif', Georgia, serif;
@@ -507,6 +513,11 @@ nav.main a.current{ color: var(--accent-2); }
 .brain-map-node[data-accent="gold"]{ --module-c: var(--gold); }
 .brain-map-node[data-accent="green"]{ --module-c: var(--green); }
 .brain-map-node[data-accent="purple"]{ --module-c: var(--purple); }
+.brain-map-node[data-accent="red"]{ --module-c: var(--red); }
+.brain-map-node[data-accent="teal"]{ --module-c: var(--teal); }
+.brain-map-node[data-accent="blue"]{ --module-c: var(--blue); }
+/* i tre hub (org-chart, second-brain, drilldown) — nucleo caldo rosso/arancio come da riferimento, distinto dal khaki del resto del sito */
+.brain-map-hub, .drilldown-hub{ --module-c: var(--red); }
 .net-label-sm{ font-size:11.5px; font-weight:700; color: var(--module-c, var(--text)); white-space:nowrap; }
 @media (max-width: 900px){
   .brain-map-body{ flex-direction:column; }
@@ -568,7 +579,7 @@ nav.main a.current{ color: var(--accent-2); }
 .drilldown-hub{
   margin-top: 30px; display:flex; flex-direction:column; align-items:center; text-align:center;
   width:max-content; max-width: 100%; margin-left:auto; margin-right:auto; position:relative;
-  --module-c: var(--gold);
+  --module-c: var(--red);
 }
 .drilldown-hub .net-label{ margin-top:12px; }
 .drilldown-hub .org-tag{ font-family: var(--mono); font-size:10px; color: var(--gold); background: var(--gold-dim); padding:3px 9px; border-radius:var(--radius); display:inline-block; margin-bottom:6px; }
