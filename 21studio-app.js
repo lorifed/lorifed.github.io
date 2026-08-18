@@ -108,7 +108,12 @@
     stripe: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M7 10c0-1 1-1.5 2.5-1.5S12 9 12 10s-1 1.4-2.5 1.4S7 12 7 13s1 1.5 2.5 1.5S12 14 12 13"/></svg>`,
     invoice: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h4"/></svg>`,
     alert: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4M12 17h.01"/></svg>`,
-    linkedin: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4.5c0-1.4 1-2.5 2.3-2.5S17 11 17 12.8V17M12 12.5V17"/></svg>`
+    linkedin: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4.5c0-1.4 1-2.5 2.3-2.5S17 11 17 12.8V17M12 12.5V17"/></svg>`,
+    pen: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>`,
+    funnel: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h18l-7 9v6l-4 2v-8L3 4Z"/></svg>`,
+    globe: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 4 5.5 4 9s-1.5 6.5-4 9c-2.5-2.5-4-5.5-4-9s1.5-6.5 4-9Z"/></svg>`,
+    shield: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"/><path d="m9 12 2 2 4-4"/></svg>`,
+    palette: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3a9 9 0 1 0 0 18c1.5 0 1.8-1 1-2-.6-.7-.3-2 1-2h1.5A4.5 4.5 0 0 0 20 12.5C20 7.3 16.6 3 12 3Z"/><circle cx="8" cy="11" r="1"/><circle cx="12" cy="8" r="1"/><circle cx="16" cy="11" r="1"/></svg>`
   };
   var DEPARTMENTS = [
     {
@@ -119,11 +124,11 @@
       color: "gold",
       var: "--gold",
       hub: "Agente Marketing",
-      task: "Ricerca trend e monitoraggio competitor",
+      task: "Studio competitor, contenuti e KPI \u2014 ogni settimana",
       tools: [
-        { name: "Instagram", icon: "instagram", agent: "Content Repurposer", desc: "Ritaglia e ripubblica i contenuti migliori ogni settimana" },
-        { name: "Google Trends", icon: "trend", agent: "Trend Scanner", desc: "Segnala i trend rilevanti per il tuo settore" },
-        { name: "Notion", icon: "notion", agent: "Content Calendar", desc: "Tiene il calendario editoriale sempre aggiornato" }
+        { name: "Meta & Instagram", icon: "instagram", agent: "Competitor Watch", desc: "Studia offerta, posizionamento, contenuti e ads dei competitor ogni settimana e adatta gli spunti al tuo brand" },
+        { name: "Content Studio", icon: "pen", agent: "Content Creator", desc: "Scrive e pubblica da solo nuovi contenuti ogni settimana, basati sullo studio dei competitor" },
+        { name: "Meta & Google Ads", icon: "trend", agent: "Performance Analyst", desc: "Monitora i KPI di ogni campagna e segnala cosa cambiare prima che i risultati calino" }
       ]
     },
     {
@@ -134,11 +139,11 @@
       color: "red",
       var: "--red",
       hub: "Agente Vendite",
-      task: "Onboard new clients \xB7 Segue ogni preventivo",
+      task: "Nuovi lead ogni giorno \xB7 Pipeline sempre aggiornata",
       tools: [
-        { name: "Google Maps", icon: "maps", agent: "Lead Scraper", desc: "Trova nuovi lead locali ogni settimana" },
+        { name: "Google Maps", icon: "maps", agent: "Lead Scraper", desc: "Trova nuovi lead locali ogni giorno, senza intervento manuale" },
         { name: "Gmail", icon: "mail", agent: "Follow-up Preventivi", desc: "Segue ogni preventivo finch\xE9 non risponde" },
-        { name: "Calendario", icon: "calendar", agent: "Company Briefing", desc: "Prepara un briefing prima di ogni call" }
+        { name: "CRM", icon: "funnel", agent: "Pipeline Manager", desc: "Aggiorna il CRM e segnala le trattative ferme da troppo tempo" }
       ]
     },
     {
@@ -200,6 +205,21 @@
         { name: "LinkedIn", icon: "linkedin", agent: "Competitor Tracker", desc: "Segue le mosse pubbliche dei competitor" },
         { name: "Notion", icon: "notion", agent: "Strategy Briefing", desc: "Smista le mosse consigliate a chi deve agire" }
       ]
+    },
+    {
+      id: "tech",
+      order: "07",
+      label: "Tech & Sito",
+      role: "General \u2014 Lead Tech",
+      color: "orange",
+      var: "--orange",
+      hub: "Agente Tech & Sito",
+      task: "Sito, e-commerce e sicurezza sempre sotto controllo",
+      tools: [
+        { name: "Sito & E-commerce", icon: "globe", agent: "Site Manager", desc: "Monitora uptime, prestazioni e aggiornamenti del sito e dello shop online" },
+        { name: "Sicurezza", icon: "shield", agent: "Security Watch", desc: "Controlla vulnerabilit\xE0, backup e certificati, e segnala i rischi prima che diventino problemi" },
+        { name: "Design", icon: "palette", agent: "UI/UX Updater", desc: "Aggiorna pagine, grafiche e contenuti visivi in linea con il brand" }
+      ]
     }
   ];
   function icon(name) {
@@ -223,7 +243,7 @@
       this.root.innerHTML = `
       <div class="dd-badges">
         <span class="badge dd-badge-dep"><i class="badge-dot"></i><span class="dd-dep-name"></span></span>
-        <span class="badge">${DEPARTMENTS[0].tools.length} SUB-AGENTI</span>
+        <span class="badge dd-subcount">${DEPARTMENTS[0].tools.length} SUB-AGENTI</span>
       </div>
       <div class="dd-tree"></div>
       <button type="button" class="pill dd-crumb" aria-label="Cambia reparto">
@@ -237,6 +257,7 @@
       this.crumbLabelEl = this.root.querySelector(".dd-crumb-label");
       this.crumbEl = this.root.querySelector(".dd-crumb");
       this.badgeDot = this.root.querySelector(".dd-badge-dep .badge-dot");
+      this.subcountEl = this.root.querySelector(".dd-subcount");
       this.crumbEl.addEventListener("click", (e) => {
         const rect = this.crumbEl.getBoundingClientRect();
         const clickedLeftHalf = e.clientX - rect.left < rect.width / 2;
@@ -263,6 +284,7 @@
         this.crumbLabelEl.textContent = dep.label;
         this.badgeDot.style.background = `var(${dep.var})`;
         this.root.style.setProperty("--dep-color", `var(${dep.var})`);
+        this.subcountEl.textContent = `${dep.tools.length} SUB-AGENTI`;
         this.treeEl.innerHTML = `
         <div class="dd-cols">
           ${dep.tools.map(
