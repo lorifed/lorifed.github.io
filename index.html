@@ -9,7 +9,7 @@
          drill-down). DepartmentDrilldown costruisce il suo markup via innerHTML lato
          client, quindi non riceve mai l'attributo di scoping che Astro applica agli
          elementi scritti nei template — senza is:global queste regole (in particolare
-         drilldown.css) non lo avrebbero mai raggiunto. --><link rel="stylesheet" href="/21studio-styles.css?v=heroVideo09"><script type="module">if(window.gsap&&window.ScrollTrigger&&window.Lenis){const e=new Lenis({duration:1.05,easing:t=>1-Math.pow(1-t,3)});e.on("scroll",ScrollTrigger.update),gsap.ticker.add(t=>e.raf(t*1e3)),gsap.ticker.lagSmoothing(0),document.querySelectorAll(".reveal").forEach(t=>{ScrollTrigger.create({trigger:t,start:"top 85%",once:!0,onEnter:()=>t.classList.add("is-in")})})}else document.querySelectorAll(".reveal").forEach(e=>e.classList.add("is-in"));const S=document.getElementById("site-header"),p=()=>S?.classList.toggle("is-scrolled",window.scrollY>12);p();window.addEventListener("scroll",p,{passive:!0});const s=document.getElementById("sh-burger"),d=document.getElementById("sh-mobile-menu");s&&d&&(s.addEventListener("click",()=>{const e=d.classList.toggle("is-open");s.setAttribute("aria-expanded",String(e)),s.setAttribute("aria-label",e?"Chiudi il menu":"Apri il menu")}),d.querySelectorAll("a").forEach(e=>e.addEventListener("click",()=>{d.classList.remove("is-open"),s.setAttribute("aria-expanded","false")})));const n=document.querySelector(".hero-particles");if(n){let e=function(){const i=Math.min(window.devicePixelRatio||1,2);return n.width=n.parentElement.clientWidth*i,n.height=n.parentElement.clientHeight*i,n.style.width="100%",n.style.height="100%",i},t=function(i){r.setTransform(l,0,0,l,0,0);const u=n.clientWidth,g=n.clientHeight;r.clearRect(0,0,u,g);for(const o of f){const E=o.x*u+Math.sin(i*o.speed+o.phase)*14,y=o.y*g+Math.cos(i*o.speed*.8+o.phase)*14;r.beginPath(),r.fillStyle="rgba(183,193,126,0.35)",r.arc(E,y,o.r,0,Math.PI*2),r.fill()}c||requestAnimationFrame(o=>t(o/1e3))};const r=n.getContext("2d"),c=window.matchMedia("(prefers-reduced-motion: reduce)").matches;let l=e();window.addEventListener("resize",()=>l=e());const f=Array.from({length:46},()=>({x:Math.random(),y:Math.random(),r:.6+Math.random()*1.6,phase:Math.random()*Math.PI*2,speed:.05+Math.random()*.08}));t(0)}const h=document.getElementById("os-mock");h&&window.Site.initSidebarPulse(h);const{DepartmentDrilldown:b}=window.Site,m=document.getElementById("dd-root");m&&new b(m,{startId:"vendite"});const w=document.getElementById("blackbox-panel");w&&window.Site.initStatsPanel(w);function v(e,t,r){const c={v:0};window.gsap.to(c,{v:t,duration:1.3,ease:"power2.out",onUpdate:()=>e.textContent=Math.round(c.v)+r})}const a=document.querySelectorAll(".g-stat-n");a.length&&!window.gsap?a.forEach(e=>e.textContent=e.dataset.count+(e.dataset.suffix||"")):a.length&&window.ScrollTrigger.create({trigger:a[0].closest(".guarantee-stats"),start:"top 80%",once:!0,onEnter:()=>a.forEach(e=>v(e,Number(e.dataset.count),e.dataset.suffix||""))});
+         drilldown.css) non lo avrebbero mai raggiunto. --><link rel="stylesheet" href="/21studio-styles.css?v=heroVideo10"><script type="module">if(window.gsap&&window.ScrollTrigger&&window.Lenis){const e=new Lenis({duration:1.05,easing:t=>1-Math.pow(1-t,3)});e.on("scroll",ScrollTrigger.update),gsap.ticker.add(t=>e.raf(t*1e3)),gsap.ticker.lagSmoothing(0),document.querySelectorAll(".reveal").forEach(t=>{ScrollTrigger.create({trigger:t,start:"top 85%",once:!0,onEnter:()=>t.classList.add("is-in")})})}else document.querySelectorAll(".reveal").forEach(e=>e.classList.add("is-in"));const S=document.getElementById("site-header"),p=()=>S?.classList.toggle("is-scrolled",window.scrollY>12);p();window.addEventListener("scroll",p,{passive:!0});const s=document.getElementById("sh-burger"),d=document.getElementById("sh-mobile-menu");s&&d&&(s.addEventListener("click",()=>{const e=d.classList.toggle("is-open");s.setAttribute("aria-expanded",String(e)),s.setAttribute("aria-label",e?"Chiudi il menu":"Apri il menu")}),d.querySelectorAll("a").forEach(e=>e.addEventListener("click",()=>{d.classList.remove("is-open"),s.setAttribute("aria-expanded","false")})));const n=document.querySelector(".hero-particles");if(n){let e=function(){const i=Math.min(window.devicePixelRatio||1,2);return n.width=n.parentElement.clientWidth*i,n.height=n.parentElement.clientHeight*i,n.style.width="100%",n.style.height="100%",i},t=function(i){r.setTransform(l,0,0,l,0,0);const u=n.clientWidth,g=n.clientHeight;r.clearRect(0,0,u,g);for(const o of f){const E=o.x*u+Math.sin(i*o.speed+o.phase)*14,y=o.y*g+Math.cos(i*o.speed*.8+o.phase)*14;r.beginPath(),r.fillStyle="rgba(183,193,126,0.35)",r.arc(E,y,o.r,0,Math.PI*2),r.fill()}c||requestAnimationFrame(o=>t(o/1e3))};const r=n.getContext("2d"),c=window.matchMedia("(prefers-reduced-motion: reduce)").matches;let l=e();window.addEventListener("resize",()=>l=e());const f=Array.from({length:46},()=>({x:Math.random(),y:Math.random(),r:.6+Math.random()*1.6,phase:Math.random()*Math.PI*2,speed:.05+Math.random()*.08}));t(0)}const h=document.getElementById("os-mock");h&&window.Site.initSidebarPulse(h);const{DepartmentDrilldown:b}=window.Site,m=document.getElementById("dd-root");m&&new b(m,{startId:"vendite"});const w=document.getElementById("blackbox-panel");w&&window.Site.initStatsPanel(w);function v(e,t,r){const c={v:0};window.gsap.to(c,{v:t,duration:1.3,ease:"power2.out",onUpdate:()=>e.textContent=Math.round(c.v)+r})}const a=document.querySelectorAll(".g-stat-n");a.length&&!window.gsap?a.forEach(e=>e.textContent=e.dataset.count+(e.dataset.suffix||"")):a.length&&window.ScrollTrigger.create({trigger:a[0].closest(".guarantee-stats"),start:"top 80%",once:!0,onEnter:()=>a.forEach(e=>v(e,Number(e.dataset.count),e.dataset.suffix||""))});
 </script></head> <body>  <header class="site-header" id="site-header" data-astro-cid-3ef6ksr2> <div class="wrap sh-inner" data-astro-cid-3ef6ksr2> <a href="index.html" class="sh-logo" aria-label="21studio — home" data-astro-cid-3ef6ksr2>21</a> <nav class="sh-nav" aria-label="Navigazione principale" data-astro-cid-3ef6ksr2> <a href="sistema-su-misura.html" data-astro-cid-3ef6ksr2>Consulenza</a> <a href="agenti-fissi.html" data-astro-cid-3ef6ksr2>Agenti Fissi</a> <a href="contatti.html" data-astro-cid-3ef6ksr2>Contatti</a> </nav> <a href="contatti.html" class="btn btn-primary sh-cta" data-astro-cid-3ef6ksr2>Prenota una call <span aria-hidden="true" data-astro-cid-3ef6ksr2>→</span></a> <button type="button" class="sh-burger" id="sh-burger" aria-label="Apri il menu" aria-expanded="false" data-astro-cid-3ef6ksr2> <span data-astro-cid-3ef6ksr2></span><span data-astro-cid-3ef6ksr2></span><span data-astro-cid-3ef6ksr2></span> </button> </div> <div class="sh-mobile-menu" id="sh-mobile-menu" data-astro-cid-3ef6ksr2> <a href="sistema-su-misura.html" data-astro-cid-3ef6ksr2>Consulenza</a> <a href="agenti-fissi.html" data-astro-cid-3ef6ksr2>Agenti Fissi</a> <a href="contatti.html" data-astro-cid-3ef6ksr2>Contatti</a> <a href="contatti.html" class="btn btn-primary" data-astro-cid-3ef6ksr2>Prenota una call <span aria-hidden="true" data-astro-cid-3ef6ksr2>→</span></a> </div> </header>   <main> <section class="hero hero-centered" data-astro-cid-bbe6dxrz> <video class="hero-video" id="hero-video" autoplay muted loop playsinline preload="auto" poster="/assets/video/hero-poster.jpg" aria-hidden="true"><source src="/assets/video/hero-network.mp4" type="video/mp4"></video> <div class="hero-video-scrim" aria-hidden="true"></div> <div class="hero-glow" aria-hidden="true" data-astro-cid-bbe6dxrz></div> <div class="hero-aurora" aria-hidden="true"></div> <div class="wrap hero-centered-inner" data-astro-cid-bbe6dxrz> <span class="badge hero-badge reveal" data-astro-cid-bbe6dxrz><i class="badge-dot pulse" data-astro-cid-bbe6dxrz></i>NUOVO — Costruito sulle esigenze della tua azienda</span> <h1 class="hero-title reveal" data-astro-cid-bbe6dxrz>
 Un team di agenti AI, costruito <em class="accent" data-astro-cid-bbe6dxrz>su misura</em> per la tua azienda.
 </h1> <p class="lede hero-lede reveal" data-astro-cid-bbe6dxrz>
@@ -43,7 +43,139 @@ Non un tool in più da imparare. Un sistema agentico custom, progettato sulle es
 <div class="problem-item card reveal" style="transition-delay:.2s">L'automazione si rompe appena il lavoro richiede un giudizio.</div>
 </div>
 </div>
+</section> <section class="section immersive-section" data-astro-cid-immersive01>
+<div class="wrap">
+<div class="immersive-head">
+<span class="eyebrow reveal">Come funziona</span>
+<h2 class="h2 reveal">Come 21studio costruisce il tuo sistema</h2>
+<p class="lede reveal">Dalle fondamenta che guidano ogni agente fino alla voce che ti risponde: ecco cosa c'è sotto al cofano.</p>
+</div>
+<div class="immersive-grid">
+<div class="immersive-visual-sticky">
+<div class="immersive-visual">
+
+<div class="immersive-frame is-active" data-frame="1">
+<div class="if-tag">FONDAMENTA · SEMPRE AGGIORNATE</div>
+<div class="kfd-top">
+<div class="kfd-card"><strong>Brand &amp; offerta</strong><small>Posizionamento, prezzi, servizi</small></div>
+<div class="kfd-card"><strong>Tono &amp; voce</strong><small>Come 21studio comunica</small></div>
+<div class="kfd-card"><strong>Contesto cliente</strong><small>Storico, note, preferenze</small></div>
+</div>
+<div class="kfd-hub"><strong>21studio Knowledge</strong><small>La base che guida ogni agente</small></div>
+</div>
+
+<div class="immersive-frame" data-frame="2">
+<div class="if-tag">IL SISTEMA · CHI RISPONDE A CHI</div>
+<div class="if2-stage">
+<div class="if2-orbit" style="width:230px;height:230px"></div>
+<div class="if2-orbit" style="width:340px;height:340px"></div>
+<svg class="if2-svg"></svg>
+<div class="if2-hub"><strong>Direttore</strong><small>Coordina tutto</small></div>
+<div class="if2-node" data-ac="orange" style="left:50%;top:14%"><span>Marketing</span></div>
+<div class="if2-node" data-ac="blue" style="left:81.2%;top:32%"><span>Vendite</span></div>
+<div class="if2-node" data-ac="green" style="left:81.2%;top:68%"><span>Operations</span></div>
+<div class="if2-node" data-ac="purple" style="left:50%;top:86%"><span>Assistenza</span></div>
+<div class="if2-node" data-ac="gold" style="left:18.8%;top:68%"><span>Finance</span></div>
+<div class="if2-node" data-ac="teal" style="left:18.8%;top:32%"><span>Ricerca</span></div>
+</div>
+</div>
+
+<div class="immersive-frame" data-frame="3">
+<div class="if-tag">IN AZIONE · DALLA CHAT ALL'AGENTE</div>
+<div class="if3-chat">
+<div class="if3-msg-user">Manda il preventivo aggiornato al cliente Rossi</div>
+<div class="if3-msg-system"><i class="if3-dot" data-ac="blue"></i>Assegnato a <strong>Agente Vendite</strong></div>
+<div class="if3-msg-user">Rispondi al ticket di stamattina</div>
+<div class="if3-msg-system"><i class="if3-dot" data-ac="purple"></i>Assegnato a <strong>Agente Assistenza</strong></div>
+<div class="if3-msg-user">Prepara il report marketing di questa settimana</div>
+<div class="if3-msg-system"><i class="if3-dot" data-ac="orange"></i>Assegnato a <strong>Agente Marketing</strong></div>
+</div>
+</div>
+
+<div class="immersive-frame" data-frame="4">
+<div class="if-tag">SECOND BRAIN · SEMPRE AGGIORNATO</div>
+<div class="if4-bg" aria-hidden="true"></div>
+<div class="if4-transcript">
+<div class="if4-line-q">"Qual è il fatturato di agosto?"</div>
+<div class="if4-line-a">€48.200 — +12% rispetto a luglio</div>
+<div class="if4-line-q">"Quanti lead sono arrivati questa settimana?"</div>
+<div class="if4-line-a">31 lead, 9 già qualificati</div>
+</div>
+<div class="if4-voice-bar"><i class="if4-mic" aria-hidden="true"></i><span>Parla con il tuo second brain…</span></div>
+</div>
+
+</div>
+</div>
+<div class="immersive-steps">
+<div class="immersive-step is-active" data-step="1">
+<span class="immersive-num">01</span>
+<h3>Brand, offerta e contesto cliente</h3>
+<p>Prima di scrivere una riga di automazione, codifichiamo chi sei: posizionamento, offerta, prezzi e lo storico dei tuoi clienti. È la base su cui ragiona ogni agente.</p>
+</div>
+<div class="immersive-step" data-step="2">
+<span class="immersive-num">02</span>
+<h3>Un sistema che risponde a te</h3>
+<p>Ogni reparto ha il proprio agente. Tutti riportano al Direttore, che smista il lavoro e ti tiene sempre nel loop.</p>
+</div>
+<div class="immersive-step" data-step="3">
+<span class="immersive-num">03</span>
+<h3>Assegni un task, parte l'agente giusto</h3>
+<p>Scrivi in chat cosa serve fare: il sistema capisce di chi è il compito e lo instrada all'agente di reparto corretto.</p>
+</div>
+<div class="immersive-step" data-step="4">
+<span class="immersive-num">04</span>
+<h3>Il tuo second brain, sempre a portata di voce</h3>
+<p>Ogni dato dell'azienda finisce in un unico second brain proprietario. Lo consulti parlando, come con un collega.</p>
+</div>
+</div>
+</div>
+</div>
 </section>
+<script>(function(){
+  var section = document.querySelector('.immersive-section');
+  if(!section) return;
+  var steps = section.querySelectorAll('.immersive-step');
+  var frames = section.querySelectorAll('.immersive-frame');
+  function setActive(n){
+    steps.forEach(function(s){ s.classList.toggle('is-active', s.getAttribute('data-step') === n); });
+    frames.forEach(function(f){ f.classList.toggle('is-active', f.getAttribute('data-frame') === n); });
+  }
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ setActive(e.target.getAttribute('data-step')); }
+      });
+    }, { rootMargin:'-45% 0px -45% 0px', threshold:0 });
+    steps.forEach(function(s){ io.observe(s); });
+  }
+  function drawIf2(){
+    var stage = section.querySelector('.if2-stage');
+    var svg = section.querySelector('.if2-svg');
+    var hub = section.querySelector('.if2-hub');
+    if(!stage || !svg || !hub) return;
+    var stageRect = stage.getBoundingClientRect();
+    if(!stageRect.width || !stageRect.height) return;
+    svg.setAttribute('viewBox', '0 0 ' + stageRect.width + ' ' + stageRect.height);
+    svg.innerHTML = '';
+    var hubRect = hub.getBoundingClientRect();
+    var hx = hubRect.left + hubRect.width/2 - stageRect.left;
+    var hy = hubRect.top + hubRect.height/2 - stageRect.top;
+    var nodes = section.querySelectorAll('.if2-node');
+    var ns = 'http://www.w3.org/2000/svg';
+    nodes.forEach(function(node){
+      var r = node.getBoundingClientRect();
+      var nx = r.left + r.width/2 - stageRect.left;
+      var ny = r.top + r.height/2 - stageRect.top;
+      var path = document.createElementNS(ns,'path');
+      path.setAttribute('d', 'M '+hx+' '+hy+' L '+nx+' '+ny);
+      svg.appendChild(path);
+    });
+  }
+  window.addEventListener('load', drawIf2);
+  window.addEventListener('resize', drawIf2);
+  setTimeout(drawIf2, 300);
+  setTimeout(drawIf2, 1000);
+})();</script>
 <section class="section departments-section" id="dipartimenti" data-astro-cid-departments01>
 <div class="wrap">
 <div class="departments-head">
