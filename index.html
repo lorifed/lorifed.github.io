@@ -762,8 +762,8 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
     for(i=0;i<N.length;i++){
       a=N[i]; var x=a.x+a.ox, y=a.y+a.oy;
       var puls = a.hub ? (1+0.18*Math.sin(t*2.2+a.ph)) : 1;
-      if(a.hub){ ctx.globalAlpha=0.13; ctx.fillStyle=a.c;
-        ctx.beginPath(); ctx.arc(x,y,a.r*puls*4.6,0,6.2832); ctx.fill(); }
+      if(a.hub){ ctx.globalAlpha=0.07; ctx.fillStyle=a.c;
+        ctx.beginPath(); ctx.arc(x,y,a.r*puls*3.4,0,6.2832); ctx.fill(); }
       ctx.globalAlpha=a.a; ctx.fillStyle=a.c;
       ctx.beginPath(); ctx.arc(x,y,a.r*puls,0,6.2832); ctx.fill();
     }
@@ -867,7 +867,7 @@ var NOMI=['Coordinamento','Marketing','Vendite','Assistenza','Operations','Ricer
 var schede=[].slice.call(document.querySelectorAll('#pianta .scheda'));
 var stato={costruzione:0,attivo:-1,transizione:0,giro:0};
 var mouseX=0,mouseY=0,mx=0,my=0;
-function rgb(h){var n=parseInt(h.slice(1),16);return[n>>16&255,n>>8&255,n&255];}
+function rgb(h){if(h.charAt(0)==='#'){var n=parseInt(h.slice(1),16);return[n>>16&255,n>>8&255,n&255];}var m=h.match(/\d+/g);return[+m[0],+m[1],+m[2]];}
 function conAlfa(h,a){var c=rgb(h);return'rgba('+c[0]+','+c[1]+','+c[2]+','+a+')';}
 function fondi(a,b,t){var x=rgb(a),y=rgb(b);return'rgb('+Math.round(x[0]+(y[0]-x[0])*t)+','+Math.round(x[1]+(y[1]-x[1])*t)+','+Math.round(x[2]+(y[2]-x[2])*t)+')';}
 function scala(h,f){var c=rgb(h);return'rgb('+Math.min(255,Math.round(c[0]*f))+','+Math.min(255,Math.round(c[1]*f))+','+Math.min(255,Math.round(c[2]*f))+')';}
