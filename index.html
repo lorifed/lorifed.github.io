@@ -68,7 +68,7 @@ nav.links a:hover{color:var(--text)}
 .altimeter .track{width:52px;height:1px;background:var(--line-strong);position:relative}
 .altimeter .track i{position:absolute;top:-2px;left:0;width:5px;height:5px;border-radius:50%;background:var(--accent-2)}
 
-#film{position:relative;height:760vh}
+#film{position:relative;height:230vh}
 .stage{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--bg)}
 .sky{position:absolute;inset:0;background:
   radial-gradient(ellipse 120% 70% at 50% 110%, rgba(138,154,91,.16), transparent 62%),
@@ -242,45 +242,6 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
     <div class="glow" id="glow"></div>
     <div class="tower" id="tower"></div>
 
-    <div class="floors" id="floors">
-      <div class="floor" data-c="#4dd8ff">
-        <div class="lvl">Piano 01</div>
-        <div class="nm">Coordinamento</div>
-        <p class="ds">Smista le richieste, decide chi fa cosa, e tiene il filo di tutto il resto.</p>
-        <div class="rl"><span>direttore</span><span>assistente</span></div>
-      </div>
-      <div class="floor" data-c="#b98bff">
-        <div class="lvl">Piano 02</div>
-        <div class="nm">Marketing</div>
-        <p class="ds">Contenuti, campagne e monitoraggio dei competitor. Il lavoro c'è già quando arrivi.</p>
-        <div class="rl"><span>social</span><span>copy</span><span>video</span><span>ads</span><span>recensioni</span></div>
-      </div>
-      <div class="floor" data-c="#e0863c">
-        <div class="lvl">Piano 03</div>
-        <div class="nm">Vendite</div>
-        <p class="ds">Nessun preventivo si raffredda: pipeline aggiornata e follow-up già scritti.</p>
-        <div class="rl"><span>CRM</span><span>lead</span><span>call</span><span>upsell</span><span>e-commerce</span></div>
-      </div>
-      <div class="floor" data-c="#4fbfa8">
-        <div class="lvl">Piano 04</div>
-        <div class="nm">Assistenza</div>
-        <p class="ds">Ticket smistati e risposte pronte, anche alle tre di notte.</p>
-        <div class="rl"><span>customer care</span><span>onboarding</span></div>
-      </div>
-      <div class="floor" data-c="#4ade80">
-        <div class="lvl">Piano 05</div>
-        <div class="nm">Operations</div>
-        <p class="ds">Report quotidiani e lavoro instradato, senza che tu debba chiederlo.</p>
-        <div class="rl"><span>operations</span><span>HR</span><span>sito</span></div>
-      </div>
-      <div class="floor" data-c="#b7c17e">
-        <div class="lvl">Piano 06 · 07</div>
-        <div class="nm">Ricerca e Finance</div>
-        <p class="ds">Mercato tenuto d'occhio, cassa e fatture sempre in chiaro.</p>
-        <div class="rl"><span>performance</span><span>competitor</span><span>fatturazione</span></div>
-      </div>
-    </div>
-
     <div class="title" id="title">
       <div>
         <h1 id="h1">
@@ -305,6 +266,30 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
   </div>
 </section>
 
+
+<section id="pianta">
+  <div class="binario">
+    <div class="palco">
+      <canvas id="pianta-tela"></canvas>
+      <div class="intestazione"><div class="wrap">
+        <span class="occhiello">La pianta</span>
+        <span class="titolo">I reparti della tua azienda, visti dall&rsquo;alto</span>
+        <span class="nota">vista assonometrica</span>
+      </div></div>
+      <article class="scheda" data-i="0" style="--c:#5ec8bd"><div class="riga"><span class="pallino"></span><span class="piano">Piano 01</span></div><h3>Coordinamento</h3><p>Smista le richieste, decide chi fa cosa, e tiene il filo di tutto il resto.</p><div class="sigle"><span>direttore</span><span>assistente</span></div></article>
+      <article class="scheda" data-i="1" style="--c:#9b7fd4"><div class="riga"><span class="pallino"></span><span class="piano">Piano 02</span></div><h3>Marketing</h3><p>Contenuti, campagne e monitoraggio dei competitor. Il lavoro c&rsquo;è già quando arrivi.</p><div class="sigle"><span>social</span><span>copy</span><span>video</span><span>ads</span><span>recensioni</span></div></article>
+      <article class="scheda" data-i="2" style="--c:#e08a5f"><div class="riga"><span class="pallino"></span><span class="piano">Piano 03</span></div><h3>Vendite</h3><p>Nessun preventivo si raffredda: pipeline aggiornata e follow-up già scritti.</p><div class="sigle"><span>CRM</span><span>lead</span><span>call</span><span>upsell</span><span>e-commerce</span></div></article>
+      <article class="scheda" data-i="3" style="--c:#b7c17e"><div class="riga"><span class="pallino"></span><span class="piano">Piano 04</span></div><h3>Assistenza</h3><p>Ticket smistati e risposte pronte, anche alle tre di notte.</p><div class="sigle"><span>customer care</span><span>onboarding</span></div></article>
+      <article class="scheda" data-i="4" style="--c:#7fa8d4"><div class="riga"><span class="pallino"></span><span class="piano">Piano 05</span></div><h3>Operations</h3><p>Report quotidiani e lavoro instradato, senza che tu debba chiederlo.</p><div class="sigle"><span>operations</span><span>HR</span><span>sito</span></div></article>
+      <article class="scheda" data-i="5" style="--c:#c9a227"><div class="riga"><span class="pallino"></span><span class="piano">Piano 06 · 07</span></div><h3>Ricerca e Finance</h3><p>Mercato tenuto d&rsquo;occhio, cassa e fatture sempre in chiaro.</p><div class="sigle"><span>performance</span><span>competitor</span><span>fatturazione</span></div></article>
+      <div class="plancia"><div class="wrap">
+        <div class="avanzamento"><span class="quale" id="pianta-quale">Impianto</span>
+        <span class="traccia"><i id="pianta-barra"></i></span></div>
+        <span class="contatore" id="pianta-contatore">00 / 06</span>
+      </div></div>
+    </div>
+  </div>
+</section>
 <section class="shots" id="dentro">
   <div class="wrap">
     <div class="head">
@@ -629,7 +614,7 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
       .to('#desk',{opacity:0,y:'-14vh',duration:.6,ease:'power2.in'},fine+1.5);
 
   var alt=document.getElementById('alt'), lab=document.getElementById('altlab'), dot=document.getElementById('altdot');
-  var nomi=['Esterno','Coordinamento','Marketing','Vendite','Assistenza','Operations','Ricerca \u00B7 Finance','Piano terra'];
+  var nomi=['Esterno','Piano terra'];
   function quota(p){
     alt.style.opacity = (p>.06 && p<.985) ? .95 : 0;
     var k=Math.min(nomi.length-1, Math.max(0, Math.round(p*(nomi.length-1))));
@@ -808,4 +793,188 @@ window.__IMG_B='UklGRsAkAABXRUJQVlA4ILQkAAAw3gCdASo0A8UBPrlcqE+nJSimpBKJERAXCWlu
 var im=document.querySelectorAll('.frame img');
 if(im[0]) im[0].src='data:image/webp;base64,'+window.__IMG_A;
 if(im[1]) im[1].src='data:image/webp;base64,'+window.__IMG_B;
+</script>
+
+<style>
+#pianta{position:relative}
+#pianta .binario{height:340vh}
+#pianta .palco{position:sticky;top:0;height:100vh;overflow:hidden;background:radial-gradient(120% 90% at 50% 46%,#15180f 0%,var(--bg) 64%)}
+#pianta canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+#pianta .palco::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:radial-gradient(130% 96% at 50% 56%,rgba(11,12,8,0) 46%,rgba(11,12,8,.38) 78%,var(--bg) 98%)}
+#pianta .intestazione{position:absolute;top:0;left:0;right:0;padding:34px 0;z-index:4;pointer-events:none}
+#pianta .intestazione .wrap{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+#pianta .occhiello{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-2)}
+#pianta .titolo{font-size:1.02rem;font-weight:600;letter-spacing:-.01em}
+#pianta .nota{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint);margin-left:auto}
+#pianta .scheda{position:absolute;z-index:3;width:246px;padding:13px 15px 14px;background:rgba(11,12,8,.84);border:1px solid var(--line-strong);border-radius:12px;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);opacity:0;transform:translate(-50%,-50%) scale(.96);pointer-events:none;box-shadow:0 18px 46px -18px rgba(0,0,0,.9)}
+#pianta .scheda .riga{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+#pianta .scheda .pallino{width:7px;height:7px;border-radius:50%;background:var(--c);box-shadow:0 0 10px var(--c)}
+#pianta .scheda .piano{font-family:var(--mono);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-faint)}
+#pianta .scheda h3{font-size:1.02rem;font-weight:600;letter-spacing:-.01em;margin:0 0 6px}
+#pianta .scheda p{margin:0 0 10px;font-size:.79rem;line-height:1.5;color:var(--text-muted)}
+#pianta .scheda .sigle{display:flex;flex-wrap:wrap;gap:5px}
+#pianta .scheda .sigle span{font-family:var(--mono);font-size:.55rem;letter-spacing:.08em;padding:3px 7px;border:1px solid var(--line);border-radius:20px;color:var(--text-faint)}
+#pianta .plancia{position:absolute;left:0;right:0;bottom:0;z-index:4;padding:0 0 26px;pointer-events:none}
+#pianta .plancia .wrap{display:flex;align-items:flex-end;gap:22px}
+#pianta .avanzamento{flex:1;display:flex;align-items:center;gap:12px}
+#pianta .traccia{flex:1;height:1px;background:var(--line-strong);position:relative}
+#pianta .traccia i{position:absolute;left:0;top:-1px;height:3px;width:0%;background:var(--accent-2);box-shadow:0 0 12px var(--accent-2);border-radius:2px}
+#pianta .quale{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);min-width:15ch}
+#pianta .contatore{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--text-faint)}
+@media (max-width:820px){#pianta .binario{height:420vh}#pianta .scheda{width:198px;padding:11px 13px}#pianta .nota{display:none}#pianta .quale{min-width:11ch}}
+@media (prefers-reduced-motion:reduce){#pianta .binario{height:auto}#pianta .palco{position:relative;height:80vh}}
+</style>
+<script>
+/* La pianta dell azienda: proiettore 3D scritto a mano, niente Three.js.
+   +y va lontano dalla camera, +z va in alto. Yv e l altezza sullo schermo,
+   Zv la distanza: invertire seno e coseno qui fa sembrare il pavimento un soffitto. */
+(function(){
+var tela=document.getElementById('pianta-tela'); if(!tela) return;
+var ctx=tela.getContext('2d'), L=0, A=0, DPR=1;
+function ridimensiona(){DPR=Math.min(window.devicePixelRatio||1,2);L=tela.clientWidth;A=tela.clientHeight;tela.width=Math.round(L*DPR);tela.height=Math.round(A*DPR);ctx.setTransform(DPR,0,0,DPR,0,0);}
+var cam={imbardata:-0.86,elevazione:0.55,distanza:1750,zoom:1,cx:0,cy:0};
+function proietta(p){var ci=Math.cos(cam.imbardata),si=Math.sin(cam.imbardata);
+ var x=p.x*ci-p.y*si, y=p.x*si+p.y*ci;
+ var sf=Math.sin(cam.elevazione),cf=Math.cos(cam.elevazione);
+ var Yv=y*sf+p.z*cf, Zv=y*cf-p.z*sf+cam.distanza, s=cam.distanza/Zv;
+ return{X:cam.cx+x*s*cam.zoom,Y:cam.cy-Yv*s*cam.zoom,s:s,prof:Zv};}
+var Z=15;
+var REPARTI=[
+ {nome:'COORDINAMENTO',c:'#5ec8bd',x:0,y:0,l:176,p:150,alt:112,off:[0,-210],
+  pezzi:[['s',0,-12,50,50,Z,70],['s',0,-12,13,13,Z+70,28],['s',-56,-50,26,26,Z,20],['s',56,-50,26,26,Z,15],['s',-56,48,24,24,Z,12],['s',56,48,24,24,Z,24]],
+  figure:[[-54,14],[52,12]]},
+ {nome:'MARKETING',c:'#9b7fd4',x:-278,y:-172,l:158,p:130,alt:60,off:[-208,34],
+  pezzi:[['p',-50,32,38,46,Z+4,3,21],['p',0,32,38,46,Z+4,3,21],['p',50,32,38,46,Z+4,3,21],['s',-36,-8,38,26,Z,18],['s',36,-8,38,26,Z,13]],
+  figure:[[-54,-48],[-27,-48],[0,-48],[27,-48],[54,-48]]},
+ {nome:'VENDITE',c:'#e08a5f',x:278,y:-172,l:158,p:130,alt:76,off:[208,34],
+  pezzi:[['s',-50,32,17,17,Z,44],['s',-17,36,17,17,Z,62],['s',16,32,17,17,Z,34],['s',49,36,17,17,Z,50],['s',-32,3,17,17,Z,28],['s',32,5,17,17,Z,38]],
+  figure:[[-54,-48],[-27,-48],[0,-48],[27,-48],[54,-48]]},
+ {nome:'OPERATIONS',c:'#7fa8d4',x:-322,y:136,l:146,p:124,alt:50,off:[-202,-46],
+  pezzi:[['s',-8,33,110,24,Z,24],['s',-8,4,110,24,Z,18],['s',54,19,20,20,Z,32]],
+  figure:[[-40,-42],[0,-42],[40,-42]]},
+ {nome:'ASSISTENZA',c:'#b7c17e',x:322,y:136,l:142,p:120,alt:60,off:[202,-46],
+  pezzi:[['s',-36,27,10,10,Z,36],['s',-36,27,22,22,Z+36,8],['s',0,29,10,10,Z,36],['s',0,29,22,22,Z+36,8],['s',36,27,10,10,Z,36],['s',36,27,22,22,Z+36,8],['s',0,-6,64,20,Z,14]],
+  figure:[[-26,-42],[26,-42]]},
+ {nome:'RICERCA E FINANCE',c:'#c9a227',x:0,y:296,l:162,p:128,alt:62,off:[0,-170],
+  pezzi:[['s',-56,22,17,36,Z,20],['s',-28,22,17,36,Z,34],['s',0,22,17,36,Z,26],['s',28,22,17,36,Z,46],['s',56,22,17,36,Z,38]],
+  figure:[[-42,-42],[0,-42],[42,-42]]}];
+var ORD=[0,1,2,4,3,5];
+var NOMI=['Coordinamento','Marketing','Vendite','Assistenza','Operations','Ricerca e Finance'];
+var schede=[].slice.call(document.querySelectorAll('#pianta .scheda'));
+var stato={costruzione:0,attivo:-1,transizione:0,giro:0};
+var mouseX=0,mouseY=0,mx=0,my=0;
+function rgb(h){var n=parseInt(h.slice(1),16);return[n>>16&255,n>>8&255,n&255];}
+function conAlfa(h,a){var c=rgb(h);return'rgba('+c[0]+','+c[1]+','+c[2]+','+a+')';}
+function fondi(a,b,t){var x=rgb(a),y=rgb(b);return'rgb('+Math.round(x[0]+(y[0]-x[0])*t)+','+Math.round(x[1]+(y[1]-x[1])*t)+','+Math.round(x[2]+(y[2]-x[2])*t)+')';}
+function scala(h,f){var c=rgb(h);return'rgb('+Math.min(255,Math.round(c[0]*f))+','+Math.min(255,Math.round(c[1]*f))+','+Math.min(255,Math.round(c[2]*f))+')';}
+function poligono(pt,ri,tr,sp){ctx.beginPath();pt.forEach(function(p,i){i?ctx.lineTo(p.X,p.Y):ctx.moveTo(p.X,p.Y);});ctx.closePath();
+ if(ri){ctx.fillStyle=ri;ctx.fill();} if(tr){ctx.strokeStyle=tr;ctx.lineWidth=sp||1;ctx.stroke();}}
+var NEUTRO='#6a7263';
+function spigoliScatola(cx,cy,l,p,z0,h,k){var hx=l/2,hy=p/2;
+ var b=[{x:cx-hx,y:cy-hy,z:z0*k},{x:cx+hx,y:cy-hy,z:z0*k},{x:cx+hx,y:cy+hy,z:z0*k},{x:cx-hx,y:cy+hy,z:z0*k}];
+ return b.concat(b.map(function(q){return{x:q.x,y:q.y,z:(z0+h)*k};}));}
+function spigoliLastra(cx,cy,l,p,z0,hf,hr,k){var hx=l/2,hy=p/2;
+ var b=[{x:cx-hx,y:cy-hy,z:z0*k},{x:cx+hx,y:cy-hy,z:z0*k},{x:cx+hx,y:cy+hy,z:z0*k},{x:cx-hx,y:cy+hy,z:z0*k}];
+ return b.concat([{x:cx-hx,y:cy-hy,z:(z0+hf)*k},{x:cx+hx,y:cy-hy,z:(z0+hf)*k},{x:cx+hx,y:cy+hy,z:(z0+hr)*k},{x:cx-hx,y:cy+hy,z:(z0+hr)*k}]);}
+function disegnaPrisma(P,mat,luce,col,evid){var lati=[],i,j;
+ for(i=0;i<4;i++){j=(i+1)%4;lati.push({q:[P[i],P[j],P[4+j],P[4+i]],prof:(P[i].prof+P[j].prof)/2});}
+ lati.sort(function(a,b){return b.prof-a.prof;});
+ lati.forEach(function(s,i){poligono(s.q,scala(mat,i<2?0.40:0.70),conAlfa('#f3f1ec',0.08+luce*0.09));});
+ var top=[P[4],P[5],P[6],P[7]];
+ if(evid&&luce>0.02){ctx.save();ctx.shadowColor=conAlfa(col,0.9);ctx.shadowBlur=26*luce;
+  poligono(top,mat,conAlfa(col,0.35+luce*0.65),1+luce);ctx.restore();}
+ else poligono(top,scala(mat,1.06),conAlfa('#f3f1ec',0.20+luce*0.18));}
+function agente(p,k,col,glow){var h=24*k; if(h<4) return;
+ ctx.save(); if(glow){ctx.shadowColor=glow;ctx.shadowBlur=9;} ctx.fillStyle=col;
+ ctx.beginPath();ctx.arc(p.X,p.Y-h*0.80,h*0.21,0,6.284);ctx.fill();
+ ctx.beginPath();ctx.moveTo(p.X-h*0.26,p.Y);ctx.lineTo(p.X-h*0.20,p.Y-h*0.50);
+ ctx.quadraticCurveTo(p.X,p.Y-h*0.67,p.X+h*0.20,p.Y-h*0.50);
+ ctx.lineTo(p.X+h*0.26,p.Y);ctx.closePath();ctx.fill();ctx.restore();}
+function pavimento(op){if(op<=0)return;var c=proietta({x:0,y:0,z:0}),r=860*cam.zoom;
+ var g=ctx.createRadialGradient(c.X,c.Y,0,c.X,c.Y,r);
+ g.addColorStop(0,'rgba(36,42,32,'+(0.95*op)+')');g.addColorStop(0.55,'rgba(26,30,23,'+(0.6*op)+')');
+ g.addColorStop(1,'rgba(26,30,23,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(c.X,c.Y,r,0,6.284);ctx.fill();}
+function griglia(op){if(op<=0)return;var R=580,passo=58,i,a,b;ctx.lineWidth=1;
+ for(i=-R;i<=R;i+=passo){var t=Math.pow(1-Math.abs(i)/R,1.7);ctx.strokeStyle=conAlfa('#f3f1ec',0.11*t*op);
+  a=proietta({x:i,y:-R,z:0});b=proietta({x:i,y:R,z:0});ctx.beginPath();ctx.moveTo(a.X,a.Y);ctx.lineTo(b.X,b.Y);ctx.stroke();
+  a=proietta({x:-R,y:i,z:0});b=proietta({x:R,y:i,z:0});ctx.beginPath();ctx.moveTo(a.X,a.Y);ctx.lineTo(b.X,b.Y);ctx.stroke();}}
+function targa(r,luce,k){var p=proietta({x:r.x,y:r.y,z:r.alt*k+46}),g=proietta({x:r.x,y:r.y,z:r.alt*k+4});
+ ctx.save();ctx.strokeStyle=conAlfa(r.c,0.18+luce*0.5);ctx.lineWidth=1;
+ ctx.beginPath();ctx.moveTo(g.X,g.Y);ctx.lineTo(p.X,p.Y+3);ctx.stroke();
+ var dim=Math.max(8,Math.round(10.5*p.s*cam.zoom));
+ ctx.font='500 '+dim+'px "JetBrains Mono", ui-monospace, monospace';ctx.textAlign='center';
+ var w=ctx.measureText(r.nome).width;
+ ctx.fillStyle=conAlfa('#0b0c08',0.82);
+ if(ctx.roundRect){ctx.beginPath();ctx.roundRect(p.X-w/2-9,p.Y-dim-5,w+18,dim+10,20);ctx.fill();}
+ else {ctx.fillRect(p.X-w/2-9,p.Y-dim-5,w+18,dim+10);}
+ ctx.strokeStyle=conAlfa(r.c,0.24+luce*0.6);ctx.stroke();
+ if(luce>0.3){ctx.shadowColor=conAlfa(r.c,0.8);ctx.shadowBlur=10;}
+ ctx.fillStyle=luce>0.3?'#f3f1ec':conAlfa('#a6aa95',0.92);
+ ctx.fillText(r.nome,p.X,p.Y-3);ctx.restore();}
+function collegamento(a,b,alt,luce,fase){var N=44,pts=[],i;
+ for(i=0;i<=N;i++){var t=i/N,arco=Math.sin(Math.PI*t)*46*alt;
+  pts.push(proietta({x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t,z:(28+arco)*alt}));}
+ ctx.beginPath();pts.forEach(function(p,i){i?ctx.lineTo(p.X,p.Y):ctx.moveTo(p.X,p.Y);});
+ ctx.strokeStyle=luce>0.05?conAlfa(b.c,0.25+luce*0.6):conAlfa('#f3f1ec',0.15);ctx.lineWidth=1+luce;
+ if(luce>0.05){ctx.save();ctx.shadowColor=conAlfa(b.c,0.9);ctx.shadowBlur=18*luce;ctx.stroke();ctx.restore();}else ctx.stroke();
+ if(luce>0.08){var q=pts[Math.min(N,Math.round((fase%1)*N))];
+  ctx.save();ctx.shadowColor=conAlfa(b.c,1);ctx.shadowBlur=20;ctx.fillStyle=conAlfa(b.c,0.95*luce);
+  ctx.beginPath();ctx.arc(q.X,q.Y,3+luce*1.4,0,6.284);ctx.fill();ctx.restore();}}
+var tempo=0;
+function disegna(){tempo+=0.016;mx+=(mouseX-mx)*0.06;my+=(mouseY-my)*0.06;
+ cam.cx=L/2;cam.cy=A*0.55;cam.zoom=Math.min(1,L/1180)*(0.76+0.09*stato.costruzione);
+ cam.imbardata=-0.86+stato.giro*0.46+mx*0.09;cam.elevazione=0.55-stato.giro*0.05-my*0.04;
+ ctx.clearRect(0,0,L,A);
+ pavimento(stato.costruzione);griglia(stato.costruzione);
+ REPARTI.forEach(function(r){var hx=r.l/2,hy=r.p/2;
+  var q=[proietta({x:r.x-hx,y:r.y-hy,z:0}),proietta({x:r.x+hx,y:r.y-hy,z:0}),proietta({x:r.x+hx,y:r.y+hy,z:0}),proietta({x:r.x-hx,y:r.y+hy,z:0})];
+  ctx.save();ctx.filter='blur(13px)';poligono(q,'rgba(0,0,0,.6)');ctx.restore();});
+ for(var i=1;i<REPARTI.length;i++){var j=ORD.indexOf(i);
+  var lc=stato.attivo===j?stato.transizione:(stato.attivo>j?0.18:0);
+  collegamento(REPARTI[0],REPARTI[i],stato.costruzione,lc,tempo*0.42+i*0.3);}
+ var lista=[],cime=new Array(6),targhe=[];
+ REPARTI.forEach(function(r,i){var j=ORD.indexOf(i);
+  var rit=Math.min(1,Math.max(0,stato.costruzione*1.5-i*0.07));
+  var k=1-Math.pow(1-rit,3); if(k<0.02) return;
+  var luce=0;
+  if(stato.attivo===j)luce=stato.transizione; else if(stato.attivo>j)luce=0.16;
+  if(stato.attivo===-1&&i===0)luce=0.10*stato.costruzione;
+  var mat=fondi(NEUTRO,r.c,luce*0.75);
+  var agg=function(sp,ev,m){var P=sp.map(function(q){return proietta({x:r.x+q.x,y:r.y+q.y,z:q.z});});
+   lista.push({tipo:'p',P:P,mat:m||mat,luce:luce,col:r.c,evid:ev,prof:P.reduce(function(a,b){return a+b.prof;},0)/8});};
+  agg(spigoliScatola(0,0,r.l,r.p,0,Z,k),true,scala(mat,0.62));
+  r.pezzi.forEach(function(z){agg(z[0]==='s'?spigoliScatola(z[1],z[2],z[3],z[4],z[5],z[6],k):spigoliLastra(z[1],z[2],z[3],z[4],z[5],z[6],z[7],k),false);});
+  r.figure.forEach(function(f){var p=proietta({x:r.x+f[0],y:r.y+f[1],z:Z*k+0.5});
+   lista.push({tipo:'a',p:p,luce:luce,col:r.c,prof:p.prof-6});});
+  cime[j]=proietta({x:r.x,y:r.y,z:r.alt*k});
+  if(stato.costruzione>0.6)targhe.push([r,luce,k]);});
+ lista.sort(function(a,b){return b.prof-a.prof;});
+ lista.forEach(function(o){if(o.tipo==='p')disegnaPrisma(o.P,o.mat,o.luce,o.col,o.evid);
+  else agente(o.p,o.p.s*cam.zoom,o.luce>0.4?'#f3f1ec':fondi('#9aa291',o.col,o.luce),o.luce>0.4?conAlfa(o.col,0.9):null);});
+ targhe.forEach(function(t){targa(t[0],t[1],t[2]);});
+ schede.forEach(function(el,j){var c=cime[j];
+  if(!c||stato.attivo!==j){el.style.opacity=0;return;}
+  var r=REPARTI[ORD[j]],mezza=el.offsetHeight/2+26;
+  var dx=r.off[0],dy=r.off[1];
+  if(c.X+dx<150||c.X+dx>L-150)dx=-dx;
+  if(c.Y+dy<mezza+70)dy=-dy;
+  var X=Math.min(Math.max(c.X+dx,150),L-150);
+  var Y=Math.min(Math.max(c.Y+dy,mezza+70),A-mezza);
+  el.style.left=X+'px';el.style.top=Y+'px';el.style.opacity=stato.transizione;
+  el.style.transform='translate(-50%,-50%) scale('+(0.96+0.04*stato.transizione)+')';});
+ requestAnimationFrame(disegna);}
+var barra=document.getElementById('pianta-barra'),quale=document.getElementById('pianta-quale'),cont=document.getElementById('pianta-contatore');
+var COSTRUZIONE=0.16;
+function aggiorna(p){stato.costruzione=Math.min(1,p/COSTRUZIONE);stato.giro=p;
+ if(p<COSTRUZIONE){stato.attivo=-1;stato.transizione=0;quale.textContent='Impianto';cont.textContent='00 / 06';}
+ else{var q=(p-COSTRUZIONE)/(1-COSTRUZIONE),i=Math.min(5,Math.floor(q*6)),loc=(q*6)-i;
+  stato.attivo=i;stato.transizione=Math.min(1,Math.min(loc/0.20+0.15,(1-loc)/0.16+0.30));
+  quale.textContent=NOMI[i];cont.textContent=(i+1<10?'0':'')+(i+1)+' / 06';}
+ barra.style.width=(p*100)+'%';}
+ScrollTrigger.create({trigger:'#pianta .binario',start:'top top',end:'bottom bottom',scrub:true,
+ onUpdate:function(s){aggiorna(s.progress);}});
+window.addEventListener('resize',function(){ridimensiona();ScrollTrigger.refresh();});
+window.addEventListener('pointermove',function(e){mouseX=(e.clientX/innerWidth-0.5)*2;mouseY=(e.clientY/innerHeight-0.5)*2;});
+ridimensiona();aggiorna(0);disegna();
+})();
 </script>
