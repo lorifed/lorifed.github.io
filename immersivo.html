@@ -684,3 +684,27 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
   requestAnimationFrame(function(){ requestAnimationFrame(function(){ window.__ready=true; }); });
 })();
 </script>
+
+
+<style>
+/* Correzione dopo la prima prova dal vivo: la facciata era troppo grande e
+   troppo accesa e copriva il titolo. Ora è un palazzo notturno vero — piu'
+   piccolo, dietro, con solo una parte delle finestre illuminate. */
+.tower{width:min(340px,54vw);grid-template-columns:repeat(8,1fr);gap:7px;padding:15px;z-index:0;opacity:.9}
+.win{opacity:.13}
+.win.on{background:var(--accent);opacity:.40;box-shadow:0 0 9px rgba(138,154,91,.30)}
+.win.spenta.on{background:rgba(243,241,236,.05);opacity:.11;box-shadow:none}
+.stage::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(ellipse 62% 52% at 50% 46%, rgba(7,8,6,.80), rgba(7,8,6,.35) 55%, transparent 72%)}
+.floors{z-index:2}
+.title{z-index:3}
+.desk{z-index:3}
+.title h1{text-shadow:0 8px 44px rgba(7,8,6,.95), 0 2px 14px rgba(7,8,6,.85)}
+.title .sub{text-shadow:0 2px 16px rgba(7,8,6,.95)}
+</style>
+<script>
+(function(){
+  var w=document.querySelectorAll('.win');
+  for(var i=0;i<w.length;i++){ if(Math.random()>0.42) w[i].classList.add('spenta'); }
+})();
+</script>
