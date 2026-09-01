@@ -900,3 +900,30 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
 @keyframes beat{0%,100%{opacity:1}50%{opacity:.3}}
 @media(prefers-reduced-motion:reduce){.pill i{animation:none}}
 </style>
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&display=swap">
+<style>
+/* Correzione 5 — quattro difetti visti da Lorenzo sul sito vero.
+   1. SCROLL: il trackpad non scorreva. scroll-behavior:smooth su html va in
+      conflitto con Lenis, e overflow-x:hidden sul body e l altro punto dove
+      Lenis si inceppa. Tolti entrambi.
+   2. TITOLO spostato a sinistra: un max-width senza margin-inline:auto lascia
+      il blocco allineato a sinistra dentro un contenitore piu largo.
+   3. FONT piu stretto e piu pesante, come la schermata di riferimento.
+   4. IMMAGINI: finche i file non ci sono il riquadro non si gonfia. */
+html{scroll-behavior:auto}
+body{overflow-x:clip}
+.title h1, .title .sub{margin-inline:auto}
+h1,h2,h3,.floor .nm,.stepcard h3{font-family:"Inter Tight",-apple-system,BlinkMacSystemFont,sans-serif}
+h1{font-weight:700;letter-spacing:-.035em}
+h2{font-weight:700;letter-spacing:-.03em}
+h3{font-weight:600;letter-spacing:-.02em}
+.floor .nm{font-weight:700;letter-spacing:-.04em}
+.btn{font-family:"Inter Tight",-apple-system,sans-serif;font-weight:600}
+.frame{aspect-ratio:16/9;display:grid;place-items:center}
+.frame img{width:100%;height:100%;object-fit:cover;object-position:top left;font-size:0;color:transparent}
+.frame.vuoto{background:repeating-linear-gradient(45deg,rgba(243,241,236,.02) 0 12px,transparent 12px 24px)}
+.frame.vuoto img{display:none}
+.frame.vuoto::after{content:"schermata in arrivo";font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-faint)}
+</style>
