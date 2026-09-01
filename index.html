@@ -68,7 +68,7 @@ nav.links a:hover{color:var(--text)}
 .altimeter .track{width:52px;height:1px;background:var(--line-strong);position:relative}
 .altimeter .track i{position:absolute;top:-2px;left:0;width:5px;height:5px;border-radius:50%;background:var(--accent-2)}
 
-#film{position:relative;height:230vh}
+#film{position:relative;height:170vh}
 .stage{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--bg)}
 .sky{position:absolute;inset:0;background:
   radial-gradient(ellipse 120% 70% at 50% 110%, rgba(138,154,91,.16), transparent 62%),
@@ -254,13 +254,7 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
       </div>
     </div>
 
-    <div class="desk" id="desk">
-      <div>
-        <span class="kicker"><i></i>Piano terra</span>
-        <h2 style="margin-top:1rem">E qui ci sei <em class="s">tu</em>.</h2>
-        <p class="q">Il lavoro è stato fatto mentre non c'eri. Adesso aspetta una cosa sola: che tu dica di sì, o che tu cambi due righe. Niente esce dall'azienda senza passare da qui.</p>
-      </div>
-    </div>
+    
 
     <div class="hint" id="hint">Scorri</div>
   </div>
@@ -290,6 +284,17 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
     </div>
   </div>
 </section>
+
+<section id="finale">
+  <div class="wrap rise">
+      <div>
+        <span class="kicker"><i></i>Piano terra</span>
+        <h2 style="margin-top:1rem">E qui ci sei <em class="s">tu</em>.</h2>
+        <p class="q">Il lavoro è stato fatto mentre non c'eri. Adesso aspetta una cosa sola: che tu dica di sì, o che tu cambi due righe. Niente esce dall'azienda senza passare da qui.</p>
+      </div>
+    </div>
+</section>
+
 <section class="shots" id="dentro">
   <div class="wrap">
     <div class="head">
@@ -610,11 +615,10 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
 
   var fine=1.9+floors.length*1.15;
   film.to('#glow',{opacity:0,duration:.5},fine)
-      .fromTo('#desk',{opacity:0,y:'22vh'},{opacity:1,y:0,duration:.8,ease:'power2.out'},fine+.15)
-      .to('#desk',{opacity:0,y:'-14vh',duration:.6,ease:'power2.in'},fine+1.5);
+      ;
 
   var alt=document.getElementById('alt'), lab=document.getElementById('altlab'), dot=document.getElementById('altdot');
-  var nomi=['Esterno','Piano terra'];
+  var nomi=['Esterno'];
   function quota(p){
     alt.style.opacity = (p>.06 && p<.985) ? .95 : 0;
     var k=Math.min(nomi.length-1, Math.max(0, Math.round(p*(nomi.length-1))));
@@ -978,3 +982,9 @@ window.addEventListener('pointermove',function(e){mouseX=(e.clientX/innerWidth-0
 ridimensiona();aggiorna(0);disegna();
 })();
 </script>
+
+<style>
+#finale{padding:clamp(90px,12vw,170px) 0;text-align:center}
+#finale h2{max-width:16ch;margin-inline:auto}
+#finale .q{margin-top:1.3rem;color:var(--text-muted);max-width:52ch;margin-inline:auto}
+</style>
