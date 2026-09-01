@@ -1,0 +1,686 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Ti costruisco i reparti AI della tua azienda. Li provi davvero, sulla tua azienda, prima di pagarli — e se ti convincono restano tuoi per sempre.">
+<link rel="icon" href="/favicon.svg">
+<meta property="og:title" content="21studio — Un'azienda che si gestisce da sola, 24 ore su 24">
+<meta property="og:description" content="Reparti AI su misura per PMI italiane. Provi il sistema prima di pagarlo.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://21studio.io/">
+<title>21studio — Un'azienda che si gestisce da sola, 24 ore su 24</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --bg:#0b0c08; --bg-alt:#14150f; --bg-panel:#181a12;
+  --line:rgba(243,241,236,.09); --line-strong:rgba(243,241,236,.18);
+  --text:#f3f1ec; --text-muted:#a6aa95; --text-faint:#6e7260;
+  --accent:#8a9a5b; --accent-2:#b7c17e; --accent-dim:rgba(138,154,91,.16);
+  --gold:#c9a227;
+  --radius:999px; --radius-card:14px;
+  --serif:"Instrument Serif",Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --container:1180px;
+  --shadow-panel:0 30px 80px -20px rgba(0,0,0,.7), 0 2px 0 rgba(255,255,255,.02) inset;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--text); font-family:var(--sans);
+  font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+body::after{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:300; opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.022em;text-wrap:balance;line-height:1.06}
+h1{font-size:clamp(2.6rem,7vw,5.6rem)}
+h2{font-size:clamp(1.9rem,3.7vw,3rem);line-height:1.1}
+h3{font-size:1.22rem;line-height:1.3;letter-spacing:-.015em}
+p{margin:0}
+a{color:inherit}
+em.s{font-family:var(--serif);font-style:italic;color:var(--accent-2);font-weight:400;letter-spacing:0}
+:focus-visible{outline:2px solid var(--accent-2);outline-offset:3px;border-radius:4px}
+.wrap{width:min(var(--container),92vw);margin-inline:auto}
+.kicker{font-family:var(--mono);font-size:.68rem;letter-spacing:.17em;text-transform:uppercase;color:var(--text-faint);display:inline-flex;align-items:center;gap:.6rem}
+.kicker i{width:6px;height:6px;border-radius:50%;background:var(--accent-2);flex:none;font-style:normal}
+.lede{color:var(--text-muted);font-size:1.1rem;max-width:62ch}
+.small{font-size:.87rem;color:var(--text-faint)}
+.mono{font-family:var(--mono)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.3rem;border-radius:var(--radius);background:var(--accent-2);color:#14150f;font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid var(--accent-2);transition:filter .2s,transform .2s}
+.btn:hover{filter:brightness(1.09);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--text);border-color:var(--line-strong)}
+
+header{position:fixed;top:0;left:0;right:0;z-index:120;padding:13px 0;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+header.solid{background:rgba(11,12,8,.76);backdrop-filter:blur(16px);border-bottom-color:var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:2rem}
+.logo{width:42px;height:42px;border:1px solid var(--line-strong);border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:1.05rem;text-decoration:none}
+nav.links{display:flex;gap:2rem;font-size:.95rem;color:var(--text-muted)}
+nav.links a{text-decoration:none}
+nav.links a:hover{color:var(--text)}
+@media(max-width:900px){nav.links{display:none}}
+
+.altimeter{position:fixed;left:max(24px,4vw);bottom:26px;z-index:110;font-family:var(--mono);font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-faint);opacity:0;pointer-events:none;display:flex;align-items:center;gap:.7rem}
+.altimeter b{color:var(--accent-2);font-weight:400;min-width:11ch;display:inline-block}
+.altimeter .track{width:52px;height:1px;background:var(--line-strong);position:relative}
+.altimeter .track i{position:absolute;top:-2px;left:0;width:5px;height:5px;border-radius:50%;background:var(--accent-2)}
+
+#film{position:relative;height:760vh}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--bg)}
+.sky{position:absolute;inset:0;background:
+  radial-gradient(ellipse 120% 70% at 50% 110%, rgba(138,154,91,.16), transparent 62%),
+  radial-gradient(ellipse 90% 60% at 78% 4%, rgba(139,152,80,.20), transparent 60%),
+  linear-gradient(#070806, #0b0c08 60%)}
+#stars{position:absolute;inset:0;width:100%;height:100%}
+
+.tower{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,80vw);aspect-ratio:3/4;
+  border:1px solid var(--line-strong);border-radius:6px 6px 0 0;background:linear-gradient(#0e0f0b,#0a0b07);
+  display:grid;grid-template-columns:repeat(6,1fr);gap:10px;padding:22px;box-shadow:0 60px 140px -40px rgba(0,0,0,.9)}
+.win{border-radius:2px;background:rgba(243,241,236,.05);opacity:.25}
+.win.on{background:var(--accent-2);opacity:.9;box-shadow:0 0 14px rgba(183,193,126,.55)}
+
+.floors{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.floor{position:absolute;width:min(940px,90vw);opacity:0;text-align:center}
+.floor .lvl{font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-faint)}
+.floor .nm{font-size:clamp(2.4rem,6vw,4.6rem);font-weight:600;letter-spacing:-.03em;margin:.5rem 0 .7rem;line-height:1}
+.floor .ds{color:var(--text-muted);max-width:46ch;margin:0 auto;font-size:1.02rem}
+.floor .rl{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:1.2rem}
+.floor .rl span{font-family:var(--mono);font-size:.68rem;padding:.35rem .7rem;border:1px solid var(--line-strong);border-radius:20px;color:var(--text-muted)}
+.glow{position:absolute;left:50%;top:50%;width:70vmax;height:70vmax;transform:translate(-50%,-50%);border-radius:50%;opacity:0;pointer-events:none;filter:blur(60px)}
+
+.title{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:0 5vw}
+.title h1 .w{display:inline-block;overflow:hidden;vertical-align:bottom}
+.title h1 .w i{display:inline-block;font-style:normal;transform:translateY(105%)}
+.title .sub{margin-top:1.5rem;color:var(--text-muted);font-size:1.15rem;max-width:56ch;margin-inline:auto;opacity:0}
+.title .cta{margin-top:2.2rem;display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;opacity:0}
+.hint{position:absolute;left:50%;bottom:34px;transform:translateX(-50%);font-family:var(--mono);font-size:.63rem;letter-spacing:.24em;text-transform:uppercase;color:var(--text-faint);opacity:0}
+
+.desk{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:0 5vw;opacity:0}
+.desk h2{max-width:16ch}
+.desk .q{margin-top:1.3rem;color:var(--text-muted);max-width:52ch;margin-inline:auto}
+
+.shots{padding:clamp(80px,10vw,150px) 0}
+.shot{margin-top:clamp(56px,7vw,104px)}
+.shot .cap{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:end;margin-bottom:1.6rem}
+@media(max-width:820px){.shot .cap{grid-template-columns:1fr;gap:1rem}}
+.frame{position:relative;border:1px solid var(--line-strong);border-radius:var(--radius-card);overflow:hidden;background:var(--bg-panel);box-shadow:var(--shadow-panel)}
+.frame img{display:block;width:100%;height:auto}
+.frame .tag{position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2);background:rgba(11,12,8,.82);border:1px solid var(--line-strong);border-radius:20px;padding:.35rem .75rem;backdrop-filter:blur(6px)}
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.2rem}
+.note{border-left:1px solid var(--line-strong);padding-left:1rem}
+.note b{display:block;font-size:.9rem;margin-bottom:.25rem}
+.note span{font-size:.86rem;color:var(--text-faint);line-height:1.5}
+
+section.blk{padding:clamp(70px,9vw,132px) 0;border-top:1px solid var(--line);position:relative}
+.head{display:flex;flex-direction:column;gap:1rem;margin-bottom:clamp(36px,4.6vw,58px)}
+.head.mid{text-align:center;align-items:center}
+.head.mid .lede{margin-inline:auto}
+.head h2{max-width:24ch}
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.4rem}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:1.15rem}
+
+#percorso{height:340vh;position:relative;border-top:1px solid var(--line)}
+.runstage{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden}
+.run{display:flex;gap:clamp(1.2rem,2.5vw,2.2rem);padding-inline:max(24px,6vw);will-change:transform}
+.stepcard{flex:0 0 min(420px,80vw);border:1px solid var(--line);border-radius:var(--radius-card);background:var(--bg-alt);padding:2rem;display:flex;flex-direction:column;gap:.9rem;min-height:390px}
+.stepcard .n{font-family:var(--mono);font-size:.75rem;color:var(--accent-2);letter-spacing:.1em}
+.stepcard p{color:var(--text-muted);font-size:.97rem}
+.stepcard .pay{margin-top:auto;font-family:var(--mono);font-size:.75rem;color:var(--text-muted);border-top:1px solid var(--line);padding-top:1rem;line-height:1.55}
+.stepcard .pay b{color:var(--accent-2);font-weight:500}
+.runhead{position:absolute;top:clamp(70px,11vh,120px);left:max(24px,6vw);right:max(24px,6vw);z-index:2;pointer-events:none}
+
+.asset{border:1px solid var(--line);border-radius:var(--radius-card);background:var(--bg-alt);overflow:hidden;display:flex;flex-direction:column}
+.asset .mock{background:var(--bg-panel);border-bottom:1px solid var(--line);padding:1rem;min-height:216px;display:flex;flex-direction:column;gap:.5rem}
+.mock .mh{display:flex;align-items:center;justify-content:space-between;font-family:var(--mono);font-size:.7rem;color:var(--text-muted);padding-bottom:.6rem;border-bottom:1px solid var(--line)}
+.mock .mh em{font-style:normal;color:var(--gold);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase}
+.mock .r{display:flex;justify-content:space-between;gap:.6rem;font-size:.78rem;color:var(--text-muted);padding:.34rem 0}
+.mock .r b{font-family:var(--mono);color:var(--text);font-weight:400}
+.mock .bar{height:4px;border-radius:2px;background:var(--accent);opacity:.55}
+.asset .txt{padding:1.35rem}
+.asset .txt .lbl{font-family:var(--mono);font-size:.7rem;letter-spacing:.13em;color:var(--text-faint);text-transform:uppercase}
+.asset .txt h3{margin:.5rem 0}
+.asset .txt p{font-size:.92rem;color:var(--text-muted)}
+
+.calc{border:1px solid var(--line-strong);border-radius:var(--radius-card);background:var(--bg-panel);overflow:hidden;box-shadow:var(--shadow-panel);display:grid;grid-template-columns:1.2fr 1fr}
+@media(max-width:820px){.calc{grid-template-columns:1fr}}
+.calc-in{padding:1.9rem;display:flex;flex-direction:column;gap:1.7rem}
+.field label{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;font-size:.93rem;color:var(--text-muted);margin-bottom:.55rem}
+.field label b{font-family:var(--mono);font-size:1rem;color:var(--text);font-weight:500;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--accent-2);height:22px}
+.calc-out{padding:1.9rem;background:var(--bg-alt);border-left:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;gap:.5rem}
+@media(max-width:820px){.calc-out{border-left:0;border-top:1px solid var(--line)}}
+.calc-out .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint)}
+.calc-out .v{font-size:clamp(2.3rem,5vw,3.3rem);font-weight:600;color:var(--accent-2);letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
+
+.sb{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+@media(max-width:900px){.sb{grid-template-columns:1fr}}
+.sb ul{list-style:none;margin:1.6rem 0 0;padding:0;display:flex;flex-direction:column;gap:.85rem}
+.sb li{display:flex;gap:.75rem;font-size:.97rem;color:var(--text-muted);align-items:flex-start}
+.sb li i{flex:none;width:19px;height:19px;border-radius:50%;background:var(--accent-dim);border:1px solid var(--line-strong);color:var(--accent-2);display:grid;place-items:center;font-size:.6rem;font-style:normal;margin-top:.18rem}
+.sbpanel{border:1px solid var(--line-strong);border-radius:var(--radius-card);background:var(--bg-panel);padding:1.3rem;box-shadow:var(--shadow-panel);display:flex;flex-direction:column;gap:1rem}
+.sbpanel .hd{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint)}
+.sbpanel .hd em{font-style:normal;color:var(--accent-2)}
+.srcs{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
+@media(max-width:520px){.srcs{grid-template-columns:1fr}}
+.src{border:1px solid var(--line);border-radius:10px;background:var(--bg-alt);padding:.75rem}
+.src b{display:block;font-size:.86rem}
+.src span{font-size:.72rem;color:var(--text-faint);display:block;margin-top:.15rem;line-height:1.4}
+.hubbox{border:1px solid var(--accent);border-radius:10px;background:rgba(138,154,91,.07);padding:.9rem;text-align:center}
+.hubbox b{display:block;font-size:.95rem}
+.hubbox span{font-size:.75rem;color:var(--text-muted)}
+.consumers{display:grid;grid-template-columns:repeat(4,1fr);gap:.55rem}
+@media(max-width:520px){.consumers{grid-template-columns:repeat(2,1fr)}}
+.cons{border:1px solid var(--line);border-radius:10px;background:var(--bg-alt);padding:.7rem .5rem;text-align:center}
+.cons i{display:block;width:6px;height:6px;border-radius:50%;background:#5b8fe0;margin:0 auto .4rem;font-style:normal}
+.cons b{display:block;font-size:.76rem;line-height:1.25}
+.cons span{font-family:var(--mono);font-size:.55rem;letter-spacing:.09em;color:var(--text-faint);text-transform:uppercase;display:block;margin-top:.25rem}
+
+.fitcol{border:1px solid var(--line);border-radius:var(--radius-card);padding:1.6rem;background:var(--bg-alt)}
+.fitcol.no{background:transparent}
+.fitcol ul{list-style:none;margin:1.1rem 0 0;padding:0;display:flex;flex-direction:column;gap:.9rem}
+.fitcol li{display:flex;gap:.7rem;font-size:.95rem;color:var(--text-muted);line-height:1.5}
+.tick{flex:none;width:18px;height:18px;margin-top:.16rem;border-radius:50%;display:grid;place-items:center;font-size:.62rem;font-weight:700}
+.tick.y{background:var(--accent-dim);color:var(--accent-2)}
+.tick.n{border:1px solid var(--line-strong);color:var(--text-faint)}
+
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius-card);background:var(--bg-alt)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.93rem}
+th,td{text-align:left;padding:.95rem 1.15rem;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-family:var(--mono);font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--text-faint);font-weight:400;background:var(--bg-panel)}
+thead th:last-child{color:var(--accent-2)}
+tbody tr:last-child td{border-bottom:0}
+td:first-child{color:var(--text-faint);width:30%}
+td:nth-child(2){color:var(--text-muted)}
+
+details{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;padding:1.15rem 0;font-size:1.02rem;font-weight:500;list-style:none;display:flex;justify-content:space-between;gap:1rem;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--mono);color:var(--accent-2)}
+details[open] summary::after{content:"–"}
+details p{padding:0 0 1.3rem;color:var(--text-muted);font-size:.95rem;max-width:66ch}
+
+.close{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.5rem}
+footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text-faint);font-size:.87rem}
+.foot{display:flex;justify-content:space-between;gap:1.4rem;flex-wrap:wrap;align-items:center}
+
+.rise{opacity:0;transform:translateY(26px)}
+@media(prefers-reduced-motion:reduce){
+  .rise{opacity:1!important;transform:none!important}
+  .title h1 .w i{transform:none!important}
+  .title .sub,.title .cta,.hint{opacity:1!important}
+  #film{height:auto}
+  .stage{position:relative;height:auto;min-height:100vh}
+  html{scroll-behavior:auto}
+}
+</style>
+
+<header id="hdr">
+  <div class="wrap bar">
+    <a class="logo" href="#top">21</a>
+    <nav class="links">
+      <a href="#dentro">Dentro il sistema</a>
+      <a href="#percorso">Come funziona</a>
+      <a href="#conto">Quanto ti costa</a>
+      <a href="#perchi">Per chi è</a>
+      <a href="#domande">Domande</a>
+    </nav>
+    <a class="btn" href="/contatti.html">Prenota una call →</a>
+  </div>
+</header>
+
+<div class="altimeter" id="alt"><span class="track"><i id="altdot"></i></span><b id="altlab">Esterno</b></div>
+
+<main id="top">
+
+<section id="film">
+  <div class="stage">
+    <div class="sky"></div>
+    <canvas id="stars"></canvas>
+
+    <div class="glow" id="glow"></div>
+
+    <div class="tower" id="tower"></div>
+
+    <div class="floors" id="floors">
+      <div class="floor" data-c="#4dd8ff">
+        <div class="lvl">Piano 01</div>
+        <div class="nm">Coordinamento</div>
+        <p class="ds">Smista le richieste, decide chi fa cosa, e tiene il filo di tutto il resto.</p>
+        <div class="rl"><span>direttore</span><span>assistente</span></div>
+      </div>
+      <div class="floor" data-c="#b98bff">
+        <div class="lvl">Piano 02</div>
+        <div class="nm">Marketing</div>
+        <p class="ds">Contenuti, campagne e monitoraggio dei competitor. Il lavoro c'è già quando arrivi.</p>
+        <div class="rl"><span>social</span><span>copy</span><span>video</span><span>ads</span><span>recensioni</span></div>
+      </div>
+      <div class="floor" data-c="#e0863c">
+        <div class="lvl">Piano 03</div>
+        <div class="nm">Vendite</div>
+        <p class="ds">Nessun preventivo si raffredda: pipeline aggiornata e follow-up già scritti.</p>
+        <div class="rl"><span>CRM</span><span>lead</span><span>call</span><span>upsell</span><span>e-commerce</span></div>
+      </div>
+      <div class="floor" data-c="#4fbfa8">
+        <div class="lvl">Piano 04</div>
+        <div class="nm">Assistenza</div>
+        <p class="ds">Ticket smistati e risposte pronte, anche alle tre di notte.</p>
+        <div class="rl"><span>customer care</span><span>onboarding</span></div>
+      </div>
+      <div class="floor" data-c="#4ade80">
+        <div class="lvl">Piano 05</div>
+        <div class="nm">Operations</div>
+        <p class="ds">Report quotidiani e lavoro instradato, senza che tu debba chiederlo.</p>
+        <div class="rl"><span>operations</span><span>HR</span><span>sito</span></div>
+      </div>
+      <div class="floor" data-c="#b7c17e">
+        <div class="lvl">Piano 06 · 07</div>
+        <div class="nm">Ricerca e Finance</div>
+        <p class="ds">Mercato tenuto d'occhio, cassa e fatture sempre in chiaro.</p>
+        <div class="rl"><span>performance</span><span>competitor</span><span>fatturazione</span></div>
+      </div>
+    </div>
+
+    <div class="title" id="title">
+      <div>
+        <h1 id="h1">
+          <span class="w"><i>Un'azienda</i></span> <span class="w"><i>che</i></span> <span class="w"><i>si</i></span> <span class="w"><i>gestisce</i></span>
+          <span class="w"><i><em class="s">da&nbsp;sola</em>.</i></span><br>
+          <span class="w"><i>24</i></span> <span class="w"><i>ore</i></span> <span class="w"><i>su</i></span> <span class="w"><i>24.</i></span>
+        </h1>
+        <p class="sub" id="sub">Ti costruisco i reparti AI della tua azienda. Li provi davvero, sulla tua azienda, <strong>prima</strong> di pagarli — e se ti convincono restano tuoi per sempre.</p>
+        <div class="cta" id="cta">
+          <a class="btn" href="/contatti.html">Prenota una call →</a>
+          <a class="btn ghost" href="#percorso">Come funziona</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="desk" id="desk">
+      <div>
+        <span class="kicker"><i></i>Piano terra</span>
+        <h2 style="margin-top:1rem">E qui ci sei <em class="s">tu</em>.</h2>
+        <p class="q">Il lavoro è stato fatto mentre non c'eri. Adesso aspetta una cosa sola: che tu dica di sì, o che tu cambi due righe. Niente esce dall'azienda senza passare da qui.</p>
+      </div>
+    </div>
+
+    <div class="hint" id="hint">Scorri</div>
+  </div>
+</section>
+
+<section class="shots" id="dentro">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker"><i></i>Dentro il sistema</span>
+      <h2>Non è un rendering. È il pannello da cui <em class="s">mando avanti 21studio</em>.</h2>
+      <p class="lede">Questa azienda è costruita e gestita con la stessa cosa che ti propongo. Queste due schermate sono il mio sistema di oggi — con i tuoi reparti al posto dei miei, è quello che avresti tu.</p>
+    </div>
+
+    <div class="shot rise">
+      <div class="cap">
+        <h3>I reparti, a colpo d'occhio</h3>
+        <p class="small">Ogni riquadro è un reparto vero, con dentro chi ci lavora. Si apre e si vede cosa sta facendo, cosa ha prodotto e cosa aspetta te.</p>
+      </div>
+      <div class="frame"><span class="tag">Schermata reale · Reparti</span><img src="assets/reparti.webp" alt="La schermata Reparti del sistema di 21studio: Coordinamento, Ricerca e Strategia, Marketing e Vendite, ognuno con le persone che ci lavorano." loading="lazy" onerror="this.closest('.frame').classList.add('vuoto')"></div>
+      <div class="notes">
+        <div class="note"><b>Il numero accanto al nome</b><span>Quante figure lavorano in quel reparto. Non un totale gonfiato: si contano una per una.</span></div>
+        <div class="note"><b>Le sigle sotto</b><span>I ruoli attivi. Accendi solo quelli che ti servono e aggiungi gli altri quando serve.</span></div>
+        <div class="note"><b>Griglia · Ufficio · Grafo</b><span>Tre modi di guardare la stessa azienda: a schede, come una pianta, o come rete di collegamenti.</span></div>
+      </div>
+    </div>
+
+    <div class="shot rise">
+      <div class="cap">
+        <h3>Una domanda sola, e il lavoro parte</h3>
+        <p class="small">Non devi sapere a chi chiederlo. Scrivi — o parli — e il coordinamento smista al reparto giusto, che si mette al lavoro.</p>
+      </div>
+      <div class="frame"><span class="tag">Schermata reale · Home</span><img src="assets/home.webp" alt="La home del sistema di 21studio, con l'assistente che smista le richieste ai reparti." loading="lazy" onerror="this.closest('.frame').classList.add('vuoto')"></div>
+      <div class="notes">
+        <div class="note"><b>Il riquadro in centro</b><span>Da qui chiedi qualsiasi cosa sul lavoro in corso, a voce o scritto.</span></div>
+        <div class="note"><b>Le scorciatoie sotto</b><span>Le domande che si fanno tutti i giorni, pronte in un click.</span></div>
+        <div class="note"><b>Quello che non vedi</b><span>Nessun numero inventato. Dove il sistema non sa una cosa, lo dice invece di riempire il vuoto.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="percorso">
+  <div class="runstage">
+    <div class="runhead wrap">
+      <span class="kicker"><i></i>Il percorso · quattro passi</span>
+      <h2 style="margin-top:.8rem">Lo provi <em class="s">prima</em> di comprarlo.</h2>
+    </div>
+    <div class="run" id="run">
+      <article class="stepcard">
+        <div class="n">01</div><h3>Consulenza</h3>
+        <p>Guardiamo la tua azienda reparto per reparto e mappiamo dove il tempo si perde: preventivi senza risposta, report a mano, clienti che aspettano. Da lì si capisce quali reparti accendere per te.</p>
+        <div class="pay">Costo: <b>€0</b><br>Esci con la mappa, tua anche se ci salutiamo qui.</div>
+      </article>
+      <article class="stepcard">
+        <div class="n">02</div><h3>La prova, sulla tua azienda</h3>
+        <p>Configuro il sistema sui tuoi processi e sui tuoi dati veri, e lo usi. Non una demo con dati finti: il tuo sistema, che gira mentre lavori.</p>
+        <div class="pay">Costo: <b>deposito rimborsabile al 100%</b><br>Non è un pagamento: filtra chi fa sul serio.</div>
+      </article>
+      <article class="stepcard">
+        <div class="n">03</div><h3>Decidi tu</h3>
+        <p>Se ti convince lo compri ed è tuo: configurazione, dati, documentazione. Se non ti convince il deposito torna intero e non mi devi nemmeno una spiegazione.</p>
+        <div class="pay">Costo: <b>il prezzo del sistema</b><br>Una tantum. Nessun canone per usarlo.</div>
+      </article>
+      <article class="stepcard">
+        <div class="n">04</div><h3>Manutenzione, se la vuoi</h3>
+        <p>Il sistema è tuo e funziona anche se non mi paghi più niente. Il piano non serve per usarlo: serve per farlo crescere.</p>
+        <div class="pay">Costo: <b>opzionale</b><br>Mai una licenza per accendere quello che è già tuo.</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="wrap">
+    <div class="head mid">
+      <span class="kicker"><i></i>Dal passo 01</span>
+      <h2>Tre cose concrete. <em class="s">Tue da tenere.</em></h2>
+      <p class="lede">Nessuna slide, nessun "ti faremo sapere". Roba scritta entro 48 ore dalla call, che resta tua anche se dopo mi dici di no.</p>
+    </div>
+    <div class="g3">
+      <div class="asset rise">
+        <div class="mock">
+          <div class="mh"><span>Mappa dei processi</span><em>esempio</em></div>
+          <div class="r"><span>Preventivi scritti a mano</span><b>9 h/set</b></div>
+          <div class="r"><span>Risposte ai clienti</span><b>7 h/set</b></div>
+          <div class="r"><span>Inserimento dati gestionale</span><b>5 h/set</b></div>
+          <div class="r"><span>Report del lunedì</span><b>4 h/set</b></div>
+          <div class="r"><span>Solleciti</span><b>3 h/set</b></div>
+        </div>
+        <div class="txt"><div class="lbl">01 · Documento</div><h3>La mappa dei processi</h3><p>Ogni processo manuale nero su bianco: chi lo fa, quanto prende, dove si inceppa. Molti titolari la vedono così la prima volta.</p></div>
+      </div>
+      <div class="asset rise">
+        <div class="mock">
+          <div class="mh"><span>Quanto ti costa oggi</span><em>esempio</em></div>
+          <div class="r"><span>01 · Preventivi</span><b>—</b></div><div class="bar" style="width:88%"></div>
+          <div class="r"><span>02 · Assistenza</span><b>—</b></div><div class="bar" style="width:66%"></div>
+          <div class="r"><span>03 · Inserimento dati</span><b>—</b></div><div class="bar" style="width:48%"></div>
+          <div class="r"><span>04 · Report</span><b>—</b></div><div class="bar" style="width:34%"></div>
+        </div>
+        <div class="txt"><div class="lbl">02 · Documento</div><h3>Quanto ti costa oggi</h3><p>Il conto in euro del lavoro manuale, processo per processo, sui tuoi numeri veri e non su una media di settore.</p></div>
+      </div>
+      <div class="asset rise">
+        <div class="mock">
+          <div class="mh"><span>Quali reparti accendere</span><em>esempio</em></div>
+          <div class="r"><span>Assistenza</span><b>per primo</b></div>
+          <div class="r"><span>Vendite</span><b>secondo</b></div>
+          <div class="r"><span>Marketing</span><b>dopo</b></div>
+          <div class="r" style="opacity:.55"><span>Finance</span><b>non ora</b></div>
+          <div class="r" style="opacity:.55"><span>HR</span><b>sconsigliato</b></div>
+        </div>
+        <div class="txt"><div class="lbl">03 · Documento</div><h3>Quali reparti accendere</h3><p>In ordine di quanto ti restituiscono, non di quanto costano a me. Con dentro quelli che ti sconsiglio, e il perché.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="conto">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker"><i></i>Trenta secondi</span>
+      <h2>Quanto ti costa il <em class="s">lavoro manuale</em>?</h2>
+      <p class="lede">Tre numeri tuoi e un'aritmetica banale. Non è una stima mia né un dato di settore: è il tuo conto, fatto in fretta.</p>
+    </div>
+    <div class="calc rise">
+      <div class="calc-in">
+        <div class="field"><label for="p">Quante persone lavorano con te <b><span id="pv">6</span></b></label><input type="range" id="p" min="1" max="60" value="6"></div>
+        <div class="field"><label for="c">Quanto ti costa un'ora del loro tempo <b>€<span id="cv">28</span></b></label><input type="range" id="c" min="12" max="120" value="28"></div>
+        <div class="field"><label for="h">Ore a settimana, a testa, di lavoro ripetitivo <b><span id="hv">9</span> h</b></label><input type="range" id="h" min="1" max="30" value="9"></div>
+      </div>
+      <div class="calc-out">
+        <div class="k">All'anno, in lavoro ripetitivo</div>
+        <div class="v" id="tot">€0</div>
+        <p class="small" style="margin-top:.6rem">= persone × costo orario × ore × 46 settimane lavorate. Non tutto si automatizza, e non te lo prometto: la consulenza serve a dirti quale parte sì e quale no.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="wrap sb">
+    <div>
+      <span class="kicker"><i></i>La conoscenza condivisa</span>
+      <h2 style="margin-top:1rem">Tutti i reparti leggono dalla <em class="s">stessa fonte</em>.</h2>
+      <p class="lede" style="margin-top:1.2rem">Non ricominciano mai da zero: attingono alla stessa verità — la tua offerta, i tuoi playbook, il contesto dei tuoi clienti. Più lo usi, più diventa preciso, e resta privato.</p>
+      <ul>
+        <li><i>✓</i> Una sola base di conoscenza condivisa da tutti i reparti</li>
+        <li><i>✓</i> Il contesto resta coerente quando il lavoro passa da un reparto all'altro</li>
+        <li><i>✓</i> Decidi tu quali informazioni e quali regole possono usare</li>
+      </ul>
+    </div>
+    <div class="sbpanel rise">
+      <div class="hd"><span>Contesto condiviso</span><em>Sincronizzato</em></div>
+      <div class="srcs">
+        <div class="src"><b>Offerta &amp; prezzi</b><span>Posizionamento, voce, prezzi</span></div>
+        <div class="src"><b>Playbook</b><span>Procedure, approvazioni, flussi</span></div>
+        <div class="src"><b>Contesto cliente</b><span>Note, feedback, risultati</span></div>
+      </div>
+      <div class="hubbox"><b>La conoscenza della tua azienda</b><span>Un'unica fonte di verità per ogni reparto</span></div>
+      <div class="consumers">
+        <div class="cons"><i></i><b>Direttore</b><span>pronto</span></div>
+        <div class="cons"><i></i><b>Marketing</b><span>pronto</span></div>
+        <div class="cons"><i></i><b>Vendite</b><span>pronto</span></div>
+        <div class="cons"><i></i><b>Operations</b><span>pronto</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="perchi">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker"><i></i>Prima di prenotare</span>
+      <h2>Meglio dirsi subito se <em class="s">non</em> ha senso.</h2>
+      <p class="lede">Preferisco perderti adesso che dopo tre settimane. Se sei nella colonna di destra, non prenotare.</p>
+    </div>
+    <div class="g2">
+      <div class="fitcol rise">
+        <h3>Ha senso se…</h3>
+        <ul>
+          <li><span class="tick y">✓</span> Hai un'azienda che già gira, con clienti veri e processi che si ripetono ogni settimana.</li>
+          <li><span class="tick y">✓</span> Sei tu il collo di bottiglia, e lo sai: il lavoro passa dalle tue mani anche quando non dovrebbe.</li>
+          <li><span class="tick y">✓</span> Hai già provato qualche strumento AI e ti sei arenato dopo la demo iniziale.</li>
+          <li><span class="tick y">✓</span> Vuoi possedere quello che ti costruisco, non affittarlo a vita.</li>
+          <li><span class="tick y">✓</span> Sei disposto a starci dentro: servono le tue risposte per costruire sulla tua azienda.</li>
+        </ul>
+      </div>
+      <div class="fitcol no rise">
+        <h3>Non prenotare se…</h3>
+        <ul>
+          <li><span class="tick n">✕</span> Stai ancora cercando cosa vendere. Serve un'azienda che gira, non un'idea.</li>
+          <li><span class="tick n">✕</span> Cerchi qualcuno che ti insegni a usare ChatGPT. Non è questo.</li>
+          <li><span class="tick n">✕</span> Vuoi accendere e sparire. Le cose importanti passano da te, ed è voluto.</li>
+          <li><span class="tick n">✕</span> Il processo che vuoi automatizzare oggi è rotto. Automatizzarlo lo rompe più in fretta: prima si sistema.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker"><i></i>Il confronto</span>
+      <h2>Come si riconosce chi fa <em class="s">sul serio</em>.</h2>
+      <p class="lede">Queste domande falle a chiunque, non solo a me. Se qualcuno non risponde chiaro su una di queste, hai già la risposta.</p>
+    </div>
+    <div class="tablewrap rise">
+      <table>
+        <thead><tr><th>La domanda</th><th>Come va di solito</th><th>Qui</th></tr></thead>
+        <tbody>
+          <tr><td>Lo vedo prima di pagarlo?</td><td>Una demo con dati finti, o mezz'ora di call</td><td>Il tuo sistema, sui tuoi dati, che usi davvero</td></tr>
+          <tr><td>Di chi è quando è finito?</td><td>Di chi te l'ha venduto: smetti di pagare e si spegne</td><td>Tuo, con clausola scritta. Funziona anche se non mi paghi più</td></tr>
+          <tr><td>Chi lo progetta?</td><td>Ti consegnano e spariscono</td><td>Lo progettiamo insieme durante la costruzione</td></tr>
+          <tr><td>Cosa succede se dico di no?</td><td>Hai già pagato l'audit</td><td>Deposito indietro per intero, senza spiegazioni</td></tr>
+          <tr><td>Quanti prodotti mi vendi?</td><td>Audit, sistema e manutenzione, fatturati a parte</td><td>Un percorso solo. La manutenzione è opzionale</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="domande">
+  <div class="wrap">
+    <div class="head"><span class="kicker"><i></i>Domande</span><h2>Quelle che mi fanno prima di prenotare.</h2></div>
+    <div style="max-width:760px">
+      <details><summary>Quanto costa?</summary><p>La consulenza è gratuita. Per la prova serve un deposito che ti torna per intero se non compri. Il prezzo del sistema dipende da quanti reparti accendi: te lo dico alla fine della consulenza come numero fisso, prima che tu decida qualsiasi cosa. Nessun conteggio a ore.</p></details>
+      <details><summary>Perché un deposito, se poi me lo restituisci?</summary><p>Perché configurare il sistema sulla tua azienda è lavoro vero, e senza filtro mi riempirei di prove di chi sta solo guardando. Ti torna comunque, tutto, anche se dici di no senza spiegazioni.</p></details>
+      <details><summary>Quanto ci vuole?</summary><p>Dipende da quanti reparti accendi. Te lo dico alla fine della consulenza con una data, non con un "dipende" — e se sfora, sfora a mie spese.</p></details>
+      <details><summary>Serve qualcuno di tecnico nel mio team?</summary><p>No, ed è il punto. Il sistema si usa da una schermata sola, in italiano. Il passaggio di consegne al tuo team è incluso, e la documentazione è scritta per chi lo userà tutti i giorni.</p></details>
+      <details><summary>Cosa succede se sparisci?</summary><p>Continua a funzionare. È tutto sulla tua infrastruttura, con documentazione completa e una clausola di proprietà nel contratto. È la ragione per cui non lo vendo in abbonamento.</p></details>
+      <details><summary>Può mandare email o pubblicare da solo?</summary><p>Solo se glielo dici tu. Il sistema prepara tutto — email, post, preventivi, risposte — e si ferma lì, in attesa. Niente che esca dall'azienda o che costi soldi parte senza un tuo sì.</p></details>
+      <details><summary>I miei dati dove finiscono?</summary><p>Sulla tua infrastruttura, non sulla mia. Non li uso per altri clienti e non li do a nessuno. Cosa il sistema può leggere lo decidi tu, reparto per reparto.</p></details>
+      <details><summary>E se poi non lo uso?</summary><p>È il rischio che la prova serve a togliere. Lo usi prima di comprarlo: se dopo due settimane non l'hai aperto, hai la tua risposta e ti torna il deposito.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="wrap close">
+    <span class="kicker"><i></i>Il primo passo</span>
+    <h2>Mezz'ora, e sai se ha <em class="s">senso</em>.</h2>
+    <p class="lede" style="text-align:center">Guardiamo la tua azienda reparto per reparto. Se ci sono i presupposti te lo dico, e se non ci sono te lo dico lo stesso — la mappa resta tua in ogni caso.</p>
+    <a class="btn" href="/contatti.html">Prenota una call →</a>
+    <span class="small">Gratuita davvero: nessuna carta, nessun impegno.</span>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="mono">21studio</span>
+    <nav style="display:flex;gap:1.4rem;flex-wrap:wrap">
+      <a href="/sistema-su-misura.html" style="text-decoration:none">Consulenza 1:1</a>
+      <a href="/piano-di-mantenimento.html" style="text-decoration:none">Piano di mantenimento</a>
+      <a href="/contatti.html" style="text-decoration:none">Contatti</a>
+    </nav>
+    <a class="mono" href="/contatti.html" style="text-decoration:none;color:var(--accent-2)">Parliamone →</a>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script>
+(function(){
+  var RIDOTTO = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  (function(){
+    var p=document.getElementById('p'),c=document.getElementById('c'),h=document.getElementById('h');
+    var pv=document.getElementById('pv'),cv=document.getElementById('cv'),hv=document.getElementById('hv'),tot=document.getElementById('tot');
+    function calc(){
+      pv.textContent=p.value; cv.textContent=c.value; hv.textContent=h.value;
+      tot.textContent='€'+(p.value*c.value*h.value*46).toLocaleString('it-IT');
+    }
+    [p,c,h].forEach(function(e){e.addEventListener('input',calc)}); calc();
+  })();
+
+  var tower=document.getElementById('tower'), wins=[];
+  for(var i=0;i<96;i++){ var d=document.createElement('span'); d.className='win'; tower.appendChild(d); wins.push(d); }
+
+  (function(){
+    var cv=document.getElementById('stars'), ctx=cv.getContext('2d'), pts=[], dpr=Math.min(devicePixelRatio||1,2);
+    function build(){
+      var r=cv.getBoundingClientRect(); cv.width=r.width*dpr; cv.height=r.height*dpr;
+      ctx.setTransform(dpr,0,0,dpr,0,0); pts=[];
+      var n=Math.round(r.width*r.height/14000);
+      for(var i=0;i<n;i++) pts.push({x:Math.random()*r.width,y:Math.random()*r.height,r:Math.random()*1.1+.25,a:Math.random()*.5+.12,ph:Math.random()*6});
+      draw(0);
+    }
+    function draw(t){
+      var r=cv.getBoundingClientRect(); ctx.clearRect(0,0,r.width,r.height);
+      for(var i=0;i<pts.length;i++){ var p=pts[i];
+        ctx.globalAlpha=p.a*(RIDOTTO?1:(.65+.35*Math.sin(t/900+p.ph)));
+        ctx.fillStyle='#f3f1ec'; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,7); ctx.fill(); }
+      ctx.globalAlpha=1;
+      if(!RIDOTTO) requestAnimationFrame(draw);
+    }
+    build(); addEventListener('resize',build);
+  })();
+
+  if(RIDOTTO || !window.gsap || !window.ScrollTrigger){
+    document.querySelectorAll('.rise').forEach(function(e){e.style.opacity=1;e.style.transform='none'});
+    wins.forEach(function(w){w.classList.add('on')});
+    window.__ready=true; return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  var lenis=new Lenis({duration:1.05, smoothWheel:true});
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(function(t){ lenis.raf(t*1000); });
+  gsap.ticker.lagSmoothing(0);
+
+  var apri=gsap.timeline({delay:.25});
+  apri.to('#h1 .w i',{y:'0%',duration:1.05,ease:'expo.out',stagger:.055})
+      .to('#sub',{opacity:1,y:0,duration:.7,ease:'power2.out'},'-=.45')
+      .to('#cta',{opacity:1,duration:.6},'-=.45')
+      .to('#hint',{opacity:1,duration:.6},'-=.3')
+      .to(wins,{className:'win on',duration:.01,stagger:{each:.012,from:'random'}},'-=1.2');
+
+  var floors=gsap.utils.toArray('.floor');
+  var film=gsap.timeline({
+    scrollTrigger:{trigger:'#film',start:'top top',end:'bottom bottom',scrub:1,
+      onUpdate:function(s){ quota(s.progress); }}
+  });
+
+  film.to(['#sub','#cta','#hint'],{opacity:0,duration:.4},0)
+      .to('#h1',{y:-90,opacity:0,filter:'blur(14px)',duration:1},0)
+      .to('#tower',{scale:7.5,y:'12%',opacity:0,duration:2.4,ease:'power2.in'},.2)
+      .to('#stars',{opacity:.25,duration:1.6},.2);
+
+  floors.forEach(function(f,i){
+    var t=1.9+i*1.15, col=f.dataset.c;
+    film.fromTo(f,{y:'46vh',opacity:0,scale:.96},{y:'0vh',opacity:1,scale:1,duration:.6,ease:'power2.out'},t)
+        .to('#glow',{backgroundColor:col,opacity:.16,duration:.6},t)
+        .to(f,{y:'-42vh',opacity:0,scale:1.02,duration:.6,ease:'power2.in'},t+.62);
+  });
+
+  var fine=1.9+floors.length*1.15;
+  film.to('#glow',{opacity:0,duration:.5},fine)
+      .fromTo('#desk',{opacity:0,y:'22vh'},{opacity:1,y:0,duration:.8,ease:'power2.out'},fine+.15)
+      .to('#desk',{opacity:0,y:'-14vh',duration:.6,ease:'power2.in'},fine+1.5);
+
+  var alt=document.getElementById('alt'), lab=document.getElementById('altlab'), dot=document.getElementById('altdot');
+  var nomi=['Esterno','Coordinamento','Marketing','Vendite','Assistenza','Operations','Ricerca · Finance','Piano terra'];
+  function quota(p){
+    alt.style.opacity = (p>.06 && p<.985) ? .95 : 0;
+    var k=Math.min(nomi.length-1, Math.max(0, Math.round(p*(nomi.length-1))));
+    if(lab.textContent!==nomi[k]) lab.textContent=nomi[k];
+    dot.style.left=(p*47)+'px';
+  }
+
+  var run=document.getElementById('run');
+  gsap.to(run,{
+    x:function(){ return -(run.scrollWidth - innerWidth + 40); },
+    ease:'none',
+    scrollTrigger:{trigger:'#percorso',start:'top top',end:'bottom bottom',scrub:1,invalidateOnRefresh:true}
+  });
+
+  gsap.utils.toArray('.rise').forEach(function(el){
+    gsap.to(el,{opacity:1,y:0,duration:.9,ease:'power3.out',
+      scrollTrigger:{trigger:el,start:'top 86%',once:true}});
+  });
+
+  var hdr=document.getElementById('hdr');
+  ScrollTrigger.create({start:'top -80',onUpdate:function(s){ hdr.classList.toggle('solid', s.scroll()>80); }});
+
+  gsap.utils.toArray('.frame').forEach(function(fr){
+    gsap.fromTo(fr,{clipPath:'inset(100% 0% 0% 0%)'},{clipPath:'inset(0% 0% 0% 0%)',duration:1.15,ease:'power3.out',
+      scrollTrigger:{trigger:fr,start:'top 82%',once:true}});
+  });
+
+  ScrollTrigger.refresh();
+
+  var j=new URLSearchParams(location.search).get('jump');
+  if(j){ lenis.scrollTo(parseInt(j,10),{immediate:true}); ScrollTrigger.update(); }
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ window.__ready=true; }); });
+})();
+</script>
