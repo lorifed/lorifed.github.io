@@ -708,3 +708,174 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
   for(var i=0;i<w.length;i++){ if(Math.random()>0.42) w[i].classList.add('spenta'); }
 })();
 </script>
+
+
+<style>
+/* ── Revisione 3 ──────────────────────────────────────────────
+   1. Lo sfondo non e' piu' un palazzo ma il SECOND BRAIN: un grafo
+      multi-articolato che reagisce al mouse. E' anche piu' onesto:
+      quello che vendi e' una rete di reparti collegati, non un edificio.
+   2. Torna l'impianto della vecchia home: pastiglia in alto, titolo,
+      sottotitolo e il campo che scrive da solo.
+   ────────────────────────────────────────────────────────────── */
+.tower{display:none}
+#brain{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.brainwrap{position:absolute;inset:0;z-index:0;will-change:transform,opacity}
+.stage::before{background:radial-gradient(ellipse 58% 48% at 50% 46%, rgba(7,8,6,.72), rgba(7,8,6,.28) 58%, transparent 76%)}
+.title h1{max-width:13ch;font-size:clamp(2.4rem,5.6vw,4.6rem)}
+.title .cta{display:none}
+.pill{margin-bottom:1.6rem}
+.ask{width:min(760px,88vw);margin:2.4rem auto 0;text-align:left;border:1px solid var(--line-strong);
+  border-radius:20px;background:rgba(24,26,18,.72);box-shadow:var(--shadow-panel);overflow:hidden;opacity:0}
+.ask-line{padding:1.2rem 1.4rem .1rem;font-size:1.02rem;min-height:3rem;color:var(--text)}
+.caret{display:inline-block;width:2px;height:1em;background:var(--accent-2);vertical-align:-2px;margin-left:2px;animation:blink 1.05s steps(2,start) infinite}
+@keyframes blink{to{visibility:hidden}}
+.ask-bar{display:flex;align-items:center;gap:.8rem;padding:.75rem .9rem .85rem 1.4rem;border-top:1px solid var(--line);margin-top:.8rem}
+.ask-plus{width:28px;height:28px;border-radius:50%;border:1px solid var(--line-strong);display:grid;place-items:center;color:var(--text-faint);flex:none;font-size:.9rem}
+.ask-route{font-family:var(--mono);font-size:.78rem;color:var(--text-muted)}
+.ask-route b{color:var(--accent-2);font-weight:500}
+.ask-go{margin-left:auto;width:40px;height:40px;border-radius:50%;background:var(--accent-2);color:#14150f;display:grid;place-items:center;flex:none;font-size:1rem}
+@media(prefers-reduced-motion:reduce){.ask{opacity:1}.caret{animation:none}}
+</style>
+<script>
+(function(){
+  var RID = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var stage=document.querySelector('.stage'), title=document.querySelector('.title > div');
+  if(!stage||!title) return;
+
+  /* ── 1. la pastiglia e il campo che scrive, come sulla home vecchia ── */
+  var pill=document.createElement('span');
+  pill.className='pill';
+  pill.innerHTML='<i></i>Nuovo — costruito sulle esigenze della tua azienda';
+  title.insertBefore(pill, title.firstChild);
+
+  var ask=document.createElement('div');
+  ask.className='ask';
+  ask.innerHTML='<div class="ask-line"><span id="typed"></span><span class="caret"></span></div>'+
+    '<div class="ask-bar"><span class="ask-plus">+</span><span class="ask-route">→ <b id="route">Reparto Assistenza</b></span><span class="ask-go">↑</span></div>';
+  title.appendChild(ask);
+
+  var esempi=[
+    ['Fai rispondere i clienti su WhatsApp, anche di notte','Reparto Assistenza'],
+    ['Prepara i preventivi fermi da tre giorni','Reparto Vendite'],
+    ['Scrivi i contenuti social della settimana','Reparto Marketing'],
+    ['Dimmi quali trattative si stanno raffreddando','Reparto Vendite'],
+    ['Mandami il report del lunedi gia pronto','Reparto Operations']
+  ];
+  var el=document.getElementById('typed'), route=document.getElementById('route');
+  if(RID){ el.textContent=esempi[0][0]; route.textContent=esempi[0][1]; }
+  else{
+    var i=0,j=0,canc=false;
+    (function tick(){
+      var t=esempi[i][0];
+      if(!canc){ el.textContent=t.slice(0,++j); route.textContent=esempi[i][1];
+        if(j===t.length){ canc=true; return setTimeout(tick,2100); } }
+      else{ el.textContent=t.slice(0,--j); if(j===0){ canc=false; i=(i+1)%esempi.length; } }
+      setTimeout(tick, canc?22:52);
+    })();
+  }
+
+  /* ── 2. lo sfondo: il second brain come grafo che segue il mouse ── */
+  var wrap=document.createElement('div'); wrap.className='brainwrap';
+  var cv=document.createElement('canvas'); cv.id='brain'; wrap.appendChild(cv);
+  stage.insertBefore(wrap, stage.firstChild.nextSibling);
+
+  var ctx=cv.getContext('2d'), N=[], L=[], W=0,H=0, dpr=Math.min(devicePixelRatio||1,2);
+  var mx=-9999,my=-9999, t=0;
+  var COL=['#b7c17e','#8a9a5b','#4dd8ff','#b98bff','#4fbfa8','#e0863c'];
+
+  function build(){
+    var r=stage.getBoundingClientRect(); W=r.width; H=r.height;
+    cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    N=[]; L=[];
+    var n=Math.max(46, Math.min(96, Math.round(W*H/16000)));
+    for(var k=0;k<n;k++){
+      var hub = k%9===0;
+      N.push({
+        x:Math.random()*W, y:Math.random()*H,
+        ox:0, oy:0,
+        vx:(Math.random()-.5)*.13, vy:(Math.random()-.5)*.13,
+        r: hub ? 3.4+Math.random()*2.2 : 1.1+Math.random()*1.3,
+        c: hub ? COL[k%COL.length] : '#f3f1ec',
+        a: hub ? .85 : .30+Math.random()*.3,
+        hub: hub, ph: Math.random()*6.28
+      });
+    }
+  }
+
+  function draw(){
+    t+=0.006;
+    ctx.clearRect(0,0,W,H);
+    var i,k,a,b,dx,dy,d;
+
+    for(i=0;i<N.length;i++){
+      a=N[i];
+      a.x+=a.vx; a.y+=a.vy;
+      if(a.x<-40)a.x=W+40; if(a.x>W+40)a.x=-40;
+      if(a.y<-40)a.y=H+40; if(a.y>H+40)a.y=-40;
+      // il mouse spinge via i nodi, con ritorno morbido
+      dx=a.x+a.ox-mx; dy=a.y+a.oy-my; d=Math.sqrt(dx*dx+dy*dy);
+      var R=170;
+      if(d<R && d>0.01){ var f=(1-d/R); a.ox+=(dx/d)*f*7; a.oy+=(dy/d)*f*7; }
+      a.ox*=0.90; a.oy*=0.90;
+    }
+
+    // collegamenti
+    ctx.lineWidth=1;
+    for(i=0;i<N.length;i++){
+      a=N[i];
+      var ax=a.x+a.ox, ay=a.y+a.oy;
+      for(k=i+1;k<N.length;k++){
+        b=N[k]; var bx=b.x+b.ox, by=b.y+b.oy;
+        dx=ax-bx; dy=ay-by; d=Math.sqrt(dx*dx+dy*dy);
+        if(d<128){
+          var o=(1-d/128)*0.16;
+          ctx.strokeStyle='rgba(183,193,126,'+o.toFixed(3)+')';
+          ctx.beginPath(); ctx.moveTo(ax,ay); ctx.lineTo(bx,by); ctx.stroke();
+        }
+      }
+      // filo verso il cursore
+      dx=ax-mx; dy=ay-my; d=Math.sqrt(dx*dx+dy*dy);
+      if(d<180){
+        ctx.strokeStyle='rgba(183,193,126,'+((1-d/180)*0.22).toFixed(3)+')';
+        ctx.beginPath(); ctx.moveTo(ax,ay); ctx.lineTo(mx,my); ctx.stroke();
+      }
+    }
+
+    // nodi
+    for(i=0;i<N.length;i++){
+      a=N[i];
+      var x=a.x+a.ox, y=a.y+a.oy;
+      var puls = a.hub ? (1+0.18*Math.sin(t*2.2+a.ph)) : 1;
+      if(a.hub){
+        ctx.globalAlpha=0.13; ctx.fillStyle=a.c;
+        ctx.beginPath(); ctx.arc(x,y,a.r*puls*4.6,0,6.2832); ctx.fill();
+      }
+      ctx.globalAlpha=a.a; ctx.fillStyle=a.c;
+      ctx.beginPath(); ctx.arc(x,y,a.r*puls,0,6.2832); ctx.fill();
+    }
+    ctx.globalAlpha=1;
+    requestAnimationFrame(draw);
+  }
+
+  build();
+  if(!RID) draw(); else { draw(); }
+  addEventListener('resize', build);
+  addEventListener('mousemove', function(e){
+    var r=stage.getBoundingClientRect();
+    mx=e.clientX-r.left; my=e.clientY-r.top;
+  });
+  addEventListener('mouseleave', function(){ mx=-9999; my=-9999; });
+
+  /* ── 3. il campo compare con il titolo, e si entra nel grafo scorrendo ── */
+  if(window.gsap && window.ScrollTrigger && !RID){
+    gsap.to('.ask',{opacity:1,duration:.7,delay:1.5,ease:'power2.out'});
+    gsap.to('.ask',{opacity:0,ease:'none',
+      scrollTrigger:{trigger:'#film',start:'top top',end:'8% top',scrub:true}});
+    gsap.to('.brainwrap',{scale:5.2,opacity:0,ease:'power2.in',transformOrigin:'50% 50%',
+      scrollTrigger:{trigger:'#film',start:'top top',end:'26% top',scrub:1}});
+  } else {
+    document.querySelector('.ask').style.opacity=1;
+  }
+})();
+</script>
