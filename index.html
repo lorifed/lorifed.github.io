@@ -844,7 +844,7 @@ function proietta(p){var ci=Math.cos(cam.imbardata),si=Math.sin(cam.imbardata);
  return{X:cam.cx+x*s*cam.zoom,Y:cam.cy-Yv*s*cam.zoom,s:s,prof:Zv};}
 var Z=15;
 var REPARTI=[
- {nome:'COORDINAMENTO',c:'#0e9c8e',x:0,y:0,l:176,p:150,alt:112,off:[0,-210],
+ {nome:'COORDINAMENTO',c:'#0e9c8e',x:0,y:0,l:176,p:150,alt:112,off:[0,-252],
   pezzi:[['s',0,-12,50,50,Z,70],['s',0,-12,13,13,Z+70,28],['s',-56,-50,26,26,Z,20],['s',56,-50,26,26,Z,15],['s',-56,48,24,24,Z,12],['s',56,48,24,24,Z,24]],
   figure:[[-54,14],[52,12]]},
  {nome:'MARKETING',c:'#6b4fbf',x:-278,y:-172,l:158,p:130,alt:60,off:[-208,34],
@@ -961,16 +961,17 @@ function disegna(){tempo+=0.016;mx+=(mouseX-mx)*0.06;my+=(mouseY-my)*0.06;
   var r=REPARTI[ORD[j]],mezza=el.offsetHeight/2+26;
   var dx=r.off[0],dy=r.off[1];
   if(c.X+dx<150||c.X+dx>L-150)dx=-dx;
-  if(c.Y+dy<mezza+70)dy=-dy;
+  if(c.Y+dy<mezza+18)dy=-dy;
   var X=Math.min(Math.max(c.X+dx,150),L-150);
-  var Y=Math.min(Math.max(c.Y+dy,mezza+70),A-mezza);
+  var Y=Math.min(Math.max(c.Y+dy,mezza+18),A-mezza);
   el.style.left=X+'px';el.style.top=Y+'px';el.style.opacity=stato.transizione;
   el.style.transform='translate(-50%,-50%) scale('+(0.96+0.04*stato.transizione)+')';});
  requestAnimationFrame(disegna);}
 var barra=document.getElementById('pianta-barra'),quale=document.getElementById('pianta-quale'),cont=document.getElementById('pianta-contatore');
 function aggiorna(p){stato.giro=p;
  var i=Math.min(5,Math.floor(p*6)),loc=(p*6)-i;
- stato.attivo=i;stato.transizione=Math.min(1,Math.min(loc/0.20+0.15,(1-loc)/0.16+0.30));
+ stato.attivo=i;var salita=(i===0)?1:(loc/0.20+0.15);
+ stato.transizione=Math.min(1,Math.min(salita,(1-loc)/0.16+0.30));
  quale.textContent=NOMI[i];cont.textContent=(i+1<10?'0':'')+(i+1)+' / 06';
  barra.style.width=(p*100)+'%';}
 /* L impianto si monta mentre la sezione sale nello schermo: quando si blocca
