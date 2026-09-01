@@ -879,3 +879,24 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
   }
 })();
 </script>
+
+
+<style>
+/* Correzione 4 — due difetti visti solo dal vivo:
+   1. il grafo era dietro al cielo, che essendo opaco lo cancellava;
+   2. la pastiglia in alto era rimasta senza stile (le sue regole vivevano
+      solo nella versione precedente della pagina). */
+.sky{z-index:0}
+.brainwrap{z-index:1}
+#stars{z-index:1}
+.stage::before{z-index:2}
+.floors{z-index:3}
+.title,.desk{z-index:4}
+.pill{display:inline-flex;align-items:center;gap:.55rem;padding:.5rem 1.05rem;border-radius:var(--radius);
+  border:1px solid var(--line-strong);background:rgba(24,26,18,.6);font-family:var(--mono);font-size:.68rem;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted)}
+.pill i{width:6px;height:6px;border-radius:50%;background:var(--accent-2);flex:none;font-style:normal;
+  animation:beat 2.6s ease-in-out infinite}
+@keyframes beat{0%,100%{opacity:1}50%{opacity:.3}}
+@media(prefers-reduced-motion:reduce){.pill i{animation:none}}
+</style>
