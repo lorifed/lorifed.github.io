@@ -54,8 +54,15 @@ em.s{font-family:var(--serif);font-style:italic;color:var(--accent-2);font-weigh
 .btn:hover{filter:brightness(1.09);transform:translateY(-1px)}
 .btn.ghost{background:transparent;color:var(--text);border-color:var(--line-strong)}
 
-header{position:fixed;top:0;left:0;right:0;z-index:120;padding:13px 0;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
-header.solid{background:rgba(255,255,255,.78);backdrop-filter:blur(16px);border-bottom-color:var(--line)}
+header{position:fixed;top:14px;left:0;right:0;z-index:120;padding:0;border:0}
+header .bar{max-width:var(--container);margin:0 auto;padding:9px 9px 9px 20px;
+  background:rgba(255,255,255,.66);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);
+  border:1px solid rgba(17,19,14,.07);border-radius:999px;
+  box-shadow:0 6px 24px -10px rgba(17,19,14,.16);
+  transition:background .35s,box-shadow .35s}
+header.solid .bar{background:rgba(255,255,255,.88);box-shadow:0 10px 32px -12px rgba(17,19,14,.22)}
+@media(max-width:900px){header{top:8px}header .bar{padding:7px 7px 7px 14px}}
 .bar{display:flex;align-items:center;justify-content:space-between;gap:2rem}
 .logo{width:42px;height:42px;border:1px solid var(--line-strong);border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:1.05rem;text-decoration:none}
 nav.links{display:flex;gap:2rem;font-size:.95rem;color:var(--text-muted)}
@@ -250,7 +257,7 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
           <span class="w"><i>24</i></span> <span class="w"><i>ore</i></span> <span class="w"><i>su</i></span> <span class="w"><i>24.</i></span>
         </h1>
         <p class="sub" id="sub">Ti costruisco i reparti AI della tua azienda. Li provi davvero, sulla tua azienda, <strong>prima</strong> di pagarli — e se ti convincono restano tuoi per sempre.</p>
-        <div class="cta" id="cta"></div>
+        <div class="cta" id="cta"><a class="btn" href="/contatti.html">Prenota una call &rarr;</a></div>
       </div>
     </div>
 
@@ -373,16 +380,16 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
       <p class="lede">Con i tuoi reparti al posto dei miei, è quello che avresti tu.</p>
     </div>
 
-    <div class="shot rise">
-      <div class="cap">
-        <h3>I reparti, a colpo d'occhio</h3>
-        <p class="small">Ogni riquadro è un reparto vero, con dentro chi ci lavora. Si apre e si vede cosa sta facendo, cosa ha prodotto e cosa aspetta te.</p>
-      </div>
+    <div class="sb rovescia sfoto rise">
       <div class="frame"><span class="tag">Schermata reale · Reparti</span><img alt="La schermata Reparti del sistema di 21studio." loading="lazy" src="IMG_REPARTI"></div>
-      <div class="notes">
-        <div class="note"><b>Il numero accanto al nome</b><span>Quante figure lavorano in quel reparto. Non un totale gonfiato: si contano una per una.</span></div>
-        <div class="note"><b>Le sigle sotto</b><span>I ruoli attivi. Accendi solo quelli che ti servono e aggiungi gli altri quando serve.</span></div>
-        <div class="note"><b>Griglia · Ufficio · Grafo</b><span>Tre modi di guardare la stessa azienda: a schede, come una pianta, o come rete di collegamenti.</span></div>
+      <div>
+        <h3>I reparti, a colpo d&rsquo;occhio</h3>
+        <p class="lede" style="margin-top:.9rem">Ogni riquadro &egrave; un reparto vero, con dentro chi ci lavora. Si apre e si vede cosa sta facendo, cosa ha prodotto e cosa aspetta te.</p>
+        <ul>
+          <li><i>&#10003;</i> <span><b>Il numero accanto al nome</b> &mdash; quante figure lavorano in quel reparto. Non un totale gonfiato: si contano una per una.</span></li>
+          <li><i>&#10003;</i> <span><b>Le sigle sotto</b> &mdash; i ruoli attivi. Accendi solo quelli che ti servono e aggiungi gli altri quando serve.</span></li>
+          <li><i>&#10003;</i> <span><b>Griglia &middot; Ufficio &middot; Grafo</b> &mdash; tre modi di guardare la stessa azienda: a schede, come una pianta, o come rete di collegamenti.</span></li>
+        </ul>
       </div>
     </div>
 
@@ -727,32 +734,8 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
   pill.innerHTML='<i></i>Nuovo \u2014 costruito sulle esigenze della tua azienda';
   title.insertBefore(pill, title.firstChild);
 
-  var ask=document.createElement('div');
-  ask.className='ask';
-  ask.innerHTML='<div class="ask-line"><span id="typed"></span><span class="caret"></span></div>'+
-    '<div class="ask-bar"><span class="ask-plus">+</span><span class="ask-route">\u2192 <b id="route">Reparto Assistenza</b></span><span class="ask-go">\u2191</span></div>';
-  title.appendChild(ask);
-
-  var esempi=[
-    ['Fai rispondere i clienti su WhatsApp, anche di notte','Reparto Assistenza'],
-    ['Prepara i preventivi fermi da tre giorni','Reparto Vendite'],
-    ['Scrivi i contenuti social della settimana','Reparto Marketing'],
-    ['Dimmi quali trattative si stanno raffreddando','Reparto Vendite'],
-    ['Mandami il report del lunedi gia pronto','Reparto Operations']
-  ];
-  var el=document.getElementById('typed'), route=document.getElementById('route');
-  if(RID){ el.textContent=esempi[0][0]; route.textContent=esempi[0][1]; }
-  else{
-    var i=0,j=0,canc=false;
-    (function tick(){
-      var t=esempi[i][0];
-      if(!canc){ el.textContent=t.slice(0,++j); route.textContent=esempi[i][1];
-        if(j===t.length){ canc=true; return setTimeout(tick,2100); } }
-      else{ el.textContent=t.slice(0,--j); if(j===0){ canc=false; i=(i+1)%esempi.length; } }
-      setTimeout(tick, canc?22:52);
-    })();
-  }
-
+  /* La casella che simulava la chat e stata tolta: la hero ora chiude
+     su un bottone vero invece che su una finta conversazione. */
   var wrap=document.createElement('div'); wrap.className='brainwrap';
   var cv=document.createElement('canvas'); cv.id='brain'; wrap.appendChild(cv);
   stage.appendChild(wrap);
@@ -1096,3 +1079,12 @@ a.from("#agenti .agpanel",{x:52,opacity:0,duration:.9,ease:"power3.out"})
 window.addEventListener('load',function(){ ScrollTrigger.refresh(); });
 })();
 </script>
+
+<style>
+#cta{margin-top:2.1rem;display:flex;justify-content:center;gap:.8rem;flex-wrap:wrap}
+.sfoto{margin-top:clamp(30px,4.5vw,58px);align-items:center}
+.sfoto .frame{margin-top:34px}
+.sfoto h3{font-size:clamp(1.25rem,2.2vw,1.75rem);letter-spacing:-.02em}
+@media(max-width:900px){.sb.rovescia .frame{order:2}}
+.sb li b{color:var(--text)}
+</style>
