@@ -1080,8 +1080,6 @@ c.from("#cervello .sbpanel",{x:-52,opacity:0,duration:.9,ease:"power3.out"})
  .from("#cervello .cons",{y:16,opacity:0,duration:.4,stagger:.07,ease:"power2.out"},"-=.3")
  .from("#cervello h2, #cervello .lede, #cervello li",{y:24,opacity:0,duration:.6,stagger:.08,ease:"power2.out"},"-=.95");
 
-gsap.to("#cervello .sbpanel",{y:-46,opacity:.22,ease:"none",
- scrollTrigger:{trigger:"#cervello",start:"bottom 78%",end:"bottom 18%",scrub:true}});
 
 var a=gsap.timeline({scrollTrigger:{trigger:"#agenti",start:"top 74%",once:true}});
 a.from("#agenti .agpanel",{x:52,opacity:0,duration:.9,ease:"power3.out"})
