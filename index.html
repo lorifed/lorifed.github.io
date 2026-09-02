@@ -295,7 +295,7 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
 
 <section class="blk" id="cervello">
   <div class="wrap sb rovescia">
-    <div class="sbpanel rise">
+    <div class="sbpanel">
       <div class="hd"><span>Il cervello</span><em>Sempre aggiornato</em></div>
       <div class="ingressi">
         <div class="ing"><i>&#9679;</i><b>A voce</b><span>gli parli come parleresti a una persona del tuo team</span></div>
@@ -335,7 +335,7 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
         <li><i>&#10003;</i> Il metodo arriva da chi quel mestiere lo fa nel tuo settore, non da un manuale generico</li>
       </ul>
     </div>
-    <div class="agpanel rise">
+    <div class="agpanel">
       <div class="hd"><span>Un agente, un mestiere</span><em>Su misura</em></div>
       <div class="ag">
         <b>Copywriter</b>
@@ -1036,7 +1036,7 @@ ridimensiona();aggiorna(0);disegna();
 
 <style>
 #promessa{padding:clamp(96px,14vw,190px) 0 clamp(40px,5vw,70px);text-align:center}
-#promessa .dichiarazione{margin:0 auto;font-family:var(--serif);font-weight:400;font-size:clamp(2.1rem,5.4vw,3.9rem);letter-spacing:-.01em;line-height:1.14;max-width:20ch}
+#promessa .dichiarazione{margin:0 auto;font-family:var(--serif);font-weight:400;font-size:clamp(2.1rem,5.4vw,3.9rem);letter-spacing:-.01em;line-height:1.14;max-width:26ch}
 #promessa .dichiarazione em{font-style:italic;color:var(--accent)}
 
 #promessa .sotto{margin:1.7rem auto 0;max-width:46ch;color:var(--text);font-weight:600;font-size:.98rem;line-height:1.55}
@@ -1058,3 +1058,34 @@ ridimensiona();aggiorna(0);disegna();
 .ing b{font-size:.88rem}
 .ing span{font-size:.72rem;color:var(--text-faint);line-height:1.4}
 </style>
+
+<script>
+/* Transizione animata tra il cervello e gli agenti: i due pannelli entrano da
+   lati opposti, le righe interne a scalare, e mentre il primo esce si alza e
+   sfuma, cosi il passaggio da una sezione all altra e un movimento solo. */
+(function(){
+if(!window.gsap||!window.ScrollTrigger) return;
+if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+if(!document.getElementById("cervello")) return;
+
+gsap.from("#promessa .dichiarazione",{y:38,opacity:0,duration:1,ease:"power3.out",
+ scrollTrigger:{trigger:"#promessa",start:"top 80%",once:true}});
+gsap.from("#promessa .sotto",{y:20,opacity:0,duration:.8,delay:.15,ease:"power3.out",
+ scrollTrigger:{trigger:"#promessa",start:"top 80%",once:true}});
+
+var c=gsap.timeline({scrollTrigger:{trigger:"#cervello",start:"top 74%",once:true}});
+c.from("#cervello .sbpanel",{x:-52,opacity:0,duration:.9,ease:"power3.out"})
+ .from("#cervello .ing",{y:20,opacity:0,duration:.5,stagger:.1,ease:"power2.out"},"-=.5")
+ .from("#cervello .hubbox",{scale:.95,opacity:0,duration:.5,ease:"power2.out"},"-=.2")
+ .from("#cervello .cons",{y:16,opacity:0,duration:.4,stagger:.07,ease:"power2.out"},"-=.3")
+ .from("#cervello h2, #cervello .lede, #cervello li",{y:24,opacity:0,duration:.6,stagger:.08,ease:"power2.out"},"-=.95");
+
+gsap.to("#cervello .sbpanel",{y:-46,opacity:.22,ease:"none",
+ scrollTrigger:{trigger:"#cervello",start:"bottom 78%",end:"bottom 18%",scrub:true}});
+
+var a=gsap.timeline({scrollTrigger:{trigger:"#agenti",start:"top 74%",once:true}});
+a.from("#agenti .agpanel",{x:52,opacity:0,duration:.9,ease:"power3.out"})
+ .from("#agenti .ag",{y:28,opacity:0,duration:.55,stagger:.11,ease:"power2.out"},"-=.55")
+ .from("#agenti h2, #agenti .lede, #agenti li",{y:24,opacity:0,duration:.6,stagger:.08,ease:"power2.out"},"-=1.05");
+})();
+</script>
