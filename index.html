@@ -56,12 +56,12 @@ em.s{font-family:var(--serif);font-style:italic;color:var(--accent-2);font-weigh
 
 header{position:fixed;top:14px;left:0;right:0;z-index:120;padding:0;border:0}
 header .bar{max-width:var(--container);margin:0 auto;padding:9px 9px 9px 20px;
-  background:rgba(255,255,255,.66);
-  -webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);
+  background:rgba(255,255,255,.55);
+  -webkit-backdrop-filter:blur(24px) saturate(190%);backdrop-filter:blur(24px) saturate(190%);
   border:1px solid rgba(17,19,14,.07);border-radius:999px;
   box-shadow:0 6px 24px -10px rgba(17,19,14,.16);
   transition:background .35s,box-shadow .35s}
-header.solid .bar{background:rgba(255,255,255,.88);box-shadow:0 10px 32px -12px rgba(17,19,14,.22)}
+header.solid .bar{background:rgba(255,255,255,.80);box-shadow:0 10px 32px -12px rgba(17,19,14,.22)}
 @media(max-width:900px){header{top:8px}header .bar{padding:7px 7px 7px 14px}}
 .bar{display:flex;align-items:center;justify-content:space-between;gap:2rem}
 .logo{width:42px;height:42px;border:1px solid var(--line-strong);border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:1.05rem;text-decoration:none}
@@ -374,13 +374,7 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
 
 <section class="shots" id="dentro">
   <div class="wrap">
-    <div class="head">
-      <span class="kicker"><i></i>Dentro il sistema</span>
-      <h2>Non è un rendering. È il <em class="s">mio pannello</em>, adesso.</h2>
-      <p class="lede">Con i tuoi reparti al posto dei miei, è quello che avresti tu.</p>
-    </div>
-
-    <div class="sb rovescia sfoto rise">
+        <div class="sb rovescia sfoto rise">
       <div class="frame"><span class="tag">Schermata reale · Reparti</span><img alt="La schermata Reparti del sistema di 21studio." loading="lazy" src="IMG_REPARTI"></div>
       <div>
         <h3>I reparti, a colpo d&rsquo;occhio</h3>
@@ -393,20 +387,19 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
       </div>
     </div>
 
-    <div class="shot rise">
-      <div class="cap">
+    <div class="sb sfoto rise">
+      <div>
         <h3>Una domanda sola, e il lavoro parte</h3>
-        <p class="small">Non devi sapere a chi chiederlo. Scrivi — o parli — e il coordinamento smista al reparto giusto, che si mette al lavoro.</p>
+        <p class="lede" style="margin-top:.9rem">Non devi sapere a chi chiederlo. Scrivi &mdash; o parli &mdash; e il coordinamento smista al reparto giusto, che si mette al lavoro.</p>
+        <ul>
+          <li><i>&#10003;</i> <span><b>Il riquadro in centro</b> &mdash; da qui chiedi qualsiasi cosa sul lavoro in corso, a voce o scritto.</span></li>
+          <li><i>&#10003;</i> <span><b>Le scorciatoie sotto</b> &mdash; le domande che si fanno tutti i giorni, pronte in un click.</span></li>
+          <li><i>&#10003;</i> <span><b>Quello che non vedi</b> &mdash; nessun numero inventato. Dove il sistema non sa una cosa, lo dice invece di riempire il vuoto.</span></li>
+        </ul>
       </div>
       <div class="frame"><span class="tag">Schermata reale · Home</span><img alt="La home del sistema di 21studio." loading="lazy" src="IMG_HOME"></div>
-      <div class="notes">
-        <div class="note"><b>Il riquadro in centro</b><span>Da qui chiedi qualsiasi cosa sul lavoro in corso, a voce o scritto.</span></div>
-        <div class="note"><b>Le scorciatoie sotto</b><span>Le domande che si fanno tutti i giorni, pronte in un click.</span></div>
-        <div class="note"><b>Quello che non vedi</b><span>Nessun numero inventato. Dove il sistema non sa una cosa, lo dice invece di riempire il vuoto.</span></div>
-      </div>
     </div>
-  </div>
-</section>
+  </section>
 
 <section id="percorso">
   <div class="runstage">
@@ -649,7 +642,7 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
       onUpdate:function(s){ quota(s.progress); }}
   });
 
-  film.to(['#sub','#hint'],{opacity:0,duration:.4},0)
+  film.fromTo(['#sub','#hint','#cta'],{opacity:1},{opacity:0,duration:.4,immediateRender:false},0)
       .to('#h1',{y:-90,opacity:0,filter:'blur(14px)',duration:1},0)
       .to('#stars',{opacity:.25,duration:1.6},.2);
 
