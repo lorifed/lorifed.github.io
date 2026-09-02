@@ -129,13 +129,19 @@ section.blk{padding:clamp(70px,9vw,132px) 0;border-top:1px solid var(--line);pos
 .g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.4rem}
 .g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:1.15rem}
 
-#percorso{height:340vh;position:relative;border-top:1px solid var(--line)}
-.runstage{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden}
-.run{display:flex;gap:clamp(1.2rem,2.5vw,2.2rem);padding-inline:max(24px,6vw);will-change:transform}
-.stepcard{flex:0 0 min(420px,80vw);border:1px solid var(--line);border-radius:var(--radius-card);background:var(--bg-alt);padding:2rem;display:flex;flex-direction:column;gap:.9rem;min-height:390px}
+#percorso{padding:clamp(80px,10vw,140px) 0;position:relative;border-top:1px solid var(--line)}
+.runstage{position:static;height:auto;display:block;overflow:visible}
+.runhead{margin-bottom:clamp(30px,3.6vw,50px)}
+.tappe{max-width:var(--container);margin:0 auto clamp(16px,1.8vw,26px);padding:0 28px;display:grid;grid-template-columns:repeat(4,1fr);position:relative}
+.tappe::before{content:"";position:absolute;left:calc(28px + 12.5%);right:calc(28px + 12.5%);top:50%;height:1px;background:var(--line-strong)}
+.tappe span{justify-self:center;position:relative;z-index:1;width:54px;height:54px;border-radius:50%;background:var(--bg);border:1px solid var(--line-strong);display:grid;place-items:center;font-family:var(--mono);font-size:.78rem}
+.run{max-width:var(--container);margin:0 auto;padding:0 28px;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(.75rem,1.3vw,1.15rem)}
+@media(max-width:1040px){.run{grid-template-columns:repeat(2,1fr)}.tappe{display:none}}
+@media(max-width:620px){.run{grid-template-columns:1fr}}
+.stepcard{border:1px solid var(--line);border-radius:var(--radius-card);background:var(--bg-alt);padding:1.5rem 1.4rem;display:flex;flex-direction:column;gap:.7rem}
 .stepcard .n{font-family:var(--mono);font-size:.75rem;color:var(--accent-2);letter-spacing:.1em}
-.stepcard h3{margin:0}
-.stepcard p{color:var(--text-muted);font-size:.97rem}
+.stepcard h3{margin:0;font-size:1.06rem;letter-spacing:-.01em}
+.stepcard p{color:var(--text-muted);font-size:.9rem;line-height:1.55}
 .stepcard .pay{margin-top:auto;font-family:var(--mono);font-size:.75rem;color:var(--text-muted);border-top:1px solid var(--line);padding-top:1rem;line-height:1.55}
 .stepcard .pay b{color:var(--accent-2);font-weight:500}
 .runhead{position:absolute;top:clamp(70px,11vh,120px);left:max(24px,6vw);right:max(24px,6vw);z-index:2;pointer-events:none}
@@ -407,17 +413,18 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
       <span class="kicker"><i></i>Il percorso · quattro passi</span>
       <h2 style="margin-top:.8rem">Lo provi <em class="s">prima</em> di comprarlo.</h2>
     </div>
+    <div class="tappe" aria-hidden="true"><span>01</span><span>02</span><span>03</span><span>04</span></div>
     <div class="run" id="run">
-      <article class="stepcard"><div class="n">01</div><h3>Consulenza</h3>
+      <article class="stepcard"><h3>Consulenza</h3>
         <p>Guardiamo la tua azienda reparto per reparto e mappiamo dove il tempo si perde: preventivi senza risposta, report a mano, clienti che aspettano.</p>
         <div class="pay">Costo: <b>€0</b><br>Esci con la mappa, tua anche se ci salutiamo qui.</div></article>
-      <article class="stepcard"><div class="n">02</div><h3>La prova, sulla tua azienda</h3>
+      <article class="stepcard"><h3>La prova, sulla tua azienda</h3>
         <p>Configuro il sistema sui tuoi processi e sui tuoi dati veri, e lo usi. Non una demo con dati finti: il tuo sistema, che gira mentre lavori.</p>
         <div class="pay">Costo: <b>deposito rimborsabile al 100%</b><br>Non è un pagamento: filtra chi fa sul serio.</div></article>
-      <article class="stepcard"><div class="n">03</div><h3>Decidi tu</h3>
+      <article class="stepcard"><h3>Decidi tu</h3>
         <p>Se ti convince lo compri ed è tuo: configurazione, dati, documentazione. Se non ti convince il deposito torna intero e non mi devi nemmeno una spiegazione.</p>
         <div class="pay">Costo: <b>il prezzo del sistema</b><br>Una tantum. Nessun canone per usarlo.</div></article>
-      <article class="stepcard"><div class="n">04</div><h3>Manutenzione, se la vuoi</h3>
+      <article class="stepcard"><h3>Manutenzione, se la vuoi</h3>
         <p>Il sistema è tuo e funziona anche se non mi paghi più niente. Il piano non serve per usarlo: serve per farlo crescere.</p>
         <div class="pay">Costo: <b>opzionale</b><br>Mai una licenza per accendere quello che è già tuo.</div></article>
     </div>
@@ -666,9 +673,8 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
     dot.style.left=(p*47)+'px';
   }
 
-  var run=document.getElementById('run');
-  gsap.to(run,{ x:function(){ return -(run.scrollWidth - innerWidth + 40); }, ease:'none',
-    scrollTrigger:{trigger:'#percorso',start:'top top',end:'bottom bottom',scrub:1,invalidateOnRefresh:true} });
+  /* Il percorso non scorre piu in orizzontale: i quattro passi
+     devono vedersi tutti insieme, senza doverli inseguire. */
 
   gsap.utils.toArray('.rise').forEach(function(el){
     gsap.to(el,{opacity:1,y:0,duration:.9,ease:'power3.out',
