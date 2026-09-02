@@ -288,9 +288,38 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
 
 <section id="promessa">
   <div class="wrap">
-    <span class="kicker"><i></i>La differenza</span>
-    <p class="dichiarazione">Costruisci il sistema operativo AI della tua azienda<br><mark>e resta tuo per sempre.</mark></p>
-    <p class="sotto">Non un abbonamento che si spegne quando smetti di pagare: configurazione, dati e documentazione restano tuoi, per iscritto.</p>
+    <p class="dichiarazione">Costruisci il sistema operativo AI della tua azienda.<br><em>E resta tuo per sempre.</em></p>
+    <p class="sotto">Non un abbonamento. Configurazione, dati e documentazione restano tuoi, per iscritto.</p>
+  </div>
+</section>
+
+<section class="blk" id="cervello">
+  <div class="wrap sb rovescia">
+    <div class="sbpanel rise">
+      <div class="hd"><span>Il cervello</span><em>Sempre aggiornato</em></div>
+      <div class="ingressi">
+        <div class="ing"><i>&#9679;</i><b>A voce</b><span>gli parli come parleresti a una persona del tuo team</span></div>
+        <div class="ing"><i>&#9670;</i><b>Da remoto</b><span>un messaggio dal telefono e il lavoro parte</span></div>
+      </div>
+      <div class="hubbox"><b>La conoscenza della tua azienda</b><span>Offerta, playbook, clienti, decisioni gi&agrave; prese</span></div>
+      <div class="consumers">
+        <div class="cons"><i></i><b>Direttore</b><span>consulta</span></div>
+        <div class="cons"><i></i><b>Marketing</b><span>consulta</span></div>
+        <div class="cons"><i></i><b>Vendite</b><span>consulta</span></div>
+        <div class="cons"><i></i><b>Assistenza</b><span>consulta</span></div>
+      </div>
+    </div>
+    <div>
+      <span class="kicker"><i></i>Il cervello dell'azienda</span>
+      <h2 style="margin:1rem 0 0">Un secondo cervello che <em class="s">sa tutto</em> della tua azienda.</h2>
+      <p class="lede" style="margin-top:1.2rem">Tutti i reparti leggono da l&igrave;: la tua offerta, i tuoi playbook, il contesto dei clienti, le decisioni gi&agrave; prese. Nessuno riparte mai da zero.</p>
+      <ul>
+        <li><i>&#10003;</i> Una sola fonte di verit&agrave;: il contesto resta lo stesso quando il lavoro passa da un reparto all'altro</li>
+        <li><i>&#10003;</i> Ci parli a voce, senza aprire niente e senza scrivere</li>
+        <li><i>&#10003;</i> Lo comandi da remoto con un messaggio, anche quando non sei al computer</li>
+        <li><i>&#10003;</i> Decidi tu cosa pu&ograve; sapere e quali regole deve seguire. Resta privato.</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -332,36 +361,6 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
         <p><i>Dati</i> chi ti sta davanti e cosa sta facendo</p>
         <p><i>Metodo</i> chi il tuo mercato lo studia di mestiere</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="blk" id="cervello">
-  <div class="wrap sb rovescia">
-    <div class="sbpanel rise">
-      <div class="hd"><span>Il cervello</span><em>Sempre aggiornato</em></div>
-      <div class="ingressi">
-        <div class="ing"><i>&#9679;</i><b>A voce</b><span>gli parli come parleresti a una persona del tuo team</span></div>
-        <div class="ing"><i>&#9670;</i><b>Da remoto</b><span>un messaggio dal telefono e il lavoro parte</span></div>
-      </div>
-      <div class="hubbox"><b>La conoscenza della tua azienda</b><span>Offerta, playbook, clienti, decisioni gi&agrave; prese</span></div>
-      <div class="consumers">
-        <div class="cons"><i></i><b>Direttore</b><span>consulta</span></div>
-        <div class="cons"><i></i><b>Marketing</b><span>consulta</span></div>
-        <div class="cons"><i></i><b>Vendite</b><span>consulta</span></div>
-        <div class="cons"><i></i><b>Assistenza</b><span>consulta</span></div>
-      </div>
-    </div>
-    <div>
-      <span class="kicker"><i></i>Il cervello dell'azienda</span>
-      <h2 style="margin:1rem 0 0">Un secondo cervello che <em class="s">sa tutto</em> della tua azienda.</h2>
-      <p class="lede" style="margin-top:1.2rem">Tutti i reparti leggono da l&igrave;: la tua offerta, i tuoi playbook, il contesto dei clienti, le decisioni gi&agrave; prese. Nessuno riparte mai da zero.</p>
-      <ul>
-        <li><i>&#10003;</i> Una sola fonte di verit&agrave;: il contesto resta lo stesso quando il lavoro passa da un reparto all'altro</li>
-        <li><i>&#10003;</i> Ci parli a voce, senza aprire niente e senza scrivere</li>
-        <li><i>&#10003;</i> Lo comandi da remoto con un messaggio, anche quando non sei al computer</li>
-        <li><i>&#10003;</i> Decidi tu cosa pu&ograve; sapere e quali regole deve seguire. Resta privato.</li>
-      </ul>
     </div>
   </div>
 </section>
@@ -1036,10 +1035,11 @@ ridimensiona();aggiorna(0);disegna();
 </style>
 
 <style>
-#promessa{padding:clamp(90px,13vw,180px) 0}
-#promessa .dichiarazione{margin:1.3rem 0 0;font-size:clamp(2rem,5.6vw,4rem);font-weight:700;letter-spacing:-.03em;line-height:1.08;max-width:22ch}
-#promessa mark{background:var(--accent);color:#fff;padding:.02em .16em .1em;border-radius:5px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-#promessa .sotto{margin:1.8rem 0 0;max-width:54ch;color:var(--text-muted);font-size:1.02rem;line-height:1.65}
+#promessa{padding:clamp(96px,14vw,190px) 0 clamp(40px,5vw,70px);text-align:center}
+#promessa .dichiarazione{margin:0 auto;font-family:var(--serif);font-weight:400;font-size:clamp(2.1rem,5.4vw,3.9rem);letter-spacing:-.01em;line-height:1.14;max-width:20ch}
+#promessa .dichiarazione em{font-style:italic;color:var(--accent)}
+
+#promessa .sotto{margin:1.7rem auto 0;max-width:46ch;color:var(--text);font-weight:600;font-size:.98rem;line-height:1.55}
 .sb.rovescia{grid-template-columns:1.1fr 1fr}
 @media(max-width:900px){.sb.rovescia{grid-template-columns:1fr}.sb.rovescia .sbpanel{order:2}}
 .agpanel{border:1px solid var(--line-strong);border-radius:var(--radius-card);background:var(--bg-panel);padding:1.3rem;box-shadow:var(--shadow-panel);display:flex;flex-direction:column;gap:.8rem}
