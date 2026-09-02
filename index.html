@@ -1088,5 +1088,9 @@ var a=gsap.timeline({scrollTrigger:{trigger:"#agenti",start:"top 74%",once:true}
 a.from("#agenti .agpanel",{x:52,opacity:0,duration:.9,ease:"power3.out"})
  .from("#agenti .ag",{y:28,opacity:0,duration:.55,stagger:.11,ease:"power2.out"},"-=.55")
  .from("#agenti h2, #agenti .lede, #agenti li",{y:24,opacity:0,duration:.6,stagger:.08,ease:"power2.out"},"-=1.05");
+
+/* se si arriva a una sezione con un salto (link di menu, ricarica a meta
+   pagina) i trigger gia superati non scattano: al load li rivaluto. */
+window.addEventListener('load',function(){ ScrollTrigger.refresh(); });
 })();
 </script>
