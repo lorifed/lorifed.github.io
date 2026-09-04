@@ -3,123 +3,169 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Piano di Mantenimento — 21studio</title>
-<meta name="description" content="Base, Growth, Full — tre livelli per far crescere il sistema nel tempo. Il sistema resta tuo anche se cambi fornitore di manutenzione.">
-<meta name="theme-color" content="#0B0C08">
-<link rel="stylesheet" href="style.css">
+<title>Piano di mantenimento — 21studio</title>
+<meta name="description" content="Il sistema resta tuo. La manutenzione è una scelta, non una licenza per accendere quello che hai già pagato.">
+<meta name="theme-color" content="#fbfbf8">
+<link rel="icon" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+*{box-sizing:border-box}
+:root{--bg:#fbfbf8;--bg-b:#f1f1ea;--panel:#fff;--line:rgba(17,19,14,.11);--line-strong:rgba(17,19,14,.20);--text:#12140f;--muted:#5a5f4e;--faint:#8b907c;--accent:#5f6d36;--accent-2:#7d8c4a;--serif:'Instrument Serif',Georgia,serif;--sans:'Inter Tight',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--container:1180px}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:500;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--container);margin:0 auto;padding:0 28px}
+h1,h2,h3{font-weight:800;letter-spacing:-.02em;line-height:1.08;margin:0}
+h1{font-size:clamp(2.1rem,4.6vw,3.4rem)}
+h3{font-size:1.05rem;font-weight:700;letter-spacing:-.01em}
+.s{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--accent)}
+.kicker{font-family:var(--mono);font-size:.68rem;letter-spacing:.17em;text-transform:uppercase;color:var(--faint);display:inline-flex;align-items:center;gap:.6rem}
+.kicker i{width:6px;height:6px;border-radius:50%;background:var(--accent-2);flex:none;font-style:normal}
+.lede{color:var(--muted);font-size:1.1rem;max-width:58ch;line-height:1.6}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.3rem;border-radius:999px;background:#12140f;color:#fafaf7;font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid var(--accent-2);transition:filter .2s,transform .2s;cursor:pointer}
+.btn:hover{filter:brightness(1.09);transform:translateY(-1px)}
+header{position:fixed;top:14px;left:0;right:0;z-index:120}
+header .bar{max-width:var(--container);margin:0 auto;padding:9px 9px 9px 20px;background:rgba(255,255,255,.55);backdrop-filter:blur(24px) saturate(190%);-webkit-backdrop-filter:blur(24px) saturate(190%);border:1px solid rgba(17,19,14,.07);border-radius:999px;box-shadow:0 6px 24px -10px rgba(17,19,14,.16);display:flex;align-items:center;justify-content:space-between;gap:1.4rem;transition:background .3s}
+header.solid .bar{background:rgba(255,255,255,.86)}
+.logo{width:42px;height:42px;border:1px solid var(--line-strong);border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:1.05rem;text-decoration:none;color:var(--text);flex:none}
+.links{display:flex;gap:1.9rem}
+.links a{color:var(--text);text-decoration:none;font-size:.95rem}
+.links a:hover{color:var(--accent)}
+main{padding-top:clamp(120px,13vw,168px)}
+section{padding:clamp(30px,4vw,58px) 0}
+.top{padding-top:0}
+.top h1{margin-top:1rem;max-width:17ch}
+.top .lede{margin-top:1.3rem}
+.griglia{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:clamp(28px,4vw,62px);align-items:start}
+.modulo{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:clamp(22px,2.6vw,34px);display:flex;flex-direction:column;gap:1.05rem;box-shadow:0 10px 34px -26px rgba(17,19,14,.4)}
+.campo{display:flex;flex-direction:column;gap:.42rem}
+.campo label{font-size:.85rem;color:var(--muted)}
+.campo input,.campo select,.campo textarea{font-family:inherit;font-size:.97rem;font-weight:500;color:var(--text);background:var(--bg);border:1px solid var(--line-strong);border-radius:12px;padding:.72rem .85rem}
+.campo textarea{min-height:118px;resize:vertical}
+.campo input:focus,.campo select:focus,.campo textarea:focus{outline:2px solid var(--accent-2);outline-offset:1px}
+.lato{display:flex;flex-direction:column;gap:1.5rem;padding-top:.4rem}
+.lato p{color:var(--muted);margin:.4rem 0 0;font-size:.95rem;line-height:1.6}
+.lato a{color:var(--accent);text-decoration:none}
+.passi{list-style:none;margin:.6rem 0 0;padding:0;display:flex;flex-direction:column;gap:.7rem;counter-reset:p}
+.passi li{counter-increment:p;display:grid;grid-template-columns:1.9rem 1fr;color:var(--muted);font-size:.95rem;line-height:1.55}
+.passi li::before{content:counter(p,decimal-leading-zero);font-family:var(--mono);font-size:.68rem;color:var(--faint);padding-top:.25rem}
+footer{background:#0d0f0b;border-top:1px solid rgba(246,247,241,.10);color:rgba(246,247,241,.46);padding:2.6rem 0 3.4rem;font-size:.87rem;margin-top:clamp(46px,6vw,90px)}
+.foot{display:flex;justify-content:space-between;gap:1.4rem;flex-wrap:wrap;align-items:center}
+footer a{color:rgba(246,247,241,.74);text-decoration:none}
+footer a:hover{color:#fbfcf7}
+footer .foot>.mono:first-child{color:#fbfcf7}
+footer nav{display:flex;gap:1.4rem;flex-wrap:wrap}
+.mono{font-family:var(--mono)}
+@media(max-width:880px){.links{display:none}.griglia{grid-template-columns:1fr}}
+</style>
+<style>
+.livelli{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,22px);margin-top:clamp(28px,3.4vw,46px)}
+.liv{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:clamp(20px,2.2vw,28px);display:flex;flex-direction:column;gap:.9rem;box-shadow:0 10px 34px -28px rgba(17,19,14,.45)}
+.liv.spicca{border-color:var(--accent-2);box-shadow:0 14px 40px -26px rgba(95,109,54,.55)}
+.liv .grado{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.liv h3{font-size:1.12rem}
+.liv ul{list-style:none;margin:.2rem 0 0;padding:0;display:flex;flex-direction:column;gap:.6rem}
+.liv li{color:var(--muted);font-size:.94rem;line-height:1.55;padding-left:1.25rem;position:relative}
+.liv li::before{content:"";position:absolute;left:0;top:.55rem;width:6px;height:6px;border-radius:50%;background:var(--accent-2)}
+.liv .costo{margin-top:auto;padding-top:.9rem;border-top:1px solid var(--line);font-family:var(--mono);font-size:.76rem;color:var(--faint);line-height:1.5}
+.nota{margin-top:clamp(30px,3.6vw,50px);background:var(--bg-b);border:1px solid var(--line);border-radius:20px;padding:clamp(22px,2.6vw,34px);max-width:780px}
+.nota h2{font-size:clamp(1.25rem,2vw,1.6rem);margin-bottom:.9rem}
+.nota p{color:var(--muted);font-size:1rem;line-height:1.65;margin:0 0 .8rem}
+.nota p:last-child{margin-bottom:0}
+.chiudi{text-align:center;padding-top:clamp(10px,1.6vw,24px)}
+.chiudi .btn{margin-top:1.4rem}
+@media(max-width:880px){.livelli{grid-template-columns:1fr}}
 </head>
 <body>
-
-<header class="site">
-  <div class="wrap">
-    <a href="index.html" class="logo">
-      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="26" height="26" stroke="#8A9A5B" stroke-width="1.4"/><path d="M8 10.5C8 8.6 9.6 7 11.6 7C13.6 7 15.2 8.6 15.2 10.5C15.2 12.2 14 13.3 12.4 14.6L8.4 18V19.4H15.6" stroke="#F3F1EC" stroke-width="1.3" fill="none" stroke-linecap="round"/><path d="M18.5 8H20.5V19.4" stroke="#F3F1EC" stroke-width="1.3" fill="none" stroke-linecap="round"/></svg>
-      21studio
-    </a>
-    <nav class="main">
-      <div class="nav-links">
-        <a href="sistema-su-misura.html">Consulenza</a>
-        <a href="agenti-fissi.html">Agenti Fissi</a>
-        <a href="contatti.html">Contatti</a>
-      </div>
-      <a href="contatti.html" class="btn btn-ghost">Prenota una call<span class="arrow">→</span></a>
-      <button class="nav-toggle" aria-label="Menu">☰</button>
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="/">21</a>
+    <nav class="links">
+      <a href="/#dentro">Dentro il sistema</a>
+      <a href="/#percorso">Come funziona</a>
+      <a href="/#conto">Quanto ti costa</a>
+      <a href="/#perchi">Per chi &egrave;</a>
+      <a href="/#domande">Domande</a>
     </nav>
+    <a class="btn" href="/contatti.html">Prenota una call &rarr;</a>
   </div>
 </header>
-
-<section class="page-hero">
+<main>
+<section class="top">
   <div class="wrap">
-    <div class="eyebrow reveal">03 · Ricorrente</div>
-    <h1 class="reveal">Il sistema resta tuo. La manutenzione è una scelta, non una licenza.</h1>
-    <p class="lede reveal">Tre livelli per far crescere il sistema mano a mano che la tua azienda cambia — non un retainer indifferenziato dopo la consegna.</p>
+    <span class="kicker"><i></i>Passo 04 &middot; opzionale</span>
+    <h1>Il sistema resta tuo. La manutenzione &egrave; una <em class="s">scelta</em>.</h1>
+    <p class="lede">Se non mi paghi pi&ugrave; niente, il sistema continua a funzionare: non serve una licenza per accendere quello che &egrave; gi&agrave; tuo. Il piano serve solo a farlo crescere mano a mano che l&#39;azienda cambia.</p>
   </div>
 </section>
 
-<section class="tight">
+<section>
   <div class="wrap">
-    <div class="pricing-grid">
-      <div class="price-card reveal" data-accent="purple">
-        <div class="tier">Base</div>
+    <div class="livelli">
+      <div class="liv">
+        <span class="grado">Base</span>
         <h3>Mantenimento essenziale</h3>
-        <div class="amount">€250 <span>/ mese</span></div>
         <ul>
           <li>Monitoraggio del sistema in produzione</li>
           <li>Correzioni e aggiornamenti minori</li>
           <li>Supporto su richiesta</li>
         </ul>
-        <a href="contatti.html" class="btn btn-ghost">Richiedi info →</a>
+        <p class="costo">Il prezzo te lo dico in call, come numero fisso. Nessun conteggio a ore.</p>
       </div>
-      <div class="price-card featured reveal" data-accent="purple">
-        <div class="tier">Growth</div>
+      <div class="liv spicca">
+        <span class="grado">Growth</span>
         <h3>Il sistema cresce con te</h3>
-        <div class="amount">€500 <span>/ mese</span></div>
         <ul>
-          <li>Tutto il piano Base</li>
+          <li>Tutto quello che c&#39;&egrave; nel piano Base</li>
           <li>Nuovi processi aggiunti nel tempo</li>
-          <li>Revisione periodica del KPI</li>
+          <li>Revisione periodica di quello che il sistema produce</li>
         </ul>
-        <a href="contatti.html" class="btn btn-primary">Richiedi info →</a>
+        <p class="costo">Il prezzo te lo dico in call, come numero fisso. Nessun conteggio a ore.</p>
       </div>
-      <div class="price-card reveal" data-accent="purple">
-        <div class="tier">Full</div>
+      <div class="liv">
+        <span class="grado">Full</span>
         <h3>Estensione continua</h3>
-        <div class="amount">€900 <span>/ mese</span></div>
         <ul>
-          <li>Tutto il piano Growth</li>
-          <li>Nuovi agenti/processi con priorità dedicata</li>
-          <li>Il "second brain" più esteso possibile</li>
+          <li>Tutto quello che c&#39;&egrave; nel piano Growth</li>
+          <li>Nuovi agenti e processi con priorit&agrave; dedicata</li>
+          <li>Il secondo cervello esteso il pi&ugrave; possibile</li>
         </ul>
-        <a href="contatti.html" class="btn btn-ghost">Richiedi info →</a>
+        <p class="costo">Il prezzo te lo dico in call, come numero fisso. Nessun conteggio a ore.</p>
       </div>
+    </div>
+
+    <div class="nota">
+      <h2>Perch&eacute; non &egrave; un abbonamento a cui sei legato</h2>
+      <p>Il sistema te lo consegno finito: configurazione, dati e documentazione sono tuoi, per iscritto. Il giorno che smetti di pagare il mantenimento, continua a girare esattamente com&#39;&egrave;.</p>
+      <p>Quello che compri qui non &egrave; il diritto di usarlo. &Egrave; il tempo per farlo cambiare insieme alla tua azienda: processi nuovi, reparti nuovi, correzioni quando il mercato si muove.</p>
+      <p>Puoi entrarci dopo mesi, uscirne, e rientrarci. Non c&#39;&egrave; un vincolo di durata.</p>
     </div>
   </div>
 </section>
 
-<hr class="divider">
-
-<section>
+<section class="chiudi">
   <div class="wrap">
-    <div class="diff-panel reveal" style="max-width:760px;">
-      <h3 style="font-size:22px; font-weight:500; margin-bottom:14px;">Perché non è un abbonamento a cui sei legato</h3>
-      <p class="lede">Il Piano di Mantenimento è un servizio opzionale sopra un sistema che possiedi già — dati, configurazione, risultato. Se un giorno decidi di cambiare fornitore di manutenzione, il sistema resta tuo. Non stai affittando nulla: stai scegliendo se vuoi che continuiamo a farlo crescere con te.</p>
-    </div>
+    <span class="kicker"><i></i>Il primo passo</span>
+    <h1 style="margin-top:1rem;font-size:clamp(1.7rem,3.4vw,2.6rem)">Prima di tutto questo, per&ograve;, <em class="s">mezz&#39;ora</em>.</h1>
+    <p class="lede" style="margin:1.2rem auto 0;text-align:center">Il mantenimento &egrave; il quarto passo. Si parte guardando la tua azienda reparto per reparto.</p>
+    <a class="btn" href="/contatti.html">Prenota una call &rarr;</a>
   </div>
 </section>
-
-<section class="final-cta">
-  <div class="wrap">
-    <h2 class="reveal">Il Piano di Mantenimento arriva dopo, non prima.</h2>
-    <p class="lede reveal">È già incluso nella Consulenza 1:1, dalla prima call in poi.</p>
-    <div class="hero-cta reveal"><a href="sistema-su-misura.html" class="btn btn-primary">Scopri la Consulenza<span class="arrow">→</span></a></div>
-  </div>
-</section>
-
-<footer class="site">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <a href="index.html" class="logo" style="margin-bottom:16px; display:inline-flex;">21studio</a>
-        <p style="max-width:32ch;">Sistemi di agenti AI su misura per PMI italiane.</p>
-      </div>
-      <div>
-        <h5>Servizi</h5>
-        <a href="sistema-su-misura.html">Consulenza — Lavora con me 1:1</a>
-        <a href="agenti-fissi.html">Agenti Fissi</a>
-      </div>
-      <div><h5>Studio</h5><a href="contatti.html">Contatti</a></div>
-      <div><h5>Contatti</h5><a href="contatti.html">Scrivici →</a></div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 21studio. Tutti i diritti riservati.</span>
-      <span>Italia</span>
-    </div>
+</main>
+<footer>
+  <div class="wrap foot">
+    <span class="mono">21studio</span>
+    <nav>
+      <a href="/#percorso">Come funziona</a>
+      <a href="/piano-di-mantenimento.html">Piano di mantenimento</a>
+      <a href="/contatti.html">Contatti</a>
+    </nav>
+    <a class="mono" href="mailto:info@21studio.it">info@21studio.it</a>
   </div>
 </footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-<script src="main.js"></script>
+<script>
+(function(){var h=document.querySelector('header');var f=function(){h.classList.toggle('solid',scrollY>12);};addEventListener('scroll',f,{passive:true});f();})();
+</script>
 </body>
 </html>
