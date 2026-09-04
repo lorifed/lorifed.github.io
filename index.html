@@ -417,17 +417,14 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
       <h2 style="margin-top:1rem">Non ti cambio gli strumenti. <em class="s">Li faccio lavorare.</em></h2>
       <p class="lede" style="margin-top:1.2rem">Il sistema si attacca a dove il lavoro gi&agrave; passa, e usa i tuoi accessi. Il tuo team tiene le sue abitudini: smette solo di fare i pezzi a mano.</p>
     </div>
-    <div class="canali">
-      <span>Posta e contatti</span>
-      <span>CRM e pipeline</span>
-      <span>WhatsApp e messaggi</span>
-      <span>Campagne Meta e Google</span>
-      <span>Documenti e fogli</span>
-      <span>Calendario</span>
-      <span>Il tuo sito</span>
-      <span>Fatturazione</span>
+    <div class="stack-box">
+      <div class="mq-wrap">
+        <div class="mq mq-a" data-loghi="gmail|Gmail,microsoftoutlook|Outlook,whatsapp|WhatsApp,telegram|Telegram,slack|Slack,zoom|Zoom,calendly|Calendly,notion|Notion"></div>
+        <div class="mq mq-b" data-loghi="hubspot|HubSpot,googleads|Google Ads,meta|Meta Ads,googledrive|Drive,googlesheets|Fogli,googlecalendar|Calendar,shopify|Shopify,woocommerce|WooCommerce"></div>
+      </div>
     </div>
     <p class="sotto-canali">Non sei sicuro che si colleghi al tuo? <b>Lo mappiamo in call</b>, prima che tu spenda un euro.</p>
+    <div class="cta-canali"><a class="btn" href="/contatti.html">Prenota una call &rarr;</a></div>
   </div>
 </section>
 
@@ -972,9 +969,22 @@ window.addEventListener('load',function(){ ScrollTrigger.refresh(); });
 </style>
 
 <style>
-.canali{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin:clamp(34px,4vw,56px) auto 0;max-width:940px}
-.canali span{display:inline-flex;align-items:center;gap:.55rem;padding:.7rem 1.15rem;border:1px solid var(--line-strong);border-radius:999px;background:var(--bg-panel);font-size:.92rem;box-shadow:0 2px 10px -6px rgba(17,19,14,.22)}
-.canali span::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent-2);flex:none}
-.sotto-canali{margin:clamp(28px,3.4vw,46px) auto 0;text-align:center;color:var(--text-muted);font-size:.97rem}
+.stack-box{margin:clamp(34px,4vw,54px) auto 0;max-width:1080px;background:var(--bg-alt);border:1px solid var(--line);border-radius:26px;padding:24px 0;overflow:hidden}
+.mq-wrap{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%)}
+.mq{display:flex;width:max-content;gap:12px}
+.mq+.mq{margin-top:12px}
+.mq-a{animation:scivolaA 60s linear infinite}
+.mq-b{animation:scivolaB 68s linear infinite}
+.stack-box:hover .mq{animation-play-state:paused}
+@keyframes scivolaA{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@keyframes scivolaB{from{transform:translate3d(-50%,0,0)}to{transform:translate3d(0,0,0)}}
+.mq span{display:inline-flex;align-items:center;gap:.6rem;flex:none;padding:.64rem 1.1rem;border:1px solid var(--line-strong);border-radius:999px;background:var(--bg-panel);font-size:.93rem;white-space:nowrap;box-shadow:0 2px 10px -7px rgba(17,19,14,.32)}
+.mq img{width:19px;height:19px;display:block;flex:none}
+.sotto-canali{margin:clamp(26px,3.2vw,42px) auto 0;text-align:center;color:var(--text-muted);font-size:.97rem}
 .sotto-canali b{color:var(--text)}
+.cta-canali{margin-top:clamp(20px,2.4vw,30px);text-align:center}
+@media (prefers-reduced-motion:reduce){.mq{animation:none}}
+@media (max-width:640px){.mq span{font-size:.86rem;padding:.55rem .9rem}.stack-box{border-radius:20px}}
 </style>
+
+<script>(function(){document.querySelectorAll(".mq").forEach(function(r){var h=r.getAttribute("data-loghi").split(",").map(function(t){var p=t.split("|");return "<span><img src=\"https://cdn.simpleicons.org/"+p[0]+"\" alt=\"\" loading=\"lazy\" onerror=\"this.remove()\">"+p[1]+"</span>";}).join("");r.innerHTML=h+h;});})();</script>
