@@ -1063,3 +1063,24 @@ footer .foot>.mono:first-child{color:#fbfcf7}
   }); },2600);
 })();
 </script>
+
+<style>
+header.scuro .bar{background:rgba(18,21,15,.52);border-color:rgba(246,247,241,.13);box-shadow:0 8px 30px -12px rgba(0,0,0,.7)}
+header.scuro.solid .bar{background:rgba(18,21,15,.84)}
+header.scuro .links a{color:rgba(246,247,241,.76)}
+header.scuro .links a:hover{color:#fbfcf7}
+header.scuro .logo{color:#fbfcf7;border-color:rgba(246,247,241,.3)}
+header.scuro .btn{background:#fbfcf7;color:#12140f;border-color:rgba(251,252,247,.2)}
+</style>
+<script>
+(function(){
+  var h=document.querySelector('header'), f=document.getElementById('finale'), p=document.querySelector('footer');
+  if(!h||!f||!p) return;
+  var agg=function(){
+    var a=f.getBoundingClientRect(), b=p.getBoundingClientRect();
+    var soglia=92;
+    h.classList.toggle('scuro', (a.top<soglia&&a.bottom>soglia)||(b.top<soglia&&b.bottom>soglia));
+  };
+  addEventListener('scroll',agg,{passive:true}); addEventListener('resize',agg); agg();
+})();
+</script>
