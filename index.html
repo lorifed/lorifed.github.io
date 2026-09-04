@@ -419,8 +419,8 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
     </div>
     <div class="stack-box">
       <div class="mq-wrap">
-        <div class="mq mq-a" data-loghi="gmail|Gmail,microsoftoutlook|Outlook,whatsapp|WhatsApp,telegram|Telegram,slack|Slack,zoom|Zoom,calendly|Calendly,notion|Notion"></div>
-        <div class="mq mq-b" data-loghi="hubspot|HubSpot,googleads|Google Ads,meta|Meta Ads,googledrive|Drive,googlesheets|Fogli,googlecalendar|Calendar,shopify|Shopify,woocommerce|WooCommerce"></div>
+        <div class="mq mq-a" data-loghi="gmail|Gmail,whatsapp|WhatsApp,telegram|Telegram,zoom|Zoom,calendly|Calendly,notion|Notion,dropbox|Dropbox,trello|Trello,mailchimp|Mailchimp"></div>
+        <div class="mq mq-b" data-loghi="hubspot|HubSpot,googleads|Google Ads,meta|Meta Ads,googledrive|Drive,googlesheets|Fogli,googlecalendar|Calendar,shopify|Shopify,wordpress|WordPress,|+ il tuo gestionale"></div>
       </div>
     </div>
     <p class="sotto-canali">Non sei sicuro che si colleghi al tuo? <b>Lo mappiamo in call</b>, prima che tu spenda un euro.</p>
@@ -979,12 +979,13 @@ window.addEventListener('load',function(){ ScrollTrigger.refresh(); });
 @keyframes scivolaA{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
 @keyframes scivolaB{from{transform:translate3d(-50%,0,0)}to{transform:translate3d(0,0,0)}}
 .mq span{display:inline-flex;align-items:center;gap:.6rem;flex:none;padding:.64rem 1.1rem;border:1px solid var(--line-strong);border-radius:999px;background:var(--bg-panel);font-size:.93rem;white-space:nowrap;box-shadow:0 2px 10px -7px rgba(17,19,14,.32)}
-.mq img{width:19px;height:19px;display:block;flex:none}
+.mq img{height:18px;width:auto;max-width:30px;object-fit:contain;display:block;flex:none}
 .sotto-canali{margin:clamp(26px,3.2vw,42px) auto 0;text-align:center;color:var(--text-muted);font-size:.97rem}
 .sotto-canali b{color:var(--text)}
+.mq span.nolog{color:var(--text-muted);border-style:dashed;background:transparent;box-shadow:none}
 .cta-canali{margin-top:clamp(20px,2.4vw,30px);text-align:center}
 @media (prefers-reduced-motion:reduce){.mq{animation:none}}
 @media (max-width:640px){.mq span{font-size:.86rem;padding:.55rem .9rem}.stack-box{border-radius:20px}}
 </style>
 
-<script>(function(){document.querySelectorAll(".mq").forEach(function(r){var h=r.getAttribute("data-loghi").split(",").map(function(t){var p=t.split("|");return "<span><img src=\"https://cdn.simpleicons.org/"+p[0]+"\" alt=\"\" loading=\"lazy\" onerror=\"this.remove()\">"+p[1]+"</span>";}).join("");r.innerHTML=h+h;});})();</script>
+<script>(function(){document.querySelectorAll(".mq").forEach(function(r){var h=r.getAttribute("data-loghi").split(",").map(function(t){var p=t.split("|");return p[0] ? "<span><img src=\"https://cdn.simpleicons.org/"+p[0]+"\" alt=\"\" loading=\"lazy\" onerror=\"this.remove()\">"+p[1]+"</span>" : "<span class=\"nolog\">"+p[1]+"</span>";}).join("");r.innerHTML=h+h;});})();</script>
