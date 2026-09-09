@@ -2,6 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Ti costruisco i reparti AI della tua azienda. Li provi davvero, sulla tua azienda, prima di pagarli — e se ti convincono restano tuoi per sempre.">
 <link rel="icon" href="/favicon.svg">
+<link rel="stylesheet" href="/nucleo.css">
 <meta property="og:title" content="21studio — Un'azienda che si gestisce da sola, 24 ore su 24">
 <meta property="og:description" content="Reparti AI su misura per PMI italiane. Provi il sistema prima di pagarlo.">
 <meta property="og:type" content="website">
@@ -326,13 +327,6 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
 
 
 
-<section id="promessa">
-  <div class="wrap">
-    <p class="dichiarazione">Costruisci il sistema operativo AI della tua azienda.<br><em>E resta tuo per sempre.</em></p>
-    <p class="sotto">Non un abbonamento. Configurazione, dati e documentazione restano tuoi, per iscritto.</p>
-  </div>
-</section>
-
 <section class="blk" id="team">
   <div class="wrap sb">
     <div>
@@ -375,6 +369,65 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
     </div>
   </div>
 </section>
+
+<section class="blk" id="nucleo">
+  <div class="wrap">
+    <div class="capo">
+      <span class="kicker"><i></i>Il cervello</span>
+      <h2 style="margin:1rem 0 0">Quaranta agenti, otto reparti, <em class="s">una sola conoscenza</em>.</h2>
+      <p class="lede" style="margin-top:1.2rem">Ogni reparto legge e scrive nello stesso posto. Quello che impara Sales lo sa Marketing la mattina dopo, senza che nessuno glielo debba raccontare.</p>
+    </div>
+    <div class="core" id="nucore">
+    <canvas id="nucv"></canvas>
+
+    <div class="top">
+      <div class="chip nome"><b>21STUDIO</b><span>nucleo · connesso</span></div>
+      <div class="chip seg" id="nuseg">
+        <button class="on" data-m="azienda">● Azienda</button>
+        <button data-m="clienti">Clienti</button>
+      </div>
+      <div class="chip"><span class="dot"></span>Briefing · in diretta</div>
+      <div class="chip stat">
+        <div><i>Pipeline</i><b class="v" id="nukMrr">€61.400</b></div>
+        <div><i>Lead</i><b id="nukLead">128</b></div>
+        <div><i>Job</i><b id="nukJob">25.967</b></div>
+        <div><i>Attivo da</i><b id="nukUp">00:00:00</b></div>
+      </div>
+    </div>
+
+    <div class="tabs" id="nutabs">
+      <button class="on">Reparti</button><button>Team</button><button>Uso</button><button>Memoria</button>
+    </div>
+
+    <aside class="drawer" id="nudw">
+      <div class="dh"><span id="nudwName">SALES</span><span class="tag" id="nudwTag">attivo</span><span class="x" id="nudwX">✕</span></div>
+      <div class="dt" id="nudwTabs"><button class="on">Scheda</button><button>Lavori</button><button>Agenti</button></div>
+      <div class="db">
+        <div class="idt"><div class="av" id="nudwAv">S</div><div><h3 id="nudwTit">Sales</h3><span id="nudwSub">reparto · 6 agenti</span></div></div>
+        <div class="btns"><b>Apri reparto</b><b>Scarica scheda</b></div>
+        <p id="nudwTxt"></p>
+        <div class="path"><i>Cartella</i><span id="nudwPath">brain/sales</span></div>
+        <div class="lbl">Agenti attivi</div>
+        <div id="nudwRows"></div>
+      </div>
+    </aside>
+
+    <div class="bot">
+      <div class="lg">
+        <span><i style="background:#F2F3EF"></i>agente</span>
+        <span><i style="background:var(--acc)"></i>al lavoro</span>
+        <span><i style="background:#7FA7E0"></i>aspetta te</span>
+      </div>
+      <span id="nubNeur">— sinapsi · 8 regioni</span>
+    </div>
+  </div>
+    <div class="sottografo">
+      <span>Trascina per girare il cervello. Clicca un reparto per aprirlo.</span>
+      <span>brain/ — una cartella sola, otto regioni, memoria condivisa</span>
+    </div>
+  </div>
+</section>
+
 
 <section class="blk" id="ceo">
   <div class="wrap sb rovescia">
@@ -774,15 +827,11 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
 </style>
 
 <style>
-#promessa{padding:clamp(50px,6vw,86px) 0 clamp(8px,1vw,14px);text-align:center}
 /* il titolo appartiene alla sezione che segue: lo spazio sotto e minimo */
 #team{padding-top:clamp(22px,2.8vw,38px);padding-bottom:clamp(34px,4vw,58px)}
 #ceo{padding-top:clamp(34px,4vw,58px);padding-bottom:clamp(30px,3.6vw,50px)}
 #routine{padding-top:clamp(34px,4vw,58px);padding-bottom:clamp(34px,4vw,58px)}
-#promessa .dichiarazione{margin:0 auto;font-family:var(--serif);font-weight:400;font-size:clamp(2.1rem,5.4vw,3.9rem);letter-spacing:-.01em;line-height:1.14;max-width:26ch}
-#promessa .dichiarazione em{font-style:italic;color:var(--accent)}
 
-#promessa .sotto{margin:1.7rem auto 0;max-width:46ch;color:var(--text);font-weight:600;font-size:.98rem;line-height:1.55}
 .sb.rovescia{grid-template-columns:1.1fr 1fr}
 @media(max-width:900px){.sb.rovescia{grid-template-columns:1fr}.sb.rovescia .sbpanel{order:2}}
 .agpanel{border:1px solid var(--line-strong);border-radius:var(--radius-card);background:var(--bg-panel);padding:1.15rem;box-shadow:var(--shadow-panel);display:grid;grid-template-columns:1fr 1fr;gap:.65rem;align-content:start}
@@ -812,11 +861,6 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
 if(!window.gsap||!window.ScrollTrigger) return;
 if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 if(!document.getElementById("team")) return;
-
-gsap.from("#promessa .dichiarazione",{y:38,opacity:0,duration:1,ease:"power3.out",
- scrollTrigger:{trigger:"#promessa",start:"top 80%",once:true}});
-gsap.from("#promessa .sotto",{y:20,opacity:0,duration:.8,delay:.15,ease:"power3.out",
- scrollTrigger:{trigger:"#promessa",start:"top 80%",once:true}});
 
 var t=gsap.timeline({scrollTrigger:{trigger:"#team",start:"top 74%",once:true}});
 t.from("#team .sbpanel",{x:52,opacity:0,duration:.9,ease:"power3.out"})
@@ -1153,7 +1197,9 @@ main>section:nth-of-type(even){background:var(--sez-b)}
 #finale{background:rgba(183,193,126,.045);border-top:1px solid var(--line)}
 #finale h2{color:var(--text)}
 #finale .lede{color:var(--text-muted)}
+section.blk,#percorso{border-top:0}
 </style>
 <script>
 (function(){ var a=document.createElement('div'); a.id='auro'; document.body.appendChild(a); })();
 </script>
+<script src="/nucleo.js" defer></script>
