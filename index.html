@@ -754,7 +754,7 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
 
   var pill=document.createElement('span');
   pill.className='pill';
-  pill.innerHTML='<i></i>Nuovo \u2014 costruito sulle esigenze della tua azienda';
+  pill.innerHTML='<i></i>Su misura \u2014 costruito sulle esigenze della tua azienda';
   title.insertBefore(pill, title.firstChild);
 
   /* La casella che simulava la chat e stata tolta: la hero ora chiude
@@ -1074,4 +1074,86 @@ summary:hover{padding-left:8px}
     io.observe(tot);
   }
 })();
+</script>
+
+<style>
+/* ═════════ tema scuro: nero con sfumature verdi ═════════ */
+:root{
+  --bg:#08090A; --bg-alt:#0E1013; --bg-panel:#0C0E11;
+  --line:rgba(255,255,255,.09); --line-strong:rgba(255,255,255,.17);
+  --text:#F2F3EF; --text-muted:#9AA08E; --text-faint:#71776A;
+  --accent:#B7C17E; --accent-2:#C9D294; --accent-dim:rgba(183,193,126,.14);
+  --gold:#C9A227;
+  --shadow-panel:0 40px 110px -40px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.03) inset;
+  --sez-a:transparent; --sez-b:rgba(255,255,255,.022);
+}
+body{background:var(--bg);color:var(--text)}
+body::after{opacity:.05;mix-blend-mode:screen}
+
+/* l'aurora verde dietro tutto */
+#auro{position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:
+   radial-gradient(ellipse 70% 46% at 50% -6%, rgba(183,193,126,.22), transparent 68%),
+   radial-gradient(ellipse 52% 40% at 12% 26%, rgba(183,193,126,.11), transparent 70%),
+   radial-gradient(ellipse 58% 44% at 88% 62%, rgba(120,160,255,.09), transparent 72%),
+   radial-gradient(ellipse 64% 40% at 50% 108%, rgba(183,193,126,.14), transparent 70%),
+   #08090A}
+#auro::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse 120% 90% at 50% 50%, transparent 52%, rgba(0,0,0,.72) 100%)}
+
+/* hero */
+.sky{background:
+  radial-gradient(ellipse 120% 70% at 50% 110%, rgba(183,193,126,.10), transparent 62%),
+  radial-gradient(ellipse 90% 60% at 78% 4%, rgba(183,193,126,.07), transparent 60%),
+  transparent !important}
+.stage{background:transparent}
+.stage::before{background:radial-gradient(ellipse 58% 48% at 50% 46%, rgba(8,9,10,.55), rgba(8,9,10,.25) 58%, transparent 76%)}
+.tower{background:linear-gradient(#0E1013,#0A0C0E);box-shadow:0 60px 160px -60px rgba(0,0,0,.9)}
+.win{background:rgba(255,255,255,.05)}
+.title h1{text-shadow:0 8px 44px rgba(0,0,0,.65)}
+.title .sub{text-shadow:0 2px 16px rgba(0,0,0,.6)}
+.pill{background:rgba(255,255,255,.05);border-color:var(--line)}
+
+/* header a bolla */
+header .bar{background:rgba(20,23,26,.55);border-color:rgba(255,255,255,.09);
+  box-shadow:0 8px 30px -12px rgba(0,0,0,.8)}
+header.solid .bar,header.scuro .bar{background:rgba(13,15,17,.82);
+  box-shadow:0 12px 40px -14px rgba(0,0,0,.9)}
+.logo{border-color:var(--line-strong);color:var(--text)}
+nav.links a:hover{color:var(--text)}
+
+/* bottoni: il pieno diventa chiaro */
+.btn{background:#F2F3EF;color:#0A0B0C;border-color:#F2F3EF}
+.btn:hover{filter:none;background:#fff}
+.btn.ghost{background:transparent;color:var(--text);border-color:var(--line-strong)}
+
+/* sezioni, cornici, tabelle */
+main>section:nth-of-type(odd){background:var(--sez-a)}
+main>section:nth-of-type(even){background:var(--sez-b)}
+.frame{background:var(--bg-panel)}
+.frame .tag{background:rgba(12,14,17,.9);border-color:var(--line-strong);color:var(--accent-2)}
+.tablewrap,thead th{background:var(--bg-panel)}
+.calc,.sbpanel,.agpanel,.asset,.fitcol,.stepcard,.t-giornata,.t-msg,.t-rep,.t-ag,.cons,.ing,.src,.hubbox{
+  background:var(--bg-alt)}
+.hubbox{background:rgba(183,193,126,.07)}
+.t-msg.tu{background:rgba(255,255,255,.04)}
+.t-msg.dir{background:rgba(183,193,126,.07)}
+.t-approva span.ok{color:#0A0B0C}
+.t-ora:last-child{background:rgba(183,193,126,.05)}
+.calc-out{background:rgba(183,193,126,.06)}
+.mock .bar{background:var(--accent)}
+
+/* pillole strumenti: restano chiare, icone a colori */
+.stack-box{background:rgba(255,255,255,.03);border-color:var(--line)}
+.mq span{background:#FBFBF9;color:#15171A;border-color:transparent;
+  box-shadow:0 2px 12px -6px rgba(0,0,0,.7)}
+.mq span.nolog{background:transparent;color:var(--text-muted);border:1px dashed var(--line-strong);box-shadow:none}
+
+/* chiusura scura: ora è tutto scuro, la stacco con un filo di verde */
+#finale{background:rgba(183,193,126,.045);border-top:1px solid var(--line)}
+#finale h2{color:var(--text)}
+#finale .lede{color:var(--text-muted)}
+</style>
+<script>
+(function(){ var a=document.createElement('div'); a.id='auro'; document.body.appendChild(a); })();
 </script>
