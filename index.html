@@ -965,6 +965,7 @@ footer .foot>.mono:first-child{color:#fbfcf7}
     var w=sec.querySelector('.wrap')||sec;
     A(w.children).forEach(function(c){
       if(c===testa||c.contains(testa)) return;
+      if(c.id==='nucore'){ gruppi.push([c]); return; }
       var f=A(c.children);
       if(f.length>1&&f.length<=14&&['P','H1','H2','H3','SPAN','A'].indexOf(c.tagName)<0) gruppi.push(f); else gruppi.push([c]);
     });
