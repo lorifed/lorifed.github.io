@@ -5,7 +5,7 @@
   --sans:"Inter Tight",-apple-system,BlinkMacSystemFont,sans-serif;
   --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
 }
-#nucleo *{box-sizing:border-box;margin:0;padding:0}
+#nucleo .core,#nucleo .core *{box-sizing:border-box;margin:0;padding:0}
 
 /* il quadro */
 #nucleo .core{position:relative;border:1px solid var(--line);border-radius:14px;overflow:hidden;
@@ -103,8 +103,9 @@
 #nucleo .bot .lg{display:flex;gap:16px}
 
 /* impaginazione della sezione */
-#nucleo .capo{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:26px}
-#nucleo .capo h2{margin:14px 0 0;max-width:22ch}
+#nucleo .capo{margin-bottom:34px}
+#nucleo .capo h2{max-width:22ch}
+#nucleo .capo .lede{max-width:60ch}
 #nucleo .sottografo{margin-top:16px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
   font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
 @media(max-width:760px){
