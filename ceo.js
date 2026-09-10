@@ -7,7 +7,7 @@ const btn=document.getElementById('cvplay'), cap=document.getElementById('cvcap'
 
 /* le frasi del CEO */
 const FRASI=[
- {f:'ceo-1', t:"Sono il CEO del tuo sistema. Dimmi cosa ti serve: lo passo all'agente giusto, e ti dico cosa sta facendo mentre lo fa."},
+ {f:'ceo-1', url:'https://d8j0ntlcm91z4.cloudfront.net/user_35ATNyRMKaiSQOsyzTUsSAjI1jF/hf_20260910_121959_48f08bda-058f-45d5-9fea-6d5a361d3da9.mp3', t:"Sono il CEO del tuo sistema. Dimmi cosa ti serve: lo passo all'agente giusto, e ti dico cosa sta facendo mentre lo fa."},
  {f:'ceo-2', t:"Ai tre lead di ieri non ha risposto nessuno. Ho pronti tre follow-up, uno per lead. Li mando?"},
  {f:'ceo-3', t:"Il preventivo è pronto, col listino di settembre. La consegna in due settimane però è fuori dai tuoi tempi: decidi tu."}
 ];
@@ -145,10 +145,11 @@ function stop(){
 }
 
 const CACHE=new Map();
-async function carica(nome){
+async function carica(q){
+  const nome=q.f;
   if(CACHE.has(nome)) return CACHE.get(nome);
   try{
-    const r=await fetch('/voce/'+nome+'.mp3',{cache:'force-cache'});
+    const r=await fetch(q.url || ('/voce/'+nome+'.mp3'),{cache:'force-cache'});
     if(!r.ok) return null;
     AC = AC || new (window.AudioContext||window.webkitAudioContext)();
     const buf=await AC.decodeAudioData(await r.arrayBuffer());
@@ -160,7 +161,7 @@ async function parlaOra(){
   const q=FRASI[giro % FRASI.length]; giro++;
   parla=true; btn.classList.add('on'); st.textContent='Sta parlando';
   avvia();
-  const buf=await carica(q.f);
+  const buf=await carica(q);
   if(!parla) return;
   if(buf && AC){
     if(AC.state==='suspended') await AC.resume();
