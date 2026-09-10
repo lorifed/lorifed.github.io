@@ -421,15 +421,13 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
 
 <section class="blk" id="ceo">
   <div class="wrap sb rovescia">
-    <div class="sbpanel">
-      <div class="hd"><span>CEO</span><em>sempre attivo</em></div>
-      <div class="t-chat">
-        <div class="t-msg tu"><u>Tu</u>Ai tre lead di ieri non ha risposto nessuno. Muoviti tu.</div>
-        <div class="t-msg dir"><u>CEO</u><span class="rt">&rarr; Sales &middot; Deal Desk</span><br>Tre follow-up pronti, uno per lead, sul filo di quello che vi siete detti in call. Al terzo ho allegato il preventivo col listino di settembre.
-          <div class="t-approva"><span class="ok">Approva e invia</span><span>Modifica</span><span>No</span></div>
-        </div>
-        <div class="t-msg tu"><u>Tu</u>Vai.</div>
-        <div class="t-msg dir"><u>CEO</u>Inviati. Il secondo ha chiesto la consegna in due settimane: &egrave; fuori dai tuoi tempi standard, quindi non ho risposto io. Decidi tu e glielo dico.</div>
+    <div class="sbpanel nudo">
+      <div class="voce" id="cvbox">
+        <canvas id="cvcv"></canvas>
+        <div class="vtop"><span>CEO</span><em>sempre attivo</em></div>
+        <button class="vplay" id="cvplay" aria-label="Fai parlare il CEO"><span class="tri"></span></button>
+        <p class="vcap" id="cvcap"></p>
+        <span class="vst" id="cvst">Tocca per farlo parlare</span>
       </div>
       <div class="t-fonte">
         <em>Da dove ha preso quello che sa</em>
@@ -1215,6 +1213,20 @@ main>section:nth-of-type(even){background:var(--sez-b)}
 #finale .lede{color:var(--text-muted)}
 section.blk,#percorso,#finale,#conto,#perchi,#domande,#strumenti,#dentro,#routine,#ceo,#team,#nucleo,#dove{border-top:0}
 #team .t-nota{margin:1.4rem 0 0;font-size:.8rem;line-height:1.5;color:var(--text-faint)}
+#ceo .sbpanel.nudo{border:0;background:none;padding:0;box-shadow:none}
+#ceo .voce{position:relative;aspect-ratio:1/1;max-height:560px;border:1px solid var(--line);border-radius:var(--radius-card);overflow:hidden;background:radial-gradient(ellipse 90% 70% at 50% 45%, rgba(183,193,126,.05), rgba(5,7,11,.6) 62%, rgba(5,7,11,.92));display:flex;align-items:center;justify-content:center}
+#ceo .voce canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+#ceo .vtop{position:absolute;top:14px;left:16px;right:16px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-faint);z-index:3}
+#ceo .vtop em{font-style:normal;color:var(--accent);opacity:.85}
+#ceo .vplay{position:relative;z-index:4;width:74px;height:74px;border-radius:50%;border:1px solid rgba(214,223,166,.5);background:rgba(5,7,11,.45);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);cursor:pointer;display:grid;place-items:center;transition:transform .3s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .3s}
+#ceo .vplay:hover{transform:scale(1.07);border-color:var(--accent);box-shadow:0 0 34px rgba(183,193,126,.3)}
+#ceo .vplay .tri{width:0;height:0;margin-left:5px;border-left:15px solid var(--accent);border-top:10px solid transparent;border-bottom:10px solid transparent;transition:.25s}
+#ceo .vplay.on .tri{margin-left:0;width:13px;height:15px;border:0;background:linear-gradient(to right,var(--accent) 0 4px,transparent 4px 9px,var(--accent) 9px 13px)}
+#ceo .vcap{position:absolute;left:8%;right:8%;bottom:64px;z-index:3;margin:0;text-align:center;font-size:1rem;line-height:1.5;color:var(--text);opacity:0;transition:opacity .4s;text-shadow:0 2px 22px rgba(0,0,0,.9)}
+#ceo .vcap.on{opacity:1}
+#ceo .vst{position:absolute;bottom:22px;left:0;right:0;z-index:3;text-align:center;font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-faint)}
+#ceo .sbpanel.nudo .t-fonte{margin-top:1.5rem;border-top:0}
+@media(max-width:760px){#ceo .voce{aspect-ratio:4/5}#ceo .vcap{font-size:.92rem;bottom:58px}}
 #dove .dove-g{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:2.4rem}
 #dove .dove-c{border:1px solid var(--line);border-radius:var(--radius-card);padding:1.6rem 1.7rem 1.75rem;background:rgba(255,255,255,.018)}
 #dove .dove-c .n{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.85rem}
@@ -1237,6 +1249,7 @@ section.blk,#percorso,#finale,#conto,#perchi,#domande,#strumenti,#dentro,#routin
 (function(){ var a=document.createElement('div'); a.id='auro'; document.body.appendChild(a); })();
 </script>
 <script src="/nucleo.js" defer></script>
+<script src="/ceo.js" defer></script>
 <script>
 (function(){
   document.querySelectorAll('.passi').forEach(function(g){
