@@ -8,8 +8,8 @@ const btn=document.getElementById('cvplay'), cap=document.getElementById('cvcap'
 /* le frasi del CEO */
 const FRASI=[
  {f:'ceo-1', url:'https://d8j0ntlcm91z4.cloudfront.net/user_35ATNyRMKaiSQOsyzTUsSAjI1jF/hf_20260910_121959_48f08bda-058f-45d5-9fea-6d5a361d3da9.mp3', t:"Sono il CEO del tuo sistema. Dimmi cosa ti serve: lo passo all'agente giusto, e ti dico cosa sta facendo mentre lo fa."},
- {f:'ceo-2', t:"Ai tre lead di ieri non ha risposto nessuno. Ho pronti tre follow-up, uno per lead. Li mando?"},
- {f:'ceo-3', t:"Il preventivo è pronto, col listino di settembre. La consegna in due settimane però è fuori dai tuoi tempi: decidi tu."}
+ {f:'ceo-2', url:'https://d8j0ntlcm91z4.cloudfront.net/user_35ATNyRMKaiSQOsyzTUsSAjI1jF/hf_20260910_122701_405151a3-0299-457e-945d-47e5a7cb6bcd.mp3', t:"Ai tre lead di ieri non ha risposto nessuno. Ho pronti tre follow-up, uno per lead. Li mando?"},
+ {f:'ceo-3', url:'https://d8j0ntlcm91z4.cloudfront.net/user_35ATNyRMKaiSQOsyzTUsSAjI1jF/hf_20260910_122716_2074faa5-9395-4809-8489-461457c468d4.mp3', t:"Il preventivo è pronto, col listino di settembre. La consegna in due settimane però è fuori dai tuoi tempi: decidi tu."}
 ];
 let giro=0;
 
@@ -55,11 +55,12 @@ function draw(now){
   rot += parla ? .0016+amp*.004 : .0011;
   ctx.clearRect(0,0,W,H);
 
-  const al=ctx.createRadialGradient(cx,cy,0,cx,cy,S*2.1);
-  al.addColorStop(0,'rgba(183,193,126,'+(.10+amp*.18).toFixed(3)+')');
-  al.addColorStop(.45,'rgba(183,193,126,'+(.03+amp*.06).toFixed(3)+')');
+  const RA=S*1.30;
+  const al=ctx.createRadialGradient(cx,cy,0,cx,cy,RA);
+  al.addColorStop(0,'rgba(183,193,126,'+(.13+amp*.22).toFixed(3)+')');
+  al.addColorStop(.55,'rgba(183,193,126,'+(.03+amp*.06).toFixed(3)+')');
   al.addColorStop(1,'rgba(0,0,0,0)');
-  ctx.fillStyle=al; ctx.beginPath(); ctx.arc(cx,cy,S*2.1,0,7); ctx.fill();
+  ctx.fillStyle=al; ctx.beginPath(); ctx.arc(cx,cy,RA,0,7); ctx.fill();
 
   ctx.globalCompositeOperation='lighter';
   for(let i=0;i<PT.length;i++){
