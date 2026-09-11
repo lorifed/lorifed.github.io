@@ -76,16 +76,40 @@ footer nav{display:flex;gap:1.4rem;flex-wrap:wrap}
 .chiudi{text-align:center;padding-top:clamp(10px,1.6vw,24px)}
 .chiudi .btn{margin-top:1.4rem}
 @media(max-width:880px){.livelli{grid-template-columns:1fr}}
+
+/* ── tema scuro, coerente col sito ── */
+:root{
+  --bg:#08090A; --bg-b:rgba(255,255,255,.03); --panel:rgba(255,255,255,.03);
+  --line:rgba(255,255,255,.09); --line-strong:rgba(255,255,255,.17);
+  --text:#F2F3EF; --muted:#9AA08E; --faint:#71776A;
+  --accent:#B7C17E; --accent-2:#D6DFA6;
+}
+html{overflow-x:hidden}
+#auro{position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:
+   radial-gradient(ellipse 70% 46% at 50% -6%, rgba(183,193,126,.20), transparent 68%),
+   radial-gradient(ellipse 52% 40% at 12% 26%, rgba(183,193,126,.10), transparent 70%),
+   radial-gradient(ellipse 58% 44% at 88% 62%, rgba(120,160,255,.08), transparent 72%),
+   #08090A}
+body{background:transparent}
+header .bar,header.solid .bar{background:rgba(10,11,9,.62);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-color:var(--line)}
+.btn{background:#F7F8F4;color:#12140f;border-color:transparent}
+.btn:hover{box-shadow:0 10px 34px rgba(183,193,126,.22)}
+footer{background:transparent;border-top:1px solid var(--line);color:var(--faint)}
+footer a:hover,footer .foot>.mono:first-child{color:var(--text)}
+section,.blk,main>section{border-top:0}
 </style>
 </head>
 <body>
+<div id="auro"></div>
 <header>
   <div class="wrap bar">
     <a class="logo" href="/">21</a>
     <nav class="links">
-      <a href="/#dentro">Dentro il sistema</a>
+      <a href="/#team">Il sistema</a>
+      <a href="/#nucleo">Il cervello</a>
       <a href="/#percorso">Come funziona</a>
-      <a href="/#conto">Quanto ti costa</a>
+      <a href="/#conto">Quanto costa</a>
       <a href="/#perchi">Per chi &egrave;</a>
       <a href="/#domande">Domande</a>
     </nav>
