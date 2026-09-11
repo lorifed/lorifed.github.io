@@ -4,148 +4,286 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Prenota una call — 21studio</title>
-<meta name="description" content="Mezz&#39;ora per capire se ha senso. Guardiamo la tua azienda reparto per reparto: la mappa resta tua in ogni caso.">
-<meta name="theme-color" content="#fbfbf8">
+<meta name="description" content="Mezz'ora per capire se ha senso. Scegli lo slot, raccontaci l'azienda: in call mappiamo i processi manuali reparto per reparto.">
 <link rel="icon" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
+:root{
+  --bg:#08090A; --panel:rgba(255,255,255,.03); --panel-2:rgba(255,255,255,.055);
+  --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.16);
+  --text:#F2F3EF; --muted:#9AA08E; --faint:#71776A;
+  --accent:#B7C17E; --accent-2:#D6DFA6;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Inter Tight',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --container:1180px; --rc:14px;
+}
 *{box-sizing:border-box}
-:root{--bg:#fbfbf8;--bg-b:#f1f1ea;--panel:#fff;--line:rgba(17,19,14,.11);--line-strong:rgba(17,19,14,.20);--text:#12140f;--muted:#5a5f4e;--faint:#8b907c;--accent:#5f6d36;--accent-2:#7d8c4a;--serif:'Instrument Serif',Georgia,serif;--sans:'Inter Tight',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--container:1180px}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:500;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:500;-webkit-font-smoothing:antialiased;line-height:1.55}
+#auro{position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:
+   radial-gradient(ellipse 70% 46% at 50% -6%, rgba(183,193,126,.20), transparent 68%),
+   radial-gradient(ellipse 52% 40% at 12% 26%, rgba(183,193,126,.10), transparent 70%),
+   radial-gradient(ellipse 58% 44% at 88% 62%, rgba(120,160,255,.08), transparent 72%),
+   #08090A}
 .wrap{max-width:var(--container);margin:0 auto;padding:0 28px}
-h1,h2,h3{font-weight:800;letter-spacing:-.02em;line-height:1.08;margin:0}
-h1{font-size:clamp(2.1rem,4.6vw,3.4rem)}
-h3{font-size:1.05rem;font-weight:700;letter-spacing:-.01em}
-.s{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--accent)}
-.kicker{font-family:var(--mono);font-size:.68rem;letter-spacing:.17em;text-transform:uppercase;color:var(--faint);display:inline-flex;align-items:center;gap:.6rem}
-.kicker i{width:6px;height:6px;border-radius:50%;background:var(--accent-2);flex:none;font-style:normal}
-.lede{color:var(--muted);font-size:1.1rem;max-width:58ch;line-height:1.6}
-.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.3rem;border-radius:999px;background:#12140f;color:#fafaf7;font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid var(--accent-2);transition:filter .2s,transform .2s;cursor:pointer}
-.btn:hover{filter:brightness(1.09);transform:translateY(-1px)}
-header{position:fixed;top:14px;left:0;right:0;z-index:120}
-header .bar{max-width:var(--container);margin:0 auto;padding:9px 9px 9px 20px;background:rgba(255,255,255,.55);backdrop-filter:blur(24px) saturate(190%);-webkit-backdrop-filter:blur(24px) saturate(190%);border:1px solid rgba(17,19,14,.07);border-radius:999px;box-shadow:0 6px 24px -10px rgba(17,19,14,.16);display:flex;align-items:center;justify-content:space-between;gap:1.4rem;transition:background .3s}
-header.solid .bar{background:rgba(255,255,255,.86)}
-.logo{width:42px;height:42px;border:1px solid var(--line-strong);border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:1.05rem;text-decoration:none;color:var(--text);flex:none}
-.links{display:flex;gap:1.9rem}
-.links a{color:var(--text);text-decoration:none;font-size:.95rem}
-.links a:hover{color:var(--accent)}
-main{padding-top:clamp(120px,13vw,168px)}
-section{padding:clamp(30px,4vw,58px) 0}
-.top{padding-top:0}
-.top h1{margin-top:1rem;max-width:17ch}
-.top .lede{margin-top:1.3rem}
-.griglia{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:clamp(28px,4vw,62px);align-items:start}
-.modulo{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:clamp(22px,2.6vw,34px);display:flex;flex-direction:column;gap:1.05rem;box-shadow:0 10px 34px -26px rgba(17,19,14,.4)}
-.campo{display:flex;flex-direction:column;gap:.42rem}
-.campo label{font-size:.85rem;color:var(--muted)}
-.campo input,.campo select,.campo textarea{font-family:inherit;font-size:.97rem;font-weight:500;color:var(--text);background:var(--bg);border:1px solid var(--line-strong);border-radius:12px;padding:.72rem .85rem}
-.campo textarea{min-height:118px;resize:vertical}
-.campo input:focus,.campo select:focus,.campo textarea:focus{outline:2px solid var(--accent-2);outline-offset:1px}
-.lato{display:flex;flex-direction:column;gap:1.5rem;padding-top:.4rem}
-.lato p{color:var(--muted);margin:.4rem 0 0;font-size:.95rem;line-height:1.6}
-.lato a{color:var(--accent);text-decoration:none}
-.passi{list-style:none;margin:.6rem 0 0;padding:0;display:flex;flex-direction:column;gap:.7rem;counter-reset:p}
-.passi li{counter-increment:p;display:grid;grid-template-columns:1.9rem 1fr;color:var(--muted);font-size:.95rem;line-height:1.55}
-.passi li::before{content:counter(p,decimal-leading-zero);font-family:var(--mono);font-size:.68rem;color:var(--faint);padding-top:.25rem}
-footer{background:#0d0f0b;border-top:1px solid rgba(246,247,241,.10);color:rgba(246,247,241,.46);padding:2.6rem 0 3.4rem;font-size:.87rem;margin-top:clamp(46px,6vw,90px)}
-.foot{display:flex;justify-content:space-between;gap:1.4rem;flex-wrap:wrap;align-items:center}
-footer a{color:rgba(246,247,241,.74);text-decoration:none}
-footer a:hover{color:#fbfcf7}
-footer .foot>.mono:first-child{color:#fbfcf7}
-footer nav{display:flex;gap:1.4rem;flex-wrap:wrap}
+h1,h2,h3{font-weight:800;letter-spacing:-.022em;line-height:1.06;margin:0}
+h1{font-size:clamp(2.1rem,5vw,3.6rem)}
+h3{font-size:1.02rem}
+em.s{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--accent);letter-spacing:0}
+a{color:inherit}
 .mono{font-family:var(--mono)}
-@media(max-width:880px){.links{display:none}.griglia{grid-template-columns:1fr}}
+header{position:sticky;top:14px;z-index:60;padding:0 18px}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:.85rem 1rem .85rem 1.4rem;border:1px solid var(--line);border-radius:999px;background:rgba(10,11,9,.62);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
+.logo{width:40px;height:40px;border:1px solid var(--line-2);border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:1.1rem;text-decoration:none;flex:none}
+.links{display:flex;gap:1.9rem}
+.links a{text-decoration:none;color:var(--muted);font-size:.95rem;transition:color .2s}
+.links a:hover{color:var(--text)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;background:#F7F8F4;color:#12140f;text-decoration:none;font-weight:700;font-size:.95rem;padding:.8rem 1.4rem;border-radius:999px;border:1px solid transparent;cursor:pointer;font-family:var(--sans);transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s;white-space:nowrap}
+.btn:hover{transform:translateY(-1px);box-shadow:0 10px 34px rgba(183,193,126,.22)}
+.btn.vuoto{background:none;color:var(--text);border-color:var(--line-2)}
+@media(max-width:900px){.links{display:none}}
+.top{padding:clamp(54px,7vw,104px) 0 clamp(26px,3vw,42px)}
+.kicker{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+.kicker i{width:6px;height:6px;border-radius:50%;background:var(--accent);font-style:normal}
+.top h1{margin:1.1rem 0 0;max-width:18ch}
+.lede{margin:1.3rem 0 0;color:var(--muted);font-size:1.06rem;max-width:62ch}
+.griglia{display:grid;grid-template-columns:1fr 360px;gap:clamp(26px,3vw,46px);align-items:start;padding-bottom:clamp(50px,6vw,90px)}
+@media(max-width:960px){.griglia{grid-template-columns:1fr}}
+.scheda{border:1px solid var(--line);border-radius:var(--rc);background:var(--panel);padding:clamp(20px,2.4vw,30px)}
+.passo{display:flex;align-items:baseline;gap:.7rem;margin-bottom:1.3rem}
+.passo b{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;color:var(--accent)}
+.passo span{font-weight:700;font-size:1.06rem;letter-spacing:-.01em}
+.fuso{font-family:var(--mono);font-size:.66rem;color:var(--faint);letter-spacing:.08em;margin-left:auto}
+.mesi{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.mesi b{font-size:.98rem;font-weight:700;text-transform:capitalize}
+.mesi button{width:32px;height:32px;border-radius:50%;border:1px solid var(--line-2);background:none;color:var(--muted);cursor:pointer;font-size:1rem;line-height:1;transition:.2s}
+.mesi button:hover:not(:disabled){color:var(--text);border-color:var(--accent)}
+.mesi button:disabled{opacity:.25;cursor:default}
+.gg{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.gg .dow{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-align:center;padding-bottom:.5rem}
+.gg button{aspect-ratio:1/1;border:1px solid transparent;border-radius:10px;background:none;color:var(--text);font-family:var(--sans);font-size:.92rem;font-weight:600;cursor:pointer;transition:.18s}
+.gg button:hover:not(:disabled){background:var(--panel-2);border-color:var(--line-2)}
+.gg button:disabled{color:var(--faint);opacity:.34;cursor:default}
+.gg button.on{background:var(--accent);color:#12140f;border-color:var(--accent)}
+.gg .vuoto{visibility:hidden}
+.ore{margin-top:1.5rem;border-top:1px solid var(--line);padding-top:1.3rem}
+.ore-t{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:.85rem}
+.slot{display:flex;flex-wrap:wrap;gap:8px}
+.slot button{border:1px solid var(--line-2);border-radius:999px;background:none;color:var(--text);font-family:var(--mono);font-size:.84rem;padding:.6rem 1.1rem;cursor:pointer;transition:.18s}
+.slot button:hover{border-color:var(--accent);color:var(--accent-2)}
+.slot button.on{background:var(--accent);border-color:var(--accent);color:#12140f}
+.scelto{margin-top:1.2rem;font-size:.94rem;color:var(--muted)}
+.scelto b{color:var(--text)}
+.campi{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.campo{display:flex;flex-direction:column;gap:.5rem}
+.campo.largo{grid-column:1/-1}
+.campo label{font-size:.84rem;color:var(--muted);font-weight:600}
+.campo input,.campo select,.campo textarea{background:rgba(255,255,255,.028);border:1px solid var(--line);border-radius:10px;color:var(--text);font-family:var(--sans);font-size:.98rem;font-weight:500;padding:.82rem .95rem;width:100%;transition:.18s}
+.campo textarea{min-height:104px;resize:vertical;line-height:1.5}
+.campo input:focus,.campo select:focus,.campo textarea:focus{outline:0;border-color:var(--accent);background:rgba(183,193,126,.05)}
+.campo select{appearance:none;-webkit-appearance:none;cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 14px) 50%;background-size:6px 6px,6px 6px;background-repeat:no-repeat}
+.campo select option{background:#12140f;color:#F2F3EF}
+.consenso{grid-column:1/-1;display:flex;gap:.7rem;align-items:flex-start;font-size:.84rem;color:var(--faint);line-height:1.5}
+.consenso input{width:16px;height:16px;flex:none;margin-top:.18rem;accent-color:var(--accent)}
+.invia{grid-column:1/-1;margin-top:.4rem}
+.invia .btn{width:100%;justify-content:center;padding:1rem}
+.avviso{grid-column:1/-1;font-size:.82rem;color:var(--accent-2);margin:0}
+@media(max-width:620px){.campi{grid-template-columns:1fr}}
+.lato{position:sticky;top:96px;display:flex;flex-direction:column;gap:22px}
+@media(max-width:960px){.lato{position:static}}
+.blocco{border:1px solid var(--line);border-radius:var(--rc);background:var(--panel);padding:1.5rem 1.6rem}
+.blocco h3{margin-bottom:1rem}
+.blocco p{margin:0;color:var(--muted);font-size:.94rem}
+.blocco ul{margin:0;padding:0;display:flex;flex-direction:column;gap:1rem}
+.blocco li{list-style:none;display:flex;gap:.85rem;color:var(--muted);font-size:.92rem;line-height:1.5}
+.blocco li b{font-family:var(--mono);font-size:.7rem;color:var(--accent);flex:none;padding-top:.18rem}
+.blocco a{color:var(--accent-2)}
+footer{border-top:1px solid var(--line);padding:2.4rem 0 3rem;color:var(--faint);font-size:.87rem}
+.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+footer a{text-decoration:none}
+footer a:hover{color:var(--text)}
 </style>
 </head>
 <body>
+<div id="auro"></div>
 <header>
   <div class="wrap bar">
     <a class="logo" href="/">21</a>
     <nav class="links">
-      <a href="/#dentro">Dentro il sistema</a>
+      <a href="/#team">Il sistema</a>
+      <a href="/#nucleo">Il cervello</a>
       <a href="/#percorso">Come funziona</a>
-      <a href="/#conto">Quanto ti costa</a>
+      <a href="/#conto">Quanto costa</a>
       <a href="/#perchi">Per chi &egrave;</a>
       <a href="/#domande">Domande</a>
     </nav>
-    <a class="btn" href="/contatti.html">Prenota una call &rarr;</a>
+    <a class="btn vuoto" href="/">Torna al sito</a>
   </div>
 </header>
+
 <main>
 <section class="top">
   <div class="wrap">
     <span class="kicker"><i></i>Il primo passo</span>
     <h1>Mezz&#39;ora, e sai se ha <em class="s">senso</em>.</h1>
-    <p class="lede">Rispondo entro un giorno lavorativo. Guardiamo la tua azienda reparto per reparto: se ci sono i presupposti te lo dico, e se non ci sono te lo dico lo stesso — la mappa resta tua in ogni caso.</p>
+    <p class="lede">Scegli lo slot e raccontaci l&#39;azienda. In call la guardiamo reparto per reparto: se ci sono i presupposti te lo diciamo, e se non ci sono te lo diciamo lo stesso &mdash; la mappa resta tua in ogni caso.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap griglia">
-    <form class="modulo" action="mailto:info@21studio.it" method="post" enctype="text/plain">
-      <div class="campo">
-        <label for="nome">Nome e azienda</label>
-        <input type="text" id="nome" name="nome" required>
-      </div>
-      <div class="campo">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-      <div class="campo">
-        <label for="reparto">Da dove partiresti</label>
-        <select id="reparto" name="reparto">
-          <option>Assistenza clienti</option>
-          <option>Vendite e preventivi</option>
-          <option>Marketing e contenuti</option>
-          <option>Operations e inserimento dati</option>
-          <option>Amministrazione e report</option>
-          <option>Non lo so ancora, guardiamolo insieme</option>
-        </select>
-      </div>
-      <div class="campo">
-        <label for="messaggio">Qual &egrave; il lavoro manuale che ti pesa di pi&ugrave;</label>
-        <textarea id="messaggio" name="messaggio" required></textarea>
-      </div>
-      <button type="submit" class="btn" style="align-self:flex-start;margin-top:.3rem">Invia &rarr;</button>
-    </form>
+    <div style="display:flex;flex-direction:column;gap:22px">
 
-    <div class="lato">
-      <div>
-        <h3>Cosa succede dopo</h3>
-        <ol class="passi">
-          <li>Ti rispondo entro un giorno lavorativo e fissiamo mezz&#39;ora.</li>
-          <li>In call mappiamo i processi manuali, reparto per reparto.</li>
-          <li>Entro 48 ore ti mando i tre documenti: la mappa, il conto in euro, quali reparti accendere. Restano tuoi anche se ci salutiamo l&igrave;.</li>
-        </ol>
+      <div class="scheda">
+        <div class="passo"><b>01</b><span>Scegli quando</span><i class="fuso" id="fuso"></i></div>
+        <div class="mesi">
+          <button type="button" id="prev" aria-label="Mese precedente">&#8249;</button>
+          <b id="mese"></b>
+          <button type="button" id="next" aria-label="Mese successivo">&#8250;</button>
+        </div>
+        <div class="gg" id="gg"></div>
+        <div class="ore" id="ore" hidden>
+          <div class="ore-t" id="oreT"></div>
+          <div class="slot" id="slot"></div>
+        </div>
+        <p class="scelto" id="scelto">Le call durano <b>30 minuti</b> e si fanno su Google Meet.</p>
       </div>
-      <div>
-        <h3>Gratuita davvero</h3>
-        <p>Nessuna carta, nessun impegno, nessuna proposta a sorpresa. Se non ha senso te lo dico in call, non dopo tre settimane.</p>
+
+      <div class="scheda">
+        <div class="passo"><b>02</b><span>Raccontaci l&#39;azienda</span></div>
+        <form class="campi" id="modulo" novalidate>
+          <div class="campo"><label for="nome">Nome e cognome *</label><input type="text" id="nome" required></div>
+          <div class="campo"><label for="azienda">Azienda *</label><input type="text" id="azienda" required></div>
+          <div class="campo"><label for="email">Email *</label><input type="email" id="email" required></div>
+          <div class="campo"><label for="tel">Telefono</label><input type="tel" id="tel"></div>
+          <div class="campo"><label for="sito">Sito</label><input type="text" id="sito" placeholder="21studio.io"></div>
+          <div class="campo"><label for="persone">Quante persone siete</label>
+            <select id="persone"><option>Solo io</option><option>2 &ndash; 5</option><option>6 &ndash; 15</option><option>16 &ndash; 50</option><option>Pi&ugrave; di 50</option></select></div>
+          <div class="campo largo"><label for="reparto">Da dove partiresti</label>
+            <select id="reparto">
+              <option>Assistenza clienti</option><option>Vendite e preventivi</option>
+              <option>Marketing e contenuti</option><option>Operations e inserimento dati</option>
+              <option>Amministrazione e report</option><option>Non lo so ancora, guardiamolo insieme</option>
+            </select></div>
+          <div class="campo largo"><label for="pesa">Qual &egrave; il lavoro manuale che ti pesa di pi&ugrave; *</label>
+            <textarea id="pesa" required placeholder="Es. ogni preventivo lo riscrivo a mano, e poi nessuno ricontatta chi non risponde."></textarea></div>
+          <div class="campo largo"><label for="tool">Che strumenti usate gi&agrave;</label>
+            <input type="text" id="tool" placeholder="Gmail, WhatsApp, un gestionale, Drive&hellip;"></div>
+          <label class="consenso"><input type="checkbox" id="ok" required>
+            Acconsento al trattamento dei dati per essere ricontattato. Niente newsletter, niente liste.</label>
+          <div class="invia"><button type="submit" class="btn">Conferma la call &rarr;</button></div>
+          <p class="avviso" id="avviso"></p>
+        </form>
       </div>
-      <div>
-        <h3>Preferisci scrivere</h3>
-        <p><a href="mailto:info@21studio.it">info@21studio.it</a></p>
-      </div>
+
     </div>
+
+    <aside class="lato">
+      <div class="blocco">
+        <h3>Cosa succede dopo</h3>
+        <ul>
+          <li><b>01</b><span>Ti confermiamo lo slot entro un giorno lavorativo, con il link della call.</span></li>
+          <li><b>02</b><span>In mezz&#39;ora mappiamo i processi manuali, reparto per reparto.</span></li>
+          <li><b>03</b><span>Entro 48 ore ti mandiamo tre documenti: la mappa, il conto in euro, quali reparti accendere. Restano tuoi anche se ci salutiamo l&igrave;.</span></li>
+        </ul>
+      </div>
+      <div class="blocco">
+        <h3>Gratuita davvero</h3>
+        <p>Nessuna carta, nessun impegno, nessuna proposta a sorpresa. Se non ha senso te lo diciamo in call, non dopo tre settimane.</p>
+      </div>
+      <div class="blocco">
+        <h3>Preferisci scrivere</h3>
+        <p><a href="mailto:info@21studio.it">info@21studio.it</a><br>Rispondiamo entro un giorno lavorativo.</p>
+      </div>
+    </aside>
   </div>
 </section>
 </main>
+
 <footer>
   <div class="wrap foot">
     <span class="mono">21studio</span>
-    <nav>
-      <a href="/#percorso">Come funziona</a>
-      <a href="/piano-di-mantenimento.html">Piano di mantenimento</a>
-      <a href="/contatti.html">Contatti</a>
-    </nav>
-    <a class="mono" href="mailto:info@21studio.it">info@21studio.it</a>
+    <span><a href="/">Sito</a> &middot; <a href="/piano-di-mantenimento.html">Piano di mantenimento</a> &middot; <a href="mailto:info@21studio.it">info@21studio.it</a></span>
   </div>
 </footer>
 <script>
-(function(){var h=document.querySelector('header');var f=function(){h.classList.toggle('solid',scrollY>12);};addEventListener('scroll',f,{passive:true});f();})();
+(function(){
+  var MESI=['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'];
+  var DOW=['lun','mar','mer','gio','ven','sab','dom'];
+  var ORE=['09:30','11:00','14:30','16:00','17:30'];
+  var oggi=new Date(); oggi.setHours(0,0,0,0);
+  var limite=new Date(oggi.getTime()+60*86400000);
+  var vista=new Date(oggi.getFullYear(),oggi.getMonth(),1);
+  var giorno=null, ora=null;
+  var gg=document.getElementById('gg'), mese=document.getElementById('mese');
+  var prev=document.getElementById('prev'), next=document.getElementById('next');
+  var ore=document.getElementById('ore'), oreT=document.getElementById('oreT'), slot=document.getElementById('slot');
+  var scelto=document.getElementById('scelto'), avviso=document.getElementById('avviso');
+  try{ document.getElementById('fuso').textContent=Intl.DateTimeFormat().resolvedOptions().timeZone.replace('_',' '); }catch(e){}
+
+  function libero(d){ var w=d.getDay(); return w!==0 && w!==6 && d>oggi && d<limite }
+
+  function disegna(){
+    mese.textContent=MESI[vista.getMonth()]+' '+vista.getFullYear();
+    prev.disabled = vista<=new Date(oggi.getFullYear(),oggi.getMonth(),1);
+    next.disabled = vista>=new Date(limite.getFullYear(),limite.getMonth(),1);
+    gg.innerHTML='';
+    DOW.forEach(function(d){ var s=document.createElement('div'); s.className='dow'; s.textContent=d; gg.appendChild(s) });
+    var primo=new Date(vista.getFullYear(),vista.getMonth(),1);
+    var salta=(primo.getDay()+6)%7;
+    for(var i=0;i<salta;i++){ var v=document.createElement('div'); v.className='vuoto'; gg.appendChild(v) }
+    var ultimo=new Date(vista.getFullYear(),vista.getMonth()+1,0).getDate();
+    for(var n=1;n<=ultimo;n++){
+      var d=new Date(vista.getFullYear(),vista.getMonth(),n);
+      var b=document.createElement('button'); b.type='button'; b.textContent=n;
+      if(!libero(d)) b.disabled=true;
+      if(giorno && d.getTime()===giorno.getTime()) b.className='on';
+      b.addEventListener('click',(function(dd){return function(){ giorno=dd; ora=null; disegna(); mostraOre() }})(d));
+      gg.appendChild(b);
+    }
+  }
+  function mostraOre(){
+    if(!giorno){ ore.hidden=true; return }
+    ore.hidden=false;
+    oreT.textContent=giorno.getDate()+' '+MESI[giorno.getMonth()]+' \u00b7 scegli un orario';
+    slot.innerHTML='';
+    ORE.forEach(function(h){
+      var b=document.createElement('button'); b.type='button'; b.textContent=h;
+      if(ora===h) b.className='on';
+      b.addEventListener('click',function(){ ora=h; mostraOre() });
+      slot.appendChild(b);
+    });
+    riepilogo();
+  }
+  function riepilogo(){
+    if(giorno&&ora) scelto.innerHTML='Hai scelto <b>'+giorno.getDate()+' '+MESI[giorno.getMonth()]+', ore '+ora+'</b>. Trenta minuti, su Google Meet.';
+    else scelto.innerHTML='Le call durano <b>30 minuti</b> e si fanno su Google Meet.';
+  }
+  prev.addEventListener('click',function(){ vista=new Date(vista.getFullYear(),vista.getMonth()-1,1); disegna() });
+  next.addEventListener('click',function(){ vista=new Date(vista.getFullYear(),vista.getMonth()+1,1); disegna() });
+  disegna();
+
+  document.getElementById('modulo').addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=function(id){ return (document.getElementById(id).value||'').trim() };
+    if(!giorno||!ora){ avviso.textContent='Scegli prima il giorno e l\u2019orario qui sopra.'; return }
+    if(!v('nome')||!v('azienda')||!v('email')||!v('pesa')||!document.getElementById('ok').checked){
+      avviso.textContent='Mancano i campi con l\u2019asterisco, o il consenso.'; return }
+    var quando=giorno.getDate()+' '+MESI[giorno.getMonth()]+' '+giorno.getFullYear()+', ore '+ora;
+    var corpo=['Slot scelto: '+quando,'',
+      'Nome: '+v('nome'),'Azienda: '+v('azienda'),'Email: '+v('email'),
+      'Telefono: '+(v('tel')||'-'),'Sito: '+(v('sito')||'-'),
+      'Persone: '+v('persone'),'Reparto di partenza: '+v('reparto'),'',
+      'Lavoro manuale che pesa di piu:',v('pesa'),'',
+      'Strumenti in uso: '+(v('tool')||'-')].join('\n');
+    window.location.href='mailto:info@21studio.it?subject='+encodeURIComponent('Call '+quando+' \u2014 '+v('azienda'))+'&body='+encodeURIComponent(corpo);
+    avviso.textContent='Ti si apre la mail gia compilata: mandala e ti confermiamo lo slot.';
+  });
+})();
 </script>
 </body>
 </html>
