@@ -518,13 +518,13 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
         <p>Guardiamo la tua azienda reparto per reparto e mappiamo dove il tempo si perde: preventivi senza risposta, report a mano, clienti che aspettano.</p>
         <div class="pay">Costo: <b>€0</b><br>Esci con la mappa, tua anche se ci salutiamo qui.</div></article>
       <article class="stepcard"><h3>La prova, sulla tua azienda</h3>
-        <p>Configuro il sistema sui tuoi processi e sui tuoi dati veri, e lo usi. Non una demo con dati finti: il tuo sistema, che gira mentre lavori.</p>
+        <p>Configuriamo il sistema sui tuoi processi e sui tuoi dati veri, e lo usi. Non una demo con dati finti: il tuo sistema, che gira mentre lavori.</p>
         <div class="pay">Costo: <b>deposito rimborsabile al 100%</b><br>Non è un pagamento: filtra chi fa sul serio.</div></article>
       <article class="stepcard"><h3>Decidi tu</h3>
-        <p>Se ti convince lo compri ed è tuo: configurazione, dati, documentazione. Se non ti convince il deposito torna intero e non mi devi nemmeno una spiegazione.</p>
+        <p>Se ti convince lo compri ed è tuo: configurazione, dati, documentazione. Se non ti convince il deposito torna intero e non ci devi nemmeno una spiegazione.</p>
         <div class="pay">Costo: <b>il prezzo del sistema</b><br>Una tantum. Nessun canone per usarlo.</div></article>
       <article class="stepcard"><h3>Manutenzione, se la vuoi</h3>
-        <p>Il sistema è tuo e funziona anche se non mi paghi più niente. Il piano non serve per usarlo: serve per farlo crescere.</p>
+        <p>Il sistema è tuo e funziona anche se non ci paghi più niente. Il piano non serve per usarlo: serve per farlo crescere.</p>
         <div class="pay">Costo: <b>opzionale</b><br>Mai una licenza per accendere quello che è già tuo.</div></article>
     </div>
   </div>
@@ -562,9 +562,9 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
 <section class="blk">
   <div class="wrap">
     <div class="head mid">
-      <span class="kicker"><i></i>Dal passo 01</span>
-      <h2>Tre cose concrete. <em class="s">Tue da tenere.</em></h2>
-      <p class="lede">Nessuna slide, nessun "ti faremo sapere". Roba scritta entro 48 ore dalla call, che resta tua anche se dopo ci dici di no.</p>
+      <span class="kicker"><i></i>Cosa ti resta in mano</span>
+      <h2>Esci dalla call con <em class="s">tre documenti</em>. Tuoi, anche se ci dici di no.</h2>
+      <p class="lede">La mappa dei tuoi processi manuali, il conto in euro di quanto ti costano, e quali reparti accendere per primi. Entro 48 ore, sui tuoi numeri veri &mdash; non su una media di settore.</p>
     </div>
     <div class="g3">
       <div class="asset rise">
@@ -597,7 +597,7 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
           <div class="r" style="opacity:.55"><span>Finance</span><b>non ora</b></div>
           <div class="r" style="opacity:.55"><span>HR</span><b>sconsigliato</b></div>
         </div>
-        <div class="txt"><div class="lbl">03 · Documento</div><h3>Quali reparti accendere</h3><p>In ordine di quanto ti restituiscono. Con dentro quelli che ti sconsiglio, e il perché.</p></div>
+        <div class="txt"><div class="lbl">03 · Documento</div><h3>Quali reparti accendere</h3><p>In ordine di quanto ti restituiscono. Con dentro quelli che ti sconsigliamo, e il perché.</p></div>
       </div>
     </div>
   </div>
@@ -608,7 +608,7 @@ footer{border-top:1px solid var(--line);padding:2.6rem 0 3.4rem;color:var(--text
     <div class="head">
       <span class="kicker"><i></i>Trenta secondi</span>
       <h2>Quanto ti costa il <em class="s">lavoro manuale</em>?</h2>
-      <p class="lede">Tre numeri tuoi e un'aritmetica banale. Non è una stima mia né un dato di settore: è il tuo conto, fatto in fretta.</p>
+      <p class="lede">Tre numeri tuoi e un'aritmetica banale. Non è una nostra stima né un dato di settore: è il tuo conto, fatto in fretta.</p>
     </div>
     <div class="calc rise">
       <div class="calc-in">
@@ -1205,6 +1205,9 @@ main>section:nth-of-type(even){background:var(--sez-b)}
 #finale .lede{color:var(--text-muted)}
 section.blk,#percorso,#finale,#conto,#perchi,#domande,#strumenti,#dentro,#routine,#ceo,#team,#nucleo{border-top:0}
 #team .t-nota{margin:1.4rem 0 0;font-size:.8rem;line-height:1.5;color:var(--text-faint)}
+#avanz{position:fixed;top:0;left:0;right:0;height:2px;z-index:200;transform:scaleX(0);transform-origin:0 50%;background:linear-gradient(90deg,rgba(183,193,126,.35),#D6DFA6);pointer-events:none}
+.riga{overflow:hidden;display:block}
+.par{will-change:transform}
 #ceo .sbpanel.nudo{border:0;background:none;padding:0;box-shadow:none}
 #ceo .voce{position:relative;aspect-ratio:1/1;max-height:560px;border:0;background:none;display:flex;align-items:center;justify-content:center}
 #ceo .voce canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
@@ -1242,6 +1245,7 @@ section.blk,#percorso,#finale,#conto,#perchi,#domande,#strumenti,#dentro,#routin
 </script>
 <script src="/nucleo.js" defer></script>
 <script src="/ceo.js" defer></script>
+<script src="/storia.js" defer></script>
 <script>
 (function(){
   document.querySelectorAll('.passi').forEach(function(g){
