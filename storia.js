@@ -50,5 +50,21 @@
       scrollTrigger:{trigger:el[0],start:'top 86%',once:true}});
   });
 
-  ScrollTrigger.refresh();
+  /* le mie aggiunte cambiano l'altezza della pagina: i trigger del sito
+     erano tarati su quella di prima, quindi vanno ricalcolati */
+  function ricalcola(){ ScrollTrigger.refresh() }
+  ricalcola();
+  addEventListener('load',ricalcola);
+  setTimeout(ricalcola,700);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(ricalcola);
+
+  /* rete di sicurezza: se qualcosa resta invisibile pur essendo a schermo, lo mostro */
+  setTimeout(function(){
+    document.querySelectorAll('.rise').forEach(function(e){
+      var r=e.getBoundingClientRect();
+      if(r.top<innerHeight&&r.bottom>0&&getComputedStyle(e).opacity==='0'){
+        gsap.to(e,{opacity:1,y:0,duration:.6,ease:'power3.out'});
+      }
+    });
+  },1500);
 })();
