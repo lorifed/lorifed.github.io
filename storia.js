@@ -43,8 +43,9 @@
     scrollTrigger:{trigger:core,start:'top bottom',end:'top 30%',scrub:.7}});
 
   /* 6 — le schede si alzano una dopo l'altra */
-  [['#percorso .stepcard',.09],['.g3 .asset',.1],['.dove-g .dove-c',.12],['#routine .t-card',.07]].forEach(function(p){
-    var el=document.querySelectorAll(p[0]); if(!el.length) return;
+  [['#percorso .stepcard',.09],['.dove-g .dove-c',.12]].forEach(function(p){
+    var el=[].slice.call(document.querySelectorAll(p[0])).filter(function(e){return !e.classList.contains('rise')});
+    if(!el.length) return;
     gsap.from(el,{y:26,opacity:0,duration:.8,ease:'power3.out',stagger:p[1],
       scrollTrigger:{trigger:el[0],start:'top 86%',once:true}});
   });
