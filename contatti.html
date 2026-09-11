@@ -214,7 +214,7 @@ footer a:hover{color:var(--text)}
 (function(){
   var MESI=['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'];
   var DOW=['lun','mar','mer','gio','ven','sab','dom'];
-  var ORE=['09:30','11:00','14:30','16:00','17:30'];
+  var ORE=(function(){var a=[],m=14*60+30;for(;m<=19*60;m+=30){a.push(('0'+Math.floor(m/60)).slice(-2)+':'+('0'+m%60).slice(-2))}return a})();
   var oggi=new Date(); oggi.setHours(0,0,0,0);
   var limite=new Date(oggi.getTime()+60*86400000);
   var vista=new Date(oggi.getFullYear(),oggi.getMonth(),1);
