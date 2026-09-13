@@ -1236,6 +1236,13 @@ main>section:nth-of-type(even){background:var(--sez-b)}
 #finale .lede{color:var(--text-muted)}
 section.blk,#percorso,#finale,#conto,#perchi,#domande,#strumenti,#dentro,#routine,#ceo,#team,#nucleo,#dove{border-top:0}
 #team .t-nota{margin:1.4rem 0 0;font-size:.8rem;line-height:1.5;color:var(--text-faint)}
+/* niente lampi bianchi: la tela di fondo e sempre scura, anche se qualcosa
+   non fa in tempo a ridisegnarsi (succede su Safari saltando fra le sezioni) */
+html{background:#08090A}
+#auro{will-change:transform;transform:translateZ(0)}
+.stage{background:#08090A}
+.sky{will-change:opacity}
+
 #dove .scelta{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:clamp(30px,3.4vw,48px)}
 #dove .opz{border:1px solid var(--line);border-radius:var(--radius-card);padding:clamp(24px,2.6vw,34px);background:rgba(255,255,255,.018);display:flex;flex-direction:column}
 #dove .opz.top{border-color:rgba(183,193,126,.42);background:rgba(183,193,126,.045)}
