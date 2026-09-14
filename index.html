@@ -10,7 +10,13 @@
 /* il tower lo nasconde il JS solo a fine pagina: se non lo spegniamo qui,
    fra il primo disegno e quel momento si vede un rettangolo dietro il titolo */
 #tower{display:none}</style>
-<script>try{if(sessionStorage.getItem('intro21')==='1')document.documentElement.className+=' subito';else sessionStorage.setItem('intro21','1')}catch(e){}</script>
+<script>
+/* Safari al ricarica ripristina lo scroll mentre le animazioni si inizializzano:
+   i due si contendono la posizione e la hero balla. Partiamo sempre da zero. */
+try{ if('scrollRestoration' in history) history.scrollRestoration='manual'; }catch(e){}
+try{ if(sessionStorage.getItem('intro21')==='1') document.documentElement.className+=' subito';
+     else sessionStorage.setItem('intro21','1'); }catch(e){}
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Ti costruiamo i reparti AI della tua azienda. Li provi davvero, sulla tua azienda, prima di pagarli — e se ti convincono restano tuoi per sempre.">
 <link rel="icon" href="/favicon.svg">
