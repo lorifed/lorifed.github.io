@@ -1316,9 +1316,14 @@ window.addEventListener('load',function(){ ScrollTrigger.refresh(); });
 <script>
 (function(){ var a=document.createElement('div'); a.id='auro'; document.body.appendChild(a); })();
 </script>
-<script src="/nucleo.js" defer></script>
-<script src="/ceo.js" defer></script>
-<script src="/storia.js" defer></script>
+<script>
+/* interruttore di prova: 21studio.io/?nofx spegne grafo, sfera e animazioni */
+(function(){ if(/[?&]nofx/.test(location.search)) return;
+  ['/nucleo.js','/ceo.js','/storia.js'].forEach(function(s){
+    var e=document.createElement('script'); e.src=s; e.defer=true; document.head.appendChild(e);
+  });
+})();
+</script>
 <script>
 (function(){
   document.querySelectorAll('.passi').forEach(function(g){
