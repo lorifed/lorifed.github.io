@@ -6,7 +6,8 @@
    'background:#0b0d10;color:#dfe3d8;border:1px solid #444;border-radius:10px;padding:14px 16px;'+
    'font:12px/1.5 ui-monospace,Menlo,monospace;white-space:pre-wrap';
   box.textContent='misurazione in corso…';
-  addEventListener('DOMContentLoaded',function(){document.body.appendChild(box)});
+  function attacca(){ if(document.body && !box.parentNode) document.body.appendChild(box); }
+  if(document.body) attacca(); else addEventListener('DOMContentLoaded',attacca);
 
   function q(s){ return document.querySelector(s) }
   function top(el){ return el ? Math.round(el.getBoundingClientRect().top) : null }
@@ -23,6 +24,7 @@
       hh:document.documentElement.scrollHeight,
       vh:innerHeight
     });
+    attacca();
     if(t<4000) requestAnimationFrame(tick); else mostra();
   }
 
