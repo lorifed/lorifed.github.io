@@ -5,7 +5,9 @@
 <link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" crossorigin>
 <link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" crossorigin>
 <link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js" crossorigin>
-<style>html,body{background:#08090A}</style>
+<style>html,body{background:#08090A}
+.subito .title h1 .w i{transform:none}</style>
+<script>try{if(sessionStorage.getItem('intro21')==='1')document.documentElement.className+=' subito';else sessionStorage.setItem('intro21','1')}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Ti costruiamo i reparti AI della tua azienda. Li provi davvero, sulla tua azienda, prima di pagarli — e se ti convincono restano tuoi per sempre.">
 <link rel="icon" href="/favicon.svg">
@@ -1058,8 +1060,7 @@ html{background:#08090A}
   gsap.ticker.lagSmoothing(0);
 
   /* l'apertura si vede una volta per sessione: chi ricarica trova il titolo gia' li' */
-  var vista=false;
-  try{ vista = sessionStorage.getItem('intro21')==='1'; sessionStorage.setItem('intro21','1'); }catch(e){}
+  var vista = document.documentElement.classList.contains('subito');
   var apri=gsap.timeline({delay: vista ? 0 : .12});
   apri.to('#h1 .w i',{y:'0%',duration:.7,ease:'expo.out',stagger:.028})
       .from('#sub',{opacity:0,y:16,duration:.7,ease:'power2.out'},'-=.45')
