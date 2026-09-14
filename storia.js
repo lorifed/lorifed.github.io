@@ -16,15 +16,7 @@
       scrollTrigger:{trigger:h,start:'top 88%',once:true}});
   });
 
-  /* 3 — occhiello: compare e la pallina si accende */
-  document.querySelectorAll('main .kicker').forEach(function(k){
-    var t=gsap.timeline({scrollTrigger:{trigger:k,start:'top 92%',once:true}});
-    t.from(k,{opacity:0,duration:.5,ease:'power2.out'});
-    var i=k.querySelector('i');
-    if(i) t.from(i,{scale:0,duration:.5,ease:'back.out(3)'},'-=.3');
-  });
-
-  /* 4 — parallasse: i pannelli scorrono un filo piu lenti del testo */
+/* 4 — parallasse: i pannelli scorrono un filo piu lenti del testo */
   function parallasse(sel,forza){
     document.querySelectorAll(sel).forEach(function(el){
       var g=document.createElement('div'); g.className='par';
@@ -52,11 +44,7 @@
 
   /* le mie aggiunte cambiano l'altezza della pagina: i trigger del sito
      erano tarati su quella di prima, quindi vanno ricalcolati */
-  function ricalcola(){ ScrollTrigger.refresh() }
-  ricalcola();
-  addEventListener('load',ricalcola);
-  setTimeout(ricalcola,700);
-  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(ricalcola);
+  addEventListener('load',function(){ ScrollTrigger.refresh() },{once:true});
 
   /* rete di sicurezza: se qualcosa resta invisibile pur essendo a schermo, lo mostro */
   setTimeout(function(){
