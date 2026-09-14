@@ -1327,7 +1327,9 @@ window.addEventListener('load',function(){ ScrollTrigger.refresh(); });
 </script>
 <script>
 /* interruttore di prova: 21studio.io/?nofx spegne grafo, sfera e animazioni */
-(function(){ if(/[?&]nofx/.test(location.search)) return;
+(function(){
+  if(/[?&]debug/.test(location.search)){ var dg=document.createElement('script'); dg.src='/diagnosi.js'; dg.defer=true; document.head.appendChild(dg); }
+  if(/[?&]nofx/.test(location.search)) return;
   ['/nucleo.js','/ceo.js','/storia.js'].forEach(function(s){
     var e=document.createElement('script'); e.src=s; e.defer=true; document.head.appendChild(e);
   });
