@@ -2,8 +2,8 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="theme-color" content="#08090A">
-<style>html,body{background:#08090A}</style>
+<meta name="theme-color" content="#0E100E">
+<style>html,body{background:#0E100E}</style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Prenota una call — 21studio</title>
 <meta name="description" content="Mezz'ora per capire se ha senso. Scegli lo slot, raccontaci l'azienda: in call mappiamo i processi manuali reparto per reparto.">
@@ -14,7 +14,7 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
 <style>
 :root{
-  --bg:#08090A; --panel:rgba(255,255,255,.03); --panel-2:rgba(255,255,255,.055);
+  --bg:#0E100E; --panel:rgba(255,255,255,.03); --panel-2:rgba(255,255,255,.055);
   --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.16);
   --text:#F2F3EF; --muted:#9AA08E; --faint:#71776A;
   --accent:#B7C17E; --accent-2:#D6DFA6;
@@ -28,10 +28,10 @@ html{scroll-behavior:smooth;overflow-x:hidden}
 body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:500;-webkit-font-smoothing:antialiased;line-height:1.55}
 #auro{position:fixed;inset:0;z-index:-2;pointer-events:none;
   background:
-   radial-gradient(ellipse 70% 46% at 50% -6%, rgba(183,193,126,.20), transparent 68%),
+   radial-gradient(ellipse 72% 50% at 50% -8%, rgba(183,193,126,.28), transparent 70%),
    radial-gradient(ellipse 52% 40% at 12% 26%, rgba(183,193,126,.10), transparent 70%),
    radial-gradient(ellipse 58% 44% at 88% 62%, rgba(120,160,255,.08), transparent 72%),
-   #08090A}
+   #0E100E}
 .wrap{max-width:var(--container);margin:0 auto;padding:0 28px}
 h1,h2,h3{font-weight:800;letter-spacing:-.022em;line-height:1.06;margin:0}
 h1{font-size:clamp(2.1rem,5vw,3.6rem)}
@@ -41,7 +41,7 @@ a{color:inherit}
 .mono{font-family:var(--mono)}
 header{position:sticky;top:14px;z-index:60;padding:0 18px}
 .bar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:.85rem 1rem .85rem 1.4rem;border:1px solid var(--line);border-radius:999px;background:rgba(10,11,9,.62);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
-.logo{width:40px;height:40px;border:1px solid var(--line-2);border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:1.1rem;text-decoration:none;flex:none}
+.logo{display:inline-flex;align-items:center;font-family:var(--sans);font-weight:800;font-size:1.06rem;letter-spacing:-.03em;line-height:1;text-decoration:none;color:var(--text);white-space:nowrap;flex:none}
 .links{display:flex;gap:1.9rem}
 .links a{text-decoration:none;color:var(--muted);font-size:.95rem;transition:color .2s}
 .links a:hover{color:var(--text)}
@@ -115,7 +115,7 @@ footer a:hover{color:var(--text)}
 <div id="auro"></div>
 <header>
   <div class="wrap bar">
-    <a class="logo" href="/">21</a>
+    <a class="logo" href="/" aria-label="21studio">21STUDIO</a>
     <nav class="links">
       <a href="/#team">Il sistema</a>
       <a href="/#nucleo">Il cervello</a>
