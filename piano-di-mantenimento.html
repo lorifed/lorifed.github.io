@@ -2,8 +2,8 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="theme-color" content="#08090A">
-<style>html,body{background:#08090A}</style>
+<meta name="theme-color" content="#0E100E">
+<style>html,body{background:#0E100E}</style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Piano di mantenimento — 21studio</title>
 <meta name="description" content="Il sistema resta tuo. La manutenzione è una scelta, non una licenza per accendere quello che hai già pagato.">
@@ -31,7 +31,7 @@ h3{font-size:1.05rem;font-weight:700;letter-spacing:-.01em}
 header{position:fixed;top:14px;left:0;right:0;z-index:120}
 header .bar{max-width:var(--container);margin:0 auto;padding:9px 9px 9px 20px;background:rgba(255,255,255,.55);backdrop-filter:blur(24px) saturate(190%);-webkit-backdrop-filter:blur(24px) saturate(190%);border:1px solid rgba(17,19,14,.07);border-radius:999px;box-shadow:0 6px 24px -10px rgba(17,19,14,.16);display:flex;align-items:center;justify-content:space-between;gap:1.4rem;transition:background .3s}
 header.solid .bar{background:rgba(255,255,255,.86)}
-.logo{width:42px;height:42px;border:1px solid var(--line-strong);border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:1.05rem;text-decoration:none;color:var(--text);flex:none}
+.logo{display:inline-flex;align-items:center;font-family:var(--sans);font-weight:800;font-size:1.06rem;letter-spacing:-.03em;line-height:1;text-decoration:none;color:var(--text);white-space:nowrap;flex:none}
 .links{display:flex;gap:1.9rem}
 .links a{color:var(--text);text-decoration:none;font-size:.95rem}
 .links a:hover{color:var(--accent)}
@@ -82,7 +82,7 @@ footer nav{display:flex;gap:1.4rem;flex-wrap:wrap}
 
 /* ── tema scuro, coerente col sito ── */
 :root{
-  --bg:#08090A; --bg-b:rgba(255,255,255,.03); --panel:rgba(255,255,255,.03);
+  --bg:#0E100E; --bg-b:rgba(255,255,255,.03); --panel:rgba(255,255,255,.03);
   --line:rgba(255,255,255,.09); --line-strong:rgba(255,255,255,.17);
   --text:#F2F3EF; --muted:#9AA08E; --faint:#71776A;
   --accent:#B7C17E; --accent-2:#D6DFA6;
@@ -90,10 +90,10 @@ footer nav{display:flex;gap:1.4rem;flex-wrap:wrap}
 html{overflow-x:hidden}
 #auro{position:fixed;inset:0;z-index:-2;pointer-events:none;
   background:
-   radial-gradient(ellipse 70% 46% at 50% -6%, rgba(183,193,126,.20), transparent 68%),
+   radial-gradient(ellipse 72% 50% at 50% -8%, rgba(183,193,126,.28), transparent 70%),
    radial-gradient(ellipse 52% 40% at 12% 26%, rgba(183,193,126,.10), transparent 70%),
    radial-gradient(ellipse 58% 44% at 88% 62%, rgba(120,160,255,.08), transparent 72%),
-   #08090A}
+   #0E100E}
 body{background:transparent}
 header .bar,header.solid .bar{background:rgba(10,11,9,.62);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-color:var(--line)}
 .btn{background:#F7F8F4;color:#12140f;border-color:transparent}
@@ -107,7 +107,7 @@ section,.blk,main>section{border-top:0}
 <div id="auro"></div>
 <header>
   <div class="wrap bar">
-    <a class="logo" href="/">21</a>
+    <a class="logo" href="/" aria-label="21studio">21STUDIO</a>
     <nav class="links">
       <a href="/#team">Il sistema</a>
       <a href="/#nucleo">Il cervello</a>
