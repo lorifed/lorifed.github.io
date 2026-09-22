@@ -288,7 +288,7 @@ nav.n .go{display:grid;place-items:center;width:30px;height:30px;border:1px soli
   border-radius:2px;box-shadow:0 0 12px rgba(183,193,126,.6);
   transition:left .5s cubic-bezier(.16,1,.3,1),width .5s cubic-bezier(.16,1,.3,1)}
 .tb{display:flex;align-items:baseline;gap:.6rem;background:none;border:0;cursor:pointer;
-  font:inherit;color:inherit;padding:0 0 clamp(14px,1.6vw,20px);opacity:0;transform:translateY(12px)}
+  font:inherit;color:inherit;padding:0 0 clamp(14px,1.6vw,20px)}
 .tb em{font-family:var(--mono);font-size:10px;font-style:normal;letter-spacing:.12em;
   color:var(--ink-3);transition:color .4s}
 .tb span{font-size:clamp(1rem,1.5vw,1.26rem);font-weight:600;letter-spacing:-.024em;
@@ -1494,12 +1494,8 @@ header,header.scuro{color:#fff}
     }
     accendi(0); setTimeout(muovi,200);
     tb.forEach(function(v){v.addEventListener('click',function(){
-      window.__trioBlocco=Date.now(); accendi(+v.dataset.i);
+      accendi(+v.dataset.i);
     })});
-    window.__trio=function(p){
-      if(Date.now()-(window.__trioBlocco||0)<1200) return;
-      accendi(Math.min(tb.length-1,Math.floor(p*tb.length*0.999)));
-    };
     addEventListener('resize',muovi,{passive:true});
   })();
 
@@ -1508,7 +1504,6 @@ header,header.scuro{color:#fff}
     var b=document.getElementById('vaiSistema'); if(!b) return;
     b.addEventListener('click',function(){
       setTimeout(function(){
-        window.__trioBlocco=Date.now()+4000;
         var t=document.querySelector('.tb[data-i="3"]'); if(t) t.click();
       },700);
     });
@@ -1698,13 +1693,8 @@ header,header.scuro{color:#fff}
   })();
 
   /* ---- il trittico: i titoli entrano, poi lo scroll li accende ---- */
-  gsap.to('#tbar .tb',{opacity:1,y:0,duration:.75,stagger:.08,ease:E,
-    scrollTrigger:{trigger:'#tbar',start:'top 84%'}});
-  (function(){
-    var w=document.getElementById('triowrap'); if(!w) return;
-    ScrollTrigger.create({trigger:w,start:'top 62%',end:'bottom 58%',
-      onUpdate:function(self){ if(window.__trio) window.__trio(self.progress); }});
-  })();
+  gsap.set('#tbar .tb',{opacity:1,y:0});
+  /* il trittico si cambia solo cliccando le schede: niente scroll che comanda */
 
   /* ---- la call e i due posti ---- */
   [['.mapg','article'],['.mapn','div']].forEach(function(par){
@@ -1781,7 +1771,7 @@ header,header.scuro{color:#fff}
   if(!window.gsap) return;
 
   /* --- 3. parallasse sui riquadri grandi --- */
-  gsap.utils.toArray('.tstage,.duo .fr').forEach(function(el){
+  gsap.utils.toArray('.duo .fr').forEach(function(el){
     gsap.fromTo(el,{y:34},{y:-34,ease:'none',
       scrollTrigger:{trigger:el,start:'top bottom',end:'bottom top',scrub:.6}});
   });
