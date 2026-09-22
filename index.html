@@ -941,7 +941,7 @@ header,header.scuro{color:#fff}
     <p class="lead" id="herolead">Ti costruiamo i reparti AI su misura per la tua azienda. Li provi davvero, sui tuoi dati, <b style="color:#fff;font-weight:600">prima</b> di pagarli — e poi sono tuoi.</p>
     <div class="bs up" id="herobtn">
       <a class="b su" href="https://21studio.io/contatti.html"><i>Prenota una call</i><s>&rarr;</s></a>
-      <a class="b suv" href="#sistema"><i>Guarda il sistema</i><s>&rarr;</s></a>
+      <a class="b suv" id="vaiSistema" href="#trio"><i>Guarda il sistema</i><s>&rarr;</s></a>
     </div>
   </div>
 
@@ -1496,6 +1496,17 @@ header,header.scuro{color:#fff}
       accendi(Math.min(tb.length-1,Math.floor(p*tb.length*0.999)));
     };
     addEventListener('resize',muovi,{passive:true});
+  })();
+
+  /* ---- il bottone della hero apre il trittico sul pannello "Il sistema" ---- */
+  (function(){
+    var b=document.getElementById('vaiSistema'); if(!b) return;
+    b.addEventListener('click',function(){
+      setTimeout(function(){
+        window.__trioBlocco=Date.now()+4000;
+        var t=document.querySelector('.tb[data-i="3"]'); if(t) t.click();
+      },700);
+    });
   })();
 
   /* ---- su misura: il configuratore ---- */
