@@ -203,6 +203,67 @@ header.solid{background:rgba(5,7,12,.82);-webkit-backdrop-filter:blur(18px);
 footer{border-top-color:var(--line);padding:2.6rem 0 3.2rem}
 .foot{flex-direction:column;align-items:center;justify-content:center;
   text-align:center;gap:.7rem}
+
+/* ================== QUESTIONARIO DI CANDIDATURA ================== */
+#filtro{padding:clamp(10px,1.4vw,18px) 0 clamp(50px,6vw,90px)}
+.qbox{max-width:860px;margin:0 auto;border:1px solid var(--line);border-radius:var(--rc);
+  background:var(--panel);padding:clamp(22px,3vw,40px);
+  box-shadow:0 34px 80px -40px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.08)}
+.qbar{height:3px;border-radius:3px;background:rgba(255,255,255,.09);overflow:hidden;
+  margin-bottom:clamp(20px,2.6vw,32px)}
+.qbar i{display:block;height:100%;width:0;border-radius:3px;background:var(--accent);
+  box-shadow:0 0 12px rgba(183,193,126,.8);transition:width .5s cubic-bezier(.22,1,.36,1)}
+.qstep{display:none}
+.qstep.on{display:block;animation:qin .45s cubic-bezier(.22,1,.36,1)}
+@keyframes qin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.qn{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--faint)}
+.qstep h2{margin:.7rem 0 .4rem;font-size:clamp(1.4rem,2.6vw,2rem);font-weight:600;letter-spacing:-.03em}
+.qsub{margin:0 0 clamp(18px,2.2vw,26px);color:var(--muted);font-size:.96rem;line-height:1.55}
+.qh{margin:clamp(22px,2.6vw,32px) 0 .3rem;font-size:1.05rem;font-weight:600;letter-spacing:-.025em}
+.qopts{display:flex;flex-direction:column;gap:9px}
+.qopts.due{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.qopt{display:flex;align-items:flex-start;gap:.8rem;width:100%;text-align:left;cursor:pointer;
+  border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.022);
+  color:var(--text);font-family:var(--sans);font-size:1rem;padding:clamp(13px,1.5vw,17px) clamp(15px,1.7vw,20px);
+  transition:border-color .3s,background .3s,transform .3s var(--molla)}
+.qopt:hover{border-color:var(--line-2);background:rgba(255,255,255,.045)}
+.qopt.on{border-color:var(--accent);background:rgba(183,193,126,.09)}
+.qopt b{display:block;font-weight:600;font-size:.99rem;letter-spacing:-.02em}
+.qopt i{display:block;font-style:normal;margin-top:.22rem;font-size:.86rem;color:var(--muted);line-height:1.45}
+.qtick{flex:none;width:18px;height:18px;border-radius:6px;border:1px solid var(--line-2);
+  margin-top:.12rem;display:grid;place-items:center;transition:.3s}
+.qopt.on .qtick{background:var(--accent);border-color:var(--accent)}
+.qtick s{display:none;text-decoration:none;color:#05070C;font-size:11px;line-height:1}
+.qopt.on .qtick s{display:block}
+.qta{width:100%;min-height:150px;resize:vertical;line-height:1.55;
+  background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:12px;
+  color:var(--text);font-family:var(--sans);font-size:1rem;padding:1rem 1.1rem;transition:.2s}
+.qta:focus{outline:0;border-color:var(--accent);background:rgba(183,193,126,.05)}
+.qcount{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-top:.6rem}
+.qnav{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  margin-top:clamp(24px,3vw,36px)}
+.qback{background:none;border:0;cursor:pointer;color:var(--muted);font-family:var(--sans);
+  font-size:.95rem;padding:.6rem 0;transition:color .25s}
+.qback:hover{color:var(--text)}
+.qnext:disabled{opacity:.35;cursor:not-allowed;transform:none;box-shadow:none}
+.qerr{margin:.9rem 0 0;font-size:.88rem;color:#E3A08A;min-height:1.2em}
+
+/* ---- l'esito ---- */
+.qout{text-align:center}
+.qout .kicker{justify-content:center}
+.qfascia{margin:.9rem 0 .2rem;font-size:clamp(1.7rem,3.4vw,2.6rem);font-weight:600;letter-spacing:-.035em}
+.qcifra{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:600;letter-spacing:-.03em;color:var(--accent);
+  margin:.3rem 0 .1rem}
+.qnota{color:var(--muted);font-size:.94rem;max-width:56ch;margin:1rem auto 0;line-height:1.6}
+.qincl{text-align:left;margin:clamp(24px,3vw,34px) 0 0;border:1px solid var(--line);
+  border-radius:14px;background:rgba(255,255,255,.022);padding:clamp(18px,2.2vw,26px)}
+.qincl h3{margin:0 0 1rem}
+.qincl ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.75rem}
+.qincl li{display:flex;gap:.8rem;color:var(--muted);font-size:.94rem;line-height:1.5}
+.qincl li s{flex:none;text-decoration:none;color:var(--accent)}
+@media(max-width:620px){.qopts.due{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -225,12 +286,138 @@ footer{border-top-color:var(--line);padding:2.6rem 0 3.2rem}
 <section class="top">
   <div class="wrap">
     <span class="kicker"><i></i>Il primo passo</span>
-    <h1>Mezz&#39;ora, e sai se ha <em class="s">senso</em>.</h1>
-    <p class="lede">Scegli lo slot e raccontaci l&#39;azienda. In call la guardiamo reparto per reparto: se ci sono i presupposti te lo diciamo, e se non ci sono te lo diciamo lo stesso &mdash; la mappa resta tua in ogni caso.</p>
+    <h1>Vediamo se ha <em class="s">senso</em>.</h1>
+    <p class="lede">Sei domande, due minuti. Poi scegli lo slot. In call la guardiamo reparto per reparto: se ci sono i presupposti te lo diciamo, e se non ci sono te lo diciamo lo stesso &mdash; la mappa resta tua in ogni caso.</p>
   </div>
 </section>
 
-<section>
+<section id="filtro">
+  <div class="wrap">
+    <div class="qbox">
+      <div class="qbar"><i id="qfill"></i></div>
+
+      <!-- 1 -->
+      <div class="qstep on" data-s="0">
+        <span class="qn">Passo 1 di 6</span>
+        <h2>Quanto siete in azienda?</h2>
+        <p class="qsub">Ci serve per capire su che scala ragionare.</p>
+        <div class="qopts" data-k="dimensione" data-multi="0">
+          <button type="button" class="qopt" data-v="Solo io"><span class="qtick"><s>&#10003;</s></span><span><b>Solo io</b><i>Porto avanti tutto da solo</i></span></button>
+          <button type="button" class="qopt" data-v="2-5"><span class="qtick"><s>&#10003;</s></span><span><b>2 &ndash; 5 persone</b><i>Una squadra piccola</i></span></button>
+          <button type="button" class="qopt" data-v="6-15"><span class="qtick"><s>&#10003;</s></span><span><b>6 &ndash; 15 persone</b><i>Ci sono gi&agrave; dei ruoli separati</i></span></button>
+          <button type="button" class="qopt" data-v="16-50"><span class="qtick"><s>&#10003;</s></span><span><b>16 &ndash; 50 persone</b><i>Reparti veri, processi da coordinare</i></span></button>
+          <button type="button" class="qopt" data-v="50+"><span class="qtick"><s>&#10003;</s></span><span><b>Pi&ugrave; di 50</b><i>Struttura articolata</i></span></button>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="qstep" data-s="1">
+        <span class="qn">Passo 2 di 6</span>
+        <h2>Raccontaci l&#39;azienda e cosa ti pesa.</h2>
+        <p class="qsub">Cosa fate, e qual &egrave; il lavoro manuale che oggi ti costa pi&ugrave; tempo o pi&ugrave; soldi. Pi&ugrave; sei concreto, pi&ugrave; la call parte avanti &mdash; questa &egrave; la risposta che leggiamo per prima.</p>
+        <textarea class="qta" id="qRacconto" maxlength="2000" placeholder="Es. Vendiamo arredo su misura. Ogni preventivo lo riscrivo a mano partendo dalle misure che mi manda il cliente, ci metto un&#39;ora, e chi non risponde entro qualche giorno non lo ricontatta nessuno."></textarea>
+        <div class="qcount"><span id="qMin">servono ancora 40 caratteri</span><span id="qLen">0 / 2000</span></div>
+      </div>
+
+      <!-- 3 -->
+      <div class="qstep" data-s="2">
+        <span class="qn">Passo 3 di 6</span>
+        <h2>Numeri.</h2>
+        <p class="qsub">Servono a capire se il ritorno regge la spesa. Restano fra noi.</p>
+        <h3 class="qh">Fatturato mensile</h3>
+        <div class="qopts due" data-k="fatturato" data-multi="0">
+          <button type="button" class="qopt" data-v="<10k"><span class="qtick"><s>&#10003;</s></span><span><b>Sotto 10k</b></span></button>
+          <button type="button" class="qopt" data-v="10-50k"><span class="qtick"><s>&#10003;</s></span><span><b>10k &ndash; 50k</b></span></button>
+          <button type="button" class="qopt" data-v="50-200k"><span class="qtick"><s>&#10003;</s></span><span><b>50k &ndash; 200k</b></span></button>
+          <button type="button" class="qopt" data-v=">200k"><span class="qtick"><s>&#10003;</s></span><span><b>Oltre 200k</b></span></button>
+          <button type="button" class="qopt" data-v="n.d."><span class="qtick"><s>&#10003;</s></span><span><b>Preferisco non dirlo</b></span></button>
+        </div>
+        <h3 class="qh">Quanto sei disposto a investire nel sistema</h3>
+        <p class="qsub" style="margin-bottom:14px">Una tantum, per costruirlo. Il budget decide quanto possiamo accendere davvero.</p>
+        <div class="qopts" data-k="budget" data-multi="0">
+          <button type="button" class="qopt" data-v="B1"><span class="qtick"><s>&#10003;</s></span><span><b>Sotto 3.000 &euro;</b><i>Voglio partire da una cosa sola</i></span></button>
+          <button type="button" class="qopt" data-v="B2"><span class="qtick"><s>&#10003;</s></span><span><b>3.000 &ndash; 8.000 &euro;</b><i>Un reparto fatto bene, o due</i></span></button>
+          <button type="button" class="qopt" data-v="B3"><span class="qtick"><s>&#10003;</s></span><span><b>Oltre 8.000 &euro;</b><i>Pi&ugrave; reparti, o il sistema intero</i></span></button>
+          <button type="button" class="qopt" data-v="B0"><span class="qtick"><s>&#10003;</s></span><span><b>Non lo so ancora</b><i>Voglio prima capire di cosa si parla</i></span></button>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="qstep" data-s="3">
+        <span class="qn">Passo 4 di 6</span>
+        <h2>Quali aree ti pesano di pi&ugrave;?</h2>
+        <p class="qsub">Scegli tutte quelle che ti riguardano. Pi&ugrave; aree significa pi&ugrave; reparti da costruire.</p>
+        <div class="qopts due" data-k="aree" data-multi="1">
+          <button type="button" class="qopt" data-v="Vendite"><span class="qtick"><s>&#10003;</s></span><span><b>Vendite e preventivi</b></span></button>
+          <button type="button" class="qopt" data-v="Marketing"><span class="qtick"><s>&#10003;</s></span><span><b>Marketing e campagne</b></span></button>
+          <button type="button" class="qopt" data-v="Contenuti"><span class="qtick"><s>&#10003;</s></span><span><b>Contenuti e social</b></span></button>
+          <button type="button" class="qopt" data-v="Assistenza"><span class="qtick"><s>&#10003;</s></span><span><b>Assistenza clienti</b></span></button>
+          <button type="button" class="qopt" data-v="Delivery"><span class="qtick"><s>&#10003;</s></span><span><b>Consegna e progetti</b></span></button>
+          <button type="button" class="qopt" data-v="Intelligence"><span class="qtick"><s>&#10003;</s></span><span><b>Ricerca e mercato</b></span></button>
+          <button type="button" class="qopt" data-v="Backoffice"><span class="qtick"><s>&#10003;</s></span><span><b>Back office e numeri</b></span></button>
+          <button type="button" class="qopt" data-v="Non so"><span class="qtick"><s>&#10003;</s></span><span><b>Non lo so, guardiamolo insieme</b></span></button>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="qstep" data-s="4">
+        <span class="qn">Passo 5 di 6</span>
+        <h2>Dove deve girare, e quando.</h2>
+        <p class="qsub">Il sistema &egrave; identico nei due casi: cambia solo di chi &egrave; la macchina che lo tiene acceso.</p>
+        <h3 class="qh">Dove gira</h3>
+        <div class="qopts" data-k="dove" data-multi="0">
+          <button type="button" class="qopt" data-v="Gestito"><span class="qtick"><s>&#10003;</s></span><span><b>Lo tenete su voi</b><i>Acceso sempre, non ci devo pensare</i></span></button>
+          <button type="button" class="qopt" data-v="In casa"><span class="qtick"><s>&#10003;</s></span><span><b>Su una macchina mia</b><i>Voglio che tutto resti dentro casa</i></span></button>
+          <button type="button" class="qopt" data-v="Da valutare"><span class="qtick"><s>&#10003;</s></span><span><b>Da valutare insieme</b></span></button>
+        </div>
+        <h3 class="qh">Quando vorresti partire</h3>
+        <div class="qopts" data-k="quando" data-multi="0">
+          <button type="button" class="qopt" data-v="Subito"><span class="qtick"><s>&#10003;</s></span><span><b>Il prima possibile</b><i>Il problema ce l&#39;ho adesso</i></span></button>
+          <button type="button" class="qopt" data-v="3 mesi"><span class="qtick"><s>&#10003;</s></span><span><b>Entro tre mesi</b><i>Sto organizzando</i></span></button>
+          <button type="button" class="qopt" data-v="Guardo"><span class="qtick"><s>&#10003;</s></span><span><b>Sto solo guardando</b><i>Nessuna fretta</i></span></button>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="qstep" data-s="5">
+        <span class="qn">Passo 6 di 6</span>
+        <h2>Chi sei.</h2>
+        <p class="qsub">Serve per confermarti lo slot e mandarti i documenti dopo la call.</p>
+        <div class="campi" style="margin-top:1.2rem">
+          <div class="campo"><label for="qNome">Nome e cognome *</label><input type="text" id="qNome" required></div>
+          <div class="campo"><label for="qAzienda">Azienda *</label><input type="text" id="qAzienda" required></div>
+          <div class="campo"><label for="qEmail">Email *</label><input type="email" id="qEmail" required></div>
+          <div class="campo"><label for="qTel">Telefono</label><input type="tel" id="qTel"></div>
+          <div class="campo largo"><label for="qSito">Sito o profilo</label><input type="text" id="qSito" placeholder="21studio.io"></div>
+          <label class="consenso"><input type="checkbox" id="qOk" required>
+            Acconsento al trattamento dei dati per essere ricontattato. Niente newsletter, niente liste.</label>
+        </div>
+      </div>
+
+      <!-- esito -->
+      <div class="qstep qout" data-s="6">
+        <span class="kicker">La tua fascia</span>
+        <h2 class="qfascia" id="qFascia"></h2>
+        <p class="qcifra" id="qCifra"></p>
+        <p class="qnota" id="qNota"></p>
+        <div class="qincl">
+          <h3>Cosa comprende</h3>
+          <ul id="qIncl"></ul>
+        </div>
+        <p class="qnota">La call &egrave; gratuita e dura mezz&#39;ora. Se dopo averla fatta non ha senso, te lo diciamo l&igrave; &mdash; e i documenti restano tuoi comunque.</p>
+      </div>
+
+      <div class="qnav">
+        <button type="button" class="qback" id="qBack" hidden>&larr; Indietro</button>
+        <span></span>
+        <button type="button" class="btn qnext" id="qNext" disabled>Continua &rarr;</button>
+      </div>
+      <p class="qerr" id="qErr"></p>
+    </div>
+  </div>
+</section>
+
+<section id="prenota" hidden>
   <div class="wrap griglia">
     <div style="display:flex;flex-direction:column;gap:22px">
 
@@ -293,7 +480,7 @@ footer{border-top-color:var(--line);padding:2.6rem 0 3.2rem}
       </div>
       <div class="blocco">
         <h3>Preferisci scrivere</h3>
-        <p><a href="mailto:info@21studio.it">info@21studio.it</a><br>Rispondiamo entro un giorno lavorativo.</p>
+        <p><a href="mailto:info@21studio.io">info@21studio.io</a><br>Rispondiamo entro un giorno lavorativo.</p>
       </div>
     </aside>
   </div>
@@ -303,7 +490,7 @@ footer{border-top-color:var(--line);padding:2.6rem 0 3.2rem}
 <footer>
   <div class="wrap foot">
     <span class="mono">21studio</span>
-    <span><a href="/">Sito</a> &middot; <a href="/piano-di-mantenimento.html">Piano di mantenimento</a> &middot; <a href="mailto:info@21studio.it">info@21studio.it</a></span>
+    <span><a href="/">Sito</a> &middot; <a href="/piano-di-mantenimento.html">Piano di mantenimento</a> &middot; <a href="mailto:info@21studio.io">info@21studio.io</a></span>
   </div>
 </footer>
 <script>
@@ -376,7 +563,20 @@ footer{border-top-color:var(--line);padding:2.6rem 0 3.2rem}
       'Persone: '+v('persone'),'Reparto di partenza: '+v('reparto'),'',
       'Lavoro manuale che pesa di piu:',v('pesa'),'',
       'Strumenti in uso: '+(v('tool')||'-')].join('\n');
-    window.location.href='mailto:info@21studio.it?subject='+encodeURIComponent('Call '+quando+' \u2014 '+v('azienda'))+'&body='+encodeURIComponent(corpo);
+    /* le risposte del questionario viaggiano insieme, cosi' non si perde niente */
+    if(window.__candidatura){
+      var q=window.__candidatura();
+      corpo += '\n\n--- Questionario ---\n'
+            + 'Fascia: '+(q.fascia||'-')+'\n'
+            + 'Quanti sono: '+(q.dimensione||'-')+'\n'
+            + 'Fatturato: '+(q.fatturato||'-')+'\n'
+            + 'Budget: '+(q.budget||'-')+'\n'
+            + 'Aree: '+(q.aree||'-')+'\n'
+            + 'Dove gira: '+(q.dove||'-')+'\n'
+            + 'Quando parte: '+(q.quando||'-')+'\n';
+      if(window.__inviaCand) window.__inviaCand(q);
+    }
+    window.location.href='mailto:info@21studio.io?subject='+encodeURIComponent('Call '+quando+' \u2014 '+v('azienda'))+'&body='+encodeURIComponent(corpo);
     avviso.textContent='Ti si apre la mail gia compilata: mandala e ti confermiamo lo slot.';
   });
 })();
@@ -386,5 +586,202 @@ footer{border-top-color:var(--line);padding:2.6rem 0 3.2rem}
  function a(){h.classList.toggle('solid',scrollY>8)}
  a();addEventListener('scroll',a,{passive:true});})();
 </script>
+<script>
+/* =================================================================
+   QUESTIONARIO DI CANDIDATURA
+   Tutto quello che si cambia sta qui sotto. Il resto non si tocca.
+   ================================================================= */
+var CONFIG = {
+
+  /* Dove finiscono le risposte.
+     Incolla qui l'indirizzo della tua Google Apps Script (vedi salva-candidature.gs).
+     Finche' e' vuoto, il questionario funziona ma non salva niente. */
+  ENDPOINT: '',
+
+  /* >>> I NUMERI. Sostituisci questi e basta. <<<
+     min/max sono gli estremi del range mostrato in fondo.
+     canone: la riga sotto al prezzo. Lascia '' per non mostrarla. */
+  FASCE: {
+    A: { nome:'Un reparto',        min:0, max:0, canone:'' },
+    B: { nome:'Più reparti',  min:0, max:0, canone:'' },
+    C: { nome:'Sistema completo',  min:0, max:0, canone:'' }
+  },
+
+  /* Cosa comprende, per fascia. */
+  INCLUSO: {
+    A: ['Un reparto costruito sui tuoi processi',
+        'Gli agenti di quel reparto, addestrati sui tuoi dati',
+        'Il cervello con offerta, listino, tono di voce e regole',
+        'Il sistema da cui guardi e approvi',
+        'Consegna e passaggio di consegne in diretta'],
+    B: ['Più reparti, accesi in ordine di ritorno',
+        'Gli agenti di ogni reparto, addestrati sui tuoi dati',
+        'Il cervello condiviso fra tutti i reparti',
+        'Il sistema da cui guardi, approvi e comandi',
+        'Collegamento agli strumenti che già usate',
+        'Consegna e passaggio di consegne in diretta'],
+    C: ['Tutti i reparti che ti servono, costruiti su misura',
+        'Gli agenti di ogni reparto, addestrati sui tuoi dati',
+        'Il cervello condiviso, con le tue procedure dentro',
+        'Il sistema completo, da qualsiasi dispositivo',
+        'Collegamento agli strumenti che già usate',
+        'Consegna, passaggio di consegne e taratura sul lavoro vero']
+  }
+};
+
+(function(){
+  var box=document.querySelector('.qbox'); if(!box) return;
+  var passi=[].slice.call(box.querySelectorAll('.qstep')),
+      fill=document.getElementById('qfill'),
+      bNext=document.getElementById('qNext'),
+      bBack=document.getElementById('qBack'),
+      err=document.getElementById('qErr'),
+      ta=document.getElementById('qRacconto'),
+      cur=0, R={}, ESITO=null, TOT=6, partito=false;
+
+  /* --- selezione delle opzioni --- */
+  box.querySelectorAll('.qopts').forEach(function(g){
+    var k=g.dataset.k, multi=g.dataset.multi==='1';
+    g.querySelectorAll('.qopt').forEach(function(b){
+      b.addEventListener('click',function(){
+        if(multi){
+          b.classList.toggle('on');
+          R[k]=[].slice.call(g.querySelectorAll('.qopt.on')).map(function(x){return x.dataset.v});
+          if(!R[k].length) delete R[k];
+        } else {
+          g.querySelectorAll('.qopt').forEach(function(x){x.classList.remove('on')});
+          b.classList.add('on'); R[k]=b.dataset.v;
+        }
+        err.textContent=''; stato();
+      });
+    });
+  });
+
+  /* --- il racconto --- */
+  if(ta) ta.addEventListener('input',function(){
+    var n=ta.value.trim().length;
+    document.getElementById('qLen').textContent=n+' / 2000';
+    document.getElementById('qMin').textContent = n>=40 ? '' : ('servono ancora '+(40-n)+' caratteri');
+    R.racconto=ta.value.trim(); stato();
+  });
+  ['qNome','qAzienda','qEmail','qTel','qSito'].forEach(function(id){
+    var e=document.getElementById(id); if(e) e.addEventListener('input',stato);
+  });
+  var ok=document.getElementById('qOk'); if(ok) ok.addEventListener('change',stato);
+
+  /* --- si puo' andare avanti? --- */
+  function valido(i){
+    if(i===0) return !!R.dimensione;
+    if(i===1) return (R.racconto||'').length>=40;
+    if(i===2) return !!R.fatturato && !!R.budget;
+    if(i===3) return !!(R.aree&&R.aree.length);
+    if(i===4) return !!R.dove && !!R.quando;
+    if(i===5){
+      var v=function(id){return (document.getElementById(id).value||'').trim()};
+      return v('qNome') && v('qAzienda') && /.+@.+\..+/.test(v('qEmail')) && document.getElementById('qOk').checked;
+    }
+    return true;
+  }
+  function stato(){ bNext.disabled = !valido(cur); }
+
+  /* --- che fascia --- */
+  function calcola(){
+    var aree=(R.aree||[]).filter(function(a){return a!=='Non so'}).length;
+    var f='A';
+    if(aree>=2) f='B';
+    if(aree>=4) f='C';
+    if(R.dimensione==='16-50'||R.dimensione==='50+'){ if(f==='A') f='B'; else f='C'; }
+    if(R.dimensione==='Solo io' && f==='C') f='B';
+    return f;
+  }
+  function euro(n){ return n.toLocaleString('it-IT'); }
+
+  function mostraEsito(){
+    var f=calcola(); ESITO=f;
+    var d=CONFIG.FASCE[f];
+    document.getElementById('qFascia').textContent=d.nome;
+    var c=document.getElementById('qCifra');
+    if(d.min&&d.max){ c.textContent='da '+euro(d.min)+' a '+euro(d.max)+' €'; c.style.display=''; }
+    else { c.style.display='none'; }
+    var nota=document.getElementById('qNota');
+    var testo = (d.min&&d.max)
+      ? 'Il numero esatto lo chiudiamo in call, quando abbiamo guardato la tua azienda reparto per reparto. '
+        + 'Questa fascia è la stima che possiamo fare adesso, sulle risposte che ci hai dato.'
+      : 'La cifra la chiudiamo in call, dopo aver guardato la tua azienda reparto per reparto. '
+        + 'Esce insieme agli altri due documenti, e resta tua anche se ci salutiamo lì.';
+    if(d.canone) testo = d.canone+' — '+testo;
+    if(R.budget==='B1' && f!=='A')
+      testo = 'Il budget che hai indicato è sotto questa fascia: in call vediamo da dove si può partire con meno. '+testo;
+    nota.textContent=testo;
+    var ul=document.getElementById('qIncl'); ul.innerHTML='';
+    (CONFIG.INCLUSO[f]||[]).forEach(function(t){
+      var li=document.createElement('li');
+      li.innerHTML='<s>&#10003;</s><span>'+t+'</span>'; ul.appendChild(li);
+    });
+  }
+
+  /* --- invio --- */
+  function raccogli(){
+    var v=function(id){var e=document.getElementById(id);return e?(e.value||'').trim():''};
+    return {
+      tipo:'candidatura',
+      quando_inviato:new Date().toISOString(),
+      nome:v('qNome'), azienda:v('qAzienda'), email:v('qEmail'),
+      telefono:v('qTel'), sito:v('qSito'),
+      dimensione:R.dimensione||'', fatturato:R.fatturato||'', budget:R.budget||'',
+      aree:(R.aree||[]).join(', '), dove:R.dove||'', quando:R.quando||'',
+      racconto:R.racconto||'', fascia:ESITO||'',
+      pagina:location.href
+    };
+  }
+  function invia(dati){
+    if(!CONFIG.ENDPOINT) return Promise.resolve();
+    return fetch(CONFIG.ENDPOINT,{method:'POST',mode:'no-cors',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify(dati)}).catch(function(){});
+  }
+  window.__candidatura=raccogli;
+  window.__inviaCand=invia;
+
+  /* --- navigazione --- */
+  function vai(i){
+    cur=i;
+    passi.forEach(function(p,n){p.classList.toggle('on',n===i)});
+    fill.style.width=Math.round((Math.min(i,TOT)/TOT)*100)+'%';
+    bBack.hidden = i===0 || i===6;
+    bNext.textContent = i===5 ? 'Vedi la fascia →' : (i===6 ? 'Scegli lo slot →' : 'Continua →');
+    bNext.disabled=false; stato(); err.textContent='';
+    if(partito) box.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  bNext.addEventListener('click',function(){
+    if(cur<6 && !valido(cur)){ err.textContent='Manca ancora qualcosa qui sopra.'; return; }
+    if(cur===5){ mostraEsito(); invia(raccogli()); vai(6); return; }
+    if(cur===6){
+      var pren=document.getElementById('prenota');
+      if(pren){
+        pren.hidden=false;
+        /* porto i dati gia' dati dentro al modulo di prenotazione */
+        [['qNome','nome'],['qAzienda','azienda'],['qEmail','email'],['qTel','tel'],['qSito','sito']]
+          .forEach(function(p){
+            var a=document.getElementById(p[0]), b=document.getElementById(p[1]);
+            if(a&&b&&!b.value) b.value=a.value;
+          });
+        var pesa=document.getElementById('pesa');
+        if(pesa&&!pesa.value) pesa.value=R.racconto||'';
+        var cons=document.getElementById('ok'); if(cons) cons.checked=true;
+        setTimeout(function(){pren.scrollIntoView({behavior:'smooth',block:'start'})},60);
+      }
+      document.getElementById('filtro').style.display='none';
+      return;
+    }
+    vai(cur+1);
+  });
+  bBack.addEventListener('click',function(){ if(cur>0) vai(cur-1); });
+
+  vai(0); partito=true;
+})();
+</script>
+
 </body>
 </html>
