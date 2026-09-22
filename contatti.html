@@ -2,16 +2,16 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="theme-color" content="#0E100E">
-<style>html,body{background:#0E100E}</style>
+<meta name="theme-color" content="#090A09">
+<style>html,body{background:#090A09}</style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Prenota una call — 21studio</title>
 <meta name="description" content="Mezz'ora per capire se ha senso. Scegli lo slot, raccontaci l'azienda: in call mappiamo i processi manuali reparto per reparto.">
 <link rel="icon" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media=&#39;all&#39;">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media=&#39;all&#39;">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
 <style>
 :root{
   --bg:#0E100E; --panel:rgba(255,255,255,.03); --panel-2:rgba(255,255,255,.055);
@@ -109,6 +109,100 @@ footer{border-top:1px solid var(--line);padding:2.4rem 0 3rem;color:var(--faint)
 .foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
 footer a{text-decoration:none}
 footer a:hover{color:var(--text)}
+
+/* ================================================================
+   Coerenza con la nuova home: stessa palette, stessa barra,
+   stesse superfici di vetro, stessa tipografia.
+   ================================================================ */
+:root{
+  --bg:#090A09;
+  --panel:rgba(255,255,255,.045);
+  --panel-2:rgba(255,255,255,.075);
+  --line:rgba(255,255,255,.10);
+  --line-2:rgba(255,255,255,.18);
+  --text:#FFFFFF;
+  --muted:rgba(255,255,255,.62);
+  --faint:rgba(255,255,255,.42);
+  --accent:#B7C17E;
+  --accent-2:#B7C17E;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+  --container:1280px;
+  --rc:20px;
+  --molla:cubic-bezier(.22,1.2,.36,1);
+}
+html,body{background:#090A09}
+body{font-weight:400;font-size:16px;line-height:1.5}
+.wrap{max-width:var(--container);width:min(1280px,92vw);padding:0}
+
+h1,h2,h3{font-weight:600;letter-spacing:-.03em;line-height:1.04}
+h1{font-size:clamp(2.3rem,5.4vw,4.1rem)}
+h3{font-size:1.06rem;font-weight:600;letter-spacing:-.026em}
+em.s{font-family:var(--sans);font-style:normal;font-weight:600;color:var(--accent);letter-spacing:-.03em}
+
+/* sfondo: gli stessi bagliori della home */
+#auro{background:
+  radial-gradient(880px 560px at 10% -8%, rgba(110,125,60,.085), transparent 60%),
+  radial-gradient(720px 500px at 94% 26%, rgba(183,193,126,.045), transparent 62%),
+  radial-gradient(1100px 660px at 50% 110%, rgba(110,125,60,.07), transparent 64%),
+  #090A09}
+body::after{content:"";position:fixed;inset:0;z-index:999;pointer-events:none;opacity:.10;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/><feColorMatrix type='saturate' values='0'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='.5'/></svg>")}
+
+/* barra: identica a quella della home */
+header{position:fixed;inset:0 0 auto;top:0;z-index:90;padding:0;
+  border-bottom:1px solid transparent;transition:background .4s,border-color .4s}
+header.solid{background:rgba(5,7,12,.82);-webkit-backdrop-filter:blur(18px);
+  backdrop-filter:blur(18px);border-bottom-color:rgba(255,255,255,.14)}
+.bar{border:0;border-radius:0;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;
+  width:min(1280px,92vw);margin-inline:auto;height:60px;padding:0;gap:2rem}
+.logo{font-size:17px;font-weight:500;letter-spacing:-.02em;text-transform:lowercase;
+  display:inline-flex;align-items:center;gap:.5rem}
+.logo::before{content:"";width:16px;height:16px;border-radius:5px;background:currentColor;flex:none}
+.links{gap:26px}
+.links a{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.13em;
+  text-transform:uppercase;color:#fff;opacity:.72;transition:opacity .3s}
+.links a:hover{color:#fff;opacity:1}
+
+/* bottoni: la pillola della home */
+.btn{border-radius:999px;background:var(--accent);color:#05070C;border:1px solid var(--accent);
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.13em;
+  text-transform:uppercase;padding:13px 22px;
+  box-shadow:0 14px 34px -18px rgba(183,193,126,.6);
+  transition:transform .4s var(--molla),box-shadow .4s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 20px 44px -20px rgba(183,193,126,.85)}
+.btn.vuoto{background:transparent;color:#fff;border-color:var(--line-2);box-shadow:none}
+.btn.vuoto:hover{background:rgba(255,255,255,.08);box-shadow:none}
+
+/* etichette: come .lab della home */
+.kicker{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--accent)}
+.kicker i{display:none}
+
+.top{padding:clamp(118px,14vh,168px) 0 clamp(26px,3vw,42px)}
+.lede{font-size:1rem;color:var(--muted);max-width:60ch;line-height:1.6}
+
+/* superfici di vetro, come le schede della home */
+.scheda,.blocco{border-radius:var(--rc);background:var(--panel);
+  border:1px solid var(--line);
+  box-shadow:0 34px 80px -40px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.08)}
+.blocco{transition:background .45s,border-color .45s}
+.blocco:hover{background:var(--panel-2);border-color:rgba(183,193,126,.3)}
+.passo b{font-family:var(--mono);letter-spacing:.13em;color:var(--accent)}
+.passo span{font-weight:600;letter-spacing:-.026em}
+
+/* campi e calendario */
+.campo input,.campo select,.campo textarea{border-radius:12px;background:rgba(255,255,255,.035)}
+.campo label{font-weight:500;color:var(--muted)}
+.gg button{border-radius:12px}
+.gg button.on{background:var(--accent);color:#05070C;
+  box-shadow:0 0 0 1px rgba(183,193,126,.5),0 8px 22px -10px rgba(183,193,126,.8)}
+.slot button{font-family:var(--mono);font-size:.82rem}
+.slot button.on{color:#05070C;box-shadow:0 8px 22px -10px rgba(183,193,126,.8)}
+
+/* piede centrato, come nella home */
+footer{border-top-color:var(--line);padding:2.6rem 0 3.2rem}
+.foot{flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;gap:.7rem}
 </style>
 </head>
 <body>
@@ -117,12 +211,11 @@ footer a:hover{color:var(--text)}
   <div class="wrap bar">
     <a class="logo" href="/" aria-label="21studio">21STUDIO</a>
     <nav class="links">
-      <a href="/#team">Il sistema</a>
-      <a href="/#nucleo">Il cervello</a>
-      <a href="/#percorso">Come funziona</a>
-      <a href="/#conto">Quanto costa</a>
+      <a href="/#metodo">Come funziona</a>
+      <a href="/#trio">Cosa costruiamo</a>
+      <a href="/#strumenti">Strumenti</a>
+      <a href="/#dove">Dove gira</a>
       <a href="/#perchi">Per chi &egrave;</a>
-      <a href="/#domande">Domande</a>
     </nav>
     <a class="btn vuoto" href="/">Torna al sito</a>
   </div>
@@ -287,6 +380,11 @@ footer a:hover{color:var(--text)}
     avviso.textContent='Ti si apre la mail gia compilata: mandala e ti confermiamo lo slot.';
   });
 })();
+</script>
+<script>
+(function(){var h=document.querySelector('header');if(!h)return;
+ function a(){h.classList.toggle('solid',scrollY>8)}
+ a();addEventListener('scroll',a,{passive:true});})();
 </script>
 </body>
 </html>
