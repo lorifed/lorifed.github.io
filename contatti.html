@@ -463,7 +463,7 @@ footer{border-top-color:var(--line);padding:2.6rem 0 3.2rem}
         <h2 class="fattoT" id="fattoT"></h2>
         <p class="fattoP">Ti abbiamo mandato la mail di conferma, con l&#39;invito da aggiungere al calendario.
           Se non la vedi entro qualche minuto, guarda nello spam.</p>
-        <p class="fattoP">Il link di Google Meet arriva poco prima della call.
+        <p class="fattoP">Nella mail trovi anche il link di Google Meet: basta cliccarlo all&#39;ora giusta.
           Per spostare o disdire, rispondi a quella mail.</p>
       </div>
 
@@ -500,7 +500,7 @@ footer{border-top-color:var(--line);padding:2.6rem 0 3.2rem}
       <div class="blocco">
         <h3>Cosa succede dopo</h3>
         <ul>
-          <li><b>01</b><span>Ricevi subito la mail di conferma con l&#39;invito per il calendario. Il link della call arriva poco prima.</span></li>
+          <li><b>01</b><span>Ricevi subito la mail di conferma, con il link della videocall e l&#39;invito per il calendario.</span></li>
           <li><b>02</b><span>In mezz&#39;ora mappiamo i processi manuali, reparto per reparto.</span></li>
           <li><b>03</b><span>Entro 48 ore ti mandiamo tre documenti: la mappa, il conto in euro, quali reparti accendere. Restano tuoi anche se ci salutiamo l&igrave;.</span></li>
         </ul>
@@ -607,32 +607,35 @@ footer{border-top-color:var(--line);padding:2.6rem 0 3.2rem}
     };
 
     var bottone=document.querySelector('#modulo .invia .btn');
-    if(bottone){ bottone.disabled=true; bottone.textContent='Invio in corso…'; }
+    if(bottone){ bottone.disabled=true; bottone.textContent='Fatto'; }
     avviso.textContent='';
 
-    var mostraFatto=function(){
-      var f=document.getElementById('fatto');
-      if(f){
-        document.getElementById('fattoT').textContent='Ci vediamo il '+quando+'.';
-        [].slice.call(document.querySelectorAll('#prenota .scheda')).forEach(function(x){
-          if(x.id!=='fatto') x.hidden=true;
-        });
-        f.hidden=false;
-        f.scrollIntoView({behavior:'smooth',block:'start'});
-      }
-    };
-
+    /* parte in sottofondo: la conferma a schermo non aspetta il server */
     if(window.CONFIG && CONFIG.ENDPOINT){
-      fetch(CONFIG.ENDPOINT,{method:'POST',mode:'no-cors',
-        headers:{'Content-Type':'text/plain;charset=utf-8'},
-        body:JSON.stringify(dati)})
-        .then(mostraFatto)
-        .catch(function(){
-          if(bottone){ bottone.disabled=false; bottone.textContent='Conferma la call →'; }
-          avviso.textContent='Qualcosa non ha funzionato. Scrivici a info@21studio.io e sistemiamo.';
-        });
-    } else {
-      mostraFatto();
+      var corpo=JSON.stringify(dati), spedito=false;
+      try{
+        if(navigator.sendBeacon){
+          spedito=navigator.sendBeacon(CONFIG.ENDPOINT,
+            new Blob([corpo],{type:'text/plain;charset=utf-8'}));
+        }
+      }catch(_e){}
+      if(!spedito){
+        try{
+          fetch(CONFIG.ENDPOINT,{method:'POST',mode:'no-cors',keepalive:true,
+            headers:{'Content-Type':'text/plain;charset=utf-8'},
+            body:corpo}).catch(function(){});
+        }catch(_e2){}
+      }
+    }
+
+    var f=document.getElementById('fatto');
+    if(f){
+      document.getElementById('fattoT').textContent='Ci vediamo il '+quando+'.';
+      [].slice.call(document.querySelectorAll('#prenota .scheda')).forEach(function(x){
+        if(x.id!=='fatto') x.hidden=true;
+      });
+      f.hidden=false;
+      f.scrollIntoView({behavior:'smooth',block:'start'});
     }
   });
 })();
