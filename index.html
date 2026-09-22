@@ -284,9 +284,10 @@ nav.n .go{display:grid;place-items:center;width:30px;height:30px;border:1px soli
 .trio{margin-top:clamp(40px,5vw,68px)}
 .tbar{position:relative;display:flex;gap:clamp(1.4rem,3vw,3rem);flex-wrap:wrap;
   border-bottom:1px solid var(--hair-d);padding-bottom:0}
-.tbline{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--acc-2);
+.tbline{position:absolute;left:0;top:0;height:2px;width:0;background:var(--acc-2);
   border-radius:2px;box-shadow:0 0 12px rgba(183,193,126,.6);
-  transition:left .5s cubic-bezier(.16,1,.3,1),width .5s cubic-bezier(.16,1,.3,1)}
+  transition:left .5s cubic-bezier(.16,1,.3,1),width .5s cubic-bezier(.16,1,.3,1),
+             top .34s cubic-bezier(.16,1,.3,1)}
 .tb{display:flex;align-items:baseline;gap:.6rem;background:none;border:0;cursor:pointer;
   font:inherit;color:inherit;padding:0 0 clamp(14px,1.6vw,20px)}
 .tb em{font-family:var(--mono);font-size:10px;font-style:normal;letter-spacing:.12em;
@@ -903,6 +904,18 @@ header,header.scuro{color:#fff}
 .ig{display:inline-flex;align-items:center;gap:.3rem;text-decoration:none;opacity:.72;transition:opacity .3s}
 .ig:hover{opacity:1}
 .ig s{text-decoration:none;font-size:.85em;opacity:.7}
+
+/* ---------- trittico su schermi stretti: un pannello alla volta ----------
+   .tp.diag e .tp.conf dichiarano display:flex e battevano il display:none
+   della media query: restavano in pagina, invisibili ma ingombranti.      */
+@media(max-width:1040px){
+  #tstage .tp,
+  #tstage .tp.diag,
+  #tstage .tp.conf{display:none}
+  #tstage .tp.on{display:block}
+  #tstage .tp.diag.on,
+  #tstage .tp.conf.on{display:flex}
+}
 </style>
 </head>
 <body>
@@ -1480,6 +1493,7 @@ header,header.scuro{color:#fff}
       var a=tb[att], rb=bar.getBoundingClientRect(), ab=a.getBoundingClientRect();
       linea.style.left=(ab.left-rb.left)+'px';
       linea.style.width=ab.width+'px';
+      linea.style.top=(ab.bottom-rb.top-1)+'px';
     }
     function accendi(i){
       i=Math.max(0,Math.min(tb.length-1,i));
