@@ -359,9 +359,9 @@ footer{border-top-color:var(--line);padding:2.6rem 0 3.2rem}
         <h3 class="qh">Quanto sei disposto a investire nel sistema</h3>
         <p class="qsub" style="margin-bottom:14px">Una tantum, per costruirlo. Il budget decide quanto possiamo accendere davvero.</p>
         <div class="qopts" data-k="budget" data-multi="0">
-          <button type="button" class="qopt" data-v="B1"><span class="qtick"><s>&#10003;</s></span><span><b>Sotto 3.000 &euro;</b><i>Voglio partire da una cosa sola</i></span></button>
-          <button type="button" class="qopt" data-v="B2"><span class="qtick"><s>&#10003;</s></span><span><b>3.000 &ndash; 8.000 &euro;</b><i>Un reparto fatto bene, o due</i></span></button>
-          <button type="button" class="qopt" data-v="B3"><span class="qtick"><s>&#10003;</s></span><span><b>Oltre 8.000 &euro;</b><i>Pi&ugrave; reparti, o il sistema intero</i></span></button>
+          <button type="button" class="qopt" data-v="B1"><span class="qtick"><s>&#10003;</s></span><span><b>Sotto 1.000 &euro;</b><i>Voglio partire da una cosa sola</i></span></button>
+          <button type="button" class="qopt" data-v="B2"><span class="qtick"><s>&#10003;</s></span><span><b>1.000 &ndash; 3.000 &euro;</b><i>Un reparto fatto bene, o due</i></span></button>
+          <button type="button" class="qopt" data-v="B3"><span class="qtick"><s>&#10003;</s></span><span><b>Oltre 3.000 &euro;</b><i>Pi&ugrave; reparti, o il sistema intero</i></span></button>
           <button type="button" class="qopt" data-v="B0"><span class="qtick"><s>&#10003;</s></span><span><b>Non lo so ancora</b><i>Voglio prima capire di cosa si parla</i></span></button>
         </div>
       </div>
@@ -620,9 +620,9 @@ var CONFIG = {
      min/max sono gli estremi del range mostrato in fondo.
      canone: la riga sotto al prezzo. Lascia '' per non mostrarla. */
   FASCE: {
-    A: { nome:'Un reparto',        min:0, max:0, canone:'' },
-    B: { nome:'Più reparti',  min:0, max:0, canone:'' },
-    C: { nome:'Sistema completo',  min:0, max:0, canone:'' }
+    A: { nome:'Un reparto',       min:900,  max:1800,  canone:'' },
+    B: { nome:'Più reparti',      min:1800, max:3500,  canone:'' },
+    C: { nome:'Sistema completo', min:3500, max:7000,  canone:'' }
   },
 
   /* Cosa comprende, per fascia. */
@@ -734,14 +734,17 @@ var CONFIG = {
     if(d.min&&d.max){ c.textContent='da '+euro(d.min)+' a '+euro(d.max)+' €'; c.style.display=''; }
     else { c.style.display='none'; }
     var nota=document.getElementById('qNota');
-    var testo = (d.min&&d.max)
-      ? 'Il numero esatto lo chiudiamo in call, quando abbiamo guardato la tua azienda reparto per reparto. '
-        + 'Questa fascia è la stima che possiamo fare adesso, sulle risposte che ci hai dato.'
-      : 'La cifra la chiudiamo in call, dopo aver guardato la tua azienda reparto per reparto. '
-        + 'Esce insieme agli altri due documenti, e resta tua anche se ci salutiamo lì.';
-    if(d.canone) testo = d.canone+' — '+testo;
+    var testo;
+    if(d.min&&d.max){
+      testo = 'Setup una tantum. A questo si aggiunge un canone mensile, che dipende da dove lo fai girare: '
+            + 'lo vediamo in call. Il numero esatto lo chiudiamo dopo aver guardato la tua azienda reparto per reparto.';
+      if(R.dove==='In casa') testo += ' Installazione sulla tua macchina inclusa.';
+    } else {
+      testo = 'La cifra la chiudiamo in call, dopo aver guardato la tua azienda reparto per reparto. '
+            + 'Esce insieme agli altri due documenti, e resta tua anche se ci salutiamo l\u00ec.';
+    }
     if(R.budget==='B1' && f!=='A')
-      testo = 'Il budget che hai indicato è sotto questa fascia: in call vediamo da dove si può partire con meno. '+testo;
+      testo = 'Il budget che hai indicato \u00e8 sotto questa fascia: in call vediamo da dove si pu\u00f2 partire con meno. '+testo;
     nota.textContent=testo;
     var ul=document.getElementById('qIncl'); ul.innerHTML='';
     (CONFIG.INCLUSO[f]||[]).forEach(function(t){
