@@ -281,6 +281,11 @@ footer{border-top-color:var(--line);padding:2.6rem 0 3.2rem}
 .ig{display:inline-flex;align-items:center;gap:.3rem;text-decoration:none;opacity:.72;transition:opacity .3s}
 .ig:hover{opacity:1}
 .ig s{text-decoration:none;font-size:.85em;opacity:.7}
+
+.fatto .kicker{color:var(--accent)}
+.fattoT{margin:.9rem 0 1.1rem;font-size:clamp(1.5rem,2.8vw,2.1rem);font-weight:600;letter-spacing:-.032em;line-height:1.1}
+.fattoP{margin:0 0 .9rem;color:var(--muted);font-size:.98rem;line-height:1.6;max-width:52ch}
+.fattoP:last-child{margin-bottom:0}
 </style>
 </head>
 <body>
@@ -405,7 +410,7 @@ footer{border-top-color:var(--line);padding:2.6rem 0 3.2rem}
           <div class="campo"><label for="qAzienda">Azienda *</label><input type="text" id="qAzienda" required></div>
           <div class="campo"><label for="qEmail">Email *</label><input type="email" id="qEmail" required></div>
           <div class="campo"><label for="qTel">Telefono</label><input type="tel" id="qTel"></div>
-          <div class="campo largo"><label for="qSito">Sito o profilo</label><input type="text" id="qSito" placeholder="21studio.io"></div>
+          <div class="campo largo"><label for="qSito">Sito o profilo</label><input type="text" id="qSito" placeholder="iltuosito.it"></div>
           <label class="consenso"><input type="checkbox" id="qOk" required>
             Acconsento al trattamento dei dati per essere ricontattato. Niente newsletter, niente liste.</label>
         </div>
@@ -453,6 +458,15 @@ footer{border-top-color:var(--line);padding:2.6rem 0 3.2rem}
         <p class="scelto" id="scelto">Le call durano <b>30 minuti</b> e si fanno su Google Meet.</p>
       </div>
 
+      <div class="scheda fatto" id="fatto" hidden>
+        <span class="kicker">Call confermata</span>
+        <h2 class="fattoT" id="fattoT"></h2>
+        <p class="fattoP">Ti abbiamo mandato la mail di conferma, con l&#39;invito da aggiungere al calendario.
+          Se non la vedi entro qualche minuto, guarda nello spam.</p>
+        <p class="fattoP">Il link di Google Meet arriva poco prima della call.
+          Per spostare o disdire, rispondi a quella mail.</p>
+      </div>
+
       <div class="scheda">
         <div class="passo"><b>02</b><span>Raccontaci l&#39;azienda</span></div>
         <form class="campi" id="modulo" novalidate>
@@ -460,7 +474,7 @@ footer{border-top-color:var(--line);padding:2.6rem 0 3.2rem}
           <div class="campo"><label for="azienda">Azienda *</label><input type="text" id="azienda" required></div>
           <div class="campo"><label for="email">Email *</label><input type="email" id="email" required></div>
           <div class="campo"><label for="tel">Telefono</label><input type="tel" id="tel"></div>
-          <div class="campo"><label for="sito">Sito</label><input type="text" id="sito" placeholder="21studio.io"></div>
+          <div class="campo"><label for="sito">Sito</label><input type="text" id="sito" placeholder="iltuosito.it"></div>
           <div class="campo"><label for="persone">Quante persone siete</label>
             <select id="persone"><option>Solo io</option><option>2 &ndash; 5</option><option>6 &ndash; 15</option><option>16 &ndash; 50</option><option>Pi&ugrave; di 50</option></select></div>
           <div class="campo largo"><label for="reparto">Da dove partiresti</label>
@@ -486,7 +500,7 @@ footer{border-top-color:var(--line);padding:2.6rem 0 3.2rem}
       <div class="blocco">
         <h3>Cosa succede dopo</h3>
         <ul>
-          <li><b>01</b><span>Ti confermiamo lo slot entro un giorno lavorativo, con il link della call.</span></li>
+          <li><b>01</b><span>Ricevi subito la mail di conferma con l&#39;invito per il calendario. Il link della call arriva poco prima.</span></li>
           <li><b>02</b><span>In mezz&#39;ora mappiamo i processi manuali, reparto per reparto.</span></li>
           <li><b>03</b><span>Entro 48 ore ti mandiamo tre documenti: la mappa, il conto in euro, quali reparti accendere. Restano tuoi anche se ci salutiamo l&igrave;.</span></li>
         </ul>
@@ -571,31 +585,55 @@ footer{border-top-color:var(--line);padding:2.6rem 0 3.2rem}
   document.getElementById('modulo').addEventListener('submit',function(e){
     e.preventDefault();
     var v=function(id){ return (document.getElementById(id).value||'').trim() };
-    if(!giorno||!ora){ avviso.textContent='Scegli prima il giorno e l\u2019orario qui sopra.'; return }
+    if(!giorno||!ora){ avviso.textContent='Scegli prima il giorno e l’orario qui sopra.'; return }
     if(!v('nome')||!v('azienda')||!v('email')||!v('pesa')||!document.getElementById('ok').checked){
-      avviso.textContent='Mancano i campi con l\u2019asterisco, o il consenso.'; return }
+      avviso.textContent='Mancano i campi con l’asterisco, o il consenso.'; return }
+
     var quando=giorno.getDate()+' '+MESI[giorno.getMonth()]+' '+giorno.getFullYear()+', ore '+ora;
-    var corpo=['Slot scelto: '+quando,'',
-      'Nome: '+v('nome'),'Azienda: '+v('azienda'),'Email: '+v('email'),
-      'Telefono: '+(v('tel')||'-'),'Sito: '+(v('sito')||'-'),
-      'Persone: '+v('persone'),'Reparto di partenza: '+v('reparto'),'',
-      'Lavoro manuale che pesa di piu:',v('pesa'),'',
-      'Strumenti in uso: '+(v('tool')||'-')].join('\n');
-    /* le risposte del questionario viaggiano insieme, cosi' non si perde niente */
-    if(window.__candidatura){
-      var q=window.__candidatura();
-      corpo += '\n\n--- Questionario ---\n'
-            + 'Fascia: '+(q.fascia||'-')+'\n'
-            + 'Quanti sono: '+(q.dimensione||'-')+'\n'
-            + 'Fatturato: '+(q.fatturato||'-')+'\n'
-            + 'Budget: '+(q.budget||'-')+'\n'
-            + 'Aree: '+(q.aree||'-')+'\n'
-            + 'Dove gira: '+(q.dove||'-')+'\n'
-            + 'Quando parte: '+(q.quando||'-')+'\n';
-      if(window.__inviaCand) window.__inviaCand(q);
+    var due=function(n){ return (n<10?'0':'')+n };
+    var iso=giorno.getFullYear()+'-'+due(giorno.getMonth()+1)+'-'+due(giorno.getDate())+'T'+ora+':00';
+
+    var q=(window.__candidatura?window.__candidatura():{})||{};
+    var dati={
+      tipo:'prenotazione', slot:quando, slotISO:iso,
+      quando_inviato:new Date().toISOString(),
+      nome:v('nome'), azienda:v('azienda'), email:v('email'),
+      telefono:v('tel'), sito:v('sito'),
+      dimensione:q.dimensione||v('persone'), fatturato:q.fatturato||'',
+      budget:q.budget||'', fascia:q.fascia||'',
+      aree:q.aree||v('reparto'), dove:q.dove||'', quando:q.quando||'',
+      racconto:(q.racconto||v('pesa'))+(v('tool')?('\n\nStrumenti in uso: '+v('tool')):''),
+      pagina:location.href
+    };
+
+    var bottone=document.querySelector('#modulo .invia .btn');
+    if(bottone){ bottone.disabled=true; bottone.textContent='Invio in corso…'; }
+    avviso.textContent='';
+
+    var mostraFatto=function(){
+      var f=document.getElementById('fatto');
+      if(f){
+        document.getElementById('fattoT').textContent='Ci vediamo il '+quando+'.';
+        [].slice.call(document.querySelectorAll('#prenota .scheda')).forEach(function(x){
+          if(x.id!=='fatto') x.hidden=true;
+        });
+        f.hidden=false;
+        f.scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    };
+
+    if(window.CONFIG && CONFIG.ENDPOINT){
+      fetch(CONFIG.ENDPOINT,{method:'POST',mode:'no-cors',
+        headers:{'Content-Type':'text/plain;charset=utf-8'},
+        body:JSON.stringify(dati)})
+        .then(mostraFatto)
+        .catch(function(){
+          if(bottone){ bottone.disabled=false; bottone.textContent='Conferma la call →'; }
+          avviso.textContent='Qualcosa non ha funzionato. Scrivici a info@21studio.io e sistemiamo.';
+        });
+    } else {
+      mostraFatto();
     }
-    window.location.href='mailto:info@21studio.io?subject='+encodeURIComponent('Call '+quando+' \u2014 '+v('azienda'))+'&body='+encodeURIComponent(corpo);
-    avviso.textContent='Ti si apre la mail gia compilata: mandala e ti confermiamo lo slot.';
   });
 })();
 </script>
